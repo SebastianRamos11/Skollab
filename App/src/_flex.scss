@@ -1,0 +1,66 @@
+@mixin flexCenter ($direction){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+// ALIGNMENT FUNCTION
+
+@mixin setFlex ($direction, $align, $justify){
+    display: flex;
+
+    @if $direction == 'row'{
+        flex-direction: row;
+    } @else{
+        flex-direction: column;
+    }
+
+    // ALIGN ITEMS
+
+    @if ($align == 'center') {
+        align-items: center;
+    } @else if ($align == 'start'){
+        align-items: flex-start;
+    } @else if ($align == 'end'){
+        align-items: flex-end;
+    } @else if ($align == 'baseline'){
+        align-items: baseline;
+    } @else{
+        align-items: stretch;
+    }
+
+    // ALIGN CONTENT
+
+    @if ($align == 'center') {
+        align-items: center;
+    } @else if ($align == 'start'){
+        align-items: flex-start;
+    } @else if ($align == 'end'){
+        align-items: flex-end;
+    } @else if ($align == 'baseline'){
+        align-items: baseline;
+    } @else{
+        align-items: stretch;
+    }
+
+    // JUSTIFY CONTENT
+
+    @if ($justify == 'center') {
+        justify-content: center;
+    } @else if ($justify == 'start'){
+        justify-content: flex-start;
+    } @else if ($justify == 'end'){
+        justify-content: flex-end;
+    } @else if ($justify == 'baseline'){
+        justify-content: baseline;
+    } @else if ($justify == 'between'){
+        justify-content: space-between;
+    } @else if ($justify == 'around'){
+        justify-content: space-around;
+    } @else if ($justify == 'evenly'){
+        justify-content: space-evenly;
+    } @else{
+        justify-content: stretch;
+    }
+} 
