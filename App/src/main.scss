@@ -132,18 +132,17 @@
     text-align: center;
 }
 
-.card-container{
-    width: 100%;
-    display: flex;
-    @include setFlex(row, center, center);
-}
+// .card-container{
+//     width: 100%;
+//     display: flex;
+//     @include setFlex(row, center, center);
+// }
 
 .card{
-    display: flex;
     @include setFlex(column, center, evenly);
     background-color: $white;
-    max-width: 600px;
-    margin: 20px 30px;
+    margin: 40px 20px;
+    margin-top: -10px;
     padding: 20px;
     border-radius: $radius-xl;
     border-left: 20px solid $primary-color;
@@ -162,6 +161,53 @@
     #{&}__list{
         list-style: none;
         text-align: left;
+    }
+    #{&}__li{
+        position: relative;
+        text-align: left;
+        & span{
+            display: inline-block;
+            font-weight: bold;
+            width: 2em;
+            height: 2em;
+            text-align: center;
+            line-height: 2em;
+            border-radius: $radius-xl;
+            background-color: $secundary-color;
+            color: $white;
+            position: relative;
+            z-index: 1;
+            margin: 1.4em 0;
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            background: $secundary-color;
+            z-index: 0;
+            top: -35px;
+            left: 15px;
+            width: 0.2em;
+            height: 4em;
+        }
+
+        &:first-child::before{
+            display: none;
+        }
+    }
+
+
+}
+
+@media screen and (min-width: $md) {
+    .card{
+        margin: 80px 80px;
+    }
+    
+    .card__hero{
+        width: 60%;
+        align-self: center;
+        
     }
 }
 
