@@ -7,55 +7,168 @@
 // Nav bar
 
 .nav {
+    top: 0;
+    width: 100%;
     background: $white;
-    @include setFlex(row, center, between);
-    padding: 10px 0;
+    @include setFlex(column, center, between);
+    padding: 20px 0;
     min-height: 80px;
     
     #{&}__logo{
-        width: 100px;
+        width: 130px;
         margin-left: 20px;
         flex-shrink: 2;
+        margin-bottom: 15px
     }
     
     #{&}-menu{
         @include setFlex(row, center, evenly);
         margin-right: 15px;
         list-style: none;
-        font-size: .7em;
+        font-size: 1em;
         
         &__link {
             text-decoration: none;
             color: $black;
-            border: $border;
             border-radius: $radius-xl;
-            padding: 10px 10px;
+            padding: 12px 15px;
             margin: 0 5px;
+            transition: .5s;
+            outline: none;
+        }
+        
+        &__link--active{
+            border: $border;
+        }
+
+        &__link:active, &__link--active:active{
+            background: $secundary-color;
+            border: $border;
+            color: $white;
+        }
+        
+        &__link:hover, &__link--active:hover{
+            background: $secundary-color;
+            border: $border;
+            color: $white;
         }
     }
 }
 
     // Media
-    @media screen and (max-width: $sm){
-        .nav{
-            flex-direction: column;
-        }
-    }
+
 
     @media screen and (min-width: $md){
         .nav {
+            flex-direction: row;
+
             #{&}__logo{
-                width: 130px;
-            }
-
-            #{&}-menu{
-                font-size: 1em;
-
-                &__link{
-                    padding: 12px 15px;
-                }
+                margin-bottom: 0;
             }
         }
     }
+
+// Home
+
+
+.home {
+    display: flex;
+    @include setFlex(column, center, evenly);
+    padding: 0 40px 40px 40px;
+    background-color: $white;
+    background-image: url(../img/backgrounds/header-bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 40px;
+
+    #{&}__paragraph{
+        font-size: 1.3em;
+        color: $paragraph;
+    }
+    
+    #{&}__btn{
+        border: none;
+        border-radius: $radius-m;
+        padding: 15px 20px;
+        color: $white;
+        background: $btn-primary;
+        box-shadow: $btn-shadow;
+        font-size: 1.1em;
+        font-weight: map-get($font-weights, "medium");
+    }
+}
+
+    // Media
+
+    @media screen and (min-width: $md){
+        .home{
+            flex-direction: row;
+            background-position-y: bottom;
+
+            #{&}__figure{
+                order: 2;
+                width: 50%;
+            }
+            
+            #{&}__start{
+                order: 1;
+                width: 50%;
+            }
+        }
+    }
+
+    @media screen and (min-width: $lg) {
+        .home{
+            padding: 30px 50px;
+
+            #{&}__figure{
+                width: 40%;
+            }
+        }
+    }
+
+.info {
+    padding: 50px;
+    text-align: center;
+}
+
+.card-container{
+    width: 100%;
+    display: flex;
+    @include setFlex(row, center, center);
+}
+
+.card{
+    display: flex;
+    @include setFlex(column, center, evenly);
+    background-color: $white;
+    max-width: 600px;
+    margin: 20px 30px;
+    padding: 20px;
+    border-radius: $radius-xl;
+    border-left: 20px solid $primary-color;
+    text-align: center;
+
+    #{&}__figure{
+        margin-bottom: 20px;
+    }
+
+    #{&}__paragraph{
+        color: $paragraph;
+    }
+}
+
+.card-steps{
+    #{&}__list{
+        list-style: none;
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: $lg){
+    .card{
+        flex-direction: row;
+    }
+}
 
 
