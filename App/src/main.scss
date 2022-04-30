@@ -2,6 +2,7 @@
 @import './fonts';
 @import './normalize';
 @import './flex';
+@import './elements';
 
 
 // Nav bar
@@ -14,14 +15,14 @@
     padding: 20px 0;
     min-height: 80px;
     
-    #{&}__logo{
+    &__logo{
         width: 130px;
         margin-left: 20px;
         flex-shrink: 2;
         margin-bottom: 15px
     }
     
-    #{&}-menu{
+    &-menu{
         @include setFlex(row, center, evenly);
         margin-right: 15px;
         list-style: none;
@@ -62,7 +63,7 @@
         .nav {
             flex-direction: row;
 
-            #{&}__logo{
+            &__logo{
                 margin-bottom: 0;
             }
         }
@@ -81,20 +82,13 @@
     background-size: cover;
     background-position-y: 40px;
 
-    #{&}__paragraph{
+    &__paragraph{
         font-size: map-get($size-paragraph, "xl");
         color: $paragraph-color;
     }
     
-    #{&}__btn{
-        border: none;
-        border-radius: $radius-m;
-        padding: 15px 20px;
-        color: $white;
-        background: $btn-primary;
-        box-shadow: $btn-shadow;
-        font-size: 1.1em;
-        font-weight: map-get($font-weights, "medium");
+    &__btn{
+        @include primary-btn;
     }
 }
 
@@ -105,12 +99,12 @@
             flex-direction: row;
             background-position-y: bottom;
 
-            #{&}__figure{
+            &__figure{
                 order: 2;
                 width: 50%;
             }
             
-            #{&}__start{
+            &__start{
                 order: 1;
                 width: 50%;
             }
@@ -121,7 +115,7 @@
         .home{
             padding: 30px 50px;
 
-            #{&}__figure{
+            &__figure{
                 width: 40%;
             }
         }
@@ -132,10 +126,10 @@
 .info {
     padding: 50px;
     text-align: center;
-    #{&}__title{
+    &__title{
         font-size: map-get($size-title, "m");
     }
-    #{&}__paragraph{
+    &__paragraph{
         font-size: map-get($size-paragraph, "m");
         color: $paragraph-color;
     }
@@ -151,8 +145,10 @@
     border-radius: $radius-xl;
     border-top: 20px solid $primary-color;
     text-align: center;
+    box-shadow: $element-shadow;
+    margin-bottom: $element-spacing;
 
-    #{&}__figure{
+    &__figure{
         margin-bottom: 20px;
         width: 80%;
         align-self: center;
@@ -162,12 +158,12 @@
         padding: 20px 10px;
     }
     
-    #{&}__title{
+    &__title{
         font-size: map-get($size-title, "m");
         margin-bottom: 5px;
     }
 
-    #{&}__paragraph{
+    &__paragraph{
         color: $paragraph-color;
         font-size: map-get($size-paragraph, "m");
     }
@@ -175,11 +171,11 @@
 
 .card-steps{
     font-size: map-get($size-paragraph, "m");
-    #{&}__list{
+    &__list{
         list-style: none;
         text-align: left;
     }
-    #{&}__li{
+    &__li{
         position: relative;
         text-align: left;
         & span{
@@ -232,7 +228,7 @@
             margin-bottom: 100px;
             flex-direction: row;
             padding: 10px 50px;
-            #{&}__figure{
+            &__figure{
                 width: 50%;
             }
             &-content{
@@ -252,23 +248,19 @@
     color: $white;
     text-shadow: $font-shadow;
     @include setFlex(column, center, evenly);
+    margin-bottom: $element-spacing;
 
-    #{&}__title{
+    &__title{
         margin: 80px;
         font-size: map-get($size-title, "xl");
         font-weight: map-get($font-weights, 'semibold');
         text-align: center;
         flex-shrink: 2;
         & hr{
-            width: 55px;
-            height: 15px;
-            border: none;
-            background: $white;
-            border-radius: $radius-xl;
-            box-shadow: $font-shadow;
+            @include hr($white);
         }
     }
-    #{&}__figure{
+    &__figure{
         margin: 0 50px;
         max-width: 500px;
     }
@@ -280,13 +272,61 @@
         .design{
             flex-direction: row;
 
-            #{&}__title{
+            &__title{
                 width: 40%;
             }
-            #{&}__figure{
+            &__figure{
                 padding-top: 100px;
                 position: relative;
                 top: 0;
             }
+        }
+    }
+
+// Support
+
+.support{
+    @include setFlex(column, center, between);
+    background: $white;
+    margin-bottom: $element-spacing;
+    text-align: center;
+    padding: 70px 40px 0 40px;
+    &__title{
+        font-size: map-get($size-title, "s" );
+        & hr{
+            @include hr ($primary-contrast)
+        }
+    }
+    &__paragraph{
+        font-size: map-get($size-paragraph, "m");
+        color: $paragraph-color;
+    }
+    &__btn{
+        @include primary-btn;
+    }
+    &__figure{
+        max-width: 400px;
+        margin: 80px auto 0 auto;
+        position: relative;
+        bottom: 0;
+    }
+}
+
+    // Media
+
+    @media screen and (min-width: $lg){
+        .support{
+           flex-direction: row;
+           padding: 0;
+           &__content{
+                margin: 0 100px;
+           }
+           &__btn{
+               margin-top: 30px;
+           }
+           &__figure{
+               margin: 80px 100px 0 auto;
+               max-width: 500px;
+           }
         }
     }

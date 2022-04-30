@@ -1,0 +1,19 @@
+@mixin hr ($hr-color){
+    width: 55px;
+    height: 15px;
+    border: none;
+    background: $hr-color;
+    border-radius: $radius-xl;
+    box-shadow: $font-shadow;
+}
+
+@mixin primary-btn{
+    border: none;
+    border-radius: $radius-m;
+    padding: 15px 20px;
+    color: $white;
+    background: $primary-contrast;
+    box-shadow: $btn-shadow;
+    font-size: 1.1em;
+    font-weight: map-get($font-weights, "medium");
+}

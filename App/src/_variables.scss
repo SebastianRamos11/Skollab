@@ -2,11 +2,11 @@
 $white: #fff;
 $black: #000;
 $primary-color: #FF5C00;
+$primary-contrast: #FF3030;
 $secundary-color: #0066FF;
 
 
 // Buttons
-$btn-primary: linear-gradient(274.97deg, #FF5A5A -2.56%, #F11414 97.64%);
 $btn-shadow: 5px 5px 15px -6px rgba(0,0,0,0.91);
 
 // Borders
@@ -23,4 +23,6 @@ $lg: 800px;
 $xl: 1000px;
 $xxl: 1200px;
 
-
+// Elements
+$element-spacing: 100px;
+$element-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
