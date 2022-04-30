@@ -416,6 +416,15 @@ input[type="checkbox"], input[type="radio"] {
   text-align: center;
 }
 
+.info .info__title {
+  font-size: 1.6em;
+}
+
+.info .info__paragraph {
+  font-size: 1.3em;
+  color: #636363;
+}
+
 .card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -432,8 +441,7 @@ input[type="checkbox"], input[type="radio"] {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   background-color: #fff;
-  margin: 40px 20px;
-  margin-top: -10px;
+  margin: 30px 20px;
   padding: 20px;
   border-radius: 20px;
   border-left: 20px solid #FF5C00;
@@ -442,10 +450,28 @@ input[type="checkbox"], input[type="radio"] {
 
 .card .card__figure {
   margin-bottom: 20px;
+  width: 80%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.card-content {
+  padding: 30px;
+}
+
+.card .card__title {
+  font-size: 1.6em;
+  margin-bottom: 5px;
 }
 
 .card .card__paragraph {
   color: #636363;
+  font-size: 1.1em;
+}
+
+.card-steps {
+  font-size: 1.1em;
 }
 
 .card-steps .card-steps__list {
@@ -492,20 +518,62 @@ input[type="checkbox"], input[type="radio"] {
   .card {
     margin: 80px 80px;
   }
-  .card__hero {
-    width: 60%;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-  }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   .card {
+    border-left: 30px solid #FF5C00;
+    width: 80%;
+    margin: 50px auto;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    padding: 10px 50px;
   }
+  .card .card__figure {
+    width: 50%;
+  }
+  .card-content {
+    width: 50%;
+  }
+}
+
+.design {
+  background: #FF5C00;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.design .design__title {
+  margin: 100px;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.design .design__title hr {
+  width: 60px;
+  height: 20px;
+  border: none;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.design .design__figure {
+  margin: 0 50px;
 }
 /*# sourceMappingURL=main.css.map */

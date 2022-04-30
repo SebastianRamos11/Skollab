@@ -127,22 +127,27 @@
         }
     }
 
+// About Us
+
 .info {
     padding: 50px;
     text-align: center;
+
+    #{&}__title{
+        font-size: 1.6em;
+    }
+    #{&}__paragraph{
+        font-size: 1.3em;
+        color: $paragraph;
+    }
 }
 
-// .card-container{
-//     width: 100%;
-//     display: flex;
-//     @include setFlex(row, center, center);
-// }
+// Card
 
 .card{
     @include setFlex(column, center, evenly);
     background-color: $white;
-    margin: 40px 20px;
-    margin-top: -10px;
+    margin: 30px 20px;
     padding: 20px;
     border-radius: $radius-xl;
     border-left: 20px solid $primary-color;
@@ -150,14 +155,27 @@
 
     #{&}__figure{
         margin-bottom: 20px;
+        width: 80%;
+        align-self: center;
+    }
+
+    &-content{
+        padding: 30px;
+    }
+    
+    #{&}__title{
+        font-size: 1.6em;
+        margin-bottom: 5px;
     }
 
     #{&}__paragraph{
         color: $paragraph;
+        font-size: 1.1em;
     }
 }
 
 .card-steps{
+    font-size: 1.1em;
     #{&}__list{
         list-style: none;
         text-align: left;
@@ -199,22 +217,51 @@
 
 }
 
-@media screen and (min-width: $md) {
-    .card{
-        margin: 80px 80px;
+    // Media
+    @media screen and (min-width: $md) {
+        .card{
+            margin: 80px 80px;
+        }
     }
-    
-    .card__hero{
-        width: 60%;
-        align-self: center;
-        
+
+    @media screen and (min-width: $xl){
+        .card{
+            border-left: 30px solid $primary-color;
+            width: 80%;
+            margin: 50px auto;
+            flex-direction: row;
+            padding: 10px 50px;
+            #{&}__figure{
+                width: 50%;
+            }
+            &-content{
+                width: 50%;
+            }
+        }
+    }
+
+
+// Design
+
+.design{
+    background: $primary-color;
+    color: $white;
+    @include setFlex(column, center, evenly);
+
+    #{&}__title{
+        margin: 100px;
+        font-size: 2em;
+        font-weight: map-get($font-weights, 'semibold');
+        text-align: center;
+        & hr{
+            width: 60px;
+            height: 20px;
+            border: none;
+            background: $white;
+            border-radius: $radius-xl;
+        }
+    }
+    #{&}__figure{
+        margin: 0 50px;
     }
 }
-
-@media screen and (min-width: $lg){
-    .card{
-        flex-direction: row;
-    }
-}
-
-
