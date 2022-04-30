@@ -7,9 +7,32 @@
 // Inter
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+// Colors
+$paragraph-color: #636363;
+
+// Weights
 $font-weights: (
     "regular": 400, 
     "medium": 500,
     "semibold": 700,
     "bold": 800
 );
+
+// Sizes
+
+$size-title: (
+        "s": 1.4em,
+        "m": 1.6em,
+        "l": 1.8em,
+        "xl": 2em
+);
+$size-paragraph: (
+        "s": 1em,
+        "m": 1.1em,
+        "l": 1.2em,
+        "xl": 1.3em
+);
+
+// Shadows
+
+$font-shadow: 3px 7px 12px rgba(0,0,0,0.3);

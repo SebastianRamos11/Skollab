@@ -82,8 +82,8 @@
     background-position-y: 40px;
 
     #{&}__paragraph{
-        font-size: 1.3em;
-        color: $paragraph;
+        font-size: map-get($size-paragraph, "xl");
+        color: $paragraph-color;
     }
     
     #{&}__btn{
@@ -132,13 +132,12 @@
 .info {
     padding: 50px;
     text-align: center;
-
     #{&}__title{
-        font-size: 1.6em;
+        font-size: map-get($size-title, "m");
     }
     #{&}__paragraph{
-        font-size: 1.3em;
-        color: $paragraph;
+        font-size: map-get($size-paragraph, "m");
+        color: $paragraph-color;
     }
 }
 
@@ -150,7 +149,7 @@
     margin: 30px 20px;
     padding: 20px;
     border-radius: $radius-xl;
-    border-left: 20px solid $primary-color;
+    border-top: 20px solid $primary-color;
     text-align: center;
 
     #{&}__figure{
@@ -160,22 +159,22 @@
     }
 
     &-content{
-        padding: 30px;
+        padding: 20px 10px;
     }
     
     #{&}__title{
-        font-size: 1.6em;
+        font-size: map-get($size-title, "m");
         margin-bottom: 5px;
     }
 
     #{&}__paragraph{
-        color: $paragraph;
-        font-size: 1.1em;
+        color: $paragraph-color;
+        font-size: map-get($size-paragraph, "m");
     }
 }
 
 .card-steps{
-    font-size: 1.1em;
+    font-size: map-get($size-paragraph, "m");
     #{&}__list{
         list-style: none;
         text-align: left;
@@ -220,15 +219,17 @@
     // Media
     @media screen and (min-width: $md) {
         .card{
-            margin: 80px 80px;
+            margin-bottom: 100px;
         }
     }
 
     @media screen and (min-width: $xl){
         .card{
-            border-left: 30px solid $primary-color;
+            border-top: none;
+            border-left: 25px solid $primary-color;
             width: 80%;
             margin: 50px auto;
+            margin-bottom: 100px;
             flex-direction: row;
             padding: 10px 50px;
             #{&}__figure{
@@ -244,24 +245,48 @@
 // Design
 
 .design{
-    background: $primary-color;
+    background-color: $primary-color;
+    background-image: url(../img/backgrounds/design-bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
     color: $white;
+    text-shadow: $font-shadow;
     @include setFlex(column, center, evenly);
 
     #{&}__title{
-        margin: 100px;
-        font-size: 2em;
+        margin: 80px;
+        font-size: map-get($size-title, "xl");
         font-weight: map-get($font-weights, 'semibold');
         text-align: center;
+        flex-shrink: 2;
         & hr{
-            width: 60px;
-            height: 20px;
+            width: 55px;
+            height: 15px;
             border: none;
             background: $white;
             border-radius: $radius-xl;
+            box-shadow: $font-shadow;
         }
     }
     #{&}__figure{
         margin: 0 50px;
+        max-width: 500px;
     }
 }
+
+    // Media
+    
+    @media screen and (min-width: $lg){
+        .design{
+            flex-direction: row;
+
+            #{&}__title{
+                width: 40%;
+            }
+            #{&}__figure{
+                padding-top: 100px;
+                position: relative;
+                top: 0;
+            }
+        }
+    }

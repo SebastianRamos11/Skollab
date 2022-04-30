@@ -421,7 +421,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .info .info__paragraph {
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: #636363;
 }
 
@@ -444,7 +444,7 @@ input[type="checkbox"], input[type="radio"] {
   margin: 30px 20px;
   padding: 20px;
   border-radius: 20px;
-  border-left: 20px solid #FF5C00;
+  border-top: 20px solid #FF5C00;
   text-align: center;
 }
 
@@ -457,7 +457,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .card-content {
-  padding: 30px;
+  padding: 20px 10px;
 }
 
 .card .card__title {
@@ -516,15 +516,17 @@ input[type="checkbox"], input[type="radio"] {
 
 @media screen and (min-width: 600px) {
   .card {
-    margin: 80px 80px;
+    margin-bottom: 100px;
   }
 }
 
 @media screen and (min-width: 1000px) {
   .card {
-    border-left: 30px solid #FF5C00;
+    border-top: none;
+    border-left: 25px solid #FF5C00;
     width: 80%;
     margin: 50px auto;
+    margin-bottom: 100px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -540,8 +542,12 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .design {
-  background: #FF5C00;
+  background-color: #FF5C00;
+  background-image: url(../img/backgrounds/design-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
+  text-shadow: 3px 7px 12px rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -559,21 +565,43 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .design .design__title {
-  margin: 100px;
+  margin: 80px;
   font-size: 2em;
   font-weight: 700;
   text-align: center;
+  -ms-flex-negative: 2;
+      flex-shrink: 2;
 }
 
 .design .design__title hr {
-  width: 60px;
-  height: 20px;
+  width: 55px;
+  height: 15px;
   border: none;
   background: #fff;
   border-radius: 20px;
+  -webkit-box-shadow: 3px 7px 12px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 7px 12px rgba(0, 0, 0, 0.3);
 }
 
 .design .design__figure {
   margin: 0 50px;
+  max-width: 500px;
+}
+
+@media screen and (min-width: 800px) {
+  .design {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .design .design__title {
+    width: 40%;
+  }
+  .design .design__figure {
+    padding-top: 100px;
+    position: relative;
+    top: 0;
+  }
 }
 /*# sourceMappingURL=main.css.map */
