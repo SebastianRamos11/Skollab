@@ -1,0 +1,6 @@
+@mixin setGridFit ($column-size,$row-size,$gap){
+    display: grid;
+    grid-template-columns: repeat(auto-fit, $column-size);
+    grid-auto-rows: $row-size;
+    grid-gap: 20px;
+}

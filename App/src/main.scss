@@ -3,6 +3,7 @@
 @import './normalize';
 @import './flex';
 @import './elements';
+@import './grid';
 
 
 // Nav bar
@@ -57,8 +58,6 @@
 }
 
     // Media
-
-
     @media screen and (min-width: $md){
         .nav {
             flex-direction: row;
@@ -88,12 +87,11 @@
     }
     
     &__btn{
-        @include primary-btn;
+        @include primary-btn($primary-contrast, true);
     }
 }
 
     // Media
-
     @media screen and (min-width: $md){
         .home{
             flex-direction: row;
@@ -121,9 +119,16 @@
         }
     }
 
+    @media screen and (min-width: $xxl){
+        .home{
+            height: 90vh;
+        }
+    }
+
 // About Us
 
 .info {
+    margin-top: 30px;
     padding: 50px;
     text-align: center;
     &__title{
@@ -151,6 +156,7 @@
     &__figure{
         margin-bottom: 20px;
         width: 80%;
+        max-width: 450px;
         align-self: center;
     }
 
@@ -215,11 +221,11 @@
     // Media
     @media screen and (min-width: $md) {
         .card{
-            margin-bottom: 100px;
+            margin: 0 100px $element-spacing 100px;
         }
     }
 
-    @media screen and (min-width: $xl){
+    @media screen and (min-width: ($lg + 100px)){
         .card{
             border-top: none;
             border-left: 25px solid $primary-color;
@@ -227,7 +233,7 @@
             margin: 50px auto;
             margin-bottom: 100px;
             flex-direction: row;
-            padding: 10px 50px;
+            padding: 40px 50px;
             &__figure{
                 width: 50%;
             }
@@ -257,7 +263,7 @@
         text-align: center;
         flex-shrink: 2;
         & hr{
-            @include hr($white);
+            @include hr($white, true);
         }
     }
     &__figure{
@@ -267,7 +273,6 @@
 }
 
     // Media
-    
     @media screen and (min-width: $lg){
         .design{
             flex-direction: row;
@@ -283,6 +288,49 @@
         }
     }
 
+// Skills
+
+.skills{
+    min-height: 700px;
+    margin-bottom: $element-spacing;
+    @include background("../img/backgrounds/skills-bg.svg");
+    background-position: bottom;
+    padding: 40px;
+
+    &__head{
+        margin: 50px 0 100px 0;
+        text-align: center;
+        & hr{
+            @include hr ($primary-contrast, false);
+            margin-bottom: 30px;
+        }
+    }
+    &__title{
+        font-size: map-get($size-title, "l");
+    }
+    &__paragraph{
+        font-size: map-get($size-paragraph, "l");
+        color: $paragraph-color;
+    }
+    &__icons{
+        @include setGridFit(150px, 150px, 20px);
+        justify-content: center;
+        align-content: center;
+    }
+    &__item{
+        @include setFlex(column, center, center);
+        padding: 15px;
+        background: rgba(255, 255, 255, .8);
+        border-radius: $radius-l;
+
+    }
+    &__img{
+        width: 80px;
+        height: 80px;
+        margin-top: 10px;
+    }
+}
+
 // Support
 
 .support{
@@ -294,7 +342,7 @@
     &__title{
         font-size: map-get($size-title, "s" );
         & hr{
-            @include hr ($primary-contrast)
+            @include hr ($primary-contrast, false)
         }
     }
     &__paragraph{
@@ -302,7 +350,12 @@
         color: $paragraph-color;
     }
     &__btn{
-        @include primary-btn;
+        @include primary-btn($primary-contrast, false);
+        transition: .4s;
+
+        &:hover{
+            box-shadow: $font-shadow;
+        }
     }
     &__figure{
         max-width: 400px;
@@ -313,7 +366,6 @@
 }
 
     // Media
-
     @media screen and (min-width: $lg){
         .support{
            flex-direction: row;
@@ -328,5 +380,105 @@
                margin: 80px 100px 0 auto;
                max-width: 500px;
            }
+        }
+    }
+
+// Footer
+
+.footer{
+    background-color: $primary-color;
+    color: $white;
+    position: relative;
+    text-align: center;
+
+    &-wave{
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+        transform: rotate(180deg);
+        
+        & svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 169px;
+        }
+        
+        & .shape-fill {
+            fill: #EBF0F6;
+        }
+    }
+
+    &__content{
+        @include setGridFit(200px, auto, 50px);
+        justify-content: space-evenly;
+        padding: 30px;
+    }
+        
+    &__brand{
+        font-size: map-get($size-title, "l");
+        font-weight: map-get($font-weights, "semibold");
+        margin-bottom: 15px;
+    }
+
+    &__title{
+        font-size: map-get($size-title, "s");
+        font-weight: map-get($font-weights, "medium");
+        margin-bottom: 15px;
+    }
+    &__info{
+        font-size: map-get($size-paragraph, "m");
+        & div{
+            margin-bottom: 10px;
+        }
+    }
+
+    &__media{
+        margin-top: 20px;
+        @include setFlex(row, center, evenly);
+        font-size: 30px;
+    }
+
+    &__contact{
+        &-form{
+            margin-top: 20px;
+            @include setFlex(row, center, center);
+        }
+        &-email{
+            height: 50px;
+            border: none;
+            border-radius: $radius-l;
+            padding: 0 10px;
+            margin-right: 5px;
+        }
+        &-button{
+            height: 50px;
+            @include primary-btn(linear-gradient(104.67deg, #FF5A5A -82.31%, #F11414 54.83%, #F11414 86.9%), false)
+        }
+        
+    }
+
+    & hr{
+        color: $white;
+    }
+    &__copyright{
+        @include setFlex(row, center, between);
+        font-size: map-get($size-paragraph, "m");
+        padding: 20px;
+    }
+}
+
+    // Media
+    @media screen and (min-width: 450px){
+        .footer__contact{
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media screen and (min-width: ($lg + 200px)) {
+        .footer__contact{
+            grid-column: 2 span;
         }
     }

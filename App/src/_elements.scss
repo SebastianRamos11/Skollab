@@ -1,19 +1,29 @@
-@mixin hr ($hr-color){
+@mixin hr ($hr-color, $shadow){
     width: 55px;
     height: 15px;
     border: none;
     background: $hr-color;
     border-radius: $radius-xl;
-    box-shadow: $font-shadow;
+    @if($shadow==true){
+        box-shadow: $font-shadow;
+    }
 }
 
-@mixin primary-btn{
+@mixin primary-btn($btn-color, $shadow){
     border: none;
     border-radius: $radius-m;
     padding: 15px 20px;
     color: $white;
-    background: $primary-contrast;
-    box-shadow: $btn-shadow;
+    background: $btn-color;
     font-size: 1.1em;
     font-weight: map-get($font-weights, "medium");
+    @if($shadow==true){
+        box-shadow: $btn-shadow;
+    }
+}
+
+@mixin background($url){
+    background-image: url($url);
+    background-size: cover;
+    background-repeat: no-repeat;
 }

@@ -1,11 +1,4 @@
-@mixin flexCenter ($direction){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: $direction;
-}
-
-// ALIGNMENT FUNCTION
+// ALIGNMENT
 
 @mixin setFlex ($direction, $align, $justify){
     display: flex;
