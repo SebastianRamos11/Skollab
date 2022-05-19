@@ -1,484 +1,479 @@
-@import './variables';
-@import './fonts';
-@import './normalize';
-@import './flex';
-@import './elements';
-@import './grid';
-
+@import './config/variables';
+@import './config/fonts';
+@import './config/normalize';
+@import './config/flex';
+@import './config/grid';
+@import './blocks/elements';
 
 // Nav bar
 
 .nav {
-    top: 0;
-    width: 100%;
-    background: $white;
-    @include setFlex(column, center, between);
-    padding: 20px 0;
-    min-height: 80px;
-    
-    &__logo{
-        width: 130px;
-        margin-left: 20px;
-        flex-shrink: 2;
-        margin-bottom: 15px
-    }
-    
-    &-menu{
-        @include setFlex(row, center, evenly);
-        margin-right: 15px;
-        list-style: none;
-        font-size: 1em;
-        
-        &__link {
-            text-decoration: none;
-            color: $black;
-            border-radius: $radius-xl;
-            padding: 12px 15px;
-            margin: 0 5px;
-            transition: .5s;
-            outline: none;
-        }
-        
-        &__link--active{
-            border: $border;
-        }
+  top: 0;
+  width: 100%;
+  background: $white;
+  @include setFlex(column, center, between);
+  padding: 20px 0;
+  min-height: 80px;
 
-        &__link:active, &__link--active:active{
-            background: $secundary-color;
-            border: $border;
-            color: $white;
-        }
-        
-        &__link:hover, &__link--active:hover{
-            background: $secundary-color;
-            border: $border;
-            color: $white;
-        }
+  &__logo {
+    width: 130px;
+    margin-left: 20px;
+    flex-shrink: 2;
+    margin-bottom: 15px;
+  }
+
+  &-menu {
+    @include setFlex(row, center, evenly);
+    margin-right: 15px;
+    list-style: none;
+    font-size: 1em;
+
+    &__link {
+      text-decoration: none;
+      color: $black;
+      border-radius: $radius-xl;
+      padding: 12px 15px;
+      margin: 0 5px;
+      transition: 0.5s;
+      outline: none;
     }
+
+    &__link--active {
+      border: $border;
+    }
+
+    &__link:active,
+    &__link--active:active {
+      background: $secundary-color;
+      border: $border;
+      color: $white;
+    }
+
+    &__link:hover,
+    &__link--active:hover {
+      background: $secundary-color;
+      border: $border;
+      color: $white;
+    }
+  }
 }
 
-    // Media
-    @media screen and (min-width: $md){
-        .nav {
-            flex-direction: row;
+// Media
+@media screen and (min-width: $md) {
+  .nav {
+    flex-direction: row;
 
-            &__logo{
-                margin-bottom: 0;
-            }
-        }
+    &__logo {
+      margin-bottom: 0;
     }
+  }
+}
 
 // Home
 
-
 .home {
-    display: flex;
-    @include setFlex(column, center, evenly);
-    padding: 0 40px 40px 40px;
-    background-color: $white;
-    background-image: url(../img/backgrounds/header-bg.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: 40px;
+  display: flex;
+  @include setFlex(column, center, evenly);
+  padding: 0 40px 40px 40px;
+  background-color: $white;
+  background-image: url(../img/backgrounds/header-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
 
-    &__paragraph{
-        font-size: map-get($size-paragraph, "xl");
-        color: $paragraph-color;
-    }
-    
-    &__btn{
-        @include primary-btn($primary-contrast, true);
-    }
+  &__paragraph {
+    font-size: map-get($size-paragraph, 'xl');
+    color: $paragraph-color;
+  }
+
+  &__btn {
+    @include primary-btn($primary-contrast, true);
+  }
 }
 
-    // Media
-    @media screen and (min-width: $md){
-        .home{
-            flex-direction: row;
-            background-position-y: bottom;
+// Media
+@media screen and (min-width: $md) {
+  .home {
+    flex-direction: row;
+    background-position-y: bottom;
 
-            &__figure{
-                order: 2;
-                width: 50%;
-            }
-            
-            &__start{
-                order: 1;
-                width: 50%;
-            }
-        }
+    &__figure {
+      order: 2;
+      width: 50%;
     }
 
-    @media screen and (min-width: $lg) {
-        .home{
-            padding: 30px 50px;
-
-            &__figure{
-                width: 40%;
-            }
-        }
+    &__start {
+      order: 1;
+      width: 50%;
     }
+  }
+}
 
-    @media screen and (min-width: $xxl){
-        .home{
-            height: 90vh;
-        }
+@media screen and (min-width: $lg) {
+  .home {
+    padding: 30px 50px;
+
+    &__figure {
+      width: 40%;
     }
+  }
+}
+
+@media screen and (min-width: $xxl) {
+  .home {
+    height: 90vh;
+  }
+}
 
 // About Us
 
 .info {
-    margin-top: 30px;
-    padding: 50px;
-    text-align: center;
-    &__title{
-        font-size: map-get($size-title, "m");
-    }
-    &__paragraph{
-        font-size: map-get($size-paragraph, "m");
-        color: $paragraph-color;
-    }
+  margin-top: 30px;
+  padding: 50px;
+  text-align: center;
+  &__title {
+    font-size: map-get($size-title, 'm');
+  }
+  &__paragraph {
+    font-size: map-get($size-paragraph, 'm');
+    color: $paragraph-color;
+  }
 }
 
 // Card
 
-.card{
-    @include setFlex(column, center, evenly);
-    background-color: $white;
-    margin: 30px 20px;
-    padding: 20px;
-    border-radius: $radius-xl;
-    border-top: 20px solid $primary-color;
-    text-align: center;
-    box-shadow: $element-shadow;
-    margin-bottom: $element-spacing;
+.card {
+  @include setFlex(column, center, evenly);
+  background-color: $white;
+  margin: 30px 20px;
+  padding: 20px;
+  border-radius: $radius-xl;
+  border-top: 20px solid $primary-color;
+  text-align: center;
+  box-shadow: $element-shadow;
+  margin-bottom: $element-spacing;
 
-    &__figure{
-        margin-bottom: 20px;
-        width: 80%;
-        max-width: 450px;
-        align-self: center;
-    }
+  &__figure {
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 450px;
+    align-self: center;
+  }
 
-    &-content{
-        padding: 20px 10px;
-    }
-    
-    &__title{
-        font-size: map-get($size-title, "m");
-        margin-bottom: 5px;
-    }
+  &-content {
+    padding: 20px 10px;
+  }
 
-    &__paragraph{
-        color: $paragraph-color;
-        font-size: map-get($size-paragraph, "m");
-    }
+  &__title {
+    font-size: map-get($size-title, 'm');
+    margin-bottom: 5px;
+  }
+
+  &__paragraph {
+    color: $paragraph-color;
+    font-size: map-get($size-paragraph, 'm');
+  }
 }
 
-.card-steps{
-    font-size: map-get($size-paragraph, "m");
-    &__list{
-        list-style: none;
-        text-align: left;
-    }
-    &__li{
-        position: relative;
-        text-align: left;
-        & span{
-            display: inline-block;
-            font-weight: bold;
-            width: 2em;
-            height: 2em;
-            text-align: center;
-            line-height: 2em;
-            border-radius: $radius-xl;
-            background-color: $secundary-color;
-            color: $white;
-            position: relative;
-            z-index: 1;
-            margin: 1.4em 0;
-        }
-
-        &::before{
-            content: '';
-            position: absolute;
-            background: $secundary-color;
-            z-index: 0;
-            top: -35px;
-            left: 15px;
-            width: 0.2em;
-            height: 4em;
-        }
-
-        &:first-child::before{
-            display: none;
-        }
+.card-steps {
+  font-size: map-get($size-paragraph, 'm');
+  &__list {
+    list-style: none;
+    text-align: left;
+  }
+  &__li {
+    position: relative;
+    text-align: left;
+    & span {
+      display: inline-block;
+      font-weight: bold;
+      width: 2em;
+      height: 2em;
+      text-align: center;
+      line-height: 2em;
+      border-radius: $radius-xl;
+      background-color: $secundary-color;
+      color: $white;
+      position: relative;
+      z-index: 1;
+      margin: 1.4em 0;
     }
 
+    &::before {
+      content: '';
+      position: absolute;
+      background: $secundary-color;
+      z-index: 0;
+      top: -35px;
+      left: 15px;
+      width: 0.2em;
+      height: 4em;
+    }
 
+    &:first-child::before {
+      display: none;
+    }
+  }
 }
 
-    // Media
-    @media screen and (min-width: $md) {
-        .card{
-            margin: 0 100px $element-spacing 100px;
-        }
-    }
+// Media
+@media screen and (min-width: $md) {
+  .card {
+    margin: 0 100px $element-spacing 100px;
+  }
+}
 
-    @media screen and (min-width: ($lg + 100px)){
-        .card{
-            border-top: none;
-            border-left: 25px solid $primary-color;
-            width: 80%;
-            margin: 50px auto;
-            margin-bottom: 100px;
-            flex-direction: row;
-            padding: 40px 50px;
-            &__figure{
-                width: 50%;
-            }
-            &-content{
-                width: 50%;
-            }
-        }
+@media screen and (min-width: ($lg + 100px)) {
+  .card {
+    border-top: none;
+    border-left: 25px solid $primary-color;
+    width: 80%;
+    margin: 50px auto;
+    margin-bottom: 100px;
+    flex-direction: row;
+    padding: 40px 50px;
+    &__figure {
+      width: 50%;
     }
-
+    &-content {
+      width: 50%;
+    }
+  }
+}
 
 // Design
 
-.design{
-    background-color: $primary-color;
-    background-image: url(../img/backgrounds/design-bg.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: $white;
-    text-shadow: $font-shadow;
-    @include setFlex(column, center, evenly);
-    margin-bottom: $element-spacing;
+.design {
+  background-color: $primary-color;
+  background-image: url(../img/backgrounds/design-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $white;
+  text-shadow: $font-shadow;
+  @include setFlex(column, center, evenly);
+  margin-bottom: $element-spacing;
 
-    &__title{
-        margin: 80px;
-        font-size: map-get($size-title, "xl");
-        font-weight: map-get($font-weights, 'semibold');
-        text-align: center;
-        flex-shrink: 2;
-        & hr{
-            @include hr($white, true);
-        }
+  &__title {
+    margin: 80px;
+    font-size: map-get($size-title, 'xl');
+    font-weight: map-get($font-weights, 'semibold');
+    text-align: center;
+    flex-shrink: 2;
+    & hr {
+      @include hr($white, true);
     }
-    &__figure{
-        margin: 0 50px;
-        max-width: 500px;
-    }
+  }
+  &__figure {
+    margin: 0 50px;
+    max-width: 500px;
+  }
 }
 
-    // Media
-    @media screen and (min-width: $lg){
-        .design{
-            flex-direction: row;
+// Media
+@media screen and (min-width: $lg) {
+  .design {
+    flex-direction: row;
 
-            &__title{
-                width: 40%;
-            }
-            &__figure{
-                padding-top: 100px;
-                position: relative;
-                top: 0;
-            }
-        }
+    &__title {
+      width: 40%;
     }
+    &__figure {
+      padding-top: 100px;
+      position: relative;
+      top: 0;
+    }
+  }
+}
 
 // Skills
 
-.skills{
-    min-height: 700px;
-    margin-bottom: $element-spacing;
-    @include background("../img/backgrounds/skills-bg.svg");
-    background-position: bottom;
-    padding: 40px;
+.skills {
+  min-height: 700px;
+  margin-bottom: $element-spacing;
+  @include background('../img/backgrounds/skills-bg.svg');
+  background-position: bottom;
+  padding: 40px;
 
-    &__head{
-        margin: 50px 0 100px 0;
-        text-align: center;
-        & hr{
-            @include hr ($primary-contrast, false);
-            margin-bottom: 30px;
-        }
+  &__head {
+    margin: 50px 0 100px 0;
+    text-align: center;
+    & hr {
+      @include hr($primary-contrast, false);
+      margin-bottom: 30px;
     }
-    &__title{
-        font-size: map-get($size-title, "l");
-    }
-    &__paragraph{
-        font-size: map-get($size-paragraph, "l");
-        color: $paragraph-color;
-    }
-    &__icons{
-        @include setGridFit(150px, 150px, 20px);
-        justify-content: center;
-        align-content: center;
-    }
-    &__item{
-        @include setFlex(column, center, center);
-        padding: 15px;
-        background: rgba(255, 255, 255, .8);
-        border-radius: $radius-l;
-
-    }
-    &__img{
-        width: 80px;
-        height: 80px;
-        margin-top: 10px;
-    }
+  }
+  &__title {
+    font-size: map-get($size-title, 'l');
+  }
+  &__paragraph {
+    font-size: map-get($size-paragraph, 'l');
+    color: $paragraph-color;
+  }
+  &__icons {
+    @include setGridFit(150px, 150px, 20px);
+    justify-content: center;
+    align-content: center;
+  }
+  &__item {
+    @include setFlex(column, center, center);
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: $radius-l;
+  }
+  &__img {
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+  }
 }
 
 // Support
 
-.support{
-    @include setFlex(column, center, between);
-    background: $white;
-    margin-bottom: $element-spacing;
-    text-align: center;
-    padding: 70px 40px 0 40px;
-    &__title{
-        font-size: map-get($size-title, "s" );
-        & hr{
-            @include hr ($primary-contrast, false)
-        }
+.support {
+  @include setFlex(column, center, between);
+  background: $white;
+  margin-bottom: $element-spacing;
+  text-align: center;
+  padding: 70px 40px 0 40px;
+  &__title {
+    font-size: map-get($size-title, 's');
+    & hr {
+      @include hr($primary-contrast, false);
     }
-    &__paragraph{
-        font-size: map-get($size-paragraph, "m");
-        color: $paragraph-color;
-    }
-    &__btn{
-        @include primary-btn($primary-contrast, false);
-        transition: .4s;
+  }
+  &__paragraph {
+    font-size: map-get($size-paragraph, 'm');
+    color: $paragraph-color;
+  }
+  &__btn {
+    @include primary-btn($primary-contrast, false);
+    transition: 0.4s;
 
-        &:hover{
-            box-shadow: $font-shadow;
-        }
+    &:hover {
+      box-shadow: $font-shadow;
     }
-    &__figure{
-        max-width: 400px;
-        margin: 80px auto 0 auto;
-        position: relative;
-        bottom: 0;
-    }
+  }
+  &__figure {
+    max-width: 400px;
+    margin: 80px auto 0 auto;
+    position: relative;
+    bottom: 0;
+  }
 }
 
-    // Media
-    @media screen and (min-width: $lg){
-        .support{
-           flex-direction: row;
-           padding: 0;
-           &__content{
-                margin: 0 100px;
-           }
-           &__btn{
-               margin-top: 30px;
-           }
-           &__figure{
-               margin: 80px 100px 0 auto;
-               max-width: 500px;
-           }
-        }
+// Media
+@media screen and (min-width: $lg) {
+  .support {
+    flex-direction: row;
+    padding: 0;
+    &__content {
+      margin: 0 100px;
     }
+    &__btn {
+      margin-top: 30px;
+    }
+    &__figure {
+      margin: 80px 100px 0 auto;
+      max-width: 500px;
+    }
+  }
+}
 
 // Footer
 
-.footer{
-    background-color: $primary-color;
-    color: $white;
+.footer {
+  background-color: $primary-color;
+  color: $white;
+  position: relative;
+  text-align: center;
+
+  &-wave {
     position: relative;
-    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    transform: rotate(180deg);
 
-    &-wave{
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 100%;
-        line-height: 0;
-        transform: rotate(180deg);
-        
-        & svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 169px;
-        }
-        
-        & .shape-fill {
-            fill: #EBF0F6;
-        }
+    & svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 169px;
     }
 
-    &__content{
-        @include setGridFit(200px, auto, 50px);
-        justify-content: space-evenly;
-        padding: 30px;
+    & .shape-fill {
+      fill: #ebf0f6;
     }
-        
-    &__brand{
-        font-size: map-get($size-title, "l");
-        font-weight: map-get($font-weights, "semibold");
-        margin-bottom: 15px;
-    }
+  }
 
-    &__title{
-        font-size: map-get($size-title, "s");
-        font-weight: map-get($font-weights, "medium");
-        margin-bottom: 15px;
-    }
-    &__info{
-        font-size: map-get($size-paragraph, "m");
-        & div{
-            margin-bottom: 10px;
-        }
-    }
+  &__content {
+    @include setGridFit(200px, auto, 50px);
+    justify-content: space-evenly;
+    padding: 30px;
+  }
 
-    &__media{
-        margin-top: 20px;
-        @include setFlex(row, center, evenly);
-        font-size: 30px;
-    }
+  &__brand {
+    font-size: map-get($size-title, 'l');
+    font-weight: map-get($font-weights, 'semibold');
+    margin-bottom: 15px;
+  }
 
-    &__contact{
-        &-form{
-            margin-top: 20px;
-            @include setFlex(row, center, center);
-        }
-        &-email{
-            height: 50px;
-            border: none;
-            border-radius: $radius-l;
-            padding: 0 10px;
-            margin-right: 5px;
-        }
-        &-button{
-            height: 50px;
-            @include primary-btn(linear-gradient(104.67deg, #FF5A5A -82.31%, #F11414 54.83%, #F11414 86.9%), false)
-        }
-        
+  &__title {
+    font-size: map-get($size-title, 's');
+    font-weight: map-get($font-weights, 'medium');
+    margin-bottom: 15px;
+  }
+  &__info {
+    font-size: map-get($size-paragraph, 'm');
+    & div {
+      margin-bottom: 10px;
     }
+  }
 
-    & hr{
-        color: $white;
+  &__media {
+    margin-top: 20px;
+    @include setFlex(row, center, evenly);
+    font-size: 30px;
+  }
+
+  &__contact {
+    &-form {
+      margin-top: 20px;
+      @include setFlex(row, center, center);
     }
-    &__copyright{
-        @include setFlex(row, center, between);
-        font-size: map-get($size-paragraph, "m");
-        padding: 20px;
+    &-email {
+      height: 50px;
+      border: none;
+      border-radius: $radius-l;
+      padding: 0 10px;
+      margin-right: 5px;
     }
+    &-button {
+      height: 50px;
+      @include primary-btn(linear-gradient(104.67deg, #ff5a5a -82.31%, #f11414 54.83%, #f11414 86.9%), false);
+    }
+  }
+
+  & hr {
+    color: $white;
+  }
+  &__copyright {
+    @include setFlex(row, center, between);
+    font-size: map-get($size-paragraph, 'm');
+    padding: 20px;
+  }
 }
 
-    // Media
-    @media screen and (min-width: 450px){
-        .footer__contact{
-            grid-column: 1 / -1;
-        }
-    }
+// Media
+@media screen and (min-width: 450px) {
+  .footer__contact {
+    grid-column: 1 / -1;
+  }
+}
 
-    @media screen and (min-width: ($lg + 200px)) {
-        .footer__contact{
-            grid-column: 2 span;
-        }
-    }
+@media screen and (min-width: ($lg + 200px)) {
+  .footer__contact {
+    grid-column: 2 span;
+  }
+}

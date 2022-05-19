@@ -1,0 +1,126 @@
+@import './config/variables';
+@import './config/fonts';
+@import './config/normalize';
+@import './config/flex';
+@import './config/grid';
+@import './blocks/elements';
+@import './blocks/inputs';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-image: url(../img/backgrounds/login-sm-bg.svg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+@media screen and (min-width: $lg) {
+  html {
+    background-image: url(../img/backgrounds/login-md-bg.svg);
+  }
+}
+
+.login-container {
+  overflow: hidden;
+  height: 100vh;
+  width: 80%;
+  margin: auto;
+  @include setFlex(column, center, evenly);
+}
+
+.login {
+  // border: 2px solid #000;
+  position: relative;
+  &__title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__btn {
+    align-self: center;
+    @include primary-btn($primary-contrast, false);
+  }
+}
+
+.media {
+  // border: 2px solid #000;
+  position: relative;
+  color: $white;
+  font-size: map-get($size-title, 's');
+  text-align: center;
+
+  &__links {
+    margin-top: 40px;
+    @include setFlex(row, center, evenly);
+    font-size: 30px;
+  }
+}
+
+.signup {
+  // border: 2px solid #000;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  font-size: map-get($size-paragraph, 'm');
+  // // text-align: center;
+  bottom: 70px;
+}
+
+.signup__link {
+  text-decoration: none;
+  border: $border;
+  padding: 12px 15px;
+  border-radius: $radius-xl;
+  font-size: map-get($size-paragraph, 's');
+  color: inherit;
+}
+
+// md
+
+@media screen and (min-width: $md) {
+  .login {
+    min-width: 400px;
+  }
+}
+
+// Posicionamiento lg
+
+@media screen and (min-width: $lg) {
+  .signup {
+    color: $black;
+  }
+}
+
+@media screen and (min-width: $xl) {
+  html {
+    background-image: url(../img/backgrounds/login-lg-bg.svg);
+  }
+  .login-container {
+    @include setFlex(column, start, evenly);
+    width: 70%;
+  }
+  .media {
+    color: $black;
+  }
+  .signup {
+    color: $white;
+    position: absolute;
+    margin-top: 100px;
+    margin-right: 160px;
+    right: 0;
+    top: 0;
+
+    &__link {
+      border-color: $white;
+    }
+  }
+}

@@ -307,8 +307,8 @@ input[type="checkbox"], input[type="radio"] {
   border-radius: 20px;
   padding: 12px 15px;
   margin: 0 5px;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   outline: none;
 }
 
@@ -737,8 +737,8 @@ input[type="checkbox"], input[type="radio"] {
   background: #FF3030;
   font-size: 1.1em;
   font-weight: 500;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .support__btn:hover {
@@ -798,7 +798,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .footer-wave .shape-fill {
-  fill: #EBF0F6;
+  fill: #ebf0f6;
 }
 
 .footer__content {
@@ -885,7 +885,7 @@ input[type="checkbox"], input[type="radio"] {
   border-radius: 10px;
   padding: 15px 20px;
   color: #fff;
-  background: linear-gradient(104.67deg, #FF5A5A -82.31%, #F11414 54.83%, #F11414 86.9%);
+  background: linear-gradient(104.67deg, #ff5a5a -82.31%, #f11414 54.83%, #f11414 86.9%);
   font-size: 1.1em;
   font-weight: 500;
 }

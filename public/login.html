@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <title>Inicio de Sesión</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login">
+        <h1 class="login__title">Inicio de Sesión</h1>
+        <form action="connection.php" method="POST" class="login__form">
+          <input type="email" name="email" id="email" placeholder="Correo electrónico" class="register-input" required />
+          <input type="password" name="pass" placeholder="Contraseña" class="register-input" required />
+          <button type="submit" class="login__btn">Ingresar</button>
+        </form>
+      </div>
+      <div class="signup">
+        <p>¿No tienes cuenta?</p>
+        <a href="./singup.html" class="signup__link">Registrate</a>
+      </div>
+      <div class="media">
+        <div class="media__title">Inicia sesión con tus redes sociales</div>
+        <div class="media__links">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
