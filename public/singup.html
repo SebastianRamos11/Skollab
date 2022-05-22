@@ -4,21 +4,119 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/signup.css" />
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <title>Registro</title>
   </head>
   <body>
-    <div class="singup-container">
-      <h1>Registrate</h1>
-      <form action="login.php" method="POST">
-        <input type="text" placeholder="Nombres" />
-        <input type="text" placeholder="Apellidos" />
-        <input type="email" name="email" id="email" placeholder="Correo electrónico" />
-        <input type="password" placeholder="Contraseña" />
-        <button type="submit">Ingresar</button>
-      </form>
+    <div class="container">
+      <h1 class="header">Registrate</h1>
+      <hr />
+
+      <!-- Progress -->
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+        <div class="progress-step progress-step--active" data-title="Personal"></div>
+        <div class="progress-step" data-title="Rol"></div>
+        <div class="progress-step" data-title="Cuenta"></div>
+      </div>
+      <!-- Steps -->
+      <div class="form-container">
+        <form action="#" method="POST" class="form">
+          <!-- Step 1: Personal information-->
+          <div class="step step--active">
+            <!-- <div class="step__title">Información Personal</div> -->
+            <div class="field-group personal-data">
+              <div class="step__field">
+                <label for="identification">Documento de identidad</label>
+                <input type="text" id="identification" maxlength="10" placeholder="Número de identificación" class="register-input" required />
+                <i class="step__field-validation fas fa-times-circle"></i>
+              </div>
+              <div class="step__field step__field-correct">
+                <label for="firstname">Nombres <span id="firstName-error"></span> </label>
+                <input type="text" id="firstName" placeholder="Nombres" maxlength="20" class="register-input uppercase" required />
+                <i class="step__field-validation fas fa-times-circle"></i>
+              </div>
+              <div class="step__field">
+                <label for="lastname">Apellidos</label>
+                <input type="text" placeholder="Apellidos" maxlength="20" class="register-input uppercase" required />
+                <i class="step__field-validation fas fa-times-circle"></i>
+              </div>
+              <div class="step__field">
+                <label for="birth">Fecha de nacimiento</label>
+                <input type="date" id="birth" value="2000-02-02" class="register-input" required />
+              </div>
+              <div class="btn-only">
+                <button class="btn btn-next width-50 ml-auto">Siguiente</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Rol -->
+
+          <div class="step rol">
+            <!-- <div class="step__title">Elige tu rol</div> -->
+            <div class="field-group rol__group">
+              <div class="step__field rol__field">
+                <!-- Instructor option -->
+                <div class="rol__option rol__instructor">
+                  <input type="radio" name="rol" id="instructor" value="instructor" class="instructor" required />
+                  <label for="instructor">
+                    <div class="rol__figure">
+                      <img src="./img/figures/rol-instructor.png" alt="instructor" />
+                    </div>
+                    <span>Instructor</span>
+                  </label>
+                </div>
+              </div>
+              <div class="step__field rol__field">
+                <div class="rol__option rol__aprendiz">
+                  <input type="radio" name="rol" id="aprendiz" value="aprendiz" class="aprendiz" required />
+                  <label for="aprendiz">
+                    <div class="rol__figure">
+                      <img src="./img/figures/rol-aprendiz.png" alt="aprendiz" />
+                    </div>
+                    <span>Aprendiz</span>
+                  </label>
+                </div>
+              </div>
+              <div class="btns-group">
+                <button class="btn btn-prev">Regresar</button>
+                <button class="btn btn-next">Siguiente</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Login data-->
+          <div class="step login-data">
+            <!-- <div class="step__title">Datos de ingreso</div> -->
+            <div class="field-group">
+              <div class="step__field">
+                <label for="email">Correo Institucional</label>
+                <input type="text" name="email" id="email" placeholder="example@misena.edu.co" class="register-input" required />
+                <i class="step__field-validation fas fa-times-circle"></i>
+              </div>
+              <div class="step__field">
+                <label for="pass">Contraseña</label>
+                <input type="password" id="pass" placeholder="Contraseña" class="register-input" required />
+                <i class="step__field-validation fas fa-times-circle"></i>
+              </div>
+              <div class="step__field">
+                <label for="confirm-pass">Confirmar contraseña</label>
+                <input type="password" id="confirm-pass" placeholder="Contraseña" class="register-input" required />
+                <i class="step__field-validation fas fa-times-circle"></i>
+              </div>
+              <div class="btns-group">
+                <button class="btn btn-prev">Regresar</button>
+                <button class="btn btn-submit">Registrarse</button>
+              </div>
+            </div>
+          </div>
+          <!-- <button type="submit">Ingresar</button> -->
+        </form>
+      </div>
     </div>
+    <script src="./script/script.js"></script>
   </body>
 </html>
