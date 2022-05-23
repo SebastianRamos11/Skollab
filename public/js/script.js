@@ -177,7 +177,6 @@ prevBtns.forEach(btn => {
 });
 
 form.addEventListener('submit', e => {
-  e.preventDefault();
 
   const rolOption = document.getElementsByName('rol');
 
