@@ -14,7 +14,6 @@
             $sqlinsert = $dbConnection -> exec("INSERT INTO persona VALUES ('$id','$names','$lastnames','$birthday', '$role', '$email', '$password', '$phonenumber')");
         if ($names = 1){
             header('location:../index.html');
-        }
         } else {
             echo 'No se pudo registrar.';
         }
