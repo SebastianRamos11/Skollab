@@ -32,18 +32,15 @@ h1 {
   margin-left: auto;
 }
 
-.uppercase {
-  text-transform: uppercase;
-}
-.uppercase::placeholder {
-  text-transform: capitalize;
-}
-
 .step__field {
   position: relative;
 }
 
-.step__field-validation {
+.step__input {
+  position: relative;
+}
+
+.step__field-state {
   position: absolute;
   right: 14px;
   bottom: 22px;
@@ -157,12 +154,14 @@ h1 {
       grid-column: 2 span;
     }
   }
-  .login-data {
-    & .field-group {
-      & .step__field {
-        margin-bottom: 20px;
-      }
-    }
+}
+
+.step--active.login-data .field-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  & .btns-group {
+    grid-column: 2 span;
   }
 }
 
@@ -187,7 +186,6 @@ h1 {
     margin: 0 10px;
     border-radius: $radius-xl;
     border-bottom: 40px solid $primary-contrast;
-    margin-bottom: 20px;
 
     & span {
       font-size: map-get($size-paragraph, 'm');
@@ -216,6 +214,10 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
 
+    & .step__field-error {
+      grid-column: 2 span;
+      margin-top: -10px;
+    }
     & .btns-group {
       grid-column: 2 span;
     }
@@ -266,11 +268,50 @@ h1 {
   }
 }
 
-// Validation styles
+// Wrong messages
+
+.step__field-error {
+  font-size: 13px;
+  margin-bottom: -8px;
+  display: none;
+}
+
+.step__field-error--active {
+  display: block;
+}
+
+.step__error-message {
+  grid-column: 2 span;
+  text-align: center;
+  background: #ffd16d;
+  padding: 0 15px;
+  border-radius: $radius-m;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.step__error-message--active {
+  display: block;
+}
+
+// state styles
 
 .step__field {
-  &-correct &-validation {
+  // Correct field
+  &-correct &-state {
     color: #1ed12d;
     opacity: 1;
+  }
+
+  // Wrong field
+  &-wrong {
+    .step__field-state,
+    label {
+      color: $primary-contrast;
+      opacity: 1;
+    }
+    & input {
+      outline: 3px solid $primary-contrast;
+    }
   }
 }
