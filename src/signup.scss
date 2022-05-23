@@ -114,6 +114,7 @@ h1 {
 .container {
   background: $white;
   max-width: 700px;
+  min-width: 330px;
   padding: 40px;
   border-radius: $radius-xl;
 
@@ -156,14 +157,18 @@ h1 {
   }
 }
 
-.step--active.login-data .field-group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 20px;
-  & .btns-group {
-    grid-column: 2 span;
+@media screen and (min-width: $md) {
+  .step--active.login-data .field-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    & .btns-group {
+      grid-column: 2 span;
+    }
   }
+  
 }
+
 
 .step__field {
   margin-bottom: 20px;
@@ -284,7 +289,7 @@ h1 {
   grid-column: 2 span;
   text-align: center;
   background: #ffd16d;
-  padding: 0 15px;
+  padding: 2px 15px;
   border-radius: $radius-m;
   margin-bottom: 20px;
   display: none;

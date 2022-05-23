@@ -386,6 +386,7 @@ h1 {
 .container {
   background: #fff;
   max-width: 700px;
+  min-width: 330px;
   padding: 40px;
   border-radius: 20px;
 }
@@ -428,16 +429,17 @@ h1 {
   }
 }
 
-.step--active.login-data .field-group {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 20px;
-}
-
-.step--active.login-data .field-group .btns-group {
-  grid-column: 2 span;
+@media screen and (min-width: 600px) {
+  .step--active.login-data .field-group {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+  }
+  .step--active.login-data .field-group .btns-group {
+    grid-column: 2 span;
+  }
 }
 
 .step__field {
@@ -570,7 +572,7 @@ h1 {
   grid-column: 2 span;
   text-align: center;
   background: #ffd16d;
-  padding: 0 15px;
+  padding: 2px 15px;
   border-radius: 10px;
   margin-bottom: 20px;
   display: none;
