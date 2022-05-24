@@ -1,0 +1,57 @@
+@import './config/variables';
+@import './config/fonts';
+@import './config/normalize';
+@import './config/flex';
+@import './config/grid';
+@import './blocks/elements';
+@import './blocks/inputs';
+
+body {
+  @include background-image('../img/backgrounds/recover-bg.svg');
+}
+
+.container {
+  background: $white;
+  max-width: 360px;
+  padding: 40px;
+  border-radius: $radius-xl;
+  display: flex;
+  flex-direction: column;
+  & .header {
+    text-align: center;
+    align-self: center;
+    margin-bottom: 40px;
+    & hr {
+      @include hr($primary-contrast, false);
+      margin-top: -10px;
+    }
+  }
+
+  & .form {
+    &__field {
+      @include setFlex(column, stretch, center);
+      & label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      & .submit-btn {
+        @include primary-btn($primary-contrast, false);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $md) {
+  .container {
+    max-width: 700px;
+    & .form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 20px;
+
+      &__field.submit__field {
+        grid-column: 2 span;
+      }
+    }
+  }
+}

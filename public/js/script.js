@@ -177,7 +177,6 @@ prevBtns.forEach(btn => {
 });
 
 form.addEventListener('submit', e => {
-
   const rolOption = document.getElementsByName('rol');
 
   if (
@@ -196,7 +195,9 @@ form.addEventListener('submit', e => {
     });
     document.getElementById('step__error-message').classList.remove('step__error-message--active');
     alert('Registrado correctamente');
+    e.defaultPrevented();
   } else {
     document.getElementById('step__error-message').classList.add('step__error-message--active');
+    e.preventDefault();
   }
 });

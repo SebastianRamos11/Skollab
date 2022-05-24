@@ -27,3 +27,13 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+@mixin background-image($url){
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-image: url($url);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
