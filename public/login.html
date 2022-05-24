@@ -13,10 +13,10 @@
     <div class="login-container">
       <div class="login">
         <h1 class="login__title">Inicio de Sesión</h1>
-        <form action="connection.php" method="POST" class="login__form">
+        <form action="./php/login_validation.php" method="POST" class="login__form">
           <input type="email" name="email" id="email" placeholder="Correo electrónico" class="register-input" required />
           <input type="password" name="pass" placeholder="Contraseña" class="register-input" required />
-          <button type="submit" class="login__btn">Ingresar</button>
+          <button type="submit" name="login" class="login__btn">Ingresar</button>
         </form>
       </div>
       <div class="signup">
