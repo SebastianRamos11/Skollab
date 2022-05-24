@@ -1,16 +1,22 @@
 <?php
-    require_once('connection.php');
+    require('connection.php');
 
-    $email = $_POST['email'];
-    $pass = $_POST['pass'];
-        if ($email == "" || $_POST['pass'] == null){
-            echo "Error: usuario y/o contraseña vacíos."; 
-        }else{
-            $sqlselect = "SELECT * FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'";
-            if (!$query = $dbConnection->query($sqlselect)){
-                echo "Usuario no registrado.";
-            } else {
-                    echo "<h1>Bienvenido a Skollab.</h1>";
-            }
+    session_start();
+    
+    if (isset($_POST['login'])) {
+        $email = stripslashes($_REQUEST['email']);
+        $email = mysqli_real_escape_string($dbConnection, $email);
+        $pass = stripslashes($_REQUEST['pass']);
+        $pass = mysqli_real_escape_string($dbConnection, $pass);
+
+        $login_query = ("SELECT * FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'");
+        $query_result = mysqli_query($dbConnection, $login_query) or die(mysql_error()); 
+        $row = mysqli_num_rows($query_result);
+        if ($row == 1) {
+            $_SESSION['email'] = $email;
+            header("Location: ../index.html");
+        } else {
+            echo 'Error: usuario no encotrado.';
         }
+    }
 ?>
