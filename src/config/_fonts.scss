@@ -12,27 +12,28 @@ $paragraph-color: #636363;
 
 // Weights
 $font-weights: (
-    "regular": 400, 
-    "medium": 500,
-    "semibold": 700,
-    "bold": 800
+  'regular': 400,
+  'medium': 500,
+  'semibold': 700,
+  'bold': 800,
 );
 
 // Sizes
 
 $size-title: (
-        "s": 1.4em,
-        "m": 1.6em,
-        "l": 1.8em,
-        "xl": 2em
+  's': 1.4em,
+  'm': 1.6em,
+  'l': 1.8em,
+  'xl': 2em,
+  'xxl': 2.5em,
 );
 $size-paragraph: (
-        "s": 1em,
-        "m": 1.1em,
-        "l": 1.2em,
-        "xl": 1.3em
+  's': 1em,
+  'm': 1.1em,
+  'l': 1.2em,
+  'xl': 1.3em,
 );
 
 // Shadows
 
-$font-shadow: 3px 7px 12px rgba(0,0,0,0.3);
+$font-shadow: 3px 7px 12px rgba(0, 0, 0, 0.3);

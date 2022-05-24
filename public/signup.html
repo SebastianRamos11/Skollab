@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="header">Registrate</h1>
+      <h1 class="header">Regístrate</h1>
       <hr />
 
       <!-- Progress -->
@@ -31,7 +31,7 @@
               <div class="step__field" id="group-id">
                 <label for="id">Documento de identidad</label>
                 <div class="step__input">
-                  <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" />
+                  <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" required/>
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
                 <p class="step__field-error">El documento solo puede contener números, y debe contener exactamente 10 digitos.</p>
@@ -48,6 +48,7 @@
                     onkeyup="upper(this);"
                     maxlength="20"
                     class="register-input"
+                    required
                   />
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
@@ -65,6 +66,7 @@
                     onkeyup="upper(this);"
                     maxlength="20"
                     class="register-input"
+                    required
                   />
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
@@ -126,7 +128,7 @@
               <div class="step__field" id="group-phone">
                 <label for="phone">Celular</label>
                 <div class="step__input">
-                  <input type="text" name="phone" id="phone" placeholder="Celular" class="register-input" />
+                  <input type="text" name="phone" id="phone" placeholder="Celular" class="register-input" required />
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
                 <p class="step__field-error">El teléfono solo puede contener numeros y el maximo son 10 dígitos.</p>
@@ -135,7 +137,7 @@
               <div class="step__field" id="group-email">
                 <label for="email">Correo Institucional</label>
                 <div class="step__input">
-                  <input type="text" name="email" id="email" placeholder="example@misena.edu.co" class="register-input" />
+                  <input type="text" name="email" id="email" placeholder="example@misena.edu.co" class="register-input" required/>
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
                 <p class="step__field-error">El correo debe ser institucional. Solo puede contener letras, numeros y puntos.</p>
@@ -144,7 +146,7 @@
               <div class="step__field" id="group-pass">
                 <label for="pass">Contraseña</label>
                 <div class="step__input">
-                  <input type="password" id="pass" name="pass" placeholder="Contraseña" class="register-input" />
+                  <input type="password" id="pass" name="pass" placeholder="Contraseña" class="register-input" required />
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
                 <p class="step__field-error">La contraseña tiene que ser de 4 a 20 dígitos.</p>
@@ -153,7 +155,7 @@
               <div class="step__field" id="group-confirm-pass">
                 <label for="confirm-pass">Confirmar contraseña</label>
                 <div class="step__input">
-                  <input type="password" id="confirm-pass" name="confirm-pass" placeholder="Contraseña" class="register-input" />
+                  <input type="password" id="confirm-pass" name="confirm-pass" placeholder="Contraseña" class="register-input" required />
                   <i class="step__field-state fas fa-times-circle"></i>
                 </div>
                 <p class="step__field-error">Ambas contraseñas deben ser iguales.</p>
@@ -165,7 +167,7 @@
               <!-- Buttons -->
               <div class="btns-group">
                 <input type="button" value="Regresar" class="btn btn-prev" />
-                <input type="submit" value="Registrarse" class="btn btn-submit" />
+                <input type="submit" name="signup-submited" value="Registrarse" id="btn-submit" class="btn btn-submit" />
               </div>
             </div>
           </div>

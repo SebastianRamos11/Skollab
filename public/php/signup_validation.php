@@ -1,7 +1,7 @@
 <?php
     require('connection.php');
 
-    if (isset($_REQUEST['signup'])) {
+    if (isset($_REQUEST['signup-submited'])) {
         $id = stripslashes($_REQUEST['id']);
         $id = mysqli_real_escape_string($dbConnection, $id);
 
@@ -30,9 +30,9 @@
         $query_result = mysqli_query($dbConnection, $signup_query);
 
         if ($query_result) {
-            header('location:../index.html');
+            header('Location: ../index.html');
         } else {
-            echo 'Error: Datos invalidos';
+            echo 'Error: no se puede registrar.';
         }
     }
 ?>

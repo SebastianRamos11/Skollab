@@ -317,13 +317,13 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .nav-menu__link:active, .nav-menu__link--active:active {
-  background: #0066FF;
+  background: #0066ff;
   border: 1.2px solid #000;
   color: #fff;
 }
 
 .nav-menu__link:hover, .nav-menu__link--active:hover {
-  background: #0066FF;
+  background: #0066ff;
   border: 1.2px solid #000;
   color: #fff;
 }
@@ -374,7 +374,7 @@ input[type="checkbox"], input[type="radio"] {
   border-radius: 10px;
   padding: 15px 20px;
   color: #fff;
-  background: #FF3030;
+  background: #ff3030;
   font-size: 1.1em;
   font-weight: 500;
   -webkit-box-shadow: 5px 5px 15px -6px rgba(0, 0, 0, 0.91);
@@ -412,7 +412,7 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1400px) {
   .home {
     height: 90vh;
   }
@@ -452,7 +452,7 @@ input[type="checkbox"], input[type="radio"] {
   margin: 30px 20px;
   padding: 20px;
   border-radius: 20px;
-  border-top: 20px solid #FF5C00;
+  border-top: 20px solid #ff5c00;
   text-align: center;
   -webkit-box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
           box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
@@ -504,7 +504,7 @@ input[type="checkbox"], input[type="radio"] {
   text-align: center;
   line-height: 2em;
   border-radius: 20px;
-  background-color: #0066FF;
+  background-color: #0066ff;
   color: #fff;
   position: relative;
   z-index: 1;
@@ -514,7 +514,7 @@ input[type="checkbox"], input[type="radio"] {
 .card-steps__li::before {
   content: '';
   position: absolute;
-  background: #0066FF;
+  background: #0066ff;
   z-index: 0;
   top: -35px;
   left: 15px;
@@ -535,7 +535,7 @@ input[type="checkbox"], input[type="radio"] {
 @media screen and (min-width: 900px) {
   .card {
     border-top: none;
-    border-left: 25px solid #FF5C00;
+    border-left: 25px solid #ff5c00;
     width: 80%;
     margin: 50px auto;
     margin-bottom: 100px;
@@ -554,7 +554,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .design {
-  background-color: #FF5C00;
+  background-color: #ff5c00;
   background-image: url(../img/backgrounds/design-bg.svg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -637,7 +637,7 @@ input[type="checkbox"], input[type="radio"] {
   width: 55px;
   height: 15px;
   border: none;
-  background: #FF3030;
+  background: #ff3030;
   border-radius: 20px;
   margin-bottom: 30px;
 }
@@ -720,7 +720,7 @@ input[type="checkbox"], input[type="radio"] {
   width: 55px;
   height: 15px;
   border: none;
-  background: #FF3030;
+  background: #ff3030;
   border-radius: 20px;
 }
 
@@ -734,7 +734,7 @@ input[type="checkbox"], input[type="radio"] {
   border-radius: 10px;
   padding: 15px 20px;
   color: #fff;
-  background: #FF3030;
+  background: #ff3030;
   font-size: 1.1em;
   font-weight: 500;
   -webkit-transition: 0.4s;
@@ -774,7 +774,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .footer {
-  background-color: #FF5C00;
+  background-color: #ff5c00;
   color: #fff;
   position: relative;
   text-align: center;
