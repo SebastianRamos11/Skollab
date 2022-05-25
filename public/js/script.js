@@ -80,9 +80,6 @@ const validateInput = function (e) {
     case 'lastName':
       validateField(regularExpressions.userName, e.target, 'lastName');
       break;
-    case 'rol':
-      // FIXME
-      break;
     case 'phone':
       validateField(regularExpressions.phone, e.target, 'phone');
       break;
@@ -189,7 +186,6 @@ form.addEventListener('submit', e => {
     fields.confirmPass &&
     (rolOption[0].checked || rolOption[1].checked)
   ) {
-    form.reset();
     document.querySelectorAll('.step__field-correct').forEach(icon => {
       icon.classList.remove('step__field-correct');
     });
