@@ -14,7 +14,7 @@
         $row = mysqli_num_rows($query_result);
         if ($row == 1) {
             $_SESSION['email'] = $email;
-            header("Location: ../index.html");
+            header('Location: ../index.html');
         } else {
             echo 'Error: usuario no encotrado.';
         }
