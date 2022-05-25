@@ -6,6 +6,7 @@
     if (isset($_POST['login'])) {
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
+        
         $pass = stripslashes($_REQUEST['pass']);
         $pass = mysqli_real_escape_string($dbConnection, $pass);
 
@@ -16,7 +17,7 @@
             $_SESSION['email'] = $email;
             header('Location: ../index.html');
         } else {
-            echo 'Error: usuario no encotrado.';
+            echo 'Error: usuario no encontrado.';
         }
     }
 ?>

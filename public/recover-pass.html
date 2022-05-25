@@ -13,7 +13,7 @@
         <h1>Recuperar contraseña</h1>
         <hr />
       </div>
-      <form action="#" class="form">
+      <form action="./php/recover_pass_validation.php" class="form" method="POST">
         <div class="form__field">
           <label for="email">Correo electrónico</label>
           <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" />
@@ -31,10 +31,9 @@
           <input type="date" name="birthYear" id="birthYear" class="register-input" required />
         </div>
         <div class="form__field submit__field">
-          <input type="submit" value="Recuperar" class="submit-btn" />
+          <input type="submit" name="recover-submited" value="Recuperar" class="submit-btn" />
         </div>
       </form>
     </div>
-    <script src="./js/script.js"></script>
   </body>
 </html>
