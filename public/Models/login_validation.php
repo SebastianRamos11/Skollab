@@ -15,7 +15,7 @@
         $row = mysqli_num_rows($query_result);
         if ($row == 1) {
             $_SESSION['email'] = $email;
-            header('Location: ../index.html');
+            header('Location: ../Views/index.html');
         } else {
             echo 'Error: usuario no encontrado.';
         }

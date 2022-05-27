@@ -30,7 +30,7 @@
         $query_result = mysqli_query($dbConnection, $signup_query);
 
         if ($query_result) {
-            header('Location: ../index.html');
+            header('Location: ../Views/index.html');
         } else {
             echo 'Error: no se puede registrar.';
         }
