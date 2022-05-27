@@ -17,7 +17,12 @@
             $_SESSION['email'] = $email;
             header('Location: ../Views/index.html');
         } else {
-            echo 'Error: usuario no encontrado.';
+            ?>
+                <script>
+                    alert("Usuario no encontrado.");
+                    history.back();
+                </script>
+            <?php
         }
     }
 ?>

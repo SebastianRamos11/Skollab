@@ -14,17 +14,17 @@
       <div class="login">
         <h1 class="login__title">Inicio de Sesión</h1>
         <form action="../Models/login_validation.php" method="POST" class="login__form">
-          <input type="email" name="email" id="email" placeholder="Correo electrónico" class="register-input" required />
+          <input type="email" name="email" id="email" placeholder="Correo electrónico" class="register-input" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES);?>" required />
           <input type="password" name="pass" placeholder="Contraseña" class="register-input" required />
           <button type="submit" name="login" class="login__btn">Ingresar</button>
         </form>
       </div>
       <div class="signup">
         <p>¿No tienes cuenta?</p>
-        <a href="./signup.html" class="signup__link">Regístrate</a>
+        <a href="./signup.php" class="signup__link">Regístrate</a>
       </div>
       <div class="recover">
-        <a href="./recover-pass.html">¿Se te olvidó la contraseña?</a>
+        <a href="./recover-pass.php">¿Se te olvidó la contraseña?</a>
       </div>
       <div class="media">
         <div class="media__title">Inicia sesión con tus redes sociales</div>
