@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../Views/css/signup.css">
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        </head>
+        <body>
 <?php
     require('connection.php');
 
@@ -30,9 +40,34 @@
         $query_result = mysqli_query($dbConnection, $signup_query);
 
         if ($query_result) {
-            header('Location: ../Views/index.html');
+            ?>
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registro satisfactorio',
+                        text: '¡Ahora puedes disfrutar de Skollab!',
+                    }).then(function() {
+                        window.location.assign('../Views/index.html');
+                    });
+                </script>
+            </body>
+            </html>
+            <?php
         } else {
-            echo 'Error: no se puede registrar.';
+            ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Usuario ya registrado',
+                        footer: '<a href="../Views/login.php">¡Inicia sesión ahora!</a>'
+                    }).then(function() {
+                        history.back();
+                    });
+                </script>
+            </body>
+            </html>
+            <?php
         }
     }
 ?>

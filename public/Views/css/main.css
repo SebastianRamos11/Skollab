@@ -412,7 +412,7 @@ input[type="checkbox"], input[type="radio"] {
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1000px) {
   .home {
     height: 90vh;
   }

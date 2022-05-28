@@ -190,7 +190,6 @@ form.addEventListener('submit', e => {
       icon.classList.remove('step__field-correct');
     });
     document.getElementById('step__error-message').classList.remove('step__error-message--active');
-    alert('Registrado correctamente');
     e.defaultPrevented();
   } else {
     document.getElementById('step__error-message').classList.add('step__error-message--active');

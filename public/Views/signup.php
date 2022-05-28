@@ -172,6 +172,6 @@
         </form>
       </div>
     </div>
-    <script src="../Controllers/script.js"></script>
+    <script src="../Controllers/signup-control.js"></script>
   </body>
 </html>
