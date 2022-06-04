@@ -47,7 +47,13 @@
                         title: 'Registro satisfactorio',
                         text: '¡Ahora puedes disfrutar de Skollab!',
                     }).then(function() {
-                        window.location.assign('../Views/index.html');
+                        <?php 
+                            if($rol == 'INSTRUCTOR'){
+                                header('Location: ../Views/Instructor/instructor.html');
+                            } else if ($rol == 'APRENDIZ'){
+                                header('Location: ../Views/Aprendiz/aprendiz.html');
+                            }
+                        ?>
                     });
                 </script>
             </body>

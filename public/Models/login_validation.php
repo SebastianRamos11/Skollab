@@ -31,7 +31,9 @@
                         title: 'Ingreso satisfactorio',
                         text: '¡Ahora puedes disfrutar de Skollab!',
                     }).then(function() {
-                        window.location.assign('../Views/index.html');
+                        <?php 
+                            // Redireccionar a su respectiva interfa
+                        ?>
                     });
                 </script>
             </body>
