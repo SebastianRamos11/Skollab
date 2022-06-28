@@ -1,0 +1,303 @@
+@import './config/variables';
+@import './config/fonts';
+@import './config/normalize';
+@import './config/flex';
+@import './config/grid';
+@import './blocks/elements';
+@import './blocks/inputs';
+
+body,
+html {
+  height: 100% !important;
+  scroll-behavior: smooth;
+  position: relative !important;
+}
+
+.header {
+  padding: 40px 130px;
+  & .banner {
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url(../img/backgrounds/signup-bg.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $white;
+    padding: 30px;
+    border-radius: $radius-l;
+
+    &__title {
+      font-size: map-get($size-title, 'm');
+    }
+
+    &__figure {
+      max-width: 320px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .banner {
+    flex-direction: column;
+    &__title {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+.card {
+  background: $white;
+  box-shadow: $element-shadow;
+  border-radius: $radius-xl;
+  &-header {
+    background: $secundary-color;
+    border-top-left-radius: $radius-xl;
+    border-top-right-radius: $radius-xl;
+
+    padding: 20px 15px;
+    color: $white;
+    font-size: map-get($size-paragraph, 'l');
+  }
+  & table {
+    tbody {
+      tr {
+        height: 60px;
+        a {
+          font-size: 20px !important;
+          margin-left: 10px;
+        }
+        .edit-button {
+          color: $secundary-color;
+        }
+        .delete-button {
+          color: $primary-contrast !important;
+        }
+      }
+      tr:hover {
+        font-weight: map-get($font-weights, 'medium');
+        color: $secundary-color;
+        outline: 2px solid $secundary-color;
+      }
+    }
+  }
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: $table-color;
+  vertical-align: top;
+  border-color: $table-border-color;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: $white;
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px $table-accent-bg;
+}
+.table > tbody {
+  vertical-align: inherit;
+}
+.table > thead {
+  vertical-align: bottom;
+}
+
+.table-group-divider {
+  border-top: 2px solid currentcolor;
+}
+
+.caption-top {
+  caption-side: top;
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: 0.25rem 0.25rem;
+}
+
+.table-bordered > :not(caption) > * {
+  border-width: 1px 0;
+}
+.table-bordered > :not(caption) > * > * {
+  border-width: 0 1px;
+}
+
+.table-borderless > :not(caption) > * > * {
+  border-bottom-width: 0;
+}
+.table-borderless > :not(:first-child) {
+  border-top-width: 0;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  $table-accent-bg: $table-striped-bg;
+  color: $table-striped-color;
+}
+
+.table-striped-columns > :not(caption) > tr > :nth-child(even) {
+  $table-accent-bg: $table-striped-bg;
+  color: $table-striped-color;
+}
+
+.table-active {
+  $table-accent-bg: $table-active-bg;
+  color: $table-active-color;
+}
+
+.table-hover > tbody > tr:hover > * {
+  $table-accent-bg: $table-hover-bg;
+  color: $table-hover-color;
+}
+
+thead tr {
+  border-bottom: 2px solid $black;
+}
+
+th {
+  padding-bottom: 20px !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.create-button {
+  display: block;
+  background: $white;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: $radius-l;
+}
+
+.btn-create {
+  position: fixed !important;
+  right: 80px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+
+  background-color: #fff;
+  padding: 50px 100px;
+  border-radius: 0.5rem;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 99999px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  font-size: 50px;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+
+  & .rol {
+    grid-column: 2 span;
+  }
+  & .submit__field {
+    grid-column: 3 span;
+  }
+}
+
+.grid-col-3 {
+  grid-column: 3 span !important;
+  margin-bottom: 40px;
+}
+
+.overflow-hidden {
+  overflow-y: hidden;
+}
+
+.modal {
+  &__header {
+    text-align: center;
+    align-self: center;
+    margin-bottom: 50px;
+    & h2 {
+      margin-bottom: 10px;
+    }
+    & hr {
+      @include hr($primary-contrast, false);
+    }
+  }
+
+  & .form {
+    &__field {
+      @include setFlex(column, stretch, center);
+      & label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      & .submit-btn {
+        @include primary-btn($primary-contrast, false);
+      }
+    }
+  }
+}
+
+.rol__options {
+  display: flex;
+  height: 60%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.edit-user-body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-image: url(../img/backgrounds/signup-bg.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

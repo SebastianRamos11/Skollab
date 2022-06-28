@@ -36,30 +36,9 @@
         $pass = stripslashes($_REQUEST['pass']);
         $pass = mysqli_real_escape_string($dbConnection, $pass);
 
-        $signup_query = "INSERT INTO persona VALUES ('$id', '$firstName', '$lastName', '$birthYear', '$rol', '$email', '$pass', '$phone')";
-        $query_result = mysqli_query($dbConnection, $signup_query);
-
-        if ($query_result) {
-            ?>
-                <script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Registro satisfactorio',
-                        text: '¡Ahora puedes disfrutar de Skollab!',
-                    }).then(function() {
-                        <?php 
-                            if($rol == 'INSTRUCTOR'){
-                                header('Location: ../Views/Instructor/instructor.html');
-                            } else if ($rol == 'APRENDIZ'){
-                                header('Location: ../Views/Aprendiz/aprendiz.html');
-                            }
-                        ?>
-                    });
-                </script>
-            </body>
-            </html>
-            <?php
-        } else {
+        $validation_query = "SELECT * FROM persona WHERE ID_Persona = '$id' || correo_electronico = '$email' || telefono = '$phone'";
+        $validation_result = mysqli_query($dbConnection, $validation_query);
+        if ($validation_result -> num_rows > 0) {
             ?>
                 <script>
                     Swal.fire({
@@ -74,6 +53,34 @@
             </body>
             </html>
             <?php
+        } else {
+            $signup_query = "INSERT INTO persona VALUES ('$id', '$firstName', '$lastName', '$birthYear', '$rol', '$email', '$pass', '$phone')";
+            $query_result = mysqli_query($dbConnection, $signup_query);
+            if ($query_result) {
+                ?>
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Registro satisfactorio',
+                            text: '¡Ahora puedes disfrutar de Skollab!',
+                        }).then(function() {
+                            <?php 
+                                if ($rol == 'APRENDIZ') {
+                                    ?>
+                                    window.location.href = "../Views/Aprendiz/aprendiz.php";
+                                    <?php
+                                } elseif ($rol == 'INSTRUCTOR') {
+                                    ?>
+                                    window.location.href = "../Views/Instructor/instructor.php";
+                                    <?php
+                                }
+                            ?>
+                        });
+                    </script>
+                </body>
+                </html>
+                <?php
+            }            
         }
     }
 ?>

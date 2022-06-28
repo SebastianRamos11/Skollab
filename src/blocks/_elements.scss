@@ -28,7 +28,7 @@
   background-repeat: no-repeat;
 }
 
-@mixin background-image($url){
+@mixin background-image($url) {
   display: grid;
   place-items: center;
   min-height: 100vh;
@@ -36,4 +36,142 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+@media screen and (min-width: $xl) {
+  .nav-y {
+    background: $white;
+    height: 100vh;
+    padding: 12px;
+    position: fixed;
+    @include setFlex(column, center, between);
+    & .nav__logo {
+      width: 130px;
+      margin-top: 40px;
+    }
+    & .nav-menu {
+      &__item {
+        list-style: none;
+        position: relative;
+
+        margin-bottom: 45px;
+        right: 12px;
+        bottom: 140px;
+
+        & a {
+          text-decoration: none;
+          color: $paragraph-color;
+          & i {
+            margin-right: 10px;
+            font-size: 20px;
+          }
+        }
+      }
+      &__link--active {
+        color: $primary-contrast !important;
+      }
+    }
+  }
+
+  .df {
+    display: flex;
+  }
+
+  .ml300 {
+    margin-left: 300px;
+  }
+}
+
+.footer {
+  background-color: $primary-color;
+  color: $white;
+  text-align: center;
+
+  &-wave {
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    transform: rotate(180deg);
+
+    & svg {
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 169px;
+    }
+
+    & .shape-fill {
+      fill: #ebf0f6;
+    }
+  }
+
+  &__content {
+    @include setGridFit(200px, auto, 50px);
+    justify-content: space-evenly;
+    padding: 30px;
+  }
+
+  &__brand {
+    font-size: map-get($size-title, 'l');
+    font-weight: map-get($font-weights, 'semibold');
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    font-size: map-get($size-title, 's');
+    font-weight: map-get($font-weights, 'medium');
+    margin-bottom: 15px;
+  }
+  &__info {
+    font-size: map-get($size-paragraph, 'm');
+    & div {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__media {
+    margin-top: 20px;
+    @include setFlex(row, center, evenly);
+    font-size: 30px;
+  }
+
+  &__contact {
+    &-form {
+      margin-top: 20px;
+      @include setFlex(row, center, center);
+    }
+    &-email {
+      height: 50px;
+      border: none;
+      border-radius: $radius-l;
+      padding: 0 10px;
+      margin-right: 5px;
+    }
+    &-button {
+      height: 50px;
+      @include primary-btn(linear-gradient(104.67deg, #ff5a5a -82.31%, #f11414 54.83%, #f11414 86.9%), false);
+    }
+  }
+
+  & hr {
+    color: $white;
+  }
+  &__copyright {
+    @include setFlex(row, center, between);
+    font-size: map-get($size-paragraph, 'm');
+    padding: 20px;
+  }
+}
+
+// Media
+@media screen and (min-width: 450px) {
+  .footer__contact {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (min-width: ($lg + 200px)) {
+  .footer__contact {
+    grid-column: 2 span;
+  }
 }

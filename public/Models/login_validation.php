@@ -19,8 +19,9 @@
         $pass = stripslashes($_REQUEST['pass']);
         $pass = mysqli_real_escape_string($dbConnection, $pass);
 
-        $login_query = ("SELECT * FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'");
-        $query_result = mysqli_query($dbConnection, $login_query) or die(mysql_error()); 
+        $login_query = "SELECT * FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'";
+        $query_result = mysqli_query($dbConnection, $login_query) or die(mysqli_error($dbConnection));
+        $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
         $row = mysqli_num_rows($query_result);
         if ($row == 1) {
             $_SESSION['email'] = $email;
@@ -29,10 +30,22 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Ingreso satisfactorio',
-                        text: '¡Ahora puedes disfrutar de Skollab!',
+                        text: '¡Ahora puedes disfrutar de Skollab!'
                     }).then(function() {
-                        <?php 
-                            // Redireccionar a su respectiva interfa
+                        <?php
+                            if ($result_array[0][4] == 'APRENDIZ') {
+                                ?>
+                                window.location.href = "../Views/Aprendiz/aprendiz.php";
+                                <?php
+                            } elseif ($result_array[0][4] == 'INSTRUCTOR') {
+                                ?>
+                                window.location.href = "../Views/Instructor/instructor.php";
+                                <?php
+                            } elseif ($result_array[0][4] == 'ADMINISTRADOR') {
+                                ?>
+                                window.location.href = "../Views/Admin/main.php";
+                                <?php
+                            }
                         ?>
                     });
                 </script>

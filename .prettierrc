@@ -2,5 +2,9 @@
   "singleQuote": true,
   "arrowParens": "avoid",
   "tabWidth": 2,
-  "printWidth": 150
+  "printWidth": 150,
+  "devDependencies": {
+    "@prettier/plugin-php": "0.14.3",
+    "prettier": "2.0.5"
+  }
 }
