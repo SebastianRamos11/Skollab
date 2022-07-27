@@ -5,8 +5,9 @@
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
     
-        $pass = stripslashes($_REQUEST['pass']);
+        $pass = mysqli_real_escape_string($dbConnection, $_REQUEST['pass']);
         $pass = mysqli_real_escape_string($dbConnection, $pass);
+        $pass = hash('sha512', $pass);
     
         $birthYear = stripslashes($_REQUEST['birthYear']);
         $birthYear = mysqli_real_escape_string($dbConnection, $birthYear);

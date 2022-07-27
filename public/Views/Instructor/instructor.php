@@ -10,66 +10,20 @@
     <title>Inicio</title>
   </head>
   <body>
-    <div class="container df">
-      <!-- NAV -->
-      <nav class="nav nav-y">
-        <div class="nav__logo">
-          <a href="../index.html" class="logo">
-            <img src="../img/main/Logo.png" alt="logo" class="logo__img" />
-          </a>
+    <?php
+      include_once "../../Models/connection.php";
+      $id = $_GET['id'];
+      $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$id'";
+      $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
+      $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
+    ?>
+    <?php include './blocks/sidebar.php' ?>
+        <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
+        <div class="main-content__info">
+          ...
         </div>
-        <ul class="nav-menu">
-          <li class="nav-menu__item">
-            <a href="./instructor.php" class="nav-menu__link nav-menu__link--active">
-              <i class="fa-solid fa-house"></i>
-              <span>Inicio</span>
-            </a>
-          </li>
-          <li class="nav-menu__item">
-            <a href="./review-center.php" class="nav-menu__link">
-              <i class="fa-solid fa-briefcase"></i>
-              <span>Centro de revisión</span>
-            </a>
-          </li>
-          <li class="nav-menu__item">
-            <a href="./groups.php" class="nav-menu__link">
-              <i class="fa-solid fa-users"></i>
-              <span>Fichas</span>
-            </a>
-          </li>
-          <li class="nav-menu__item">
-            <a href="./publications.php" class="nav-menu__link">
-              <i class="fa-solid fa-book"></i>
-              <span>Publicaciones</span>
-            </a>
-          </li>
-        </ul>
-        <div class="nav-ad">
-          <div class="nav-ad__figure">Libros</div>
-          <div class="nav-ad__paragraph">Crea una evidencia para tus aprendices</div>
-          <a href="#"><input type="button" value="Crear evidencia" /></a>
-        </div>
-      </nav>
-
-      <!-- MAIN -->
-      <div class="main ml300">
-        <header class="header">
-          <!-- TITLE -->
-          <h1 class="title">Buenos días, Instructor 👋</h1>
-          <!-- PROFILE -->
-          <div class="profile">
-            <div class="profile__img">Foto de perfil</div>
-            <div class="profile__notifications">Notificaciones</div>
-          </div>
-        </header>
-        <section class="task-counter">
-          <div class="task-counter__message">El 67% de tus aprendices han completado la evidencia.</div>
-          <div class="task-counter__figure">Imagen rompecabezas</div>
-        </section>
-        <section class="tasks">Tabla evidencias</section>
-        <section class="best-students">Estudiantes, foto, puntos</section>
-        <section class="groups">Fichas</section>
-      </div>
+      </main>
     </div>
+    <script src="../../Controllers/instructor-control.js"></script>
   </body>
 </html>

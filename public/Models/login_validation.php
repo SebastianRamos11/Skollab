@@ -16,8 +16,8 @@
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
         
-        $pass = stripslashes($_REQUEST['pass']);
-        $pass = mysqli_real_escape_string($dbConnection, $pass);
+        $pass = $_POST['pass'];
+        $pass = hash('sha512', $pass);
 
         $login_query = "SELECT * FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'";
         $query_result = mysqli_query($dbConnection, $login_query) or die(mysqli_error($dbConnection));
@@ -34,17 +34,14 @@
                     }).then(function() {
                         <?php
                             if ($result_array[0][4] == 'APRENDIZ') {
-                                ?>
-                                window.location.href = "../Views/Aprendiz/aprendiz.php";
-                                <?php
+                                header('Location: ../Views/Aprendiz/aprendiz.php?id='.$result_array[0][0]);
+                                exit();
                             } elseif ($result_array[0][4] == 'INSTRUCTOR') {
-                                ?>
-                                window.location.href = "../Views/Instructor/instructor.php";
-                                <?php
+                                header('Location: ../Views/Instructor/instructor.php?id='.$result_array[0][0]);
+                                exit(); 
                             } elseif ($result_array[0][4] == 'ADMINISTRADOR') {
-                                ?>
-                                window.location.href = "../Views/Admin/main.php";
-                                <?php
+                                header('Location: ../Views/Admin/main.php?id='.$result_array[0][0]);
+                                exit(); 
                             }
                         ?>
                     });

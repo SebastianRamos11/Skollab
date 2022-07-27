@@ -33,11 +33,13 @@
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
 
-        $pass = stripslashes($_REQUEST['pass']);
+        $pass = mysqli_real_escape_string($dbConnection, $_REQUEST['pass']);
         $pass = mysqli_real_escape_string($dbConnection, $pass);
+        $pass = hash('sha512', $pass);
 
         $validation_query = "SELECT * FROM persona WHERE ID_Persona = '$id' || correo_electronico = '$email' || telefono = '$phone'";
         $validation_result = mysqli_query($dbConnection, $validation_query);
+
         if ($validation_result -> num_rows > 0) {
             ?>
                 <script>
@@ -66,13 +68,11 @@
                         }).then(function() {
                             <?php 
                                 if ($rol == 'APRENDIZ') {
-                                    ?>
-                                    window.location.href = "../Views/Aprendiz/aprendiz.php";
-                                    <?php
+                                    header('Location: ../Views/Admin/main.php?id='.$id);
+                                    exit(); 
                                 } elseif ($rol == 'INSTRUCTOR') {
-                                    ?>
-                                    window.location.href = "../Views/Instructor/instructor.php";
-                                    <?php
+                                    header('Location: ../Views/Admin/main.php?id='.$id);
+                                    exit(); 
                                 }
                             ?>
                         });

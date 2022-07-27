@@ -248,49 +248,6 @@ input[type=checkbox], input[type=radio] {
   padding: 0;
 }
 
-@media screen and (min-width: 1000px) {
-  .nav-y {
-    background: #fff;
-    height: 100vh;
-    padding: 12px;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-y .nav__logo {
-    width: 130px;
-    margin-top: 40px;
-  }
-  .nav-y .nav-menu__item {
-    list-style: none;
-    position: relative;
-    margin-bottom: 45px;
-    right: 12px;
-    bottom: 140px;
-  }
-  .nav-y .nav-menu__item a {
-    text-decoration: none;
-    color: #636363;
-  }
-  .nav-y .nav-menu__item a i {
-    margin-right: 10px;
-    font-size: 20px;
-  }
-  .nav-y .nav-menu__link--active {
-    color: #ff3030 !important;
-  }
-
-  .df {
-    display: flex;
-  }
-
-  .ml300 {
-    margin-left: 300px;
-  }
-}
 .footer {
   background-color: #ff5c00;
   color: #fff;
@@ -400,4 +357,199 @@ input[type=checkbox], input[type=radio] {
   background-color: #e3e3e3;
   border: none;
   padding: 20px;
+}
+
+.wrapper {
+  display: flex;
+  position: relative;
+}
+.wrapper .nav {
+  position: fixed;
+  background: #fff;
+  width: 250px;
+  height: 100%;
+  padding: 30px 10px;
+  display: grid;
+  justify-items: center;
+}
+.wrapper .nav .full-logo {
+  width: 130px;
+  display: block;
+}
+.wrapper .nav .short-logo {
+  display: none;
+  width: 50px;
+}
+.wrapper .nav .profile {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+.wrapper .nav .profile__img {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 2px solid #272727;
+}
+.wrapper .nav .profile__name {
+  margin-bottom: 10px;
+}
+.wrapper .nav ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.wrapper .nav ul li {
+  padding: 20px;
+  list-style: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.wrapper .nav ul li a {
+  display: block;
+  color: #636363;
+  text-decoration: none;
+}
+.wrapper .nav ul li a i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.wrapper .nav ul li:hover {
+  background: #f2f0f0;
+}
+.wrapper .main-content {
+  width: 100%;
+  margin-left: 250px;
+  padding: 20px;
+}
+.wrapper .ham {
+  display: none;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.wrapper .ham span {
+  display: block;
+  background: #272727;
+  height: 3px;
+  width: 28px;
+  margin: 8px auto;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .wrapper .ham {
+    display: block;
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    transition: 0.2s 0.1s;
+  }
+  .wrapper .nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    height: auto;
+  }
+  .wrapper .nav .logo {
+    margin-left: 80px;
+  }
+  .wrapper .nav .full-logo {
+    display: none;
+  }
+  .wrapper .nav .short-logo {
+    display: block;
+  }
+  .wrapper .nav .profile {
+    position: absolute;
+    right: 25px;
+    top: 30px;
+  }
+  .wrapper .nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    padding: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity 5s ease-out;
+    width: 100%;
+  }
+  .wrapper .nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+  .wrapper .main-content {
+    width: 100%;
+    margin: 100px 0 0 0;
+    padding: 20px;
+  }
+}
+@-webkit-keyframes displayMenu {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes displayMenu {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.nav-menu--active {
+  display: flex !important;
+  -webkit-animation: displayMenu 350ms ease-in-out both;
+          animation: displayMenu 350ms ease-in-out both;
+}
+
+.br {
+  fill: none;
+  stroke: #272727;
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.br-1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+
+.br-2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+
+.br-3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+
+.opened .br-1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+
+.opened .br-2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+
+.opened .br-3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
 }/*# sourceMappingURL=instructor.css.map */

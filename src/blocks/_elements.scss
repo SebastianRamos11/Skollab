@@ -38,49 +38,49 @@
   background-repeat: no-repeat;
 }
 
-@media screen and (min-width: $xl) {
-  .nav-y {
-    background: $white;
-    height: 100vh;
-    padding: 12px;
-    position: fixed;
-    @include setFlex(column, center, between);
-    & .nav__logo {
-      width: 130px;
-      margin-top: 40px;
-    }
-    & .nav-menu {
-      &__item {
-        list-style: none;
-        position: relative;
+// @media screen and (min-width: $xl) {
+//   .nav-y {
+//     background: $white;
+//     height: 100vh;
+//     padding: 12px;
+//     position: fixed;
+//     @include setFlex(column, center, between);
+//     & .nav__logo {
+//       width: 130px;j ja
+//       margin-top: 40px;
+//     }
+//     & .nav-menu {
+//       &__item {
+//         list-style: none;
+//         position: relative;
 
-        margin-bottom: 45px;
-        right: 12px;
-        bottom: 140px;
+//         margin-bottom: 45px;
+//         right: 12px;
+//         bottom: 140px;
 
-        & a {
-          text-decoration: none;
-          color: $paragraph-color;
-          & i {
-            margin-right: 10px;
-            font-size: 20px;
-          }
-        }
-      }
-      &__link--active {
-        color: $primary-contrast !important;
-      }
-    }
-  }
+//         & a {
+//           text-decoration: none;
+//           color: $paragraph-color;
+//           & i {
+//             margin-right: 10px;
+//             font-size: 20px;
+//           }
+//         }
+//       }
+//       &__link--active {
+//         color: $primary-contrast !important;
+//       }
+//     }
+//   }
 
-  .df {
-    display: flex;
-  }
+//   .df {
+//     display: flex;
+//   }
 
-  .ml300 {
-    margin-left: 300px;
-  }
-}
+//   .ml300 {
+//     margin-left: 300px;
+//   }
+// }
 
 .footer {
   background-color: $primary-color;

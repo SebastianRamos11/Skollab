@@ -248,49 +248,6 @@ input[type=checkbox], input[type=radio] {
   padding: 0;
 }
 
-@media screen and (min-width: 1000px) {
-  .nav-y {
-    background: #fff;
-    height: 100vh;
-    padding: 12px;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-y .nav__logo {
-    width: 130px;
-    margin-top: 40px;
-  }
-  .nav-y .nav-menu__item {
-    list-style: none;
-    position: relative;
-    margin-bottom: 45px;
-    right: 12px;
-    bottom: 140px;
-  }
-  .nav-y .nav-menu__item a {
-    text-decoration: none;
-    color: #636363;
-  }
-  .nav-y .nav-menu__item a i {
-    margin-right: 10px;
-    font-size: 20px;
-  }
-  .nav-y .nav-menu__link--active {
-    color: #ff3030 !important;
-  }
-
-  .df {
-    display: flex;
-  }
-
-  .ml300 {
-    margin-left: 300px;
-  }
-}
 .footer {
   background-color: #ff5c00;
   color: #fff;
