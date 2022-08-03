@@ -68,10 +68,10 @@
                         }).then(function() {
                             <?php 
                                 if ($rol == 'APRENDIZ') {
-                                    header('Location: ../Views/Admin/main.php?id='.$id);
+                                    header('Location: ../Views/Aprendiz/aprendiz.php?id='.$id);
                                     exit(); 
                                 } elseif ($rol == 'INSTRUCTOR') {
-                                    header('Location: ../Views/Admin/main.php?id='.$id);
+                                    header('Location: ../Views/Instructor/instructor.php?id='.$id);
                                     exit(); 
                                 }
                             ?>
