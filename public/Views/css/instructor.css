@@ -713,4 +713,19 @@ th {
   border-radius: 0.5rem;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
+}
+
+.group {
+  display: block;
+}
+
+.id-group-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #ff5c00;
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 30px;
 }/*# sourceMappingURL=instructor.css.map */

@@ -39,8 +39,8 @@
     <?php include './blocks/sidebar.php' ?>
         <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
         <div class="main-content__info">
-          <p>Ficha: </p><?php echo $get_info_array[0][5];?>
-          <p>Programa de formación: </p><?php echo $program_array[0][1] ?>
+          <p>Ficha: <?php echo $get_info_array[0][5];?></p>
+          <p>Programa de formación: <?php echo $program_array[0][1] ?></p>
           <p>Aprendices: <br><?php 
             for ($i=0; $i < count($get_info_array); $i++) {
               if ($get_info_array[$i][5] != $ficha) {

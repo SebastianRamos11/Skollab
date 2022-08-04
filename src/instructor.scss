@@ -359,3 +359,12 @@ th {
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
+
+.group{
+  display: block;
+}
+
+.id-group-btn{
+  @include primary-btn($primary-color, none);
+  margin-bottom: 30px;
+}
