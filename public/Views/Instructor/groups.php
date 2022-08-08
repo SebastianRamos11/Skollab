@@ -9,6 +9,7 @@
   $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
   $program_array = mysqli_fetch_all($program_result, MYSQLI_NUM);
 
+
   $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$id'";
   $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
   $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
@@ -26,68 +27,80 @@
     <title>Inicio</title>
   </head>
   <body>
+
     <?php include './blocks/sidebar.php' ?>
-    <!-- <main> -->
         <h1 class="main-content__header">Fichas</h1>
 
+        <!-- PROGRAMS -->
         <?php 
           for ($j=0; $j < sizeof($temp_array); $j++) {
             $program = $temp_array[$j][1];
+
             $get_program = "SELECT nombre FROM programa_formacion WHERE ID_Programa = '$program'";
             $get_program_result = mysqli_query($dbConnection, $get_program) or die(mysqli_error($dbConnection));
             $get_program_array = mysqli_fetch_all($get_program_result, MYSQLI_NUM);
-            
-            $get_info = "SELECT A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona";
-            $get_info_result = mysqli_query($dbConnection, $get_info) or die(mysqli_error($dbConnection));
-            $get_info_result_array = mysqli_fetch_all($get_info_result, MYSQLI_NUM);
+
+            $get_group = "SELECT A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program'";
+            $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
+            $get_group_result_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
             ?>
+            
+            <!-- Course buttons (programa_formacion) -->
             <div class="course">
               <div class="course__title"><?php print_r($get_program_array[0][0]); ?></div>
               <div class="course__id"><?php echo $temp_array[$j][2]; ?></div>
               <img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
             </div>
-            <!-- hidden -->
-            <div class="group">
-              <div class="card mb-50">
-                <div class="card-header">Ficha <?php echo $temp_array[$j][2]; ?></div>
-                  <div class="p-4">
-                    <table class="table align-middle">
-                      <thead>
-                        <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Nombres</th>
-                          <th scope="col">Apellidos</th>
-                          <th scope="col">Teléfono</th>
-                          <th scope="col">Correo</th>
-                          <th scope="col" colspan="2"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php 
-                        for($i=0; $i < sizeof($get_info_result_array); $i++){  
-                        ?>
+            <?php
+          }
+        ?>
+
+        <!-- GROUPS -->
+        <?php 
+          for($j=0; $j < sizeof($temp_array); $j++){
+        ?>
+            <!-- GROUP (hidden) -->
+            <div class="group hidden">
+            <div class="card mb-50">
+              <div class="card-header">Ficha <?php echo $temp_array[$j][2]; ?></div>
+                <div class="p-4">
+                  <table class="table align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col" colspan="2"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                        for($i=0; $i < sizeof($get_group_result_array); $i++){  
+                      ?>
                           <tr>
-                            <td scope="row"><?php echo $get_info_result_array[$i][0]; ?></td>
-                            <td><?php echo $get_info_result_array[$i][1]; ?></td>
-                            <td><?php echo $get_info_result_array[$i][2]; ?></td>
-                            <td><?php echo $get_info_result_array[$i][3]; ?></td>
-                            <td><?php echo $get_info_result_array[$i][4] ?></td>
-                            <td><a href="#?id=<?php echo $get_info_result_array[$i][0]; ?>" class="see-button"><i class="fa-solid fa-eye"></i></a></td>
-                            <td><a href="#?id=<?php echo $get_info_result_array[$i][0]; ?>" class="message-button"><i class="fa-solid fa-envelope"></i></a></td>
+                            <td scope="row"><?php echo $get_group_result_array[$i][0]; ?></td>
+                            <td><?php echo $get_group_result_array[$i][1]; ?></td>
+                            <td><?php echo $get_group_result_array[$i][2]; ?></td>
+                            <td><?php echo $get_group_result_array[$i][3]; ?></td>
+                            <td><?php echo $get_group_result_array[$i][4] ?></td>
+                            <td><a href="#?id=<?php echo $get_group_result_array[$i][0]; ?>" class="see-button"><i class="fa-solid fa-eye"></i></a></td>
+                            <td><a href="#?id=<?php echo $get_group_result_array[$i][0]; ?>" class="message-button"><i class="fa-solid fa-envelope"></i></a></td>
                           </tr>
-                        <?php 
-                          }
-                        ?>
-                      </tbody>
-                    </table>
-                  </div>
+                      <?php 
+                        }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-        <?php
+        <?php 
           }
         ?>
-    </main>
+      </main>
+    </div>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>
 </html>
