@@ -66,15 +66,17 @@
                             title: 'Registro satisfactorio',
                             text: '¡Ahora puedes disfrutar de Skollab!',
                         }).then(function() {
-                            <?php 
-                                if ($rol == 'APRENDIZ') {
-                                    header('Location: ../Views/Aprendiz/aprendiz.php?id='.$id);
-                                    exit(); 
-                                } elseif ($rol == 'INSTRUCTOR') {
-                                    header('Location: ../Views/Instructor/instructor.php?id='.$id);
-                                    exit(); 
-                                }
-                            ?>
+                            <?php
+                            if ($rol == 'APRENDIZ') {
+                                ?>
+                                window.location.assign('../Views/Aprendiz/aprendiz.php?id=<?php echo $id;?>')
+                                <?php
+                            } elseif ($rol == 'INSTRUCTOR') {
+                                ?>
+                                window.location.assign('../Views/Instructor/instructor.php?id=<?php echo $id;?>')
+                                <?php
+                            }
+                        ?>
                         });
                     </script>
                 </body>

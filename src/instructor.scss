@@ -66,7 +66,7 @@
   }
   & .main-content {
     width: 100%;
-    margin-left: 250px;
+    margin-left: 280px;
     padding: 20px;
   }
   & .ham {
@@ -190,8 +190,6 @@
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
-
-
 
 // GROUPS
 
@@ -360,11 +358,30 @@ th {
   z-index: 10;
 }
 
-.group{
+.group {
   display: block;
 }
 
-.id-group-btn{
-  @include primary-btn($primary-color, none);
+.course {
+  cursor: pointer;
+  display: inline-block;
+  background: $white;
+  border-radius: $radius-xl;
   margin-bottom: 30px;
+  padding: 30px;
+  box-shadow: $element-shadow;
+  &__title {
+    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-paragraph, 'xl');
+  }
+  &__id {
+    color: $paragraph-color;
+    margin-bottom: 10px;
+  }
+  &__figure {
+    max-width: 100px;
+  }
+}
+.course:focus {
+  border: 2px solid $secundary-color;
 }

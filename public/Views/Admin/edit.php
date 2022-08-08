@@ -14,11 +14,10 @@
     $birthYear = $_POST["birthYear"];
     $rol = $_POST["rol"];
     $email = $_POST["email"];
-    $pass = $_POST["pass"];
     $phone = $_POST["phone"];
 
-    $edit_query = $bd -> prepare("UPDATE persona SET ID_Persona = ?, nombres = ?, apellidos = ?, fecha_nacimiento = ?, rol = ?, correo_electronico = ?, contraseña = ?, telefono = ? WHERE ID_Persona = ?;");
-    $query_result = $edit_query -> execute([$id, $firstName, $lastName, $birthYear, $rol, $email, $pass, $phone, $id]);
+    $edit_query = $bd -> prepare("UPDATE persona SET ID_Persona = ?, nombres = ?, apellidos = ?, fecha_nacimiento = ?, rol = ?, correo_electronico = ?, telefono = ? WHERE ID_Persona = ?;");
+    $query_result = $edit_query -> execute([$id, $firstName, $lastName, $birthYear, $rol, $email, $phone, $id]);
 
     if($query_result){
         header('Location: main.php?message=modified');

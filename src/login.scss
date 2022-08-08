@@ -33,7 +33,6 @@ html {
 }
 
 .login {
-  // border: 2px solid #000;
   position: relative;
   &__title {
     text-align: center;
@@ -49,47 +48,34 @@ html {
   }
 }
 
-.media {
-  // border: 2px solid #000;
-  position: relative;
-  color: $white;
-  font-size: map-get($size-paragraph, 'xl');
-  text-align: center;
-
-  &__links {
-    margin-top: 20px;
-    @include setFlex(row, center, evenly);
-    font-size: 50px;
-  }
-}
-
 .recover {
-  margin-top: 40px;
+  order: 10;
+  margin-bottom: 60px;
   & a {
-    margin-top: 20px;
     font-size: map-get($size-paragraph, 'm');
     align-self: center;
     justify-content: center;
     text-decoration: underline;
-    color: $white;
+    color: $black;
   }
 }
 
 .signup {
+  order: 40;
   // border: 2px solid #000;
   position: relative;
+  color: $white;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: max-content;
   font-size: map-get($size-paragraph, 'm');
   // // text-align: center;
-  bottom: 30px;
 }
 
 .signup__link {
   text-decoration: none;
-  border: $border;
+  border: 1px solid $white;
   padding: 12px 15px;
   border-radius: $radius-xl;
   font-size: map-get($size-paragraph, 's');
@@ -106,12 +92,6 @@ html {
 
 // Posicionamiento lg
 
-@media screen and (min-width: $lg) {
-  .signup {
-    color: $black;
-  }
-}
-
 @media screen and (min-width: $xl) {
   html {
     background-image: url(../img/backgrounds/login-lg-bg.svg);
@@ -121,28 +101,18 @@ html {
     width: 70%;
     padding-left: 20px;
   }
-  .media {
-    color: $black;
-    padding-left: 20px;
-  }
   .recover {
+    order: 40;
     position: relative;
     left: 80px;
-    & a {
-      color: $black;
-    }
   }
   .signup {
-    color: $white;
+    order: 10;
     position: absolute;
     margin-top: 100px;
     margin-right: 180px;
     right: 0;
     top: 0;
-
-    &__link {
-      border-color: $white;
-    }
   }
 }
 
@@ -170,7 +140,6 @@ html {
     position: relative;
     left: 80px;
     & a {
-      color: $black;
       font-size: map-get($size-title, 's');
     }
   }
@@ -178,10 +147,5 @@ html {
     font-size: map-get($size-title, 's');
     margin-top: 150px;
     margin-right: 280px;
-  }
-  .media {
-    position: relative;
-    left: 5px;
-    font-size: map-get($size-title, 'm');
   }
 }

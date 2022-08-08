@@ -80,16 +80,10 @@
             <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" value="<?php echo $persona -> telefono; ?>" />
           </div>
 
-          <!-- MAIL -->
-          <div class="form__field">
+          <!-- EMAIL -->
+          <div class="email form__field">
             <label for="email">Correo electrónico</label>
             <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" value="<?php echo $persona -> correo_electronico; ?>" />
-          </div>
-
-          <!-- PASSWORD -->
-          <div class="form__field">
-            <label for="pass">Contraseña</label>
-            <input type="text" name="pass" id="pass" placeholder="Contraseña" class="register-input" value="<?php echo $persona -> contraseña; ?>" />
           </div>
 
           <!-- SUBMIT -->

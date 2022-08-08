@@ -28,14 +28,6 @@
       <div class="recover">
         <a href="./recover-pass.php">¿Se te olvidó la contraseña?</a>
       </div>
-      <div class="media">
-        <div class="media__title">Inicia sesión con tus redes sociales</div>
-        <div class="media__links">
-          <span class="iconify" data-icon="akar-icons:google-contained-fill"></span>
-          <span class="iconify" data-icon="fa6-brands:facebook"></span>
-          <span class="iconify" data-icon="akar-icons:github-fill"></span>
-        </div>
-      </div>
     </div>
   </body>
 </html>

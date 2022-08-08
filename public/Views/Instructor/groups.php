@@ -29,11 +29,11 @@
   <body>
 
     <?php include './blocks/sidebar.php' ?>
-        <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
-        <button class="id-group-btn"><?php echo $program_array[0][1]; ?></button>
+        <h1 class="main-content__header">Fichas</h1>
         <div class="course">
-          <div class="course__title">Ficha <?php echo $get_info_result_array[0][6]; ?></div>
-          <div class="course__figure"></div> 
+          <div class="course__title"><?php echo $program_array[0][1]; ?></div>
+          <div class="course__id"><?php echo $get_info_result_array[0][6]; ?></div>
+          <img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
         </div>
         <div class="group hidden">
           <div class="card mb-50">

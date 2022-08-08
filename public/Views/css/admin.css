@@ -591,9 +591,6 @@ th {
 .form .rol {
   grid-column: 2 span;
 }
-.form .submit__field {
-  grid-column: 3 span;
-}
 
 .grid-col-3 {
   grid-column: 3 span !important;

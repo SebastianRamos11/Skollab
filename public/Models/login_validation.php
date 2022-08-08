@@ -34,14 +34,17 @@
                     }).then(function() {
                         <?php
                             if ($result_array[0][4] == 'APRENDIZ') {
-                                header('Location: ../Views/Aprendiz/aprendiz.php?id='.$result_array[0][0]);
-                                exit();
+                                ?>
+                                window.location.assign('../Views/Aprendiz/aprendiz.php?id=<?php echo $result_array[0][0];?>')
+                                <?php
                             } elseif ($result_array[0][4] == 'INSTRUCTOR') {
-                                header('Location: ../Views/Instructor/instructor.php?id='.$result_array[0][0]);
-                                exit(); 
+                                ?>
+                                window.location.assign('../Views/Instructor/instructor.php?id=<?php echo $result_array[0][0];?>')
+                                <?php
                             } elseif ($result_array[0][4] == 'ADMINISTRADOR') {
-                                header('Location: ../Views/Admin/main.php?id='.$result_array[0][0]);
-                                exit(); 
+                                ?>
+                                window.location.assign('../Views/Admin/main.php?id=<?php echo $result_array[0][0];?>')
+                                <?php
                             }
                         ?>
                     });
