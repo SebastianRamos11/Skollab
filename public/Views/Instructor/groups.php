@@ -10,9 +10,13 @@
   $program_array = mysqli_fetch_all($program_result, MYSQLI_NUM);
 
 
-  $get_info = "SELECT  A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona";
+  $get_info = "SELECT A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona";
   $get_info_result = mysqli_query($dbConnection, $get_info) or die(mysqli_error($dbConnection));
   $get_info_result_array = mysqli_fetch_all($get_info_result, MYSQLI_NUM);
+
+  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$id'";
+  $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
+  $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,11 +34,23 @@
 
     <?php include './blocks/sidebar.php' ?>
         <h1 class="main-content__header">Fichas</h1>
-        <div class="course">
-          <div class="course__title"><?php echo $program_array[0][1]; ?></div>
-          <div class="course__id"><?php echo $get_info_result_array[0][6]; ?></div>
-          <img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
-        </div>
+
+        <?php 
+          for ($j=0; $j < sizeof($temp_array); $j++) {
+            $program = $temp_array[$j][1];
+            $get_program = "SELECT nombre FROM programa_formacion WHERE ID_Programa = '$program'";
+            $get_program_result = mysqli_query($dbConnection, $get_program) or die(mysqli_error($dbConnection));
+            $get_program_array = mysqli_fetch_all($get_program_result, MYSQLI_NUM);
+            ?>
+            <div class="course">
+              <div class="course__title"><?php print_r($get_program_array[0][0]); ?></div>
+              <div class="course__id"><?php echo $temp_array[$j][2]; ?></div>
+              <img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
+            </div>
+            <?php
+          }
+        ?>
+
         <div class="group hidden">
           <div class="card mb-50">
               <div class="card-header">Ficha <?php echo $get_info_result_array[0][6]; ?></div>
@@ -54,15 +70,15 @@
                     <?php 
                       for($i=0; $i < sizeof($get_info_result_array); $i++){  
                     ?>
-                      <tr>
-                        <td scope="row"><?php echo $get_info_result_array[$i][0]; ?></td>
-                        <td><?php echo $get_info_result_array[$i][1]; ?></td>
-                        <td><?php echo $get_info_result_array[$i][2]; ?></td>
-                        <td><?php echo $get_info_result_array[$i][3]; ?></td>
-                        <td><?php echo $get_info_result_array[$i][4] ?></td>
-                        <td><a href="#?id=<?php echo $get_info_result_array[$i][0]; ?>" class="see-button"><i class="fa-solid fa-eye"></i></a></td>
-                        <td><a href="#?id=<?php echo $get_info_result_array[$i][0]; ?>" class="message-button"><i class="fa-solid fa-envelope"></i></a></td>
-                      </tr>
+                        <tr>
+                          <td scope="row"><?php echo $get_info_result_array[$i][0]; ?></td>
+                          <td><?php echo $get_info_result_array[$i][1]; ?></td>
+                          <td><?php echo $get_info_result_array[$i][2]; ?></td>
+                          <td><?php echo $get_info_result_array[$i][3]; ?></td>
+                          <td><?php echo $get_info_result_array[$i][4] ?></td>
+                          <td><a href="#?id=<?php echo $get_info_result_array[$i][0]; ?>" class="see-button"><i class="fa-solid fa-eye"></i></a></td>
+                          <td><a href="#?id=<?php echo $get_info_result_array[$i][0]; ?>" class="message-button"><i class="fa-solid fa-envelope"></i></a></td>
+                        </tr>
                     <?php 
                       }
                     ?>
