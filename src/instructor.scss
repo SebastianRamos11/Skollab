@@ -213,9 +213,9 @@ th {
     border-top-left-radius: $radius-xl;
     border-top-right-radius: $radius-xl;
 
-    padding: 20px 15px;
+    padding: 20px 35px;
     color: $white;
-    font-size: map-get($size-paragraph, 'l');
+    font-size: map-get($size-paragraph, 'xl');
   }
   & table {
     tbody {
@@ -225,11 +225,8 @@ th {
           font-size: 20px !important;
           margin-left: 10px;
         }
-        .edit-button {
-          color: $secundary-color;
-        }
-        .delete-button {
-          color: $primary-contrast !important;
+        .see-button {
+          color: $primary-color;
         }
       }
       tr:hover {
@@ -329,41 +326,13 @@ th {
   display: none !important;
 }
 
-.create-button {
-  display: block;
-  background: $white;
-  padding: 20px;
-  font-size: 20px;
-  border-radius: $radius-l;
-}
-
-.btn-create {
-  position: fixed !important;
-  right: 80px;
-}
-.mb-50 {
-  margin-bottom: 50px;
-}
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-
-  background-color: #fff;
-  padding: 50px 100px;
-  border-radius: 0.5rem;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-  z-index: 10;
-}
-
-.group {
-  display: block;
-}
 
 .course {
   cursor: pointer;
+  outline: none;
+  margin-left: 20px;
+  border: none;
+  text-align: start;
   display: inline-block;
   background: $white;
   border-radius: $radius-xl;
@@ -382,6 +351,7 @@ th {
     max-width: 100px;
   }
 }
-.course:active {
-  border: 2px solid $secundary-color;
+
+.course:focus {
+  border: 5px solid $secundary-color;
 }

@@ -322,6 +322,5 @@
       
       <?php include '../components/footer.php' ?>
       <script src="../../Controllers/admin-control.js"></script>
-      <script src="../../Controllers/bootstrap.min.js"></script>
     </body>
 </html>

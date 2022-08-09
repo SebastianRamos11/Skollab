@@ -18,20 +18,12 @@
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
     ?>
     <?php include './blocks/sidebar.php' ?>
-    <div class="main-content__header">Welcome! Have a nice day.</div>
-        <div class="main-content__info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestiae porro quidem voluptatum pariatur quos accusamus eius
-          doloremque, ab similique ratione ea! Harum nisi, eveniet ad impedit numquam dolores sapiente debitis odit perferendis exercitationem.
-          Reprehenderit qui architecto, quasi provident tempora assumenda porro natus ipsam, quo rerum laborum fuga ab at aspernatur, quam ipsa enim.
-          Suscipit adipisci corrupti veritatis rem aperiam ipsum, vero perferendis sunt placeat eveniet alias possimus similique debitis iste, quidem
-          dolores necessitatibus ut, libero corporis voluptates atque qui voluptate maxime. Iure voluptas atque ab cupiditate similique, incidunt
-          eveniet expedita corporis corrupti ut praesentium dolorem distinctio nihil. Sapiente nam at, dolores quae esse, sunt sit, veritatis
-          provident suscipit tempore voluptatibus fugiat facere mollitia minima harum magni vitae eveniet modi cum enim? Beatae, eum minus. Expedita,
-          odit quam optio repellat sapiente sint ratione, totam cupiditate, nulla ipsam est corporis at eius et hic. Cum, quisquam. Inventore saepe
-          aliquam animi sequi earum distinctio. Iste eaque consequuntur dignissimos doloribus repudiandae deserunt quos veniam vel tempora. Corporis
-          placeat eveniet autem, fugiat non veniam mollitia perspiciatis reiciendis nulla ducimus cumque hic voluptas soluta itaque debitis quo
-          repellendus rerum quisquam ea! Exercitationem fugiat temporibus fuga, doloremque cum nemo et cupiditate impedit voluptates vero? Enim,
-          nostrum!
-        </div>
+        <h1 class="main-content__header">Centro de publicaciones 📚</h1>
+        <form action="upload.php" method="post" enctype="multipart/form-data" class="form-upload">
+          <input type="text" class="form-upload__title" placeholder="Título">
+          <input type="file" name="file">
+          <input type="submit" name="submit" value="Publicar">
+        </form>
       </main>
     </div>
     <script src="../../Controllers/instructor-control.js"></script>
