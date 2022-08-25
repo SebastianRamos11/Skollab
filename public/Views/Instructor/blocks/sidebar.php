@@ -46,8 +46,8 @@
       </button>
       <div class="profile">
         <img src="../img/default.jpeg" alt="avatar" class="profile__img">
-        <div class="profile__name"><?php echo $result_array[0][1];?></div>
-      </div>
+        <div class="profile__name"><?php echo $result_array[0][1]; ?></div>
+      </div>  
     </nav>
   </header>
   <main class="main-content">

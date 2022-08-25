@@ -13,8 +13,10 @@
   <body>
     <?php
       include_once "../../Models/connection.php";
-      $id = $_GET['id'];
-      $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$id'";
+      session_start();
+      $session = $_SESSION['id'];
+      if (isset($session)) {
+      $read_query = "SELECT * FROM persona WHERE ID_Persona = '$session'";
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
@@ -40,21 +42,16 @@
     <?php include './blocks/sidebar.php' ?>
         <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
         <div class="main-content__info">
-          <p>Ficha: <?php echo $get_info_array[0][5];?></p>
-          <p>Programa de formación: <?php echo $program_array[0][1] ?></p>
-          <p>Aprendices: <br><?php 
-            for ($i=0; $i < count($get_info_array); $i++) {
-              if ($get_info_array[$i][5] != $ficha) {
-                echo "NUEVO";
-                exit;
-              } else {
-                echo $get_info_array[$i][4].' '.$get_info_array[$i][0].' '.$get_info_array[$i][1].' '.$get_info_array[$i][2]; ?><br>
-                <?php
-              }
-            } ?></p>
+          ...
+          Click here to <a href="../../Models/logout_validation.php" tite="Logout">Logout. <!--Esta línea equivale a un botón de cerrar sesión, lo más importante es el href-->
         </div>
       </main> 
     </div>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>
 </html>
+<?php 
+      } else {
+        ?><script>window.location.assign('../index.html')</script><?php
+      }
+  ?>

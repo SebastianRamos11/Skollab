@@ -10,5 +10,17 @@
   </head>
   <body>
     <h1>Bienvenido, aprendiz 👋</h1>
+    <?php
+      session_start();
+      $session = $_SESSION['id'];
+      if (isset($session)) {
+        // Aquí va todo el cuerpo de la interfaz
+    ?>
+    Click here to <a href="../../Models/logout_validation.php" tite="Logout">Logout. <!--Esta línea equivale a un botón de cerrar sesión, lo más importante es el href-->
   </body>
 </html>
+<?php 
+      } else {
+        ?><script>window.location.assign('../index.html')</script><?php
+      }
+  ?>  

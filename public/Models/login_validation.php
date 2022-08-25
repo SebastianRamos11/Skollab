@@ -11,7 +11,6 @@
 <?php
     require('connection.php');
     session_start();
-    
     if (isset($_POST['login'])) {
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
@@ -24,7 +23,7 @@
         $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
         $row = mysqli_num_rows($query_result);
         if ($row == 1) {
-            $_SESSION['email'] = $email;
+            $_SESSION['id'] = $result_array[0][0];
             ?>
                 <script>
                     Swal.fire({
@@ -35,15 +34,15 @@
                         <?php
                             if ($result_array[0][4] == 'APRENDIZ') {
                                 ?>
-                                window.location.assign('../Views/Aprendiz/aprendiz.php?id=<?php echo $result_array[0][0];?>')
+                                window.location.assign('../Views/Aprendiz/aprendiz.php')
                                 <?php
                             } elseif ($result_array[0][4] == 'INSTRUCTOR') {
                                 ?>
-                                window.location.assign('../Views/Instructor/instructor.php?id=<?php echo $result_array[0][0];?>')
+                                window.location.assign('../Views/Instructor/instructor.php')
                                 <?php
                             } elseif ($result_array[0][4] == 'ADMINISTRADOR') {
                                 ?>
-                                window.location.assign('../Views/Admin/main.php?id=<?php echo $result_array[0][0];?>')
+                                window.location.assign('../Views/Admin/main.php')
                                 <?php
                             }
                         ?>
