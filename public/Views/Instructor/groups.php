@@ -1,7 +1,7 @@
 <?php
   include_once "../../Models/connection.php";
-  $id = $_GET['id'];
-  $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$id'";
+  include_once "../../Models/session.php";
+  $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$session'";
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
@@ -10,7 +10,7 @@
   $program_array = mysqli_fetch_all($program_result, MYSQLI_NUM);
 
 
-  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$id'";
+  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$session'";
   $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
   $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
 ?>
@@ -24,7 +24,7 @@
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="../css/instructor.css" />
-    <title>Inicio</title>
+    <title>Fichas</title>
   </head>
   <body>
 

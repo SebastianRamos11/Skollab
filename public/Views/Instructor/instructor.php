@@ -13,8 +13,7 @@
   <body>
     <?php
       include_once "../../Models/connection.php";
-      session_start();
-      $session = $_SESSION['id'];
+      include_once "../../Models/session.php";
       if (isset($session)) {
       $read_query = "SELECT * FROM persona WHERE ID_Persona = '$session'";
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));

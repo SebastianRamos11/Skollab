@@ -7,25 +7,25 @@
       </a>
       <ul class="nav-menu">
         <li class="nav-menu__item">
-          <a href="./instructor.php?id=<?php echo $id; ?>" class="nav-menu__link nav-menu__link--active">
+          <a href="./instructor.php" class="nav-menu__link nav-menu__link--active">
             <i class="fa-solid fa-house"></i>
             <span>Inicio</span>
           </a>
         </li>
         <li class="nav-menu__item">
-          <a href="./review-center.php?id=<?php echo $id; ?>" class="nav-menu__link">
+          <a href="./review-center.php" class="nav-menu__link">
             <i class="fa-solid fa-briefcase"></i>
             <span>Centro de revisión</span>
           </a>
         </li>
         <li class="nav-menu__item">
-          <a href="./groups.php?id=<?php echo $id; ?>" class="nav-menu__link">
+          <a href="./groups.php" class="nav-menu__link">
             <i class="fa-solid fa-users"></i>
             <span>Fichas</span>
           </a>
         </li>
         <li class="nav-menu__item">
-          <a href="./publications.php?id=<?php echo $id; ?>" class="nav-menu__link">
+          <a href="./publications.php" class="nav-menu__link">
             <i class="fa-solid fa-book"></i>
             <span>Publicaciones</span>
           </a>

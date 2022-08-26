@@ -12,8 +12,8 @@
   <body>
     <?php
       include_once "../../Models/connection.php";
-      $id = $_GET['id'];
-      $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$id'";
+      include_once "../../Models/session.php";
+      $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$session'";
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
     ?>
