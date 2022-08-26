@@ -616,4 +616,21 @@ html {
     margin-right: 280px;
   }
 }
+
+.pass__field {
+  position: relative;
+}
+
+.eye {
+  position: absolute;
+  font-size: 19px;
+  top: 20.5px;
+  right: 25px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.see-btn {
+  display: none !important;
+}
 /*# sourceMappingURL=login.css.map */
