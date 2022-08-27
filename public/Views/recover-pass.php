@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/recover-pass.css" />
+    <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
     <title>Recuperación de Contraseña</title>
   </head>
@@ -21,11 +22,19 @@
         </div>
         <div class="form__field">
           <label for="pass">Contraseña</label>
-          <input type="text" name="pass" id="pass" placeholder="Contraseña" class="register-input" />
+          <div class="pass__field">
+            <input type="password" name="pass" placeholder="Contraseña" class="register-input pass-input" required />
+            <i class="fa-solid fa-eye eye see-btn"></i>
+            <i class="fa-solid fa-eye-slash eye unsee-btn"></i>
+          </div>
         </div>
         <div class="form__field">
           <label for="confirm-pass">Confirmar contraseña</label>
-          <input type="text" name="confirm-pass" id="confirm-pass" placeholder="Contraseña" class="register-input" />
+          <div class="pass__field">
+            <input type="text" name="confirm-pass" id="confirm-pass" placeholder="Contraseña" class="register-input pass-input" />
+            <i class="fa-solid fa-eye eye see-btn"></i>
+            <i class="fa-solid fa-eye-slash eye unsee-btn"></i>
+          </div>
         </div>
         <div class="form__field">
           <label for="birthYear">Fecha de nacimiento</label>
@@ -36,5 +45,6 @@
         </div>
       </form>
     </div>
+    <script src="../Controllers/pass-visualization.js"></script>
   </body>
 </html>

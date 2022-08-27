@@ -55,3 +55,20 @@ body {
     }
   }
 }
+
+// See password button
+.pass__field {
+  position: relative;
+  & .see-btn {
+    display: none;
+    right: 26.3px;
+  }
+}
+.eye {
+  position: absolute;
+  font-size: 19px;
+  top: 20.5px;
+  right: 25px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}

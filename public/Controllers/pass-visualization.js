@@ -1,9 +1,19 @@
-const passField = document.querySelector('.pass-input');
-const seeBtn = document.querySelector('.see-btn');
-const unSeeBtn = document.querySelector('.unsee-btn');
+const passField = document.querySelectorAll('.pass-input');
+const seeBtn = document.querySelectorAll('.see-btn');
+const unSeeBtn = document.querySelectorAll('.unsee-btn');
 
-// FIXME
-// unSeeBtn.addEventListener('click', function () {
-//   unSeeBtn.styles.display = 'none !important';
-//   seeBtn.styles.display = 'block !important';
-// });
+unSeeBtn.forEach(function (e, i) {
+  unSeeBtn[i].addEventListener('click', function () {
+    unSeeBtn[i].style.display = 'none';
+    seeBtn[i].style.display = 'block';
+    passField[i].type = 'text';
+  });
+});
+
+seeBtn.forEach(function (e, i) {
+  seeBtn[i].addEventListener('click', function () {
+    unSeeBtn[i].style.display = 'block';
+    seeBtn[i].style.display = 'none';
+    passField[i].type = 'password';
+  });
+});
