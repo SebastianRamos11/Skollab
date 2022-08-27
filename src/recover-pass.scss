@@ -29,7 +29,7 @@ body {
 
   & .form {
     &__field {
-      @include setFlex(column, stretch, center);
+      @include setFlex(column, stretch, start);
       & label {
         display: block;
         margin-bottom: 10px;
@@ -71,4 +71,51 @@ body {
   right: 25px;
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
+}
+
+// Error form
+.form__error-message {
+  grid-column: 2 span;
+  text-align: center;
+  background: #ffd16d;
+  padding: 2px 15px;
+  border-radius: $radius-m;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.form__error-message--active {
+  display: block;
+}
+
+// Fields error
+.form__field-error {
+  font-size: 13px;
+  margin-top: -10px;
+  display: none;
+}
+
+.form__field-error--active {
+  display: block;
+}
+
+// State styles
+.form__field {
+  // Correct field
+  &-correct {
+    & input {
+      outline: none;
+    }
+  }
+
+  // Wrong field
+  &-wrong {
+    label {
+      color: $primary-contrast;
+      opacity: 1;
+    }
+    & input {
+      outline: 3px solid $primary-contrast;
+    }
+  }
 }
