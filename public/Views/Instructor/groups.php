@@ -28,7 +28,7 @@
   </head>
   <body>
 
-    <?php include './blocks/sidebar.php' ?>
+    <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Fichas</h1>
 
         <!-- PROGRAMS -->

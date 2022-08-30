@@ -17,7 +17,8 @@
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
     ?>
-    <?php include './blocks/sidebar.php' ?>
+    <?php include './sidebar.php' ?>
+
     <div class="main-content__header">Welcome! Have a nice day.</div>
         <div class="main-content__info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestiae porro quidem voluptatum pariatur quos accusamus eius
           doloremque, ab similique ratione ea! Harum nisi, eveniet ad impedit numquam dolores sapiente debitis odit perferendis exercitationem.

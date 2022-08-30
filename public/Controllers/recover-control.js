@@ -16,13 +16,13 @@ const fields = {
 };
 
 // Field validation
-
 const correctField = function (state, message, field) {
   state.add('form__field-correct');
   state.remove('form__field-wrong');
   message.remove('form__field-error--active');
   fields[field] = true;
 };
+
 const wrongField = function (state, message, field) {
   state.add('form__field-wrong');
   state.remove('form__field-correct');

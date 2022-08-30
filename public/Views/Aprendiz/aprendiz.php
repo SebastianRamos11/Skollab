@@ -5,22 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
+    <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/aprendiz.css" />
     <title>Inicio</title>
   </head>
   <body>
-    <h1>Bienvenido, aprendiz 👋</h1>
     <?php
+
+      include_once "../../Models/connection.php";
       session_start();
       $session = $_SESSION['id'];
+
+      $read_query = "SELECT * FROM persona WHERE ID_Persona = '$session'";
+      $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
+      $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
+
       if (isset($session)) {
-        // Aquí va todo el cuerpo de la interfaz
     ?>
-    Click here to <a href="../../Models/logout_validation.php" tite="Logout">Logout. <!--Esta línea equivale a un botón de cerrar sesión, lo más importante es el href-->
+    <?php include './sidebar.php' ?>
+        <h1 class="main-content__header">Bienvenido Aprendiz 👋</h1>
+        <div class="main-content__info">
+        </div>
+      </main> 
+    </div>
+    <script src="../../Controllers/aprendiz-control.js"></script>
   </body>
 </html>
 <?php 
       } else {
         ?><script>window.location.assign('../index.html')</script><?php
       }
-  ?>  
+?>  

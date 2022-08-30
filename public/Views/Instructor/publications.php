@@ -17,7 +17,7 @@
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
     ?>
-    <?php include './blocks/sidebar.php' ?>
+    <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Centro de publicaciones 📚</h1>
         <form action="upload.php" method="post" enctype="multipart/form-data" class="form-upload">
           <input type="text" class="form-upload__title" placeholder="Título">

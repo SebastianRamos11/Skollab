@@ -38,11 +38,9 @@
       $get_info_array = mysqli_fetch_all($get_info_result, MYSQLI_NUM);
       $ficha = $get_info_array[0][5];
     ?>
-    <?php include './blocks/sidebar.php' ?>
+    <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
         <div class="main-content__info">
-          ...
-          Click here to <a href="../../Models/logout_validation.php" tite="Logout">Logout. <!--Esta línea equivale a un botón de cerrar sesión, lo más importante es el href-->
         </div>
       </main> 
     </div>
