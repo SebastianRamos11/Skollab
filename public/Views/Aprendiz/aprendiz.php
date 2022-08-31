@@ -20,11 +20,17 @@
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
+
+      $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona = '$session'";
+      $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
+      $get_group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
+
       if (isset($session)) {
     ?>
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Bienvenido Aprendiz 👋</h1>
         <div class="main-content__info">
+          <?php print_r($get_group_array) ?>
         </div>
       </main> 
     </div>

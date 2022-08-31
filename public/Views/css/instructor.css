@@ -894,4 +894,133 @@ th {
 
 .course:focus {
   border: 5px solid #0066ff;
+}
+
+.upload-form {
+  margin: 40px auto;
+  max-width: 800px;
+  background: #fff !important;
+  border-radius: 20px !important;
+  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+}
+.upload-form__title {
+  padding: 30px;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: 700;
+}
+.upload-form hr {
+  margin: 0;
+  border-color: #fafafa;
+}
+.upload-form__field {
+  padding: 30px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.upload-form__field-input {
+  display: block;
+  height: 40px;
+  border: none;
+  font-size: 18px;
+}
+.upload-form__field-input--title {
+  width: 100%;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+.upload-form__field-input--date {
+  background: rgba(28, 119, 255, 0.466);
+  color: rgb(0, 60, 255);
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+.upload-form__field select {
+  text-align: right;
+  background: none;
+}
+.upload-form__field .upload-form__field-input:focus {
+  outline: none;
+}
+.upload-form__field-label span {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.upload-form__field-label i {
+  font-size: 24px;
+  position: relative;
+  top: 3px;
+  color: #0066ff;
+  margin-right: 10px;
+}
+.upload-form__field .btn-delete {
+  cursor: pointer;
+  display: block;
+  border: none;
+  background: none;
+  color: #ff3030;
+  font-size: 25px;
+}
+.upload-form__field .btn-submit {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #0066ff;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.upload-form__field .file-choise {
+  position: absolute;
+  right: 160px;
+}
+.upload-form__field .file-choise label {
+  cursor: pointer;
+  display: block;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 25px;
+  position: relative;
+}
+.upload-form__field .file-choise label .file-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0066ff;
+  position: absolute;
+  width: 600px;
+  top: -6px;
+  right: 30px;
+  margin-right: 0 20px;
+  text-align: right;
+  transition: all 0.3s;
+}
+.upload-form__field .file-choise label:hover {
+  color: #2dbb10;
+}
+.upload-form__field .file-choise input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+.upload-form__field--description {
+  position: relative;
+}
+.upload-form__field--description .upload-form__field-input {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  border: 2px solid #0066ff;
+  border-radius: 15px;
+  padding: 20px;
+}
+.upload-form__field--description .upload-form__field-label {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: 700;
+  top: 18px;
+  left: 80px;
+  background: white;
 }/*# sourceMappingURL=instructor.css.map */

@@ -171,3 +171,135 @@ th {
 }
 
 // PUBLICATIONS
+
+.upload-form {
+  margin: 40px auto;
+  max-width: 800px;
+  background: $white !important;
+  border-radius: $radius-xl !important;
+  box-shadow: $element-shadow;
+  &__title {
+    padding: 30px;
+    text-align: center;
+    font-size: map-get($size-title, 'm');
+    font-weight: map-get($font-weights, 'semibold');
+  }
+  & hr {
+    margin: 0;
+    border-color: #fafafa;
+  }
+  &__field {
+    padding: 30px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-input {
+      display: block;
+      height: 40px;
+      border: none;
+      font-size: 18px;
+      &--title {
+        width: 100%;
+        font-size: map-get($size-title, 's');
+        font-weight: map-get($font-weights, 'medium');
+      }
+      &--date {
+        background: rgba(28, 119, 255, 0.466);
+        color: rgb(0, 60, 255);
+        text-align: center;
+        padding: 10px;
+        border-radius: $radius-m;
+      }
+    }
+
+    & select {
+      text-align: right;
+      background: none;
+    }
+
+    & &-input:focus {
+      outline: none;
+    }
+
+    &-label {
+      & span {
+        font-size: map-get($size-paragraph, 'm');
+        font-weight: map-get($font-weights, 'medium');
+      }
+      & i {
+        font-size: 24px;
+        position: relative;
+        top: 3px;
+        color: $secundary-color;
+        margin-right: 10px;
+      }
+    }
+
+    & .btn-delete {
+      cursor: pointer;
+      display: block;
+      border: none;
+      background: none;
+      color: $primary-contrast;
+      font-size: 25px;
+    }
+
+    & .btn-submit {
+      cursor: pointer;
+      @include primary-btn($secundary-color, false);
+    }
+
+    & .file-choise {
+      position: absolute;
+      right: 160px;
+      & label {
+        cursor: pointer;
+        display: block;
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 25px;
+        position: relative;
+
+        & .file-name {
+          font-size: 13px;
+          font-weight: map-get($font-weights, 'semibold');
+          color: $secundary-color;
+          position: absolute;
+          width: 600px;
+          top: -6px;
+          right: 30px;
+          margin-right: 0 20px;
+          text-align: right;
+          transition: all 0.3s;
+        }
+      }
+      & label:hover {
+        color: #2dbb10;
+      }
+      & input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+      }
+    }
+  }
+  &__field--description {
+    position: relative;
+    & .upload-form__field-input {
+      width: 100%;
+      height: 200px;
+      resize: none;
+      border: 2px solid $secundary-color;
+      border-radius: $radius-l;
+      padding: 20px;
+    }
+    & .upload-form__field-label {
+      position: absolute;
+      font-size: map-get($size-paragraph, 'l');
+      font-weight: map-get($font-weights, 'semibold');
+      top: 18px;
+      left: 80px;
+      background: white;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <div class="wrapper">
   <header class="header">
     <nav class="nav">
-      <a href="../index.html">
+      <a href="../../Models/logout.php">
         <img src="../img/main/Logo.png" alt="logo" class="logo full-logo" />
         <img src="../img/skollab.png" alt="logo" class="logo short-logo" />
       </a>
