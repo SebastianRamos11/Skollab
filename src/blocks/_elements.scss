@@ -55,6 +55,11 @@
   cursor: pointer;
 }
 
+// Hidden elements
+.hidden {
+  display: none !important;
+}
+
 // @media screen and (min-width: $xl) {
 //   .nav-y {
 //     background: $white;
@@ -191,6 +196,38 @@
   .footer__contact {
     grid-column: 2 span;
   }
+}
+
+// COURSE BUTTON ELEMENT
+.course {
+  cursor: pointer;
+  outline: none;
+  margin-left: 20px;
+  border: none;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $white;
+  border-radius: $radius-xl;
+  margin-bottom: 30px;
+  padding: 30px;
+  box-shadow: $element-shadow;
+  &__title {
+    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-paragraph, 'xl');
+  }
+  &__id {
+    color: $paragraph-color;
+    margin-bottom: 10px;
+  }
+  &__figure {
+    max-width: 100px;
+  }
+}
+
+.course:focus {
+  border: 5px solid $secundary-color;
 }
 
 // SIDEBAR

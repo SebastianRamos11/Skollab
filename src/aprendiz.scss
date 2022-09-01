@@ -5,3 +5,274 @@
 @import './config/grid';
 @import './blocks/elements';
 @import './blocks/inputs';
+
+.banner {
+  background-image: url('../img/backgrounds/banner-aprendiz.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-xl;
+  &__p {
+    color: $white;
+    font-size: map-get($size-title, 'l');
+    font-weight: map-get($font-weights, 'semibold');
+  }
+  margin: 40px;
+}
+
+.courses {
+  &__title {
+    margin-bottom: 30px;
+  }
+  &__list {
+    display: flex;
+  }
+  & .course {
+    min-width: 180px;
+  }
+}
+
+.publications-course {
+  display: grid;
+  padding: 30px 50px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  & .publication {
+    background: $white;
+    border-radius: $radius-l;
+    box-shadow: $element-shadow;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__title {
+      font-size: map-get($size-paragraph, 'xl');
+      font-weight: map-get($font-weights, 'semibold');
+    }
+    &__info {
+      background: #f9f9f9;
+      border-radius: $radius-l;
+      padding: 30px;
+      margin: 20px 0;
+    }
+    &__p {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    &__date {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 10px 20px;
+      border-radius: $radius-xl;
+      background: rgba($color: #ffe072, $alpha: 0.5);
+    }
+    &__type {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: $radius-xl;
+      color: white;
+      background: #00d809;
+    }
+    &__btns {
+      & a {
+        display: block;
+        text-decoration: none;
+      }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-link {
+        color: $secundary-color;
+      }
+      &-file {
+        position: relative;
+        & i {
+          font-size: 25px;
+          position: relative;
+          top: 3px;
+          margin-right: 5px;
+          color: $secundary-color;
+        }
+        & span {
+          font-size: 13px;
+          font-weight: map-get($font-weights, 'semibold');
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+// EVIDENCE
+
+.evidence {
+  background: $white;
+  border-radius: $radius-l;
+  box-shadow: $element-shadow;
+  max-width: 900px;
+  margin: 0 auto;
+  &__header {
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__instructor {
+    display: flex;
+    align-items: center;
+    &-photo {
+      max-width: 60px;
+      border-radius: 60%;
+      margin-right: 10px;
+    }
+    &-name {
+      font-size: map-get($size-paragraph, 'xl');
+      font-weight: map-get($font-weights, 'semibold');
+    }
+  }
+  &__info {
+    display: flex;
+    & div {
+      font-weight: map-get($font-weights, 'medium');
+    }
+    &-date {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 10px 20px;
+      border-radius: $radius-xl;
+      background: rgba($color: #ffe072, $alpha: 0.5);
+    }
+    &-type {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: $radius-xl;
+      color: white;
+      background: #00d809;
+    }
+  }
+  &__content {
+    padding: 30px 50px;
+  }
+  &__title {
+    font-size: map-get($size-title, 'l');
+    font-weight: map-get($font-weights, 'semibold');
+    margin-bottom: 25px;
+  }
+  &__p {
+    color: $paragraph-color;
+    margin-bottom: 25px;
+  }
+  &__file {
+    margin-bottom: 20px;
+    & i {
+      font-size: 25px;
+      position: relative;
+      top: 4px;
+      margin-right: 5px;
+      color: $secundary-color;
+    }
+
+    & a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: map-get($font-weights, 'semibold');
+      color: $black;
+    }
+  }
+}
+
+.upload-form {
+  padding: 40px;
+  background: $white;
+  border-radius: $radius-l;
+  box-shadow: $element-shadow;
+  margin: 0 auto;
+  max-width: 900px;
+  margin-top: 30px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 230px 4fr 1fr;
+  &__file {
+    background: #ebebeb;
+    border-radius: 20px;
+
+    & label {
+      display: block;
+      background: $secundary-color;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      color: $white;
+      border-radius: 20px 20px 0 0;
+      transition: all 0.3s;
+      cursor: pointer;
+      & i {
+        margin-right: 10px;
+      }
+    }
+    & label:hover {
+      background: #177cf0;
+    }
+    & input {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+    }
+    &-choised {
+      padding: 20px;
+      margin-bottom: 10px;
+      overflow-wrap: break-word;
+      line-height: 20px;
+      & i {
+        font-size: 25px;
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+        color: $secundary-color;
+      }
+
+      & span {
+        font-size: 14px;
+        font-weight: map-get($font-weights, 'semibold');
+        color: $black;
+
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+  &__textarea {
+    position: relative;
+    &-input {
+      width: 100%;
+      height: 200px;
+      resize: none;
+      border: 2px solid $secundary-color;
+      border-radius: $radius-l;
+      padding: 20px;
+    }
+    &-input:focus {
+      outline: none;
+    }
+    &-label {
+      position: absolute;
+      font-size: map-get($size-paragraph, 'l');
+      font-weight: map-get($font-weights, 'semibold');
+      top: -12px;
+      left: 40px;
+      background: white;
+    }
+  }
+  &__btn-submit {
+    height: 80px;
+    width: 80px;
+    margin: auto;
+    font-size: 60px;
+    background: none;
+    border: none;
+    color: $secundary-color;
+  }
+}
