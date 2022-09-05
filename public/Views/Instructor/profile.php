@@ -23,7 +23,6 @@
     <p class="main-content__p">Actualiza tus datos de perfil aquí</p>
 
     <!-- ALERTS -->
-
     <!-- Empty data -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'empty'){
@@ -32,13 +31,12 @@
           Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: '¡Tiene que llenar todos los campos!'
+              text: '¡Tienes que llenar todos los campos!'
           });
       </script>
     <?php 
       }
     ?>
-
     <!-- Error -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'error'){
@@ -60,14 +58,14 @@
       <script>
           Swal.fire({
               icon: 'success',
-              title: '¡Datos actualizados!',
-              text: '¡Tus datos han sido actualizados correctamente!'
+              title: '¡Perfil actualizado!',
+              text: '¡Tus datos han sido actualizados!'
           });
       </script>
     <?php 
       }
     ?>
-
+    
     <div class="profile">
 
         <!-- USER PHOTO -->

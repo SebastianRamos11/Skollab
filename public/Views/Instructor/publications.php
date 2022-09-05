@@ -130,13 +130,18 @@
 
           <hr>
 
-          <!-- FECHA -->
+          <!-- FECHA INICIO (HIDDEN) -->
+          <div class="upload-form__field hidden">
+            <input type="date" id="date" name="date" class="upload-form__field-input upload-form__field-input--date">
+          </div>
+
+          <!-- FECHA FIN -->
           <div class="upload-form__field">
             <div class="upload-form__field-label">
               <i class="fa-regular fa-calendar"></i>
-              <span>Fecha</span>
+              <span>Fecha límite</span>
             </div>
-            <input type="date" name="date" class="upload-form__field-input upload-form__field-input--date">
+            <input type="date" name="due-date" class="upload-form__field-input upload-form__field-input--date">
           </div>
 
           <hr>
@@ -159,7 +164,7 @@
       
       </main>
     </div>
-    
+    <script src="../../Controllers/set-date.js"></script>
     <script src="../../Controllers/publication-control.js"></script>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>

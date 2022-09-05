@@ -2,7 +2,7 @@
 include_once "../../Models/connection.php";
 include_once "../../Models/session.php";
 
-if(empty($_POST["subject"]) || (empty($_POST["group"]) && $_POST["group"] == 0) || empty($_POST["type"]) || empty($_POST["date"])){
+if(empty($_POST["subject"]) || (empty($_POST["group"]) && $_POST["group"] == 0) || empty($_POST["type"]) || empty($_POST["date"]) || empty($_POST["due-date"])){
     header('Location: publications.php?message=empty');
     exit();
 }
@@ -16,8 +16,9 @@ if($_POST['submit']){
             $description = $_POST['description'];
             $type = $_POST['type'];
             $date = $_POST['date'];
+            $due_date = $_POST['due-date'];
             $url = '../file-store/'.$_FILES['file']['name'];
-            $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto,descripcion,fecha,tipo_publicacion,url) VALUES ('".$session."', '".$group."', '".$subject."', '".$description."','".$date."', '".$type."', '".$url."')");
+            $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion, url) VALUES ('".$session."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."', '".$url."')");
             
             header('Location: publications.php?message=updated');
             exit();
@@ -26,7 +27,15 @@ if($_POST['submit']){
             exit();
         }
     }else{
-        header('Location: publications.php?message=error');
+        $subject = $_POST['subject'];
+        $group = $_POST['group'];
+        $description = $_POST['description'];
+        $type = $_POST['type'];
+        $date = $_POST['date'];
+        $due_date = $_POST['due-date'];
+        $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion) VALUES ('".$session."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."')");
+
+        header('Location: publications.php?message=updated');
         exit();
     }
 }

@@ -16,6 +16,8 @@
   color: $white;
   background: $btn-color;
   font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
   font-weight: map-get($font-weights, 'medium');
   @if ($shadow==true) {
     box-shadow: $btn-shadow;
@@ -38,6 +40,16 @@
   background-repeat: no-repeat;
 }
 
+@mixin element {
+  padding: 40px;
+  background: $white;
+  border-radius: $radius-l;
+  box-shadow: $element-shadow;
+  margin: 0 auto;
+  max-width: 900px;
+  margin-top: 30px;
+}
+
 // See password button
 .pass__field {
   position: relative;
@@ -58,6 +70,24 @@
 // Hidden elements
 .hidden {
   display: none !important;
+}
+
+// Banner
+.banner {
+  background-image: url('../img/backgrounds/banner-aprendiz.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-xl;
+  &__p {
+    color: $white;
+    font-size: map-get($size-title, 'l');
+    font-weight: map-get($font-weights, 'semibold');
+  }
+  margin: 40px;
 }
 
 // @media screen and (min-width: $xl) {
@@ -204,12 +234,15 @@
   outline: none;
   margin-left: 20px;
   border: none;
-  text-align: start;
+  min-width: 180px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: $white;
   border-radius: $radius-xl;
+  text-decoration: none;
+  color: $black;
   margin-bottom: 30px;
   padding: 30px;
   box-shadow: $element-shadow;

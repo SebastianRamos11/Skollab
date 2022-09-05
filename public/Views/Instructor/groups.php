@@ -5,10 +5,6 @@
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
-  $program_query = "SELECT * FROM programa_formacion";
-  $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
-  $program_array = mysqli_fetch_all($program_result, MYSQLI_NUM);
-
   $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$session'";
   $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
   $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
@@ -40,22 +36,14 @@
             $get_program_result = mysqli_query($dbConnection, $get_program) or die(mysqli_error($dbConnection));
             $get_program_array = mysqli_fetch_all($get_program_result, MYSQLI_NUM);
 
-            $get_group = "SELECT A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, P.rol, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.rol = 'APRENDIZ'";
-            $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
-            $get_group_result_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
-
-       
-
-
-
             ?>
             
             <!-- Course buttons (programa_formacion) -->
-            <button class="course">
+            <a class="course" href="#group-<?php echo $j ?>">
               <div class="course__title"><?php print_r($get_program_array[0][0]); ?></div>
               <div class="course__id"><?php echo $temp_array[$j][2]; ?></div>
               <img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
-            </button>
+            </a>
             
             <?php
           }
@@ -67,11 +55,17 @@
             <div class="col-md-11">
                 <?php 
                   for($j=0; $j < sizeof($temp_array); $j++){
+                    $program = $temp_array[$j][1];
+                    $ficha = $temp_array[$j][2];
+                          
+                    $get_group = "SELECT A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, P.rol, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.rol = 'APRENDIZ'";
+                    $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
+                    $get_group_result_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
                 ?>
                     <!-- GROUP (hidden) -->
                     <div class="group hidden">
                     <div class="card mb-50">
-                      <div class="card-header">Ficha <?php echo $temp_array[$j][2]; ?></div>
+                      <div class="card-header" id="group-<?php echo $j ?>">Ficha <?php echo $temp_array[$j][2]; ?></div>
                         <div class="p-4">
                           <table class="table align-middle">
                             <thead>
@@ -94,7 +88,7 @@
                                     <td><?php echo $get_group_result_array[$i][2]; ?></td>
                                     <td><?php echo $get_group_result_array[$i][3]; ?></td>
                                     <td><?php echo $get_group_result_array[$i][4] ?></td>
-                                    <td><a href="#?id=<?php echo $get_group_result_array[$i][0]; ?>" class="see-button"><i class="fa-solid fa-eye"></i></a></td>
+                                    <td><a href="see-aprendiz.php?aprendiz=<?php echo $get_group_result_array[$i][0]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
                                   </tr>
                               <?php 
                                 }

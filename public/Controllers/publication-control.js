@@ -1,4 +1,5 @@
 const file = document.querySelector('#file');
+
 file.addEventListener('change', e => {
   // Get the selected file
   const [file] = e.target.files;

@@ -12,16 +12,16 @@
             <span>Inicio</span>
           </li>
         </a>
-        <a href="#" class="nav-menu__link">
-          <li class="nav-menu__item">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>Portafolio</span>
-          </li>
-        </a>
-        <a href="#" class="nav-menu__link">
+        <a href="evidences-center.php" class="nav-menu__link">
           <li class="nav-menu__item">
             <i class="fa-solid fa-book"></i>
             <span>Evidencias</span>
+          </li>
+        </a>
+        <a href="briefcase.php" class="nav-menu__link">
+          <li class="nav-menu__item">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Portafolio</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">

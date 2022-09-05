@@ -40,8 +40,12 @@
     ?>
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
-        <div class="main-content__info">
+        <!-- BANNER -->
+        <div class="banner">
+          <p class="banner__p">¡Skollab es la mejor app para gestionar tu aprendizaje!</p>
         </div>
+
+        <!-- Content here... -->
       </main> 
     </div>
     <script src="../../Controllers/instructor-control.js"></script>

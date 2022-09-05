@@ -10,7 +10,6 @@
         <body>
 <?php
     require('connection.php');
-
     if (isset($_REQUEST['signup-submited'])) {
         $id = stripslashes($_REQUEST['id']);
         $id = mysqli_real_escape_string($dbConnection, $id);
@@ -56,9 +55,11 @@
             </html>
             <?php
         } else {
+            session_start();
             $signup_query = "INSERT INTO persona VALUES ('$id', '$firstName', '$lastName', '$birthYear', '$rol', '$email', '$pass', '$phone')";
             $query_result = mysqli_query($dbConnection, $signup_query);
             if ($query_result) {
+                $_SESSION['id'] = $id;
                 ?>
                     <script>
                         Swal.fire({
@@ -69,11 +70,11 @@
                             <?php
                             if ($rol == 'APRENDIZ') {
                                 ?>
-                                window.location.assign('../Views/Aprendiz/aprendiz.php?id=<?php echo $id;?>')
+                                window.location.assign('../Views/Aprendiz/aprendiz.php')
                                 <?php
                             } elseif ($rol == 'INSTRUCTOR') {
                                 ?>
-                                window.location.assign('../Views/Instructor/instructor.php?id=<?php echo $id;?>')
+                                window.location.assign('../Views/Instructor/instructor.php')
                                 <?php
                             }
                         ?>

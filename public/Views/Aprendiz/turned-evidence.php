@@ -6,9 +6,9 @@
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
   
-  $evidence = $_GET['evidence'];  
+  $turned_evidence = $_GET['evidence'];  
 
-  $publication = "SELECT P.ID_Persona, P.asunto, P.descripcion, P.fecha, P.fecha_limite, P.tipo_publicacion, P.url, A.ID_Programa FROM publicacion P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE ID_Publicacion = $evidence;";
+  $publication = "SELECT P.ID_Persona, P.asunto, P.descripcion, P.fecha, P.fecha_limite, P.tipo_publicacion, P.url, A.ID_Programa FROM publicacion P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE ID_Publicacion = $turned_evidence;";
   $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
   $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
 
@@ -18,10 +18,19 @@
   $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
   $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
 
-      if (isset($session)) {
+  $evidence_id = "SELECT ID_Evidencia FROM evidencia WHERE ID_Publicacion = $turned_evidence AND ID_Persona = $session";
+  $evidence_id_result = mysqli_query($dbConnection, $evidence_id) or die(mysqli_error($dbConnection));
+  $evidence_id_array = mysqli_fetch_all($evidence_id_result, MYSQLI_NUM);
+  $evidence_id = $evidence_id_array[0][0];
+
+  $evidence = "SELECT url, descripcion, observacion, nota FROM evidencia WHERE ID_Evidencia = $evidence_id AND ID_Persona = $session";
+  $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
+  $evidence_array = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
+  
+  if (isset($session)) {
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,38 +39,10 @@
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/aprendiz.css" />
-    <title>Entregar evidencia</title>
+    <title>Tu evidencia</title>
 </head>
 <body>
     <!-- ALERTS -->
-    <!-- Empty data -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Tienes que adjuntar tu evidencia!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Ha habido algun problema!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
     <!-- Upload successfully -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'updated'){
@@ -77,10 +58,9 @@
       }
     ?>
     <?php include './sidebar.php' ?>
-        <h1 class="main-content__header">Entrega de evidencia 📘</h1>
-
-        <!-- PUBLICATION -->
-        <div class="evidence">
+        <h1 class="main-content__header">Evidencia entregada</h1>
+       <!-- PUBLICATION -->
+       <div class="evidence">
             <!-- HEADER -->
             <div class="evidence__header">
                 <div class="evidence__instructor">
@@ -97,7 +77,6 @@
             <!-- CONTENT -->
             <div class="evidence__content">
                 <div class="evidence__title"><?php echo $publication_array[0][1] ;?></div>
-                <div class="evidence__date">Fecha publicación: <?php echo $publication_array[0][3] ;?></div>
                 <div class="evidence__p"><?php echo $publication_array[0][2] ;?></div>
                 <?php
                   if($publication_array[0][6] != ''){
@@ -112,36 +91,48 @@
             </div>  
         </div>
 
-        <!-- UPLOAD FORM -->
-        <form action="upload.php?evidence=<?php echo $evidence?>" method="post" enctype="multipart/form-data"  class="upload-form">
-            <!-- FILE SELECTION -->
-            <div class="upload-form__file">
-                <label for="file"><i class="fa-solid fa-plus"></i>Agregar archivo</label>
-                <div class="upload-form__file-choised">
-                    <i class="fa-regular fa-file-lines hidden file-icon"></i>
-                    <span class="file-selected-name"></span>
-                </div>
-                <input type="file" name="file" id="file">
+        <!-- RECORDED EVIDENCE -->
+        <div class="turned-evidence">
+          <div class="turned-evidence__data">
+            <div class="turned-evidence__file">
+              <i class="fa-regular fa-file-lines"></i>
+              <a class="file-name" href="<?php echo $evidence_array[0][0]; ?>" download=""><?php echo $evidence_array[0][0]; ?></a>
             </div>
-            <!-- DATE (HIDDEN) -->
-            <div class="upload-form__date hidden">
-              <input type="date" id="date" name="date">
+            <div class="turned-evidence__p"><?php echo $evidence_array[0][1]; ?></div>
+          </div>
+          <div class="turned-evidence__observation">
+            <div class="turned-evidence__observation-label">Observación</div>
+            <div class="turned-evidence__observation-p">
+              <?php
+                if($evidence_array[0][2]){
+                  echo $evidence_array[0][2]; 
+                } else{
+                  echo "Sin observación...";
+                }
+              ?>
             </div>
-            <!-- DESCRIPTION -->
-            <div class="upload-form__textarea">
-                <div class="upload-form__textarea-label">Descripción</div>
-                <textarea name="description" class="upload-form__textarea-input upload" placeholder="Escribe una descripción" maxlength="600"></textarea>
-            </div>
-            <label for="submit-btn" class="upload-form__btn-submit"><i class="fa-regular fa-paper-plane"></i></label>
-            <input type="submit" id="submit-btn" name="submit" class="hidden">
-          </form>
-    </main>
-    <script src="../../Controllers/set-date.js"></script>
-    <script src="../../Controllers/aprendiz-control.js"></script>
+          </div>
+          <div class="turned-evidence__observation-calification">
+            <?php
+              if($evidence_array[0][3]){
+                echo $evidence_array[0][3]; 
+              } else{
+                echo "--";
+              }
+            ?>/100
+        </div>
+        </div>
 </body>
+<script>
+  const fileName = document.querySelectorAll('.file-name');
+
+  fileName.forEach((e, i) => {
+    fileName[i].textContent = fileName[i].textContent.replace('../file-store/', '');
+    fileName[i].textContent = fileName[i].textContent.replace('evidences/', '');
+  });
+</script>
 </html>
+
 <?php 
-      } else {
-        ?><script>window.location.assign('../index.html')</script><?php
-      }
-?> 
+  } 
+?>
