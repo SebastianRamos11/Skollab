@@ -126,9 +126,16 @@
                     <div class="publication__p"><?php print_r($publication_array[$j][2]); ?></div>
                     <div class="publication__date-limit"><?php print_r($publication_array[$j][4]); ?></div>
                     <div class="publication__type"><?php print_r($publication_array[$j][5]); ?></div>
-                    <a class="publication__file" href="<?php print_r($publication_array[$j][6]); ?>" download=""><i class="fa-regular fa-file-lines"></i></a>
+                    <?php
+                      if($publication_array[$j][6] != ''){
+                    ?>
+                      <a href="<?php print_r($publication_array[$j][6]); ?>" class="publication__file" download="">
+                        <i class="fa-regular fa-file-lines"></i>
+                      </a>
+                    <?php 
+                      }
+                    ?>
                   </div>
-
                   <div class="publication__btns">
                     <a href="FIXME?publication=<?php echo $publication_array[$j][0]?>" class="publication__btns-link">Editar>></a>
                     <a href="#evidences" id="<?php echo $i; ?>-<?php echo $j; ?>" class="publication__btns-evidences publication-btn">

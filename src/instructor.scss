@@ -175,11 +175,32 @@ th {
   border: 5px solid $secundary-color;
 }
 
-// PUBLICATIONS
+.max-height-form{
+  max-height: 1000px;
+  overflow-y: hidden;
+}
 
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1000px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 50;
+  margin-left: -50px;
+}
+
+// PUBLICATIONS
 .upload-form {
   margin: 40px auto;
-  max-width: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-35%, -50%);
+  width: 800px;
+  z-index: 100;
   background: $white !important;
   border-radius: $radius-xl !important;
   box-shadow: $element-shadow;
@@ -241,7 +262,7 @@ th {
       }
     }
 
-    & .btn-delete {
+    & .btn-close {
       cursor: pointer;
       display: block;
       border: none;
@@ -338,7 +359,7 @@ th {
 
 .publications-course {
   display: grid;
-  padding: 30px 50px;
+  padding: 0 50px 30px 50px;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin: 30px auto;
@@ -823,5 +844,24 @@ th {
         background: rgba($color: #ff0f0f, $alpha: 0.8);
       }
     }
+  }
+}
+
+.instructor-publications{
+  display: grid;
+  grid-template-columns: 95% 5%;
+  position: relative !important;
+   
+  & .create-button{
+    text-decoration: none;
+    color: $black;
+    padding: 25px;
+    font-size: 25px;
+    background: $white;
+    border-radius: 15px;
+    box-shadow: $element-shadow;
+    position: fixed;
+    top: 120px;
+    right: 20px;
   }
 }
