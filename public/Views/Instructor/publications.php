@@ -72,81 +72,6 @@
         ?>
         <h1 class="main-content__header">Centro de publicaciones 📚</h1>
 
-        <!-- CREATE PUBLICATION FORM -->
-        <form action="upload.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
-          <!-- FORM HEADING -->
-          <div class="upload-form__title">Crear Publicación</div>
-          <hr>
-          <!-- ASUNTO -->
-          <div class="upload-form__field">
-            <input type="text" name="subject" class="upload-form__field-input upload-form__field-input--title" placeholder="Ingresa un título" maxlength="60">
-          </div>
-          <hr>
-          <!-- DESCRIPCION -->
-          <div class="upload-form__field upload-form__field--description">
-            <div class="upload-form__field-label">
-              Descripción
-            </div>
-            <textarea name="description" class="upload-form__field-input upload" placeholder="Escribe una descripción" maxlength="600"></textarea>
-          </div>
-          <hr>
-          <!-- FICHA -->
-          <div class="upload-form__field">
-            <div class="upload-form__field-label">
-              <i class="fa-solid fa-user-group"></i>
-              <span>Dirigido a</span>
-            </div>
-            <select name="group" id="group" class="upload-form__field-input">
-              <option value="0" default="">Seleccione</option>
-              <?php 
-              for($i = 0; $i < sizeof($get_group_array); $i++){
-              ?>
-                <option value="<?php echo $get_group_array[$i][0]; ?>"><?php echo $get_group_array[$i][0]; ?></option>
-              <?php
-              }
-              ?>
-            </select>
-          </div>
-          <hr>
-          <!-- CATEGORIA -->
-          <div class="upload-form__field">
-            <div class="upload-form__field-label">
-              <i class="fa-solid fa-border-all"></i>
-              <span>Categoría</span>
-            </div>
-            <select name="type" id="type" class="upload-form__field-input">
-              <option value="Evidencia" default="">Evidencia</option>
-              <option value="Material">Material</option>
-            </select>
-          </div>
-          <hr>
-          <!-- FECHA INICIO (HIDDEN) -->
-          <div class="upload-form__field hidden">
-            <input type="date" id="date" name="date" class="upload-form__field-input upload-form__field-input--date">
-          </div>
-          <!-- FECHA FIN -->
-          <div class="upload-form__field">
-            <div class="upload-form__field-label">
-              <i class="fa-regular fa-calendar"></i>
-              <span>Fecha límite</span>
-            </div>
-            <input type="date" name="due-date" class="upload-form__field-input upload-form__field-input--date">
-          </div>
-          <hr>
-          <!-- DELETE | FILE | SUBMIT -->
-          <div class="upload-form__field">
-            <div class="btn-close"><i class="fa-solid fa-trash-can"></i></div>
-            <div class="file-choise">
-              <label for="file">
-                <i class="fa-regular fa-file-lines"></i>
-                <p class="file-name"></p>
-              </label>
-              <input type="file" name="file" id="file">
-            </div>
-            <input type="submit" class="btn-submit" name="submit" value="Publicar" >
-          </div>
-        </form>
-
         <!-- PUBLICATIONS... -->
 
         
@@ -209,11 +134,87 @@
           ?>
         </div>
         <!-- CREATE PUBLICATION BUTTON -->
-        <a href="#"><i class="fa-solid fa-plus create-button"></i></a>
+        <a href="#" class="create-button"><i class="fa-solid fa-plus"></i></a>
         </div>
-        <div class="overlay hidden"></div>
       </main>
     </div>
+
+    <!-- CREATE PUBLICATION FORM -->
+    <form action="upload.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
+      <!-- FORM HEADING -->
+      <div class="upload-form__title">Crear Publicación</div>
+      <hr>
+      <!-- ASUNTO -->
+      <div class="upload-form__field">
+        <input type="text" name="subject" class="upload-form__field-input upload-form__field-input--title" placeholder="Ingresa un título" maxlength="60">
+      </div>
+      <hr>
+      <!-- DESCRIPCION -->
+      <div class="upload-form__field upload-form__field--description">
+        <div class="upload-form__field-label">
+          Descripción
+        </div>
+        <textarea name="description" class="upload-form__field-input upload" placeholder="Escribe una descripción" maxlength="600"></textarea>
+      </div>
+      <hr>
+      <!-- FICHA -->
+      <div class="upload-form__field">
+        <div class="upload-form__field-label">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Dirigido a</span>
+        </div>
+        <select name="group" id="group" class="upload-form__field-input">
+          <option value="0" default="">Seleccione</option>
+          <?php 
+          for($i = 0; $i < sizeof($get_group_array); $i++){
+          ?>
+            <option value="<?php echo $get_group_array[$i][0]; ?>"><?php echo $get_group_array[$i][0]; ?></option>
+          <?php
+          }
+          ?>
+        </select>
+      </div>
+      <hr>
+      <!-- CATEGORIA -->
+      <div class="upload-form__field">
+        <div class="upload-form__field-label">
+          <i class="fa-solid fa-border-all"></i>
+          <span>Categoría</span>
+        </div>
+        <select name="type" id="type" class="upload-form__field-input">
+          <option value="Evidencia" default="">Evidencia</option>
+          <option value="Material">Material</option>
+        </select>
+      </div>
+      <hr>
+      <!-- FECHA INICIO (HIDDEN) -->
+      <div class="upload-form__field hidden">
+        <input type="date" id="date" name="date" class="upload-form__field-input upload-form__field-input--date">
+      </div>
+      <!-- FECHA FIN -->
+      <div class="upload-form__field">
+        <div class="upload-form__field-label">
+          <i class="fa-regular fa-calendar"></i>
+          <span>Fecha límite</span>
+        </div>
+        <input type="date" name="due-date" class="upload-form__field-input upload-form__field-input--date">
+      </div>
+      <hr>
+      <!-- DELETE | FILE | SUBMIT -->
+      <div class="upload-form__field">
+        <div class="btn-close"><i class="fa-solid fa-trash-can"></i></div>
+        <div class="file-choise">
+          <label for="file">
+            <i class="fa-regular fa-file-lines"></i>
+            <p class="file-name"></p>
+          </label>
+          <input type="file" name="file" id="file">
+        </div>
+        <input type="submit" class="btn-submit" name="submit" value="Publicar" >
+      </div>
+    </form>
+    <div class="overlay hidden"></div>
+    
     <script src="../../Controllers/set-date.js"></script>
     <script src="../../Controllers/publication-control.js"></script>
     <script src="../../Controllers/instructor-control.js"></script>

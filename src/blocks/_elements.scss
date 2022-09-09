@@ -18,7 +18,7 @@
   font-size: 1.1em;
   text-decoration: none;
   text-align: center;
-  font-weight: map-get($font-weights, 'medium');
+  font-weight: map-get($font-weights, "medium");
   @if ($shadow==true) {
     box-shadow: $btn-shadow;
   }
@@ -67,6 +67,17 @@
   cursor: pointer;
 }
 
+@media screen and (min-width: 1400px) {
+  .eye {
+    font-size: 22px;
+    top: 30.5px;
+    right: 30px;
+  }
+  .see-btn {
+    right: 31px;
+  }
+}
+
 // Hidden elements
 .hidden {
   display: none !important;
@@ -74,7 +85,7 @@
 
 // Banner
 .banner {
-  background-image: url('../img/backgrounds/banner-aprendiz.svg');
+  background-image: url("../img/backgrounds/banner-aprendiz.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 180px;
@@ -84,8 +95,8 @@
   border-radius: $radius-xl;
   &__p {
     color: $white;
-    font-size: map-get($size-title, 'l');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "l");
+    font-weight: map-get($font-weights, "semibold");
   }
   margin: 40px;
 }
@@ -164,18 +175,18 @@
   }
 
   &__brand {
-    font-size: map-get($size-title, 'l');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "l");
+    font-weight: map-get($font-weights, "semibold");
     margin-bottom: 15px;
   }
 
   &__title {
-    font-size: map-get($size-title, 's');
-    font-weight: map-get($font-weights, 'medium');
+    font-size: map-get($size-title, "s");
+    font-weight: map-get($font-weights, "medium");
     margin-bottom: 15px;
   }
   &__info {
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
     & div {
       margin-bottom: 10px;
     }
@@ -201,7 +212,15 @@
     }
     &-button {
       height: 50px;
-      @include primary-btn(linear-gradient(104.67deg, #ff5a5a -82.31%, #f11414 54.83%, #f11414 86.9%), false);
+      @include primary-btn(
+        linear-gradient(
+          104.67deg,
+          #ff5a5a -82.31%,
+          #f11414 54.83%,
+          #f11414 86.9%
+        ),
+        false
+      );
     }
   }
 
@@ -210,7 +229,7 @@
   }
   &__copyright {
     @include setFlex(row, center, between);
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
     padding: 20px;
   }
 }
@@ -247,8 +266,8 @@
   padding: 30px;
   box-shadow: $element-shadow;
   &__title {
-    font-weight: map-get($font-weights, 'semibold');
-    font-size: map-get($size-paragraph, 'xl');
+    font-weight: map-get($font-weights, "semibold");
+    font-size: map-get($size-paragraph, "xl");
   }
   &__id {
     color: $paragraph-color;
@@ -283,7 +302,8 @@
   fill: none;
   stroke: #272727;
   stroke-width: 6;
-  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .br-1 {
@@ -496,8 +516,8 @@
     grid-template-columns: 1fr 1fr;
 
     &__title {
-      font-size: map-get($size-paragraph, 'l');
-      font-weight: map-get($font-weights, 'medium');
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "medium");
       grid-column: 2 span;
       margin-bottom: 30px;
     }
@@ -526,7 +546,7 @@
         color: $black;
         background: $white;
         font-size: 1.1em;
-        font-weight: map-get($font-weights, 'medium');
+        font-weight: map-get($font-weights, "medium");
         & i {
           margin-right: 5px;
           color: $primary-contrast;
@@ -556,8 +576,8 @@
       & .profile-banner__title {
         width: 50%;
         margin-bottom: 20px;
-        font-size: map-get($size-paragraph, 'l');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-paragraph, "l");
+        font-weight: map-get($font-weights, "medium");
       }
       & .profile-banner__p {
         width: 50%;
@@ -585,7 +605,7 @@
     & .profile__field {
       width: 100%;
       &-label {
-        font-size: map-get($size-paragraph, 's');
+        font-size: map-get($size-paragraph, "s");
         color: #474545;
         margin-bottom: 15px;
       }

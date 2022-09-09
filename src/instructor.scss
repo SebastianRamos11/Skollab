@@ -1,10 +1,10 @@
-@import './config/variables';
-@import './config/fonts';
-@import './config/normalize';
-@import './config/flex';
-@import './config/grid';
-@import './blocks/elements';
-@import './blocks/inputs';
+@import "./config/variables";
+@import "./config/fonts";
+@import "./config/normalize";
+@import "./config/flex";
+@import "./config/grid";
+@import "./blocks/elements";
+@import "./blocks/inputs";
 
 html,
 body {
@@ -35,7 +35,7 @@ th {
 
     padding: 20px 35px;
     color: $white;
-    font-size: map-get($size-paragraph, 'xl');
+    font-size: map-get($size-paragraph, "xl");
   }
   & table {
     tbody {
@@ -50,7 +50,7 @@ th {
         }
       }
       tr:hover {
-        font-weight: map-get($font-weights, 'medium');
+        font-weight: map-get($font-weights, "medium");
         color: $secundary-color;
         outline: 2px solid $secundary-color;
       }
@@ -159,8 +159,8 @@ th {
   padding: 30px;
   box-shadow: $element-shadow;
   &__title {
-    font-weight: map-get($font-weights, 'semibold');
-    font-size: map-get($size-paragraph, 'xl');
+    font-weight: map-get($font-weights, "semibold");
+    font-size: map-get($size-paragraph, "xl");
   }
   &__id {
     color: $paragraph-color;
@@ -175,7 +175,7 @@ th {
   border: 5px solid $secundary-color;
 }
 
-.max-height-form{
+.max-height-form {
   max-height: 1000px;
   overflow-y: hidden;
 }
@@ -185,20 +185,18 @@ th {
   top: 0;
   bottom: 0;
   width: 100%;
-  height: 1000px;
+  height: 1045px;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 50;
-  margin-left: -50px;
 }
 
 // PUBLICATIONS
 .upload-form {
-  margin: 40px auto;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-35%, -50%);
+  transform: translate(-50%, -33%);
   width: 800px;
   z-index: 100;
   background: $white !important;
@@ -207,8 +205,8 @@ th {
   &__title {
     padding: 30px;
     text-align: center;
-    font-size: map-get($size-title, 'm');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
   }
   & hr {
     margin: 0;
@@ -227,8 +225,8 @@ th {
       font-size: 18px;
       &--title {
         width: 100%;
-        font-size: map-get($size-title, 's');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-title, "s");
+        font-weight: map-get($font-weights, "medium");
       }
       &--date {
         background: rgba(28, 119, 255, 0.466);
@@ -250,8 +248,8 @@ th {
 
     &-label {
       & span {
-        font-size: map-get($size-paragraph, 'm');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-paragraph, "m");
+        font-weight: map-get($font-weights, "medium");
       }
       & i {
         font-size: 24px;
@@ -288,7 +286,7 @@ th {
 
         & .file-name {
           font-size: 13px;
-          font-weight: map-get($font-weights, 'semibold');
+          font-weight: map-get($font-weights, "semibold");
           color: $secundary-color;
           position: absolute;
           width: 600px;
@@ -321,12 +319,30 @@ th {
     }
     & .upload-form__field-label {
       position: absolute;
-      font-size: map-get($size-paragraph, 'l');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "semibold");
       top: 18px;
       left: 80px;
       background: white;
     }
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .upload-form {
+    transform: translate(-50%, -40%);
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .upload-form {
+    transform: translate(-50%, -45%);
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .upload-form {
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -337,16 +353,16 @@ th {
   column-gap: 20px;
 
   &__title {
-    font-size: map-get($size-paragraph, 'xl');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-paragraph, "xl");
+    font-weight: map-get($font-weights, "semibold");
     margin-bottom: 20px;
     grid-column: 2 span;
   }
   &__select {
     display: block;
     padding: 0 20px;
-    font-size: map-get($size-paragraph, 'l');
-    font-weight: map-get($font-weights, 'medium');
+    font-size: map-get($size-paragraph, "l");
+    font-weight: map-get($font-weights, "medium");
     border-radius: $radius-m;
     border: 1.8px solid $black;
   }
@@ -361,13 +377,13 @@ th {
   display: grid;
   padding: 0 50px 30px 50px;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 40px;
   margin: 30px auto;
 
   &__label {
     padding: 10px 50px;
-    font-size: map-get($size-title, 'm');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
     margin-bottom: 10px;
     color: #272727;
     grid-column: 2 span;
@@ -388,8 +404,8 @@ th {
     justify-content: space-between;
     position: relative;
     &__title {
-      font-size: map-get($size-paragraph, 'xl');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
       margin-bottom: 10px;
     }
     &__date {
@@ -431,7 +447,7 @@ th {
       }
       & span {
         font-size: 13px;
-        font-weight: map-get($font-weights, 'semibold');
+        font-weight: map-get($font-weights, "semibold");
         color: $black;
       }
     }
@@ -454,13 +470,20 @@ th {
   }
 }
 
+@media screen and (max-width: 1400px) {
+  .publications-course {
+    padding: 0 50px 30px 0;
+    gap: 20px;
+  }
+}
+
 .evidences-course {
   max-width: 900px;
   margin: 0 auto;
   &__label {
     padding: 10px 50px;
-    font-size: map-get($size-title, 's');
-    font-weight: map-get($font-weights, 'medium');
+    font-size: map-get($size-title, "s");
+    font-weight: map-get($font-weights, "medium");
     margin: 20px;
     color: #1b1b1b;
   }
@@ -487,8 +510,8 @@ th {
     display: flex;
   }
   &__name {
-    font-size: map-get($size-paragraph, 'l');
-    font-weight: map-get($font-weights, 'medium');
+    font-size: map-get($size-paragraph, "l");
+    font-weight: map-get($font-weights, "medium");
   }
   &__date {
     margin-right: 10px;
@@ -516,8 +539,8 @@ th {
   }
   &__title {
     margin-right: auto;
-    font-size: map-get($size-title, 'm');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
   }
   &__term {
     display: flex;
@@ -526,8 +549,8 @@ th {
     padding: 10px;
     text-align: center;
     &-label {
-      font-size: map-get($size-paragraph, 'xl');
-      font-weight: map-get($font-weights, 'medium');
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "medium");
       margin-bottom: 10px;
     }
     &-date {
@@ -559,19 +582,19 @@ th {
     &__group {
       text-align: center;
       &-label {
-        font-size: map-get($size-paragraph, 'm');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-paragraph, "m");
+        font-weight: map-get($font-weights, "medium");
         margin-bottom: 8px;
       }
       &-num {
         color: $secundary-color;
-        font-size: map-get($size-paragraph, 'l');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-paragraph, "l");
+        font-weight: map-get($font-weights, "medium");
       }
     }
     &__name {
-      font-size: map-get($size-paragraph, 'xl');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
       margin-bottom: 5px;
     }
     &__date {
@@ -585,8 +608,8 @@ th {
       margin-left: 50px;
       text-align: center;
       &-label {
-        font-size: map-get($size-paragraph, 'l');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-paragraph, "l");
+        font-weight: map-get($font-weights, "medium");
       }
       &-src {
         font-size: 120px;
@@ -611,8 +634,8 @@ th {
 
     &__grade {
       &-label {
-        font-size: map-get($size-title, 's');
-        font-weight: map-get($font-weights, 'semibold');
+        font-size: map-get($size-title, "s");
+        font-weight: map-get($font-weights, "semibold");
         margin-bottom: 20px;
       }
       &-input {
@@ -639,7 +662,7 @@ th {
         }
         &-value {
           font-size: 27px;
-          font-weight: map-get($font-weights, 'bold');
+          font-weight: map-get($font-weights, "bold");
           text-align: center;
           color: $secundary-color;
         }
@@ -661,8 +684,8 @@ th {
       }
       &-label {
         position: absolute;
-        font-size: map-get($size-paragraph, 'l');
-        font-weight: map-get($font-weights, 'semibold');
+        font-size: map-get($size-paragraph, "l");
+        font-weight: map-get($font-weights, "semibold");
         top: -12px;
         left: 40px;
         background: white;
@@ -701,8 +724,8 @@ th {
       margin-left: 50px;
     }
     &__name {
-      font-size: map-get($size-title, 'l');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-title, "l");
+      font-weight: map-get($font-weights, "semibold");
       margin-bottom: 5px;
     }
     &__label {
@@ -711,7 +734,7 @@ th {
       justify-content: space-between;
       align-items: center;
       max-width: 200px;
-      font-weight: map-get($font-weights, 'medium');
+      font-weight: map-get($font-weights, "medium");
       & .dot {
         background: #636363;
         width: 4px;
@@ -744,8 +767,8 @@ th {
   &-programs {
     &__label {
       margin-bottom: 20px;
-      font-size: map-get($size-title, 's');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-title, "s");
+      font-weight: map-get($font-weights, "semibold");
     }
     & .course {
       margin: auto 20px auto 0;
@@ -756,8 +779,8 @@ th {
   &-evidences {
     &__label {
       margin-bottom: 20px;
-      font-size: map-get($size-title, 's');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-title, "s");
+      font-weight: map-get($font-weights, "semibold");
     }
     & .user-evidence {
       @include element;
@@ -779,8 +802,8 @@ th {
         color: $secundary-color;
       }
       &__title {
-        font-size: map-get($size-paragraph, 'l');
-        font-weight: map-get($font-weights, 'medium');
+        font-size: map-get($size-paragraph, "l");
+        font-weight: map-get($font-weights, "medium");
       }
       &__date {
         padding: 10px 20px;
@@ -847,12 +870,12 @@ th {
   }
 }
 
-.instructor-publications{
+.instructor-publications {
   display: grid;
   grid-template-columns: 95% 5%;
   position: relative !important;
-   
-  & .create-button{
+
+  & .create-button {
     text-decoration: none;
     color: $black;
     padding: 25px;
@@ -862,6 +885,9 @@ th {
     box-shadow: $element-shadow;
     position: fixed;
     top: 120px;
-    right: 20px;
+    right: 30px;
+  }
+  & .create-button:focus {
+    outline: none;
   }
 }
