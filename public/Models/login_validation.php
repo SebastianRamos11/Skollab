@@ -10,7 +10,8 @@
         <body>
 <?php
     require('connection.php');
-    session_start();
+    include_once('../Models/session_validation.php');
+    session_destroy();
     if (isset($_POST['login'])) {
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
@@ -23,6 +24,7 @@
         $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
         $row = mysqli_num_rows($query_result);
         if ($row == 1) {
+            session_start();
             $_SESSION['id'] = $result_array[0][0];
             ?>
                 <script>

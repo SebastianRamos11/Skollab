@@ -1,8 +1,8 @@
 <?php
   include_once "../../Models/connection.php";
-  include_once "../../Models/session.php";
-
-  $read_query = "SELECT * FROM persona WHERE ID_Persona = '$session'";
+  session_start();
+  if (isset($$_SESSION['id'])) {
+  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
   
@@ -18,16 +18,14 @@
   $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
   $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
 
-  $evidence_id = "SELECT ID_Evidencia FROM evidencia WHERE ID_Publicacion = $turned_evidence AND ID_Persona = $session";
+  $evidence_id = "SELECT ID_Evidencia FROM evidencia WHERE ID_Publicacion = $turned_evidence AND ID_Persona =".$_SESSION['id'];
   $evidence_id_result = mysqli_query($dbConnection, $evidence_id) or die(mysqli_error($dbConnection));
   $evidence_id_array = mysqli_fetch_all($evidence_id_result, MYSQLI_NUM);
   $evidence_id = $evidence_id_array[0][0];
 
-  $evidence = "SELECT url, descripcion, observacion, nota FROM evidencia WHERE ID_Evidencia = $evidence_id AND ID_Persona = $session";
+  $evidence = "SELECT url, descripcion, observacion, nota FROM evidencia WHERE ID_Evidencia = $evidence_id AND ID_Persona =".$_SESSION['id'];
   $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
   $evidence_array = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
-  
-  if (isset($session)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,5 +132,8 @@
 </html>
 
 <?php 
-  } 
+  } else {
+    include('../../Models/logout.php');
+    $location = header('Location: ../index.html');
+  }
 ?>

@@ -1,8 +1,8 @@
 <?php
   include_once "../../Models/connection.php";
-  include_once "../../Models/session.php";
-
-  $read_query = "SELECT * FROM persona WHERE ID_Persona = '$session'";
+  session_start();
+  if (isset($_SESSION['id'])) {
+  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
@@ -19,11 +19,10 @@
   $course_aprendiz_array = mysqli_fetch_all($course_aprendiz_result, MYSQLI_NUM);
 
   // GET INSTRUCTOR PUBLICATIONS (TO LOOP)
-  $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona = '$session'";
+  $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona =".$_SESSION['id'];
   $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
   $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
 
-      if (isset($session)) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -184,6 +183,7 @@
 </html>
 <?php 
       } else {
-        ?><script>window.location.assign('../index.html')</script><?php
+        include('../../Models/logout.php');
+        $location = header('Location: ../index.html');
       }
 ?> 

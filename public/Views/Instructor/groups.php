@@ -1,11 +1,12 @@
 <?php
   include_once "../../Models/connection.php";
-  include_once "../../Models/session.php";
-  $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$session'";
+  session_start();
+  if (isset($_SESSION['id'])) {
+  $read_query = "SELECT *  FROM persona WHERE ID_Persona =".$_SESSION['id'];
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
-  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$session'";
+  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
   $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
   $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
 ?>
@@ -109,3 +110,9 @@
     <script src="../../Controllers/instructor-control.js"></script>
   </body>
 </html>
+<?php
+  } else {
+    include('../../Models/logout.php');
+    $location = header('Location: ../index.html');
+  }
+?>

@@ -13,9 +13,9 @@
   <body>
     <?php
       include_once "../../Models/connection.php";
-      include_once "../../Models/session.php";
-      if (isset($session)) {
-      $read_query = "SELECT * FROM persona WHERE ID_Persona = '$session'";
+      session_start();
+      if (isset($_SESSION['id'])) {
+      $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
       $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
       $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
@@ -53,6 +53,7 @@
 </html>
 <?php 
       } else {
-        ?><script>window.location.assign('../index.html')</script><?php
+        include('../../Models/logout.php');
+        $location = header('Location: ../index.html');
       }
   ?>

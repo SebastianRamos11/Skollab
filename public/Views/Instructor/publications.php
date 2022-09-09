@@ -1,12 +1,13 @@
 <?php
   include_once "../../Models/connection.php";
-  include_once "../../Models/session.php";
-  $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$session'";
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
+  session_start();
+  if (isset($_SESSION['id'])) {
+    $read_query = "SELECT *  FROM persona WHERE ID_Persona =".$_SESSION['id'];
+    $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
   // GET INSTRUCTOR'S GROUPS
-  $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona = '$session'";
+  $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
   $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
   $get_group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
 ?>
@@ -26,50 +27,50 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
-        <!-- ALERTS -->
-        <!-- Empty data -->
-        <?php 
+    <!-- ALERTS -->
+    <!-- Empty data -->
+    <?php 
           if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-        ?>
+            ?>
           <script>
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: '¡Tiene que llenar todos los campos!'
-              });
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: '¡Tiene que llenar todos los campos!'
+            });
           </script>
         <?php 
           }
         ?>
 
-        <!-- Error -->
-        <?php 
+<!-- Error -->
+<?php 
           if(isset($_GET['message']) and $_GET['message'] == 'error'){
         ?>
           <script>
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: '¡Ha habido algun problema!'
-              });
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: '¡Ha habido algun problema!'
+            });
           </script>
         <?php 
           }
-        ?>
+          ?>
         <!-- Updated successfully -->
         <?php 
           if(isset($_GET['message']) and $_GET['message'] == 'updated'){
-        ?>
+            ?>
           <script>
               Swal.fire({
                   icon: 'success',
                   title: '¡Publicación subida!',
                   text: '¡Tu evidencia ha sido cargada correctamente!'
-              });
+                });
           </script>
         <?php 
           }
-        ?>
+          ?>
         <h1 class="main-content__header">Centro de publicaciones 📚</h1>
 
         <!-- PUBLICATIONS... -->
@@ -77,16 +78,16 @@
         
         <!-- PUBLICATIONS CONTAINER -->
         <div class="instructor-publications">
-        <div class="publications">
-          <!-- PUBLICATIONS BY GROUP -->
-          
-          <?php for($i=0; $i < sizeof($get_group_array); $i++){ 
-            $ficha = $get_group_array[$i][0];
-            ?>
+          <div class="publications">
+            <!-- PUBLICATIONS BY GROUP -->
+            
+            <?php for($i=0; $i < sizeof($get_group_array); $i++){ 
+              $ficha = $get_group_array[$i][0];
+              ?>
             <div class="publications-course">
               <?php 
                 // GET GROUP'S PUBLICATIONS
-                $publications = "SELECT ID_Publicacion, asunto, descripcion, fecha, fecha_limite, tipo_publicacion, url FROM publicacion WHERE ID_Ficha = $ficha AND ID_Persona = $session";
+                $publications = "SELECT ID_Publicacion, asunto, descripcion, fecha, fecha_limite, tipo_publicacion, url FROM publicacion WHERE ID_Ficha = $ficha AND ID_Persona =".$_SESSION['id'];
                 $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
                 $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
                 if(sizeof($publications_array) > 0 ){
@@ -107,11 +108,11 @@
                         <!-- VALIDAR EXISTENCIA FILE -->
                         <?php
                           if($publications_array[$j][6] != ''){
-                        ?>
+                            ?>
                           <a href="<?php print_r($publications_array[$j][6]); ?>" class="publication__file" download="">
                             <i class="fa-regular fa-file-lines"></i>
                           </a>
-                        <?php 
+                          <?php 
                           }
                         ?>
                       </div>
@@ -119,7 +120,7 @@
                         <a href="FIXME?publication=<?php echo $publications_array[$j][0]?>" class="publication__btns-link">Editar>></a>
                       </div>
                     </div>
-                <?php
+                    <?php
                     } 
                   } else{
                     ?>
@@ -129,7 +130,7 @@
                   }  
                 ?>
             </div>
-          <?php 
+            <?php 
           }
           ?>
         </div>
@@ -167,7 +168,7 @@
           <option value="0" default="">Seleccione</option>
           <?php 
           for($i = 0; $i < sizeof($get_group_array); $i++){
-          ?>
+            ?>
             <option value="<?php echo $get_group_array[$i][0]; ?>"><?php echo $get_group_array[$i][0]; ?></option>
           <?php
           }
@@ -219,4 +220,10 @@
     <script src="../../Controllers/publication-control.js"></script>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>
-</html>
+  </html>
+<?php
+    } else {
+      include('../../Models/logout.php');
+      $location = header('Location: ../index.html');
+    }
+?>

@@ -46,7 +46,7 @@
       </button>
       <a href="./profile.php" class="profile">
         <img src="../img/default.jpeg" alt="avatar" class="profile__img">
-        <div class="profile__name"><?php echo $result_array[0][1]; ?></div>
+        <div class="profile__name"><?php if (isset($_SESSION['id'])) {echo $result_array[0][1];} else {include('../../Models/logout.php'); $location = header('Location: ../index.html');}; ?></div>
       </a>
       <a href="../../Models/logout.php" class="logout-desktop">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>

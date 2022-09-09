@@ -1,7 +1,6 @@
 <?php
 include_once "../../Models/connection.php";
-include_once "../../Models/session.php";
-
+session_start();
 $evidence = $_GET['evidence'];
 
 if(!$evidence){

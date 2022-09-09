@@ -1,6 +1,6 @@
 <?php
 include_once "../../Models/connection.php";
-include_once "../../Models/session.php";
+session_start();
 
 if(empty($_POST["subject"]) || (empty($_POST["group"]) && $_POST["group"] == 0) || empty($_POST["type"]) || empty($_POST["date"]) || empty($_POST["due-date"])){
     header('Location: publications.php?message=empty');
@@ -18,7 +18,7 @@ if($_POST['submit']){
             $date = $_POST['date'];
             $due_date = $_POST['due-date'];
             $url = '../file-store/'.$_FILES['file']['name'];
-            $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion, url) VALUES ('".$session."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."', '".$url."')");
+            $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion, url) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."', '".$url."')");
             
             header('Location: publications.php?message=updated');
             exit();
@@ -33,7 +33,7 @@ if($_POST['submit']){
         $type = $_POST['type'];
         $date = $_POST['date'];
         $due_date = $_POST['due-date'];
-        $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion) VALUES ('".$session."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."')");
+        $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."')");
 
         header('Location: publications.php?message=updated');
         exit();

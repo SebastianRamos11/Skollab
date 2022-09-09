@@ -1,7 +1,6 @@
 <?php
     include_once "../../Models/new-connection.php";
-    include_once "../../Models/session.php";
-
+    session_start();
     if(empty($_POST["calification"])){
         header('Location: review-center.php?message=empty');
         exit();

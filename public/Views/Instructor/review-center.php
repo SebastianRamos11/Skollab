@@ -1,16 +1,15 @@
 <?php
   include_once "../../Models/connection.php";
-  include_once "../../Models/session.php";
-
-  $read_query = "SELECT *  FROM persona WHERE ID_Persona = '$session'";
+  session_start();
+  if (isset($_SESSION['id'])) {
+  $read_query = "SELECT *  FROM persona WHERE ID_Persona =".$_SESSION['id'];
   $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
-  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona = '$session'";
+  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
   $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
   $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
 
-  if (isset($session)) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -158,7 +157,7 @@
             $ficha = $temp_array[$i][2];
 
             // PUBLICATIONS BY GROUP
-            $publications = "SELECT ID_Publicacion FROM `publicacion` WHERE ID_Persona = $session AND ID_Ficha = $ficha";
+            $publications = "SELECT ID_Publicacion FROM `publicacion` WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = $ficha";
             $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
             $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
             ?> 
@@ -255,6 +254,7 @@
 </html>
 <?php
   } else {
-    ?><script>window.location.assign('../index.html')</script><?php
+    include('../../Models/logout.php');
+    $location = header('Location: ../index.html');
   }
 ?>
