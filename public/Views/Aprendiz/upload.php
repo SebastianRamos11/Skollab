@@ -21,7 +21,7 @@ if($_POST['submit']){
             $description = $_POST['description'];
             $date = $_POST['date'];
             $url = '../file-store/evidences/'.$_FILES['file']['name'];
-            $sql = $dbConnection->query("INSERT INTO evidencia (ID_Persona, ID_Publicacion, descripcion, fecha, url) VALUES ('".$session."', '".$evidence."', '".$description."', '".$date."', '".$url."')");
+            $sql = $dbConnection->query("INSERT INTO evidencia (ID_Persona, ID_Publicacion, descripcion, fecha, url) VALUES ('".$_SESSION['id']."', '".$evidence."', '".$description."', '".$date."', '".$url."')");
             
             header('Location: turned-evidence.php?evidence='.$evidence.'&message=updated');
             exit();

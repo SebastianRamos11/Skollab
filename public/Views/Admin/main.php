@@ -12,8 +12,11 @@
             <h2 class="banner__title">Skollab, el mejor sistema de gestión aprendizaje dedicado al SENA.</h2>
             <img class="banner__figure" src="../img/figures/puzzle.png" alt="puzzle">
           </div> -->
+          <a href="../../Models/logout.php" class="logout-desktop">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Cerrar Sesión</span>
+      </a>  
       </header>
-
       <?php 
         include_once "../../Models/new-connection.php";
         $read_query = $bd -> query("SELECT * FROM persona");
