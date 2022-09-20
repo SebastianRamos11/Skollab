@@ -2,7 +2,7 @@
     print_r($_POST);
     
     if(!isset($_POST['id'])){
-        header('Location: main.php?message=error');
+        header('Location: crud.php?message=error');
         exit();
     }
 
@@ -20,7 +20,7 @@
     $query_result = $edit_query -> execute([$id, $firstName, $lastName, $birthYear, $rol, $email, $phone, $id]);
 
     if($query_result){
-        header('Location: main.php?message=modified');
+        header('Location: crud.php?message=modified');
         exit();
     }
 

@@ -1,18 +1,24 @@
 <?php 
 
     if(!isset($_GET['id'])){
-        header('Location: main.php?message=error');
+        header('Location: crud.php?message=error');
         exit();
     }
 
     include_once "../../Models/new-connection.php";
     $id = $_GET["id"];
 
+    $sentencia = $bd->prepare("DELETE FROM publicacion where ID_Persona = ?;");
+    $resultado = $sentencia->execute([$id]);
+
+    $sentencia = $bd->prepare("DELETE FROM ambiente_virtual where ID_Persona = ?;");
+    $resultado = $sentencia->execute([$id]);
+
     $sentencia = $bd->prepare("DELETE FROM persona where ID_Persona = ?;");
     $resultado = $sentencia->execute([$id]);
 
     if($resultado){
-        header('Location: main.php?message=deleted');
+        header('Location: crud.php?message=deleted');
         exit(); 
     }
 ?>  

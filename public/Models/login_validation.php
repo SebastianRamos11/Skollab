@@ -44,7 +44,7 @@
                                 <?php
                             } elseif ($result_array[0][4] == 'ADMINISTRADOR') {
                                 ?>
-                                window.location.assign('../Views/Admin/main.php')
+                                window.location.assign('../Views/Admin/admin.php')
                                 <?php
                             }
                         ?>

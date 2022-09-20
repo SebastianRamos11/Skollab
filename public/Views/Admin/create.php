@@ -1,7 +1,7 @@
 <?php
     
     if(empty($_POST["id"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["birthYear"]) || empty($_POST["rol"]) || empty($_POST["phone"]) || empty($_POST["email"]) || empty($_POST["pass"])){
-        header('Location: main.php?message=empty');
+        header('Location: crud.php?message=empty');
         exit();
     }
 
@@ -20,7 +20,7 @@
     $query_result = $create_query -> execute([$id, $firstName, $lastName, $birthYear, $rol, $email, $pass, $phone]);
 
     if($query_result){
-        header('Location: main.php?message=created');
+        header('Location: crud.php?message=created');
         exit();
     }
 

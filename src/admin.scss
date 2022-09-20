@@ -1,49 +1,70 @@
-@import './config/variables';
-@import './config/fonts';
-@import './config/normalize';
-@import './config/flex';
-@import './config/grid';
-@import './blocks/elements';
-@import './blocks/inputs';
+@import "./config/variables";
+@import "./config/fonts";
+@import "./config/normalize";
+@import "./config/flex";
+@import "./config/grid";
+@import "./blocks/elements";
+@import "./blocks/inputs";
 
 body,
 html {
   height: 100% !important;
-  scroll-behavior: smooth;
   position: relative !important;
 }
 
-.header {
-  padding: 40px 130px;
-  & .banner {
-    margin: 50px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-image: url(../img/backgrounds/signup-bg.svg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: $white;
+.crud-choise {
+  display: grid;
+  grid-template-columns: repeat(4, 240px);
+  gap: 30px;
+  margin-left: -20px;
+  justify-content: center;
+  & .crud-option {
     padding: 30px;
     border-radius: $radius-l;
-
-    &__title {
-      font-size: map-get($size-title, 'm');
+    background: $white;
+    box-shadow: $element-shadow;
+    max-width: 240px;
+    text-align: center;
+    display: grid;
+    row-gap: 15px;
+    &__label {
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
     }
-
-    &__figure {
-      max-width: 320px;
+    &__num {
+      background: #e6f8eb;
+      color: #00ff47;
+      width: max-content;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+    &__btn {
+      @include primary-btn($secundary-color, none);
     }
   }
-}
-
-@media screen and (max-width: 900px) {
-  .banner {
+  & .create-button {
+    background: #8eff9a;
+    text-decoration: none;
+    color: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    &__title {
-      text-align: center;
-      margin-bottom: 10px;
+    position: relative;
+    & .crud-option__label {
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
+      position: absolute;
+      top: 30px;
+    }
+    & i {
+      display: block;
+      font-size: 100px;
+    }
+    &:hover {
+      background: #80ff8c;
+      cursor: pointer;
     }
   }
 }
@@ -57,6 +78,10 @@ th {
   border-color: inherit;
   border-style: solid;
   border-width: 0;
+  text-align: center;
+}
+.crud {
+  margin-top: 50px;
 }
 
 .card {
@@ -70,7 +95,7 @@ th {
 
     padding: 20px 15px;
     color: $white;
-    font-size: map-get($size-paragraph, 'l');
+    font-size: map-get($size-paragraph, "l");
   }
   & table {
     tbody {
@@ -83,12 +108,15 @@ th {
         .edit-button {
           color: $secundary-color;
         }
+        .see-button {
+          color: $primary-color;
+        }
         .delete-button {
           color: $primary-contrast !important;
         }
       }
       tr:hover {
-        font-weight: map-get($font-weights, 'medium');
+        font-weight: map-get($font-weights, "medium");
         color: $secundary-color;
         outline: 2px solid $secundary-color;
       }
@@ -184,12 +212,9 @@ th {
   display: none !important;
 }
 
-.create-button {
-  display: block;
+.p-4 {
   background: $white;
-  padding: 20px;
-  font-size: 20px;
-  border-radius: $radius-l;
+  border-radius: 0 0 20px 20px;
 }
 
 .btn-create {
@@ -199,12 +224,22 @@ th {
 .mb-50 {
   margin-bottom: 50px;
 }
-.modal {
+
+.modal-container {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
+
+  position: absolute;
 
   background-color: #fff;
   padding: 50px 100px;
@@ -216,9 +251,10 @@ th {
 .overlay {
   position: absolute;
   top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 99999px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 5;
@@ -234,7 +270,9 @@ th {
   border: none;
   background: none;
 }
-
+.roles {
+  margin-left: -20px;
+}
 .form {
   width: 100%;
   display: grid;
@@ -278,6 +316,9 @@ th {
       & .submit-btn {
         @include primary-btn($primary-contrast, false);
       }
+    }
+    & .submit__field {
+      grid-column: 3 span;
     }
   }
 }

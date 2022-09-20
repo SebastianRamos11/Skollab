@@ -83,8 +83,9 @@
             <div class="user-evidences">
                 <div class="user-evidences__label">Estado de evidencias</div>
                 
-                <?php for($i = 0; $i < sizeof($publication_array); $i++){ 
-                    
+                <?php 
+                if(sizeof($publication_array) > 0){
+                    for($i = 0; $i < sizeof($publication_array); $i++){ 
                     $id_publication = $publication_array[$i][0];
                     $title_publication = $publication_array[$i][1];
 
@@ -163,7 +164,12 @@
                             </div>
                         <?php
                     }
-                } 
+                    }
+                } else {
+                    ?>
+                    <div class="publications-empty">El Instructor no ha realizado ninguna publicación</div>
+                    <?php
+                }
                 ?>
                 
             </div>

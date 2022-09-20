@@ -11,7 +11,7 @@
       <?php
 
         if(!isset($_GET['id'])){
-            header('Location: main.php?message=error');
+            header('Location: crud.php?message=error');
             exit();
         }
 
