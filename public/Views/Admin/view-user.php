@@ -98,7 +98,7 @@
                 <?php
               }
 
-              // TODO: If User is Instructor -> Print Publications
+              // TODO: If User is Instructor -> Print publication
               if($user_array[0][2] == "INSTRUCTOR"){
                 echo 'Publicaciones';
               }
@@ -122,36 +122,23 @@
                   $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
                   $id_instructor = $instructor_array[0][0];
 
-                  // GET INSTRUCTOR'S PUBLICATIONS
-                  $publications = "SELECT ID_Publicacion, asunto FROM `publicacion` WHERE ID_Persona = $id_instructor";
-                  $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
-                  $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
+                  // GET INSTRUCTOR'S publication
+                  $publication = "SELECT ID_Publicacion, asunto FROM `publicacion` WHERE ID_Persona = $id_instructor";
+                  $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
+                  $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
 
-                  print_r($publications_array);
+                  print_r($publication_array);
+
                   ?>
-                  <div class="program">Evidencias entregadas para <?php echo $program_name ?></div>
-                  <?php
-                  for ($j=0; $j < sizeof($publications_array); $j++) { 
-                    $id_publication = $publications_array[$j][0];
-                    $publication_title = $publications_array[$j][1];
+                  <div class="user-evidences">
+                    <div class="user-evidences__label"><?php echo $program_name ?></div>
+                    <?php
+                    for ($j=0; $j < sizeof($publication_array); $j++) { 
+                      $id_publication = $publication_array[$j][0];
+                      $title_publication = $publication_array[$j][1];
 
-                    // GET EVIDENCES DELIVERED BY PUBLICATION
-                    $evidences = "SELECT fecha, nota, observacion, url, ID_Publicacion FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Publicacion = $id_publication";
-                    $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
-                    $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
-
-                    print_r($evidences_array);
-                  }
-                }
-
-                ?>
-                <!-- <div class="user-evidences">
-                  <div class="user-evidences__label">Estado de evidencias</div>
-                  <?php for($i = 0; $i < sizeof($publication_array); $i++){
-                      $id_publication = $publication_array[$i][0];
-                      $title_publication = $publication_array[$i][1];
-
-                      $evidences = "SELECT fecha, nota, observacion, url FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Publicacion = $id_publication";
+                      // GET EVIDENCES DELIVERED BY PUBLICATION
+                      $evidences = "SELECT fecha, nota, observacion, url, ID_Publicacion FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Publicacion = $id_publication";
                       $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                       $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 
@@ -213,7 +200,7 @@
                                   <a href="<?php echo $evidences_array[0][3] ;?>" class="user-evidence__file" download=""><i class="fa-regular fa-file-lines"></i></a>
                               </div>
                           </div>
-                  <?php
+                      <?php
                       } else{
                           ?>
                               <div class="user-evidence user-evidence--empty">
@@ -225,10 +212,11 @@
                               </div>
                           <?php
                       }
-                  }
-                  ?>
-                </div> -->
-              <?php
+                    }
+                    ?>
+                    </div>
+                    <?php
+                }
                 }
               ?>
             <!-- TODO: If User is Aprendiz -> Print 👇 -->

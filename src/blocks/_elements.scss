@@ -629,3 +629,96 @@
     }
   }
 }
+
+.user-evidences {
+  &__label {
+    margin-bottom: 20px;
+    font-size: map-get($size-title, "s");
+    font-weight: map-get($font-weights, "semibold");
+  }
+  & .user-evidence {
+    @include element;
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: 290px 140px 130px 140px;
+    padding: 40px;
+    border: 2px solid #babababa;
+    &__publication {
+      display: flex;
+    }
+    &__icon {
+      display: block;
+      position: relative;
+      top: -1.5px;
+      margin-right: 15px;
+      font-size: 28px;
+      color: $secundary-color;
+    }
+    &__title {
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "medium");
+    }
+    &__date {
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: $radius-xl;
+      background: rgba($color: #ffe072, $alpha: 0.5);
+    }
+    &__grade {
+      &-value {
+        margin-bottom: 5px;
+        text-align: center;
+      }
+      &-range {
+        width: 120px;
+        height: 10px;
+        background: #c5d6ee;
+        border-radius: 10px;
+        & span {
+          display: block;
+          height: 100%;
+          border-radius: 10px;
+          width: 100%;
+        }
+        & .grade-a {
+          background: #00d809;
+        }
+        & .grade-b {
+          background: #eba352;
+        }
+        & .grade-d {
+          background: $primary-contrast;
+        }
+      }
+    }
+    &__icons {
+      display: flex;
+      min-width: 130px;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    &__observation {
+      text-align: center;
+    }
+    &__file {
+      font-size: 25px;
+      text-decoration: none;
+      color: $primary-contrast;
+    }
+  }
+  & .user-evidence--empty {
+    display: flex;
+    justify-content: space-between;
+    background: rgba($color: #ffab7a, $alpha: 0.5);
+    .user-evidence__icon {
+      color: rgba($color: #ff0f0f, $alpha: 0.8);
+    }
+    &__alert {
+      padding: 10px 20px;
+      text-align: center;
+      border-radius: $radius-xl;
+      background: rgba($color: #ff0f0f, $alpha: 0.8);
+    }
+  }
+}
