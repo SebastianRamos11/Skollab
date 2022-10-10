@@ -142,6 +142,6 @@
 <?php 
       } else {
         include('../../Models/logout.php');
-        $location = header('Location: ../index.html');
+        $location = header('Location: ../index.php');
       }
 ?> 

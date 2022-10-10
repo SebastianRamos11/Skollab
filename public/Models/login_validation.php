@@ -10,8 +10,6 @@
         <body>
 <?php
     require('connection.php');
-    include_once('../Models/session_validation.php');
-    session_destroy();
     if (isset($_POST['login'])) {
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($dbConnection, $email);
@@ -19,37 +17,24 @@
         $pass = $_POST['pass'];
         $pass = hash('sha512', $pass);
 
-        $login_query = "SELECT * FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'";
+        $login_query = "SELECT ID_Persona, rol FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'";
         $query_result = mysqli_query($dbConnection, $login_query) or die(mysqli_error($dbConnection));
         $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
+        
         $row = mysqli_num_rows($query_result);
         if ($row == 1) {
             session_start();
             $_SESSION['id'] = $result_array[0][0];
+            
+            if ($result_array[0][1] == 'APRENDIZ') {
+                header('Location: ../Views/Aprendiz/aprendiz.php');
+            } elseif ($result_array[0][1] == 'INSTRUCTOR') {
+                header('Location: ../Views/Instructor/instructor.php');
+            } elseif ($result_array[0][1] == 'ADMINISTRADOR') {
+                header('Location: ../Views/Admin/admin.php');
+            }
+
             ?>
-                <script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Ingreso satisfactorio',
-                        text: '¡Ahora puedes disfrutar de Skollab!'
-                    }).then(function() {
-                        <?php
-                            if ($result_array[0][4] == 'APRENDIZ') {
-                                ?>
-                                window.location.assign('../Views/Aprendiz/aprendiz.php')
-                                <?php
-                            } elseif ($result_array[0][4] == 'INSTRUCTOR') {
-                                ?>
-                                window.location.assign('../Views/Instructor/instructor.php')
-                                <?php
-                            } elseif ($result_array[0][4] == 'ADMINISTRADOR') {
-                                ?>
-                                window.location.assign('../Views/Admin/admin.php')
-                                <?php
-                            }
-                        ?>
-                    });
-                </script>
             </body>
             </html>
             <?php

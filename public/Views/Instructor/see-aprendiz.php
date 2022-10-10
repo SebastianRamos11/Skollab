@@ -2,27 +2,22 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
-
-  $id_aprendiz = $_GET['aprendiz'];
+    $id_aprendiz = $_GET['aprendiz'];
   
-  // GET APRENDIZ DATA
-  $aprendiz = "SELECT nombres, apellidos, rol, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_aprendiz";
-  $aprendiz_result = mysqli_query($dbConnection, $aprendiz) or die(mysqli_error($dbConnection));
-  $aprendiz_array = mysqli_fetch_all($aprendiz_result, MYSQLI_NUM);
+    // GET APRENDIZ DATA
+    $aprendiz = "SELECT nombres, apellidos, rol, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_aprendiz";
+    $aprendiz_result = mysqli_query($dbConnection, $aprendiz) or die(mysqli_error($dbConnection));
+    $aprendiz_array = mysqli_fetch_all($aprendiz_result, MYSQLI_NUM);
 
-  // GET AMBIENTE VIRTUAL OF APRENDIZ 
-  $course_aprendiz = "SELECT * FROM ambiente_virtual WHERE ID_Persona = $id_aprendiz";
-  $course_aprendiz_result = mysqli_query($dbConnection, $course_aprendiz) or die(mysqli_error($dbConnection));
-  $course_aprendiz_array = mysqli_fetch_all($course_aprendiz_result, MYSQLI_NUM);
+    // GET AMBIENTE VIRTUAL OF APRENDIZ 
+    $course_aprendiz = "SELECT * FROM ambiente_virtual WHERE ID_Persona = $id_aprendiz";
+    $course_aprendiz_result = mysqli_query($dbConnection, $course_aprendiz) or die(mysqli_error($dbConnection));
+    $course_aprendiz_array = mysqli_fetch_all($course_aprendiz_result, MYSQLI_NUM);
 
-  // GET INSTRUCTOR PUBLICATIONS (TO LOOP)
-  $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona =".$_SESSION['id'];
-  $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-  $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
-
+    // GET INSTRUCTOR PUBLICATIONS (TO LOOP)
+    $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona =".$_SESSION['id'];
+    $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
+    $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -190,6 +185,6 @@
 <?php 
       } else {
         include('../../Models/logout.php');
-        $location = header('Location: ../index.html');
+        $location = header('Location: ../index.php');
       }
 ?> 

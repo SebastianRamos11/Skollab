@@ -2,23 +2,17 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
+    include_once "../../Models/new-connection.php";
+    $read_query = $bd -> query("SELECT * FROM persona");
+    $persona = $read_query->fetchAll(PDO::FETCH_OBJ);
+
+    $read_admin = $bd -> query("SELECT * FROM persona WHERE rol = 'ADMINISTRADOR';");
+    $read_aprendiz = $bd -> query("SELECT * FROM persona WHERE rol = 'APRENDIZ';");
+    $read_instructor = $bd -> query("SELECT * FROM persona WHERE rol = 'INSTRUCTOR';");
     
-  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
-
-  include_once "../../Models/new-connection.php";
-  $read_query = $bd -> query("SELECT * FROM persona");
-  $persona = $read_query->fetchAll(PDO::FETCH_OBJ);
-
-  $read_admin = $bd -> query("SELECT * FROM persona WHERE rol = 'ADMINISTRADOR';");
-  $read_aprendiz = $bd -> query("SELECT * FROM persona WHERE rol = 'APRENDIZ';");
-  $read_instructor = $bd -> query("SELECT * FROM persona WHERE rol = 'INSTRUCTOR';");
-  
-  $admin = $read_admin->fetchAll(PDO::FETCH_OBJ);
-  $aprendiz = $read_aprendiz->fetchAll(PDO::FETCH_OBJ);
-  $instructor = $read_instructor->fetchAll(PDO::FETCH_OBJ);
-
+    $admin = $read_admin->fetchAll(PDO::FETCH_OBJ);
+    $aprendiz = $read_aprendiz->fetchAll(PDO::FETCH_OBJ);
+    $instructor = $read_instructor->fetchAll(PDO::FETCH_OBJ);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -151,7 +145,7 @@
                     <td>'.$dato -> correo_electronico.'</td>
                     <td>'.$dato -> telefono.'</td>
                     <td><a href="form-edit.php?id='.$dato -> ID_Persona.'" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                    <td><a href="delete.php?id='.$dato -> ID_Persona.'" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
+                    <td><a href="delete.php?delete_user&id='.$dato -> ID_Persona.'" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
                     <td><a href="view-user.php?user='.$dato -> ID_Persona.'" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
                   </tr>
                   ';
@@ -310,12 +304,35 @@
         scroll-behavior: unset !important;
       }
     </style>
+    <script>
+      const deleteUser = document.querySelectorAll('.delete-button');
+      deleteUser.forEach((e, i) => {
+          deleteUser[i].addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log(deleteUser[i].getAttribute('href'));
+              Swal.fire({
+                  title: '¿Seguro que quieres eliminar este usuario?',
+                  text: "¡No podrás revertir esto!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, eliminar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.assign(deleteUser[i].getAttribute('href'));
+              }
+              })
+          })
+      })
+    </script>
     <script src="../../Controllers/admin-control.js"></script>
   </body>
   </html>
   <?php 
   } else {
     include('../../Models/logout.php');
-    $location = header('Location: ../index.html');
+    $location = header('Location: ../index.php');
   }
 ?>

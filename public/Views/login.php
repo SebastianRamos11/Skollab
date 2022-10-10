@@ -1,3 +1,7 @@
+<?php 
+  session_start();
+  if (!isset($_SESSION['id'])) {
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -35,3 +39,19 @@
     <script src="../Controllers/pass-visualization.js"></script>
   </body>
 </html>
+<?php 
+}else{
+  include_once "../Models/connection.php";
+
+  $read_query = "SELECT rol FROM persona WHERE ID_Persona =".$_SESSION['id'];
+  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
+  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
+
+  if ($result_array[0][0] == 'APRENDIZ') {
+      header('Location: ./Aprendiz/aprendiz.php');
+  } elseif ($result_array[0][0] == 'INSTRUCTOR') {
+      header('Location: ./Instructor/instructor.php');
+  } elseif ($result_array[0][0] == 'ADMINISTRADOR') {
+      header('Location: ./Admin/admin.php');
+  }
+}?>

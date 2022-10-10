@@ -2,10 +2,6 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-    $read_query = "SELECT *  FROM persona WHERE ID_Persona =".$_SESSION['id'];
-    $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
-
   // GET INSTRUCTOR'S GROUPS
   $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
   $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
@@ -117,7 +113,7 @@
                         ?>
                       </div>
                       <div class="publication__btns">
-                        <a href="FIXME?publication=<?php echo $publications_array[$j][0]?>" class="publication__btns-link">Editar>></a>
+                        <a href="#?publication=<?php echo $publications_array[$j][0]?>" class="publication__btns-link">Editar>></a>
                       </div>
                     </div>
                     <?php
@@ -141,7 +137,7 @@
     </div>
 
     <!-- CREATE PUBLICATION FORM -->
-    <form action="upload.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
+    <form action="upload-post.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
       <!-- FORM HEADING -->
       <div class="upload-form__title">Crear Publicación</div>
       <hr>
@@ -224,6 +220,6 @@
 <?php
     } else {
       include('../../Models/logout.php');
-      $location = header('Location: ../index.html');
+      $location = header('Location: ../index.php');
     }
 ?>

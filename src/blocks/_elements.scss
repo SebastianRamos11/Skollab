@@ -101,6 +101,75 @@
   margin: 40px;
 }
 
+// NAVIGATION VAR
+.nav {
+  background: $white;
+  position: relative;
+  @include setFlex(column, center, between);
+  width: 100%;
+  padding: 20px;
+  top: 0;
+  &__logo {
+    width: 130px;
+    margin-left: 20px;
+    flex-shrink: 2;
+    margin-bottom: 15px;
+  }
+  &-menu {
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    &--loged {
+      margin-left: auto;
+    }
+    & .btn-menu {
+      display: block;
+      margin-left: auto;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &--rotate {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__links {
+      padding: 20px;
+      background: $white;
+      z-index: 10;
+      position: absolute;
+      margin-top: 35px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    &__item {
+      list-style: none;
+      margin-bottom: 15px;
+    }
+    &__link {
+      text-decoration: none;
+      color: $black;
+      transition: all 0.2s;
+
+      &:hover {
+        color: $secundary-color;
+        font-weight: map-get($font-weights, "semibold");
+      }
+      &--outline {
+        margin-left: 15px;
+        padding: 12px 15px;
+        border-radius: $radius-xl;
+        outline: 2px solid $black;
+        &:hover {
+          outline: 2px solid $black;
+          font-weight: map-get($font-weights, "medium");
+          color: $white;
+          background: $secundary-color;
+        }
+      }
+    }
+  }
+}
+
 // @media screen and (min-width: $xl) {
 //   .nav-y {
 //     background: $white;
@@ -109,7 +178,7 @@
 //     position: fixed;
 //     @include setFlex(column, center, between);
 //     & .nav__logo {
-//       width: 130px;j ja
+//       width: 130px;
 //       margin-top: 40px;
 //     }
 //     & .nav-menu {
@@ -255,7 +324,7 @@
   border: none;
   min-width: 180px;
   text-align: center;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: center;
   background: $white;
@@ -275,6 +344,23 @@
   }
   &__figure {
     max-width: 100px;
+  }
+  &__unlink {
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+    border-radius: $radius-xl;
+    padding: 10px 20px;
+    color: $white;
+    background: $secundary-color;
+    font-weight: map-get($font-weights, "medium");
+    & i {
+      margin-right: 10px;
+    }
+    &:hover {
+      background: rgba(0, 90, 255);
+    }
   }
 }
 
@@ -334,11 +420,12 @@
   stroke-width: 6;
 }
 
+// NAV DASHBOARD
 // Desktop
 .wrapper {
   display: flex;
   position: relative;
-  & .nav {
+  & .nav-y {
     position: fixed;
     background: $white;
     width: 250px;
@@ -355,18 +442,7 @@
       width: 50px;
     }
     & .profile {
-      display: flex;
-      text-decoration: none;
-      color: $black;
-      align-items: flex-end;
-      position: relative;
       margin-bottom: 45px;
-      &__img {
-        width: 40px;
-        border-radius: 50%;
-        margin-right: 8px;
-        border: 2px solid #272727;
-      }
       &__name {
         margin-bottom: 10px;
       }
@@ -452,7 +528,7 @@
       top: 25px;
       transition: 0.2s 0.1s;
     }
-    & .nav {
+    & .nav-y {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -507,10 +583,22 @@
   color: $paragraph-color;
   margin-bottom: 40px;
 }
+
+// PROFILE INTERFACE
 .profile {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
+  padding: 20px 100px;
+  &__header {
+    grid-column: 2 span;
+    margin: 10px 0;
+    padding: 0;
+  }
+  &__p {
+    grid-column: 2 span;
+    margin-bottom: 30px;
+    color: $paragraph-color;
+  }
   &-photo {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -630,15 +718,104 @@
   }
 }
 
-.user-evidences {
-  &__label {
-    margin-bottom: 20px;
-    font-size: map-get($size-title, "s");
-    font-weight: map-get($font-weights, "semibold");
+// PROFILE NAVBAR
+.nav-profile {
+  display: flex;
+  text-decoration: none;
+  color: $black;
+  align-items: flex-end;
+  position: relative;
+  // bottom: 50px;
+  &__img {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 2px solid #272727;
   }
+  &__name {
+    margin-bottom: 10px;
+  }
+  &--y {
+    bottom: 40px;
+  }
+}
+
+.user {
+  &-profile {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    &__photo {
+      max-width: 160px;
+      border: 6px solid #ffffff;
+      border-radius: 50%;
+      filter: drop-shadow(0px 6px 7px rgba(0, 0, 0, 0.25));
+    }
+    &__info {
+      margin-left: 50px;
+    }
+    &__name {
+      font-size: map-get($size-title, "l");
+      font-weight: map-get($font-weights, "semibold");
+      margin-bottom: 5px;
+    }
+    &__label {
+      display: flex;
+      color: #636363;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 230px;
+      font-weight: map-get($font-weights, "medium");
+      & .dot {
+        background: #636363;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+      }
+    }
+    &__contact {
+      margin-top: 40px;
+      display: flex;
+      &-data {
+        width: 300px;
+        line-height: 35px;
+        height: 40px;
+        border: 2px solid #babababa;
+        text-align: center;
+        margin-right: 20px;
+        color: #636363;
+        border-radius: 10px;
+        & i {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  & hr {
+    border-color: #d9d9d9;
+    margin: 30px 0;
+  }
+  &-programs {
+    &__label {
+      margin-bottom: 20px;
+      font-size: map-get($size-title, "s");
+      font-weight: map-get($font-weights, "semibold");
+    }
+    & .course {
+      margin: auto 20px auto 0;
+      text-align: center;
+      border: 2px solid #babababa;
+    }
+  }
+}
+
+.user-evidences {
+  margin-bottom: 40px;
   & .user-evidence {
     @include element;
     display: grid;
+    width: 900px;
     justify-content: space-between;
     align-items: center;
     grid-template-columns: 290px 140px 130px 140px;
@@ -720,5 +897,137 @@
       border-radius: $radius-xl;
       background: rgba($color: #ff0f0f, $alpha: 0.8);
     }
+  }
+}
+.user-label {
+  margin-bottom: 20px;
+  font-size: map-get($size-title, "s");
+  font-weight: map-get($font-weights, "semibold");
+}
+.alert-message {
+  padding: 40px;
+  margin: 30px auto;
+  position: relative;
+  right: 18px;
+  text-align: center;
+  background: #ffd16d;
+  padding: 20px 15px;
+  border-radius: $radius-m;
+  max-width: 900px;
+  & i {
+    font-size: 20px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+  }
+}
+
+// Publications
+.publications-course {
+  display: grid;
+  padding: 0 30px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin: 30px auto;
+  &__label {
+    padding: 10px 50px;
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
+    margin-bottom: 10px;
+    color: #272727;
+    grid-column: 2 span;
+  }
+  & hr {
+    border-color: #e0e0e0;
+    width: 100%;
+    grid-column: 2 span !important;
+  }
+
+  & .publication {
+    background: $white;
+    border-radius: $radius-l;
+    box-shadow: $element-shadow;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    &__title {
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
+      margin-bottom: 10px;
+    }
+    &__date {
+      font-style: italic;
+      margin: 5px 3px;
+    }
+    &__info {
+      background: #f9f9f9;
+      border-radius: $radius-l;
+      padding: 30px;
+      margin: 20px 0;
+    }
+    &__p {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+    &__date-limit {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 10px 20px;
+      border-radius: $radius-xl;
+      background: rgba($color: #ffe072, $alpha: 0.5);
+    }
+    &__type {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: $radius-xl;
+      color: #202020;
+      background: #80e483;
+    }
+    &__file {
+      position: relative;
+      & i {
+        font-size: 25px;
+        position: relative;
+        top: 3px;
+        margin-left: 15px;
+        color: $secundary-color;
+      }
+      & span {
+        font-size: 13px;
+        font-weight: map-get($font-weights, "semibold");
+        color: $black;
+      }
+    }
+    &__btns {
+      & a {
+        display: block;
+        text-decoration: none;
+      }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-link {
+        color: $secundary-color;
+      }
+      &-evidences {
+        @include primary-btn($secundary-color, false);
+        cursor: pointer;
+      }
+    }
+    &__btn-delete {
+      position: absolute;
+      right: 40px;
+      font-size: 25px;
+      color: $primary-contrast;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .publications-course {
+    gap: 30px;
   }
 }

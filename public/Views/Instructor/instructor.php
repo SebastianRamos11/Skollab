@@ -15,9 +15,6 @@
       include_once "../../Models/connection.php";
       session_start();
       if (isset($_SESSION['id'])) {
-      $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
-      $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-      $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
 
       $program_query = "SELECT * FROM programa_formacion";
       $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
@@ -54,6 +51,6 @@
 <?php 
       } else {
         include('../../Models/logout.php');
-        $location = header('Location: ../index.html');
+        $location = header('Location: ../index.php');
       }
   ?>

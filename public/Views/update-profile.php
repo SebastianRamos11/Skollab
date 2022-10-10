@@ -8,7 +8,7 @@
         exit();
     }
 
-    include_once "../../Models/new-connection.php";
+    include_once "../Models/new-connection.php";
 
     $id = $_POST["id"];
     $firstName = $_POST["firstName"];

@@ -339,3 +339,107 @@ th {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+// APRENDIZ MANAGEMENT
+
+.course--management {
+  cursor: default;
+}
+
+.evidence-management {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding-right: 40px;
+  & .evidence-management__btn-delete {
+    position: absolute;
+    font-size: 25px;
+    top: 77px;
+    right: 20px;
+    color: $primary-contrast;
+    cursor: pointer;
+  }
+}
+
+.publications-course {
+  & .publication {
+    border: 2px solid rgba(186, 186, 186, 0.7294117647);
+  }
+}
+
+// EDIT SLIDER
+.edit-slider {
+  background: $white;
+  box-shadow: $element-shadow;
+  width: 400px;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border-radius: $radius-xl;
+  margin-bottom: 40px;
+  & i {
+    left: 100px;
+    color: $secundary-color;
+    font-size: 50px;
+    display: block;
+    margin-right: 20px;
+  }
+  &__btn {
+    @include primary-btn($secundary-color, false);
+  }
+}
+
+// ANNOUNCEMENTS
+.announcements {
+  &__label {
+    margin-bottom: 20px;
+  }
+  & .announcement-management {
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 40px;
+    &__actions {
+      margin-top: 30px;
+    }
+    &__btn {
+      display: block;
+      margin-bottom: 10px;
+      background: $white;
+      text-decoration: none;
+      padding: 15px;
+      border-top: 1px solid #a5a5a5;
+      border-right: 1px solid #a5a5a5;
+      border-bottom: 1px solid #a5a5a5;
+      font-size: 20px;
+      &--delete {
+        color: $primary-contrast;
+      }
+      &--edit {
+        color: $secundary-color;
+      }
+    }
+  }
+}
+
+.announcement {
+  @include element;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20% 80%;
+  margin: 0;
+  grid-auto-flow: column;
+  gap: 20px;
+  &__title {
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
+    text-align: center;
+  }
+  &__img {
+    grid-row: 2 span;
+  }
+}

@@ -1,31 +1,31 @@
 <div class="wrapper">
   <header class="header">
-    <nav class="nav">
-      <a href="../../Models/logout.php">
+    <nav-y class="nav-y">
+      <a href="../index.php">
         <img src="../img/main/Logo.png" alt="logo" class="logo full-logo" />
         <img src="../img/skollab.png" alt="logo" class="logo short-logo" />
       </a>
-      <ul class="nav-menu">
-        <a href="./aprendiz.php" class="nav-menu__link nav-menu__link--active">
-          <li class="nav-menu__item">
+      <ul class="nav-y-menu">
+        <a href="./aprendiz.php" class="nav-y-menu__link nav-y-menu__link--active">
+          <li class="nav-y-menu__item">
             <i class="fa-solid fa-house"></i>
             <span>Inicio</span>
           </li>
         </a>
-        <a href="evidences-center.php" class="nav-menu__link">
-          <li class="nav-menu__item">
+        <a href="evidences-center.php" class="nav-y-menu__link">
+          <li class="nav-y-menu__item">
             <i class="fa-solid fa-book"></i>
             <span>Evidencias</span>
           </li>
         </a>
-        <a href="briefcase.php" class="nav-menu__link">
-          <li class="nav-menu__item">
+        <a href="briefcase.php" class="nav-y-menu__link">
+          <li class="nav-y-menu__item">
             <i class="fa-solid fa-briefcase"></i>
             <span>Portafolio</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">
-          <li class="nav-menu__item">
+          <li class="nav-y-menu__item">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span>Cerrar Sesión</span> 
           </li>
@@ -44,14 +44,14 @@
           />
         </svg>
       </button>
-      <a href="./profile.php" class="profile">
-        <img src="../img/default.jpeg" alt="avatar" class="profile__img">
-        <div class="profile__name"><?php if (isset($_SESSION['id'])) {echo $result_array[0][1];} else {include('../../Models/logout.php'); $location = header('Location: ../index.html');}; ?></div>
+      <a href="../profile.php" class="nav-profile nav-profile--y">
+        <img src="../img/default.jpeg" alt="avatar" class="nav-profile__img">
+        <div class="nav-profile__name"><?php if (isset($_SESSION['id'])) {echo $result_array[0][1];} else {include('../../Models/logout.php'); $location = header('Location: ../index.php');}; ?></div>
       </a>
       <a href="../../Models/logout.php" class="logout-desktop">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
         <span>Cerrar Sesión</span>
       </a>  
-    </nav>
+    </nav-y>
   </header>
   <main class="main-content">

@@ -31,13 +31,9 @@ const roleCrud = document.querySelectorAll(".crud");
 readButton.forEach((e, i) => {
   readButton[i].addEventListener("click", () => {
     roleCrud[i].classList.remove("hidden");
-    console.log(document.querySelector(`#crud-${i}`));
-
     for (let j = 0; j < roleCrud.length; j++) {
       if (roleCrud[j] === roleCrud[i]) continue;
       roleCrud[j].classList.add("hidden");
     }
   });
 });
-
-console.log("Hello World");

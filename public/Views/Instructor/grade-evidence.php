@@ -2,10 +2,6 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
-  
   $id_evidencia = $_GET['evidence'];  
 
   $evidence = "SELECT E.ID_Publicacion, E.ID_Persona, P.ID_Ficha, E.fecha, E.descripcion, E.url FROM evidencia E JOIN publicacion P ON E.ID_Publicacion = P.ID_Publicacion WHERE ID_Evidencia = $id_evidencia;";
@@ -115,6 +111,6 @@
 <?php 
       } else {
         include('../../Models/logout.php');
-        $location = header('Location: ../index.html');
+        $location = header('Location: ../index.php');
       }
 ?> 

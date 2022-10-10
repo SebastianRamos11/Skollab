@@ -1,62 +1,11 @@
-@import './config/variables';
-@import './config/fonts';
-@import './config/normalize';
-@import './config/flex';
-@import './config/grid';
-@import './blocks/elements';
+@import "./config/variables";
+@import "./config/fonts";
+@import "./config/normalize";
+@import "./config/flex";
+@import "./config/grid";
+@import "./blocks/elements";
 
-// Nav bar
-
-.nav {
-  top: 0;
-  width: 100%;
-  background: $white;
-  @include setFlex(column, center, between);
-  padding: 20px 0;
-  min-height: 80px;
-
-  &__logo {
-    width: 130px;
-    margin-left: 20px;
-    flex-shrink: 2;
-    margin-bottom: 15px;
-  }
-
-  &-menu {
-    @include setFlex(row, center, evenly);
-    margin-right: 15px;
-    list-style: none;
-    font-size: 1em;
-
-    &__link {
-      text-decoration: none;
-      color: $black;
-      border-radius: $radius-xl;
-      padding: 12px 15px;
-      margin: 0 5px;
-      transition: 0.5s;
-      outline: none;
-    }
-
-    &__link--active {
-      border: $border;
-    }
-
-    &__link:active,
-    &__link--active:active {
-      background: $secundary-color;
-      border: $border;
-      color: $white;
-    }
-
-    &__link:hover,
-    &__link--active:hover {
-      background: $secundary-color;
-      border: $border;
-      color: $white;
-    }
-  }
-}
+// TODO: Fix Nav bar styles
 
 // Media
 @media screen and (min-width: $md) {
@@ -82,7 +31,7 @@
   background-position-y: 40px;
 
   &__paragraph {
-    font-size: map-get($size-paragraph, 'xl');
+    font-size: map-get($size-paragraph, "xl");
     color: $paragraph-color;
   }
 
@@ -132,10 +81,10 @@
   padding: 50px;
   text-align: center;
   &__title {
-    font-size: map-get($size-title, 'm');
+    font-size: map-get($size-title, "m");
   }
   &__paragraph {
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
     color: $paragraph-color;
   }
 }
@@ -165,18 +114,18 @@
   }
 
   &__title {
-    font-size: map-get($size-title, 'm');
+    font-size: map-get($size-title, "m");
     margin-bottom: 5px;
   }
 
   &__paragraph {
     color: $paragraph-color;
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
   }
 }
 
 .card-steps {
-  font-size: map-get($size-paragraph, 'm');
+  font-size: map-get($size-paragraph, "m");
   &__list {
     list-style: none;
     text-align: left;
@@ -200,7 +149,7 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       background: $secundary-color;
       z-index: 0;
@@ -255,8 +204,8 @@
 
   &__title {
     margin: 80px;
-    font-size: map-get($size-title, 'xl');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "xl");
+    font-weight: map-get($font-weights, "semibold");
     text-align: center;
     flex-shrink: 2;
     & hr {
@@ -290,7 +239,7 @@
 .skills {
   min-height: 700px;
   margin-bottom: $element-spacing;
-  @include background('../img/backgrounds/skills-bg.svg');
+  @include background("../img/backgrounds/skills-bg.svg");
   background-position: bottom;
   padding: 40px;
 
@@ -303,10 +252,10 @@
     }
   }
   &__title {
-    font-size: map-get($size-title, 'l');
+    font-size: map-get($size-title, "l");
   }
   &__paragraph {
-    font-size: map-get($size-paragraph, 'l');
+    font-size: map-get($size-paragraph, "l");
     color: $paragraph-color;
   }
   &__icons {
@@ -336,13 +285,13 @@
   text-align: center;
   padding: 70px 40px 0 40px;
   &__title {
-    font-size: map-get($size-title, 's');
+    font-size: map-get($size-title, "s");
     & hr {
       @include hr($primary-contrast, false);
     }
   }
   &__paragraph {
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
     color: $paragraph-color;
   }
   &__btn {
@@ -414,18 +363,18 @@
   }
 
   &__brand {
-    font-size: map-get($size-title, 'l');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "l");
+    font-weight: map-get($font-weights, "semibold");
     margin-bottom: 15px;
   }
 
   &__title {
-    font-size: map-get($size-title, 's');
-    font-weight: map-get($font-weights, 'medium');
+    font-size: map-get($size-title, "s");
+    font-weight: map-get($font-weights, "medium");
     margin-bottom: 15px;
   }
   &__info {
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
     & div {
       margin-bottom: 10px;
     }
@@ -451,7 +400,15 @@
     }
     &-button {
       height: 50px;
-      @include primary-btn(linear-gradient(104.67deg, #ff5a5a -82.31%, #f11414 54.83%, #f11414 86.9%), false);
+      @include primary-btn(
+        linear-gradient(
+          104.67deg,
+          #ff5a5a -82.31%,
+          #f11414 54.83%,
+          #f11414 86.9%
+        ),
+        false
+      );
     }
   }
 
@@ -460,7 +417,7 @@
   }
   &__copyright {
     @include setFlex(row, center, between);
-    font-size: map-get($size-paragraph, 'm');
+    font-size: map-get($size-paragraph, "m");
     padding: 20px;
   }
 }
