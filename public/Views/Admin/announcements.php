@@ -18,10 +18,42 @@
   <body>
       <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Centro de Anuncios 📢</h1>
-      <div class="edit-slider">
-        <i class="fa-solid fa-pen-to-square"></i>
-        <div class="edit-slider__btn">Editar Slider</div>
+      <div class="main-options">
+        <div class="main-option">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <div class="main-option__btn">Editar Slider</div>
+        </div>
+        <!-- TODO: Crear boton de crear anuncio -->
+        <a href="#" class="main-option">
+          <i class="fa-solid fa-plus"></i>
+          <div class="main-option__btn">Crear Anuncio</div>
+        </a>
       </div>
+
+      <!-- CREATE ANNOUNCEMENT FORM -->
+
+      <form action="#" method="post" enctype="multipart/form-data" class="float-form">
+        <!-- FORM HEADING -->
+        <div class="float-form__title">Crear Anuncio</div>
+        <hr>
+        <!-- ASUNTO -->
+        <div class="float-form__field">
+          <input type="text" name="subject" class="float-form__field-input float-form__field-input--title" placeholder="Ingresa un título" maxlength="60">
+        </div>
+        <hr>
+        <!-- DESCRIPCION -->
+        <div class="float-form__field float-form__field--description">
+          <div class="float-form__field-label">
+            Descripción
+          </div>
+          <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600"></textarea>
+        </div>
+        <hr>
+        
+        <!-- TODO: SUBMIT AND FILE -->
+      </form>
+      <div class="overlay"></div>
+
 
       <div class="announcements">
         <h2 class="announcements__label">Anuncios publicados</h2>
@@ -30,7 +62,7 @@
           <div class="announcement">
             <div class="announcement__title">Fondo Emprender SENA</div>
             <div class="announcement__p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis delectus, suscipit quo numquam at odit, eveniet tenetur aliquam dolorem beatae ad tempora consectetur laborum, perspiciatis accusamus voluptatum rerum recusandae! Doloremque?</div>
-            <img class="announcement__img" src="../file-store/publications/wallpaper.png" alt="">
+            <img class="announcement__img" src="../file-store/publications/wallpaper.png" alt="announcement-image">
           </div>
           <div class="announcement-management__actions">
             <a href="#" class="announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>

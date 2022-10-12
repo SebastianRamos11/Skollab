@@ -369,8 +369,13 @@ th {
 }
 
 // EDIT SLIDER
-.edit-slider {
+.main-options {
+  display: flex;
+}
+.main-option {
   background: $white;
+  margin-right: 40px;
+  text-decoration: none;
   box-shadow: $element-shadow;
   width: 400px;
   padding: 40px 20px;
@@ -393,15 +398,20 @@ th {
 
 // ANNOUNCEMENTS
 .announcements {
+  position: relative;
   &__label {
+    margin-bottom: 20px;
+  }
+  & hr {
     margin-bottom: 20px;
   }
   & .announcement-management {
     display: flex;
+    justify-content: center;
     position: relative;
     margin: 0 auto;
     max-width: 1100px;
-    padding: 40px;
+    padding: 20px;
     &__actions {
       margin-top: 30px;
     }
@@ -427,6 +437,8 @@ th {
 
 .announcement {
   @include element;
+  background-image: url("../img/backgrounds/announcement-bg.svg");
+  background-repeat: no-repeat;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -435,11 +447,123 @@ th {
   grid-auto-flow: column;
   gap: 20px;
   &__title {
+    margin: auto;
     font-size: map-get($size-title, "m");
     font-weight: map-get($font-weights, "semibold");
     text-align: center;
   }
+  &__p {
+    padding: 0 40px;
+    margin: 0 auto;
+    text-align: center;
+  }
   &__img {
+    border-radius: 0 $radius-l $radius-l 0;
     grid-row: 2 span;
   }
 }
+
+// Announcement media-query
+@media screen and (max-width: 1200px) {
+  .announcement {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 500px;
+
+    &__title {
+      padding: 40px 40px 0 40px;
+    }
+    &__p {
+      padding: 0 25px;
+    }
+    &__img {
+      border-radius: 0 0 $radius-l $radius-l;
+    }
+  }
+}
+
+// PUBLICATIONS
+.float-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  width: 800px;
+  z-index: 100;
+  background: $white;
+  border-radius: $radius-xl;
+  box-shadow: $element-shadow;
+  &__title {
+    padding: 30px;
+    text-align: center;
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
+  }
+  & hr {
+    margin: 0;
+    border-color: #fafafa;
+  }
+  &__field {
+    padding: 30px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-input {
+      display: block;
+      height: 40px;
+      border: none;
+      font-size: 18px;
+      &--title {
+        width: 100%;
+        font-size: map-get($size-title, "s");
+        font-weight: map-get($font-weights, "medium");
+      }
+      &--date {
+        background: rgba(28, 119, 255, 0.466);
+        color: rgb(0, 60, 255);
+        text-align: center;
+        padding: 10px;
+        border-radius: $radius-m;
+      }
+    }
+  }
+  &__field--description {
+    position: relative;
+    & .float-form__field-input {
+      width: 100%;
+      height: 200px;
+      resize: none;
+      border: 2px solid $secundary-color;
+      border-radius: $radius-l;
+      padding: 20px;
+    }
+    & .float-form__field-label {
+      position: absolute;
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "semibold");
+      top: 18px;
+      left: 80px;
+      background: white;
+    }
+  }
+}
+
+// @media screen and (min-width: 1700px) {
+//   .float-form {
+//     transform: translate(-50%, -40%);
+//   }
+// }
+
+// @media screen and (min-width: 1800px) {
+//   .float-form {
+//     transform: translate(-50%, -45%);
+//   }
+// }
+
+// @media screen and (min-width: 2000px) {
+//   .float-form {
+//     transform: translate(-50%, -50%);
+//   }
+// }
