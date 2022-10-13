@@ -189,7 +189,7 @@
       ?>
       
       <!-- CREATE BUTTON -->
-      <a href="#body" class="crud-option create-button">
+      <a href="#body" class="crud-option create-button open-modal">
         <div class="crud-option__label">Crear Usuario</div>
         <i class="fa-solid fa-plus"></i>
       </a>
@@ -222,7 +222,7 @@
       <!-- Form modal to CREATE an user -->
       <div class="modal-container hidden">
         <div class="modal card">
-          <button class="close-modal">&times;</button>
+          <button class="close-modal close-button">&times;</button>
           <div class="modal__header">
             <h2>Crear usuario</h2>
             <hr />

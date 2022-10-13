@@ -26,13 +26,13 @@
         <!-- TODO: Crear boton de crear anuncio -->
         <a href="#" class="main-option create-ad">
           <i class="fa-solid fa-plus"></i>
-          <div class="main-option__btn">Crear Anuncio</div>
+          <div class="main-option__btn open-modal">Crear Anuncio</div>
         </a>
       </div>
 
       <!-- CREATE ANNOUNCEMENT FORM -->
 
-      <form action="#" method="post" enctype="multipart/form-data" class="float-form hidden">
+      <form action="#" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden">
         <!-- FORM HEADING -->
         <div class="float-form__title">Crear Anuncio</div>
         <hr>
@@ -50,7 +50,7 @@
         </div>
         <hr>
         <div class="float-form__field">
-          <div class="btn-close"><i class="fa-solid fa-trash-can"></i></div>
+          <div class="btn-close close-modal"><i class="fa-solid fa-trash-can"></i></div>
           <div class="file-choise">
             <label for="file">
               <i class="fa-regular fa-file-lines"></i>
@@ -82,6 +82,11 @@
         </div>
       </div>
     </main>
+    <style>
+      body,html{
+        scroll-behavior: unset !important;
+      }
+    </style>
     <script src="../../Controllers/admin-control.js"></script>
   </body>
 </html>

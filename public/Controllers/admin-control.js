@@ -1,28 +1,37 @@
 "use strict";
 
-// MODAL (FORM)
+// MODALS (FORMS)
+const modalCreateUser = document.querySelector(".modal-container");
+const modalCreateAd = document.querySelector(".modal-announcement");
 
-const modal = document.querySelector(".modal-container");
+// MODAL CONTROLS
+const btnOpenModal = document.querySelector(".open-modal");
 const btnCloseModal = document.querySelector(".close-modal");
 const overlay = document.querySelector(".overlay");
-const btnOpenModal = document.querySelector(".create-button");
 const body = document.querySelector("body");
 
-const openModal = function () {
+const openModal = function (modal) {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
   body.classList.add("overflow-hidden");
 };
-const closeModal = function () {
+const closeModal = function (modal) {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
   body.classList.remove("overflow-hidden");
 };
 
-if (btnOpenModal) {
-  btnOpenModal.addEventListener("click", openModal);
-  btnCloseModal.addEventListener("click", closeModal);
-  overlay.addEventListener("click", closeModal);
+if (modalCreateUser) {
+  btnOpenModal.addEventListener("click", () => openModal(modalCreateUser));
+  btnCloseModal.addEventListener("click", () => closeModal(modalCreateUser));
+  overlay.addEventListener("click", () => closeModal(modalCreateUser));
+}
+
+// TODO: ANNOUNCEMENTS
+if (modalCreateAd) {
+  btnOpenModal.addEventListener("click", () => openModal(modalCreateAd));
+  btnCloseModal.addEventListener("click", () => closeModal(modalCreateAd));
+  overlay.addEventListener("click", () => closeModal(modalCreateAd));
 }
 
 // CRUD
@@ -40,11 +49,4 @@ if (readButton) {
       }
     });
   });
-}
-
-// TODO: ANNOUNCEMENTS
-
-const createAdBtn = document.querySelector(".create-ad");
-if (createAdBtn) {
-  createAdBtn.addEventListener("click", () => console.log("I'm here!"));
 }

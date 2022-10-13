@@ -1485,7 +1485,7 @@ th {
   z-index: 5;
 }
 
-.close-modal {
+.close-button {
   position: absolute;
   top: 15px;
   right: 30px;
@@ -1733,7 +1733,7 @@ th {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -70%);
   width: 800px;
   z-index: 100;
   background: #fff;
@@ -1844,4 +1844,15 @@ th {
   top: 18px;
   left: 80px;
   background: white;
+}
+
+@media screen and (min-width: 1700px) {
+  .float-form {
+    transform: translate(-50%, -60%);
+  }
+}
+@media screen and (min-width: 1800px) {
+  .float-form {
+    transform: translate(-50%, -50%);
+  }
 }/*# sourceMappingURL=admin.css.map */
