@@ -24,7 +24,7 @@
           <div class="main-option__btn">Editar Slider</div>
         </div>
         <!-- TODO: Crear boton de crear anuncio -->
-        <a href="#" class="main-option">
+        <a href="#" class="main-option create-ad">
           <i class="fa-solid fa-plus"></i>
           <div class="main-option__btn">Crear Anuncio</div>
         </a>
@@ -32,7 +32,7 @@
 
       <!-- CREATE ANNOUNCEMENT FORM -->
 
-      <form action="#" method="post" enctype="multipart/form-data" class="float-form">
+      <form action="#" method="post" enctype="multipart/form-data" class="float-form hidden">
         <!-- FORM HEADING -->
         <div class="float-form__title">Crear Anuncio</div>
         <hr>
@@ -49,10 +49,19 @@
           <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600"></textarea>
         </div>
         <hr>
-        
-        <!-- TODO: SUBMIT AND FILE -->
+        <div class="float-form__field">
+          <div class="btn-close"><i class="fa-solid fa-trash-can"></i></div>
+          <div class="file-choise">
+            <label for="file">
+              <i class="fa-regular fa-file-lines"></i>
+              <p class="file-name"></p>
+            </label>
+            <input type="file" name="file" id="file">
+          </div>
+          <input type="submit" class="btn-submit" name="submit" value="Publicar" >
+        </div>
       </form>
-      <div class="overlay"></div>
+      <div class="overlay hidden"></div>
 
 
       <div class="announcements">
@@ -60,8 +69,10 @@
         <hr>
         <div class="announcement-management">
           <div class="announcement">
-            <div class="announcement__title">Fondo Emprender SENA</div>
-            <div class="announcement__p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis delectus, suscipit quo numquam at odit, eveniet tenetur aliquam dolorem beatae ad tempora consectetur laborum, perspiciatis accusamus voluptatum rerum recusandae! Doloremque?</div>
+            <div class="announcement__info">
+              <div class="announcement__title">Fondo Emprender SENA</div>
+              <div class="announcement__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita, dignissimos? Id ratione alias magnam ducimus at sit natus? Officia doloribus quisquam molestiae ullam in! Ab animi iure quidem quas? Quae, fuga quo. Ducimus est deserunt minima fugiat maiores nesciunt eius!</div>
+            </div>
             <img class="announcement__img" src="../file-store/publications/wallpaper.png" alt="announcement-image">
           </div>
           <div class="announcement-management__actions">
@@ -71,6 +82,7 @@
         </div>
       </div>
     </main>
+    <script src="../../Controllers/admin-control.js"></script>
   </body>
 </html>
   <?php 

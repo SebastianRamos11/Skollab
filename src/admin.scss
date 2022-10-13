@@ -439,26 +439,29 @@ th {
   @include element;
   background-image: url("../img/backgrounds/announcement-bg.svg");
   background-repeat: no-repeat;
+  display: flex;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 20% 80%;
   margin: 0;
-  grid-auto-flow: column;
-  gap: 20px;
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+  }
   &__title {
-    margin: auto;
     font-size: map-get($size-title, "m");
     font-weight: map-get($font-weights, "semibold");
     text-align: center;
+    margin-bottom: 40px;
   }
   &__p {
-    padding: 0 40px;
     margin: 0 auto;
     text-align: center;
   }
   &__img {
     border-radius: 0 $radius-l $radius-l 0;
+    height: 100%;
+    max-width: 500px;
     grid-row: 2 span;
   }
 }
@@ -488,7 +491,7 @@ th {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -60%);
   width: 800px;
   z-index: 100;
   background: $white;
@@ -526,6 +529,53 @@ th {
         text-align: center;
         padding: 10px;
         border-radius: $radius-m;
+      }
+    }
+
+    & .btn-close {
+      cursor: pointer;
+      display: block;
+      border: none;
+      background: none;
+      color: $primary-contrast;
+      font-size: 25px;
+    }
+
+    & .btn-submit {
+      cursor: pointer;
+      @include primary-btn($secundary-color, false);
+    }
+
+    & .file-choise {
+      position: absolute;
+      right: 160px;
+      & label {
+        cursor: pointer;
+        display: block;
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 25px;
+        position: relative;
+
+        & .file-name {
+          font-size: 13px;
+          font-weight: map-get($font-weights, "semibold");
+          color: $secundary-color;
+          position: absolute;
+          width: 600px;
+          top: -6px;
+          right: 30px;
+          margin-right: 0 20px;
+          text-align: right;
+          transition: all 0.3s;
+        }
+      }
+      & label:hover {
+        color: #2dbb10;
+      }
+      & input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
       }
     }
   }

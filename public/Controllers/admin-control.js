@@ -19,21 +19,32 @@ const closeModal = function () {
   body.classList.remove("overflow-hidden");
 };
 
-btnOpenModal.addEventListener("click", openModal);
-btnCloseModal.addEventListener("click", closeModal);
-overlay.addEventListener("click", closeModal);
+if (btnOpenModal) {
+  btnOpenModal.addEventListener("click", openModal);
+  btnCloseModal.addEventListener("click", closeModal);
+  overlay.addEventListener("click", closeModal);
+}
 
 // CRUD
 
 const readButton = document.querySelectorAll(".crud-option__btn");
 const roleCrud = document.querySelectorAll(".crud");
 
-readButton.forEach((e, i) => {
-  readButton[i].addEventListener("click", () => {
-    roleCrud[i].classList.remove("hidden");
-    for (let j = 0; j < roleCrud.length; j++) {
-      if (roleCrud[j] === roleCrud[i]) continue;
-      roleCrud[j].classList.add("hidden");
-    }
+if (readButton) {
+  readButton.forEach((e, i) => {
+    readButton[i].addEventListener("click", () => {
+      roleCrud[i].classList.remove("hidden");
+      for (let j = 0; j < roleCrud.length; j++) {
+        if (roleCrud[j] === roleCrud[i]) continue;
+        roleCrud[j].classList.add("hidden");
+      }
+    });
   });
-});
+}
+
+// TODO: ANNOUNCEMENTS
+
+const createAdBtn = document.querySelector(".create-ad");
+if (createAdBtn) {
+  createAdBtn.addEventListener("click", () => console.log("I'm here!"));
+}
