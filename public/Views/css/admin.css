@@ -21,6 +21,10 @@ body {
   overflow-x: hidden;
 }
 
+input:focus {
+  outline: none;
+}
+
 article,
 aside,
 details,
@@ -983,6 +987,112 @@ input[type=checkbox], input[type=radio] {
   border: 2px solid rgba(186, 186, 186, 0.7294117647);
 }
 
+.publications-course {
+  display: grid;
+  padding: 0 50px 30px 50px;
+  grid-template-columns: 450px 450px;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px auto;
+}
+.publications-course__label {
+  padding: 10px 50px;
+  font-size: 1.6em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #272727;
+  grid-column: 2 span;
+}
+.publications-course hr {
+  border-color: #e0e0e0;
+  width: 100%;
+  grid-column: 2 span !important;
+}
+.publications-course .publication {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+  padding: 40px;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.publications-course .publication__title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.publications-course .publication__date {
+  font-style: italic;
+  margin: 5px 3px;
+}
+.publications-course .publication__info {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 20px 0;
+}
+.publications-course .publication__p {
+  overflow-wrap: break-word;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.publications-course .publication__date-limit {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(255, 224, 114, 0.5);
+}
+.publications-course .publication__type {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #202020;
+  background: #80e483;
+}
+.publications-course .publication__file {
+  position: relative;
+}
+.publications-course .publication__file i {
+  font-size: 25px;
+  position: relative;
+  top: 3px;
+  margin-left: 15px;
+  color: #0066ff;
+}
+.publications-course .publication__file span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+}
+.publications-course .publication__btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.publications-course .publication__btns a {
+  display: block;
+  text-decoration: none;
+}
+.publications-course .publication__btns-link {
+  color: #0066ff;
+}
+.publications-course .publication__btns-evidences {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #0066ff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
 .user-evidences {
   margin-bottom: 40px;
 }
@@ -1473,18 +1583,32 @@ th {
   z-index: 10;
 }
 
+.max-height-form {
+  max-height: 800px;
+  overflow-y: hidden;
+}
+
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   z-index: 5;
 }
 
+@media screen and (min-width: 1300px) {
+  .overlay {
+    height: 800px;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .overlay {
+    height: 100vh;
+  }
+}
 .close-button {
   position: absolute;
   top: 15px;
@@ -1733,7 +1857,7 @@ th {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -55%);
   width: 800px;
   z-index: 100;
   background: #fff;
@@ -1756,6 +1880,17 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.float-form__field-label span {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.float-form__field-label i {
+  font-size: 24px;
+  position: relative;
+  top: 3px;
+  color: #0066ff;
+  margin-right: 10px;
 }
 .float-form__field-input {
   display: block;
@@ -1796,8 +1931,7 @@ th {
   font-weight: 500;
 }
 .float-form__field .file-choise {
-  position: absolute;
-  right: 160px;
+  padding-right: 20px;
 }
 .float-form__field .file-choise label {
   cursor: pointer;
@@ -1819,7 +1953,7 @@ th {
   transition: all 0.3s;
 }
 .float-form__field .file-choise label:hover {
-  color: #2dbb10;
+  color: #0066ff;
 }
 .float-form__field .file-choise input {
   opacity: 0;
@@ -1847,11 +1981,6 @@ th {
 }
 
 @media screen and (min-width: 1700px) {
-  .float-form {
-    transform: translate(-50%, -60%);
-  }
-}
-@media screen and (min-width: 1800px) {
   .float-form {
     transform: translate(-50%, -50%);
   }

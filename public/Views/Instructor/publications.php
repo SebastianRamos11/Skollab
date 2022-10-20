@@ -184,10 +184,6 @@
         </select>
       </div>
       <hr>
-      <!-- FECHA INICIO (HIDDEN) -->
-      <div class="upload-form__field hidden">
-        <input type="date" id="date" name="date" class="upload-form__field-input upload-form__field-input--date">
-      </div>
       <!-- FECHA FIN -->
       <div class="upload-form__field">
         <div class="upload-form__field-label">
@@ -211,8 +207,6 @@
       </div>
     </form>
     <div class="overlay hidden"></div>
-    
-    <script src="../../Controllers/set-date.js"></script>
     <script src="../../Controllers/publication-control.js"></script>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>

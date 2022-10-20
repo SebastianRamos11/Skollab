@@ -1,10 +1,10 @@
-@import './config/variables';
-@import './config/fonts';
-@import './config/normalize';
-@import './config/flex';
-@import './config/grid';
-@import './blocks/elements';
-@import './blocks/inputs';
+@import "./config/variables";
+@import "./config/fonts";
+@import "./config/normalize";
+@import "./config/flex";
+@import "./config/grid";
+@import "./blocks/elements";
+@import "./blocks/inputs";
 
 .courses {
   &__title {
@@ -18,99 +18,25 @@
   }
 }
 
+// PUBLICATIONS MODIFICATIONS
+
 .publications-course {
-  display: grid;
-  padding: 30px 50px;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  &__label {
-    padding: 0 50px;
-    font-size: map-get($size-title, 's');
-    font-weight: map-get($font-weights, 'medium');
-    margin: 0 20px;
-    color: #1b1b1b;
-    width: max-content;
-  }
-  & hr {
-    grid-column: 2 span;
-    width: 100%;
-    border-color: #e0e0e0;
-    margin-bottom: 20px;
-  }
+  grid-template-columns: 500px 500px;
   & .publication {
-    background: $white;
-    border-radius: $radius-l;
-    box-shadow: $element-shadow;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    &__title {
-      font-size: map-get($size-paragraph, 'xl');
-      font-weight: map-get($font-weights, 'semibold');
-      margin-bottom: 10px;
-    }
-    &__date {
-      font-style: italic;
-      margin: 5px 3px;
-    }
-    &__info {
-      background: #f9f9f9;
-      border-radius: $radius-l;
-      padding: 30px;
-      margin: 20px 0;
-    }
-    &__p {
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-    &__date-limit {
-      display: inline-block;
-      margin-right: 10px;
-      padding: 10px 20px;
-      border-radius: $radius-xl;
-      background: rgba($color: #ffe072, $alpha: 0.5);
-    }
-    &__type {
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: $radius-xl;
-      color: white;
-      background: #00d809;
-    }
-    &__btns {
-      & a {
-        display: block;
-        text-decoration: none;
-      }
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      &-link {
-        color: $secundary-color;
-        margin: 0 0 0 auto;
-      }
-      &-file {
-        position: relative;
-        & i {
-          font-size: 25px;
-          position: relative;
-          top: 3px;
-          margin-right: 5px;
-          color: $secundary-color;
-        }
-        & span {
-          font-size: 13px;
-          font-weight: map-get($font-weights, 'semibold');
-          color: $black;
-        }
-      }
+    max-width: 500px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .publications-course {
+    grid-template-columns: 550px 550px;
+    & .publication {
+      max-width: 550px;
     }
   }
 }
 
 // EVIDENCE
-
 .evidence {
   background: $white;
   border-radius: $radius-l;
@@ -132,14 +58,14 @@
       margin-right: 10px;
     }
     &-name {
-      font-size: map-get($size-paragraph, 'xl');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
     }
   }
   &__info {
     display: flex;
     & div {
-      font-weight: map-get($font-weights, 'medium');
+      font-weight: map-get($font-weights, "medium");
     }
     &-date-limit {
       display: inline-block;
@@ -160,12 +86,12 @@
     padding: 30px 50px;
   }
   &__title {
-    font-size: map-get($size-title, 'l');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "l");
+    font-weight: map-get($font-weights, "semibold");
     margin-bottom: 15px;
   }
   &__date {
-    font-size: map-get($size-paragraph, 'l');
+    font-size: map-get($size-paragraph, "l");
     font-style: italic;
     color: #272727;
     margin-bottom: 25px;
@@ -187,7 +113,7 @@
     & a {
       text-decoration: none;
       font-size: 14px;
-      font-weight: map-get($font-weights, 'semibold');
+      font-weight: map-get($font-weights, "semibold");
       color: $black;
     }
   }
@@ -239,7 +165,7 @@
 
       & span {
         font-size: 14px;
-        font-weight: map-get($font-weights, 'semibold');
+        font-weight: map-get($font-weights, "semibold");
         color: $black;
 
         position: relative;
@@ -262,8 +188,8 @@
     }
     &-label {
       position: absolute;
-      font-size: map-get($size-paragraph, 'l');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "semibold");
       top: -12px;
       left: 40px;
       background: white;
@@ -301,7 +227,7 @@
 
     & a {
       font-size: 14px;
-      font-weight: map-get($font-weights, 'semibold');
+      font-weight: map-get($font-weights, "semibold");
       color: $black;
       text-decoration: none;
       position: relative;
@@ -323,15 +249,15 @@
     }
     &-label {
       position: absolute;
-      font-size: map-get($size-paragraph, 'l');
-      font-weight: map-get($font-weights, 'semibold');
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "semibold");
       top: -12px;
       left: 40px;
       background: white;
     }
     &-calification {
       font-size: 27px;
-      font-weight: map-get($font-weights, 'bold');
+      font-weight: map-get($font-weights, "bold");
       text-align: right;
       color: $secundary-color;
     }
@@ -352,8 +278,8 @@
     margin-left: 40px;
   }
   &__title {
-    font-size: map-get($size-title, 'm');
-    font-weight: map-get($font-weights, 'semibold');
+    font-size: map-get($size-title, "m");
+    font-weight: map-get($font-weights, "semibold");
     margin-bottom: 8px;
   }
   &__group {
@@ -382,8 +308,8 @@
       color: $secundary-color;
     }
     &__title {
-      font-size: map-get($size-paragraph, 'l');
-      font-weight: map-get($font-weights, 'medium');
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "medium");
     }
     &__date {
       padding: 10px 20px;
@@ -442,8 +368,8 @@
     max-width: 900px;
     margin: 40px auto;
     padding: 0 40px;
-    font-size: map-get($size-title, 's');
-    font-weight: map-get($font-weights, 'medium');
+    font-size: map-get($size-title, "s");
+    font-weight: map-get($font-weights, "medium");
   }
 }
 

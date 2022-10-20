@@ -10,15 +10,31 @@ const btnCloseModal = document.querySelector(".close-modal");
 const overlay = document.querySelector(".overlay");
 const body = document.querySelector("body");
 
+// Elements
+const file = document.querySelector("#file");
+const contentBody = document.querySelector(".main-content");
+
+if (file) {
+  file.addEventListener("change", (e) => {
+    // Get the selected file
+    const [file] = e.target.files;
+    // Get the file name and size
+    let { name: fileName } = file;
+    fileName = fileName.replaceAll("\n", "");
+    document.querySelector(".file-name").textContent = `${fileName}`;
+  });
+}
+
 const openModal = function (modal) {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
-  body.classList.add("overflow-hidden");
+  contentBody.classList.add("max-height-form");
 };
+
 const closeModal = function (modal) {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
-  body.classList.remove("overflow-hidden");
+  contentBody.classList.remove("max-height-form");
 };
 
 if (modalCreateUser) {
@@ -27,7 +43,6 @@ if (modalCreateUser) {
   overlay.addEventListener("click", () => closeModal(modalCreateUser));
 }
 
-// TODO: ANNOUNCEMENTS
 if (modalCreateAd) {
   btnOpenModal.addEventListener("click", () => openModal(modalCreateAd));
   btnCloseModal.addEventListener("click", () => closeModal(modalCreateAd));

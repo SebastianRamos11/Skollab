@@ -372,104 +372,7 @@ th {
     max-width: 90%;
   }
 }
-
-.publications-course {
-  display: grid;
-  padding: 0 50px 30px 50px;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin: 30px auto;
-
-  &__label {
-    padding: 10px 50px;
-    font-size: map-get($size-title, "m");
-    font-weight: map-get($font-weights, "semibold");
-    margin-bottom: 10px;
-    color: #272727;
-    grid-column: 2 span;
-  }
-  & hr {
-    border-color: #e0e0e0;
-    width: 100%;
-    grid-column: 2 span !important;
-  }
-
-  & .publication {
-    background: $white;
-    border-radius: $radius-l;
-    box-shadow: $element-shadow;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    &__title {
-      font-size: map-get($size-paragraph, "xl");
-      font-weight: map-get($font-weights, "semibold");
-      margin-bottom: 10px;
-    }
-    &__date {
-      font-style: italic;
-      margin: 5px 3px;
-    }
-    &__info {
-      background: #f9f9f9;
-      border-radius: $radius-l;
-      padding: 30px;
-      margin: 20px 0;
-    }
-    &__p {
-      font-size: 15px;
-      margin-bottom: 15px;
-    }
-    &__date-limit {
-      display: inline-block;
-      margin-right: 10px;
-      padding: 10px 20px;
-      border-radius: $radius-xl;
-      background: rgba($color: #ffe072, $alpha: 0.5);
-    }
-    &__type {
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: $radius-xl;
-      color: #202020;
-      background: #80e483;
-    }
-    &__file {
-      position: relative;
-      & i {
-        font-size: 25px;
-        position: relative;
-        top: 3px;
-        margin-left: 15px;
-        color: $secundary-color;
-      }
-      & span {
-        font-size: 13px;
-        font-weight: map-get($font-weights, "semibold");
-        color: $black;
-      }
-    }
-    &__btns {
-      & a {
-        display: block;
-        text-decoration: none;
-      }
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      &-link {
-        color: $secundary-color;
-      }
-      &-evidences {
-        @include primary-btn($secundary-color, false);
-        cursor: pointer;
-      }
-    }
-  }
-}
-
+// PUBLICATIONS MEDIA QUERIES
 @media screen and (max-width: 1400px) {
   .publications-course {
     padding: 0 50px 30px 0;
@@ -477,6 +380,16 @@ th {
   }
 }
 
+@media screen and (min-width: 1400px) {
+  .publications-course {
+    grid-template-columns: 500px 500px;
+    & .publication {
+      max-width: 500px;
+    }
+  }
+}
+
+// EVIDENCES
 .evidences-course {
   max-width: 900px;
   margin: 0 auto;

@@ -14,10 +14,17 @@
     $course_aprendiz_result = mysqli_query($dbConnection, $course_aprendiz) or die(mysqli_error($dbConnection));
     $course_aprendiz_array = mysqli_fetch_all($course_aprendiz_result, MYSQLI_NUM);
 
+
     // GET INSTRUCTOR PUBLICATIONS (TO LOOP)
-    $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona =".$_SESSION['id'];
-    $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-    $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
+    $publication_array = array();
+    for($i=0; $i < sizeof($course_aprendiz_array); $i++){
+        $ficha = $course_aprendiz_array[$i][2];
+        $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = ".$ficha;
+        $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
+        array_push($publication_array, mysqli_fetch_all($publication_result, MYSQLI_NUM));
+    }
+    $publication_array = $publication_array[0];
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -76,7 +83,7 @@
             </div>
             <hr>
             <div class="user-evidences">
-                <div class="user-evidences__label">Estado de evidencias</div>
+                <h2 class="user-evidences__label">Estado de evidencias</h2>
                 
                 <?php 
                 if(sizeof($publication_array) > 0){
@@ -162,7 +169,7 @@
                     }
                 } else {
                     ?>
-                    <div class="publications-empty">El Instructor no ha realizado ninguna publicación</div>
+                    <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>No has publicado ningúna evidencia</div>
                     <?php
                 }
                 ?>

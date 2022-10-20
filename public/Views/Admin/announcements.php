@@ -32,7 +32,7 @@
 
       <!-- CREATE ANNOUNCEMENT FORM -->
 
-      <form action="#" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden">
+      <form action="upload-announce.php" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden" autocomplete="off">
         <!-- FORM HEADING -->
         <div class="float-form__title">Crear Anuncio</div>
         <hr>
@@ -49,15 +49,23 @@
           <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600"></textarea>
         </div>
         <hr>
+        <!-- IMAGE -->
         <div class="float-form__field">
-          <div class="btn-close close-modal"><i class="fa-solid fa-trash-can"></i></div>
+          <div class="float-form__field-label">
+            <i class="fa-regular fa-image"></i>
+            <span>Portada</span>
+          </div>
           <div class="file-choise">
             <label for="file">
-              <i class="fa-regular fa-file-lines"></i>
+              <i class="fa-solid fa-paperclip"></i>
               <p class="file-name"></p>
             </label>
             <input type="file" name="file" id="file">
           </div>
+        </div>
+        <hr>
+        <div class="float-form__field">
+          <div class="btn-close close-modal"><i class="fa-solid fa-trash-can"></i></div>
           <input type="submit" class="btn-submit" name="submit" value="Publicar" >
         </div>
       </form>

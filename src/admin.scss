@@ -248,16 +248,32 @@ th {
   z-index: 10;
 }
 
+.max-height-form {
+  max-height: 800px;
+  overflow-y: hidden;
+}
+
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 5;
+}
+
+@media screen and (min-width: 1300px) {
+  .overlay {
+    height: 800px;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .overlay {
+    height: 100vh;
+  }
 }
 
 .close-button {
@@ -491,7 +507,7 @@ th {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -55%);
   width: 800px;
   z-index: 100;
   background: $white;
@@ -513,6 +529,21 @@ th {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &-label {
+      & span {
+        font-size: map-get($size-paragraph, "m");
+        font-weight: map-get($font-weights, "medium");
+      }
+      & i {
+        font-size: 24px;
+        position: relative;
+        top: 3px;
+        color: $secundary-color;
+        margin-right: 10px;
+      }
+    }
+
     &-input {
       display: block;
       height: 40px;
@@ -547,8 +578,7 @@ th {
     }
 
     & .file-choise {
-      position: absolute;
-      right: 160px;
+      padding-right: 20px;
       & label {
         cursor: pointer;
         display: block;
@@ -570,7 +600,7 @@ th {
         }
       }
       & label:hover {
-        color: #2dbb10;
+        color: $secundary-color;
       }
       & input {
         opacity: 0;
@@ -601,12 +631,6 @@ th {
 }
 
 @media screen and (min-width: 1700px) {
-  .float-form {
-    transform: translate(-50%, -60%);
-  }
-}
-
-@media screen and (min-width: 1800px) {
   .float-form {
     transform: translate(-50%, -50%);
   }
