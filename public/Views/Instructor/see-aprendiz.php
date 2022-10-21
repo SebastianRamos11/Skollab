@@ -5,9 +5,21 @@
     $id_aprendiz = $_GET['aprendiz'];
   
     // GET APRENDIZ DATA
-    $aprendiz = "SELECT nombres, apellidos, rol, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_aprendiz";
+    $aprendiz = "SELECT nombres, apellidos, ID_Rol, ID_Tipo_Documento, num_documento, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_aprendiz";
     $aprendiz_result = mysqli_query($dbConnection, $aprendiz) or die(mysqli_error($dbConnection));
     $aprendiz_array = mysqli_fetch_all($aprendiz_result, MYSQLI_NUM);
+
+    // GET ROL
+    $role = $aprendiz_array[0][2];
+    $role = "SELECT tipo FROM rol WHERE ID_Rol = $role";
+    $role_result = mysqli_query($dbConnection, $role) or die(mysqli_error($dbConnection));
+    $role = mysqli_fetch_all($role_result, MYSQLI_NUM);
+
+    // GET DOCUMENT TYPE
+    $type_doc = $aprendiz_array[0][3];
+    $type_doc = "SELECT tipo FROM tipo_documento WHERE ID_Tipo_Documento = $type_doc";
+    $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+    $type_doc = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 
     // GET AMBIENTE VIRTUAL OF APRENDIZ 
     $course_aprendiz = "SELECT * FROM ambiente_virtual WHERE ID_Persona = $id_aprendiz";
@@ -15,15 +27,15 @@
     $course_aprendiz_array = mysqli_fetch_all($course_aprendiz_result, MYSQLI_NUM);
 
 
-    // GET INSTRUCTOR PUBLICATIONS (TO LOOP)
-    $publication_array = array();
+    // GET INSTRUCTOR activities (TO LOOP)
+    $activity_array = array();
     for($i=0; $i < sizeof($course_aprendiz_array); $i++){
         $ficha = $course_aprendiz_array[$i][2];
-        $publication = "SELECT ID_Publicacion, asunto FROM publicacion WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = ".$ficha;
-        $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-        array_push($publication_array, mysqli_fetch_all($publication_result, MYSQLI_NUM));
+        $activity = "SELECT ID_Actividad, asunto FROM actividad WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = ".$ficha;
+        $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+        array_push($activity_array, mysqli_fetch_all($activity_result, MYSQLI_NUM));
     }
-    $publication_array = $publication_array[0];
+    $activity_array = $activity_array[0];
 
 ?>
 <!DOCTYPE html>
@@ -47,13 +59,14 @@
                 <div class="user-profile__info">
                     <div class="user-profile__name"><?php echo $aprendiz_array[0][0] ;?> <?php echo $aprendiz_array[0][1] ;?></div>
                     <div class="user-profile__label">
-                        <div class="user-profile__rol"><?php echo $aprendiz_array[0][2] ;?></div>
+                        <div class="user-profile__rol"><?php echo $role[0][0] ;?></div>
                         <div class="dot"></div>
-                        <div class="user-profile__id"><?php echo $id_aprendiz ;?></div>
+                        <div class="user-profile__type-id"><?php echo $type_doc[0][0] ;?></div>
+                        <div class="user-profile__id"><?php echo $aprendiz_array[0][4] ;?></div>
                     </div>
                     <div class="user-profile__contact">
-                        <div class="user-profile__contact-data"><i class="fa-regular fa-envelope"></i><?php echo $aprendiz_array[0][3] ;?></div>
-                        <div class="user-profile__contact-data"><i class="fa-solid fa-phone"></i><?php echo $aprendiz_array[0][4] ;?></div>
+                        <div class="user-profile__contact-data"><i class="fa-regular fa-envelope"></i><?php echo $aprendiz_array[0][5] ;?></div>
+                        <div class="user-profile__contact-data"><i class="fa-solid fa-phone"></i><?php echo $aprendiz_array[0][6] ;?></div>
                     </div>
                 </div>
             </div>
@@ -83,24 +96,24 @@
             </div>
             <hr>
             <div class="user-evidences">
-                <h2 class="user-evidences__label">Estado de evidencias</h2>
+                <h2 class="user-evidences__label">Estado de actividades</h2>
                 
                 <?php 
-                if(sizeof($publication_array) > 0){
-                    for($i = 0; $i < sizeof($publication_array); $i++){ 
-                    $id_publication = $publication_array[$i][0];
-                    $title_publication = $publication_array[$i][1];
+                if(sizeof($activity_array) > 0){
+                    for($i = 0; $i < sizeof($activity_array); $i++){ 
+                    $id_activity = $activity_array[$i][0];
+                    $title_activity = $activity_array[$i][1];
 
-                    $evidences = "SELECT fecha, nota, observacion, url FROM `evidencia` WHERE ID_Persona = $id_aprendiz AND ID_Publicacion = $id_publication";
+                    $evidences = "SELECT fecha, nota, observacion, url FROM `evidencia` WHERE ID_Persona = $id_aprendiz AND ID_Actividad = $id_activity";
                     $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                     $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
                     
                     if(sizeof($evidences_array) > 0){
                         ?>
                         <div class="user-evidence">
-                            <div class="user-evidence__publication">
+                            <div class="user-evidence__activity">
                                 <i class="fa-solid fa-book user-evidence__icon"></i>
-                                <div class="user-evidence__title"><?php echo $title_publication ;?></div>
+                                <div class="user-evidence__title"><?php echo $title_activity ;?></div>
                             </div>
                             <div class="user-evidence__date"><?php echo $evidences_array[0][0] ;?></div>
                             <div class="user-evidence__grade">
@@ -158,9 +171,9 @@
                         ?>
                         <!-- EVIDENCE NOT DELIVERED -->
                             <div class="user-evidence user-evidence--empty">
-                                <div class="user-evidence__publication">
+                                <div class="user-evidence__activity">
                                     <i class="fa-solid fa-triangle-exclamation user-evidence__icon"></i>
-                                    <div class="user-evidence__title"><?php echo $title_publication ;?></div>
+                                    <div class="user-evidence__title"><?php echo $title_activity ;?></div>
                                 </div>
                                 <div class="user-evidence--empty__alert">SIN ENTREGA</div>
                             </div>

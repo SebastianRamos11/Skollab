@@ -53,7 +53,7 @@
       </button>
       <a href="../profile.php" class="nav-profile nav-profile--y">
         <img src="../img/default.jpeg" alt="avatar" class="nav-profile__img">
-        <div class="nav-profile__name"><?php if (isset($_SESSION['id'])) {echo $user_name; } else {include('../../Models/logout.php'); $location = header('Location: ../index.html');}; ?></div>
+        <div class="nav-profile__name"><?php if (isset($_SESSION['id'])) {echo $user_name;} else {include('../../Models/logout.php'); $location = header('Location: ../index.php');}; ?></div>
       </a>
       <a href="../../Models/logout.php" class="logout-desktop">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>

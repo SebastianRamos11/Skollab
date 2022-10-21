@@ -8,19 +8,28 @@
   $id_user = $_GET['user'];
 
   // GET USER DATA
-  $user = "SELECT nombres, apellidos, rol, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_user";
+  $user = "SELECT nombres, apellidos, ID_Rol, ID_Tipo_documento, num_documento, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_user";
   $user_result = mysqli_query($dbConnection, $user) or die(mysqli_error($dbConnection));
   $user_array = mysqli_fetch_all($user_result, MYSQLI_NUM);
 
+  // GET ROL
+  $role = $user_array[0][2];
+  $role = "SELECT tipo FROM rol WHERE ID_Rol = $role";
+  $role_result = mysqli_query($dbConnection, $role) or die(mysqli_error($dbConnection));
+  $role = mysqli_fetch_all($role_result, MYSQLI_NUM);
+
+  // GET DOCUMENT TYPE
+  $type_doc = $user_array[0][3];
+  $type_doc = "SELECT tipo FROM tipo_documento WHERE ID_Tipo_Documento = $type_doc";
+  $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+  $type_doc = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
+    
   // GET AMBIENTE VIRTUAL OF USER
   $course_user = "SELECT * FROM ambiente_virtual WHERE ID_Persona = $id_user";
   $course_user_result = mysqli_query($dbConnection, $course_user) or die(mysqli_error($dbConnection));
   $course_user = mysqli_fetch_all($course_user_result, MYSQLI_NUM);
-
-  // TODO: Function that removes the user from the program
-  
-
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,6 +43,7 @@
     <title>Gestión Usuario</title>
 </head>
 <body>
+    <!-- ALERTS -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'unlinked'){
     ?>
@@ -61,7 +71,7 @@
       }
     ?>
         <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'publication_deleted'){
+      if(isset($_GET['message']) and $_GET['message'] == 'activity_deleted'){
     ?>
       <script>
           Swal.fire({
@@ -81,13 +91,14 @@
                 <div class="user-profile__info">
                     <div class="user-profile__name"><?php echo $user_array[0][0] ;?> <?php echo $user_array[0][1] ;?></div>
                     <div class="user-profile__label">
-                        <div class="user-profile__rol"><?php echo $user_array[0][2] ;?></div>
+                        <div class="user-profile__rol"><?php echo $role[0][0] ;?></div>
                         <div class="dot"></div>
-                        <div class="user-profile__id"><?php echo $id_user ;?></div>
+                        <div class="user-profile__type-id"><?php echo $type_doc[0][0] ;?></div>
+                        <div class="user-profile__id"><?php echo $user_array[0][4] ;?></div>
                     </div>
                     <div class="user-profile__contact">
-                        <div class="user-profile__contact-data"><i class="fa-regular fa-envelope"></i><?php echo $user_array[0][3] ;?></div>
-                        <div class="user-profile__contact-data"><i class="fa-solid fa-phone"></i><?php echo $user_array[0][4] ;?></div>
+                        <div class="user-profile__contact-data"><i class="fa-regular fa-envelope"></i><?php echo $user_array[0][5] ;?></div>
+                        <div class="user-profile__contact-data"><i class="fa-solid fa-phone"></i><?php echo $user_array[0][6] ;?></div>
                     </div>
                 </div>
             </div>
@@ -96,12 +107,12 @@
             <?php
 
               // TODO: If User is Administrador -> Print Anuncios (No created for now)
-              if($user_array[0][2] == "ADMINISTRADOR"){
+              if($user_array[0][2] == 1){
                 echo 'Anuncios';
               }
 
               // TODO: If User is not Administrador -> Print Programs
-              if($user_array[0][2] == "INSTRUCTOR" || $user_array[0][2] == "APRENDIZ"){
+              if($user_array[0][2] == 2 || $user_array[0][2] == 3){
                 ?>
                 <div class="user-programs">
                 <div class="user-programs__label">Programas de formación</div>
@@ -137,46 +148,46 @@
                 <?php
               }
 
-              // TODO: If User is Instructor -> Print publication
-              if($user_array[0][2] == "INSTRUCTOR"){
+              // TODO: If User is Instructor -> Print activity
+              if($user_array[0][2] == 2){
                 for($i=0; $i < sizeof($course_user); $i++){
                     $program = $course_user[$i][1];
                     $ficha = $course_user[$i][2];
 
-                    $publications = "SELECT ID_Publicacion, asunto, descripcion, fecha, fecha_limite, tipo_publicacion, url FROM publicacion WHERE ID_Ficha = $ficha AND ID_Persona =".$id_user;
-                    $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
-                    $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
+                    $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$id_user;
+                    $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+                    $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
 
                     ?>
-                    <div class="user-publications">
-                        <div class="user-label">Evidencias para <?php echo $ficha ?></div>
+                    <div class="user-activities">
+                        <div class="user-label">Actividades para <?php echo $ficha ?></div>
                         <?php
-                        if(sizeof($publications_array) > 0){
+                        if(sizeof($activities_array) > 0){
                             ?>
-                            <div class="publications-course">
+                            <div class="activities-course">
                                 <?php
-                                for($j=0; $j < sizeof($publications_array); $j++){
+                                for($j=0; $j < sizeof($activities_array); $j++){
                                 ?>
-                                  <!-- PUBLICATION -->
-                                  <div class="publication">
-                                    <div class="publication__title"><?php echo $publications_array[$j][1]; ?></div>
-                                    <div class="publcation__date">Fecha publicación: <?php echo $publications_array[$j][3]; ?></div>
-                                    <div class="publication__info">
-                                      <div class="publication__p"><?php echo $publications_array[$j][2]; ?></div>
-                                      <div class="publication__date-limit"><?php echo $publications_array[$j][4]; ?></div>
-                                      <div class="publication__type"><?php echo $publications_array[$j][5]; ?></div>
+                                  <!-- activity -->
+                                  <div class="activity">
+                                    <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
+                                    <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
+                                    <div class="activity__info">
+                                      <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
+                                      <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
+                                      <div class="activity__type">Actividad</div>
                                       <!-- VALIDAR EXISTENCIA FILE -->
                                       <?php
-                                        if($publications_array[$j][6] != ''){
+                                        if($activities_array[$j][5] != ''){
                                           ?>
-                                        <a href="<?php print_r($publications_array[$j][6]); ?>" class="publication__file" download="">
+                                        <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download="">
                                           <i class="fa-regular fa-file-lines"></i>
                                         </a>
                                         <?php 
                                         }
                                       ?>
                                     </div>
-                                    <a href="delete.php?delete_publication=<?php echo $publications_array[$j][0] ?>&id=<?php echo $id_user ?>" class="publication__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="delete.php?delete_activity=<?php echo $activities_array[$j][0] ?>&id=<?php echo $id_user ?>" class="activity__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
                                   </div>
                                 <?php
                                 }
@@ -185,8 +196,8 @@
                         <?php
                         } else {
                             ?>
-                            <div class="publication-management">
-                                <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado evidencias para esta ficha.</div>
+                            <div class="activity-management">
+                                <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado actividades para esta ficha.</div>
                             </div>
                             <?php
                         }
@@ -197,7 +208,7 @@
               }
 
               // TODO: If User is Aprendiz -> Print Evidences
-              if($user_array[0][2] == "APRENDIZ"){
+              if($user_array[0][2] == 3){
 
                 for ($i=0; $i < sizeof($course_user); $i++) {
                     $program = $course_user[$i][1];
@@ -210,7 +221,7 @@
                     $program_name = $program_array[0][0];
 
                     // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-                    $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.rol = 'INSTRUCTOR'";
+                    $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
                     $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
                     $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
                     
@@ -222,18 +233,18 @@
                     if(sizeof($instructor_array) > 0){
                         $id_instructor = $instructor_array[0][0];
 
-                        // GET INSTRUCTOR'S publication
-                        $publication = "SELECT ID_Publicacion, asunto FROM `publicacion` WHERE ID_Persona = $id_instructor AND ID_Ficha = $ficha";
-                        $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-                        $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
+                        // GET INSTRUCTOR'S activity
+                        $activity = "SELECT ID_Actividad, asunto FROM `actividad` WHERE ID_Persona = $id_instructor AND ID_Ficha = $ficha";
+                        $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+                        $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 
-                          if(sizeof($publication_array) > 0){
-                              for ($j=0; $j < sizeof($publication_array); $j++) { 
-                                  $id_publication = $publication_array[$j][0];
-                                  $title_publication = $publication_array[$j][1];
+                          if(sizeof($activity_array) > 0){
+                              for ($j=0; $j < sizeof($activity_array); $j++) { 
+                                  $id_activity = $activity_array[$j][0];
+                                  $title_activity = $activity_array[$j][1];
 
-                                  // GET EVIDENCES DELIVERED BY PUBLICATION
-                                  $evidences = "SELECT ID_Evidencia, fecha, nota, observacion, url, ID_Publicacion FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Publicacion = $id_publication";
+                                  // GET EVIDENCES DELIVERED BY activity
+                                  $evidences = "SELECT ID_Evidencia, fecha, nota, observacion, url, ID_Actividad FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Actividad = $id_activity";
                                   $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                                   $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 
@@ -241,9 +252,9 @@
                                       ?>
                                       <div class="evidence-management">
                                           <div class="user-evidence">
-                                              <div class="user-evidence__publication">
+                                              <div class="user-evidence__activity">
                                                   <i class="fa-solid fa-book user-evidence__icon"></i>
-                                                  <div class="user-evidence__title"><?php echo $title_publication ;?></div>
+                                                  <div class="user-evidence__title"><?php echo $title_activity ;?></div>
                                               </div>
                                               <div class="user-evidence__date"><?php echo $evidences_array[0][1] ;?></div>
                                               <div class="user-evidence__grade">
@@ -303,9 +314,9 @@
                                       ?>
                                           <div class="evidence-management">
                                               <div class="user-evidence user-evidence--empty">
-                                                  <div class="user-evidence__publication">
+                                                  <div class="user-evidence__activity">
                                                       <i class="fa-solid fa-triangle-exclamation user-evidence__icon"></i>
-                                                      <div class="user-evidence__title"><?php echo $title_publication ;?></div>
+                                                      <div class="user-evidence__title"><?php echo $title_activity ;?></div>
                                                   </div>
                                                   <div class="user-evidence--empty__alert">SIN ENTREGA</div>
                                               </div>

@@ -1,23 +1,18 @@
 <?php
-  include_once "../../Models/connection.php";
-  session_start();
-  if (isset($_SESSION['id'])) {
-  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
-  
+include_once "../../Models/connection.php";
+session_start();
+if (isset($_SESSION['id'])) {
   $evidence = $_GET['evidence'];  
 
-  $publication = "SELECT P.ID_Persona, P.asunto, P.descripcion, P.fecha, P.fecha_limite, P.tipo_publicacion, P.url, A.ID_Programa FROM publicacion P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE ID_Publicacion = $evidence;";
-  $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-  $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
+  $activity = "SELECT AC.ID_Persona, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE ID_Actividad = $evidence;";
+  $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+  $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 
-  $instructor_id= $publication_array[0][0];
+  $instructor_id = $activity_array[0][0];
 
   $instructor = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $instructor_id";
   $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
   $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -76,9 +71,9 @@
       }
     ?>
     <?php include './sidebar.php' ?>
-        <h1 class="main-content__header">Entrega de evidencia 📘</h1>
+        <h1 class="main-content__header">Entrega de actividad 📘</h1>
 
-        <!-- PUBLICATION -->
+        <!-- activity -->
         <div class="evidence">
             <!-- HEADER -->
             <div class="evidence__header">
@@ -87,23 +82,23 @@
                     <div class="evidence__instructor-name"><?php echo $instructor_array[0][0] ; echo " " ; echo $instructor_array[0][1] ?></div>
                 </div>
                 <div class="evidence__info">
-                    <div class="evidence__info-date-limit"><?php echo $publication_array[0][4] ;?></div>
-                    <div class="evidence__info-type"><?php echo $publication_array[0][5] ;?></div>
+                    <div class="evidence__info-date-limit"><?php echo $activity_array[0][4] ;?></div>
+                    <div class="evidence__info-type">Evidencia</div>
                 </div>
             </div>
             <hr>
 
             <!-- CONTENT -->
             <div class="evidence__content">
-                <div class="evidence__title"><?php echo $publication_array[0][1] ;?></div>
-                <div class="evidence__date">Fecha publicación: <?php echo $publication_array[0][3] ;?></div>
-                <div class="evidence__p"><?php echo $publication_array[0][2] ;?></div>
+                <div class="evidence__title"><?php echo $activity_array[0][1] ;?></div>
+                <div class="evidence__date">Fecha publicación: <?php echo $activity_array[0][3] ;?></div>
+                <div class="evidence__p"><?php echo $activity_array[0][2] ;?></div>
                 <?php
-                  if($publication_array[0][6] != ''){
+                  if($activity_array[0][5] != ''){
                 ?>
                   <div class="evidence__file">
                     <i class="fa-regular fa-file-lines"></i>
-                    <a class="file-name" href="<?php echo $publication_array[0][6];?>" download=""><?php echo $publication_array[0][6] ;?></a>
+                    <a class="file-name" href="<?php echo $activity_array[0][5];?>" download=""><?php echo $activity_array[0][5] ;?></a>
                   </div>
                 <?php 
                   }
@@ -135,7 +130,6 @@
             <input type="submit" id="submit-btn" name="submit" class="hidden">
           </form>
     </main>
-    <script src="../../Controllers/set-date.js"></script>
     <script src="../../Controllers/aprendiz-control.js"></script>
 </body>
 </html>

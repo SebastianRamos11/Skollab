@@ -19,9 +19,9 @@ if($_POST['submit']){
         if(move_uploaded_file($_FILES['file']['tmp_name'], '../file-store/evidences/'.$_FILES['file']['name'])){
             
             $description = $_POST['description'];
-            $date = $_POST['date'];
+            $date = date('Y-m-d');
             $url = '../file-store/evidences/'.$_FILES['file']['name'];
-            $sql = $dbConnection->query("INSERT INTO evidencia (ID_Persona, ID_Publicacion, descripcion, fecha, url) VALUES ('".$_SESSION['id']."', '".$evidence."', '".$description."', '".$date."', '".$url."')");
+            $sql = $dbConnection->query("INSERT INTO evidencia (ID_Persona, ID_Actividad, descripcion, fecha, url) VALUES ('".$_SESSION['id']."', '".$evidence."', '".$description."', '".$date."', '".$url."')");
             
             header('Location: turned-evidence.php?evidence='.$evidence.'&message=updated');
             exit();

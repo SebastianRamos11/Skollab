@@ -1,3 +1,10 @@
+<?php
+  $user_name = "SELECT nombres  FROM persona WHERE ID_Persona =".$_SESSION['id'];
+  $name_result = mysqli_query($dbConnection, $user_name) or die(mysqli_error($dbConnection));
+  $result_array = mysqli_fetch_all($name_result, MYSQLI_NUM);
+  $user_name = $result_array[0][0];
+?>
+
 <div class="wrapper">
   <header class="header">
     <nav-y class="nav-y">
@@ -12,10 +19,10 @@
             <span>Inicio</span>
           </li>
         </a>
-        <a href="evidences-center.php" class="nav-y-menu__link">
+        <a href="activities-center.php" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-book"></i>
-            <span>Evidencias</span>
+            <span>Actividades</span>
           </li>
         </a>
         <a href="briefcase.php" class="nav-y-menu__link">
@@ -46,7 +53,7 @@
       </button>
       <a href="../profile.php" class="nav-profile nav-profile--y">
         <img src="../img/default.jpeg" alt="avatar" class="nav-profile__img">
-        <div class="nav-profile__name"><?php if (isset($_SESSION['id'])) {echo $result_array[0][1];} else {include('../../Models/logout.php'); $location = header('Location: ../index.php');}; ?></div>
+        <div class="nav-profile__name"><?php if (isset($_SESSION['id'])) {echo $user_name;} else {include('../../Models/logout.php'); $location = header('Location: ../index.php');}; ?></div>
       </a>
       <a href="../../Models/logout.php" class="logout-desktop">
         <i class="fa-solid fa-arrow-right-from-bracket"></i>

@@ -3,7 +3,7 @@
   session_start();
 
   if (isset($_SESSION['id'])) {
-    $user_data = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
+    $user_data = "SELECT nombres, apellidos, correo_electronico, fecha_nacimiento, telefono FROM persona WHERE ID_Persona =".$_SESSION['id'];
     $data_result = mysqli_query($dbConnection, $user_data) or die(mysqli_error($dbConnection));
     $user_data = mysqli_fetch_all($data_result, MYSQLI_NUM);
 ?>
@@ -22,7 +22,7 @@
   <body>
     <main class="main-content">
     <!-- ALERTS -->
-    
+     
     <!-- Empty data -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'empty'){
@@ -94,30 +94,29 @@
         
 
         <!-- USER INFORMATION (DATA FIELDS) -->
-        <form action="update-profile.php" class="form profile__info" method="POST">
+        <form action="update-profile.php?id=<?php echo $_SESSION['id'] ?>" class="form profile__info" method="POST">
             <div class="profile__field">
               <div class="profile__field-label">Nombres</div>
-                <input type="text" id="firstName" name="firstName" class="profile__field-input" value="<?php echo $user_data[0][1]?>">
+                <input type="text" id="firstName" name="firstName" class="profile__field-input" value="<?php echo $user_data[0][0]?>">
               </div>
-            <div class="profile__field">
+
+              <div class="profile__field">
                 <div class="profile__field-label">Apellidos</div>
-                <input type="text" id="lastName" name="lastName" class="profile__field-input" value="<?php echo $user_data[0][2]?>">
+                <input type="text" id="lastName" name="lastName" class="profile__field-input" value="<?php echo $user_data[0][1]?>">
               </div>
+
               <div class="profile__field">
                 <div class="profile__field-label">Correo electrónico</div>
-                <input type="text" id="email" name="email" class="profile__field-input" value="<?php echo $user_data[0][5]?>">
+                <input type="text" id="email" name="email" class="profile__field-input" value="<?php echo $user_data[0][2]?>">
               </div>
-              <div class="profile__field hidden">
-                <div class="profile__field-label">Documento de identidad</div>
-                <input type="text" id="id" name="id" class="profile__field-input" value="<?php echo $user_data[0][0]?>">
-              </div>
+
               <div class="profile__field">
                 <div class="profile__field-label">Fecha de nacimiento</div>
                 <input type="date" id="birthYear" name="birthYear" class="profile__field-input type-date" value="<?php echo $user_data[0][3]?>">
               </div>
               <div class="profile__field">
                 <div class="profile__field-label">Teléfono</div>
-                <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][7]?>" >
+                <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][4]?>" >
               </div>
             <input type="submit" class="submit-btn" value="Guardar">
           </div>

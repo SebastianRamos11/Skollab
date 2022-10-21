@@ -2,10 +2,10 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-  // GET INSTRUCTOR'S GROUPS
-  $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-  $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
-  $get_group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
+    // GET INSTRUCTOR'S GROUPS
+    $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
+    $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
+    $get_group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/instructor.css" />
-    <title>Publicaciones</title>
+    <title>Actividades</title>
   </head>
   <body>
     <?php include './sidebar.php' ?>
@@ -67,79 +67,76 @@
         <?php 
           }
           ?>
-        <h1 class="main-content__header">Centro de publicaciones 📚</h1>
+        <h1 class="main-content__header">Centro de actividades 📚</h1>
 
-        <!-- PUBLICATIONS... -->
+        <!-- activities... -->
 
         
-        <!-- PUBLICATIONS CONTAINER -->
-        <div class="instructor-publications">
-          <div class="publications">
-            <!-- PUBLICATIONS BY GROUP -->
-            
+        <!-- activities CONTAINER -->
+        <div class="instructor-activities">
+          <div class="activities">
+            <!-- activities BY GROUP -->
             <?php for($i=0; $i < sizeof($get_group_array); $i++){ 
               $ficha = $get_group_array[$i][0];
               ?>
-            <div class="publications-course">
-              <?php 
-                // GET GROUP'S PUBLICATIONS
-                $publications = "SELECT ID_Publicacion, asunto, descripcion, fecha, fecha_limite, tipo_publicacion, url FROM publicacion WHERE ID_Ficha = $ficha AND ID_Persona =".$_SESSION['id'];
-                $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
-                $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
-                if(sizeof($publications_array) > 0 ){
-                  ?>
-                  <div class="publications-course__label">Publicaciones para <?php echo $ficha ?></div>
-                  <hr>
-                  <?php
-                  for($j=0; $j < sizeof($publications_array); $j++){
-              ?>
-                    <!-- PUBLICATION -->
-                    <div class="publication">
-                      <div class="publication__title"><?php echo $publications_array[$j][1]; ?></div>
-                      <div class="publcation__date">Fecha publicación: <?php echo $publications_array[$j][3]; ?></div>
-                      <div class="publication__info">
-                        <div class="publication__p"><?php echo $publications_array[$j][2]; ?></div>
-                        <div class="publication__date-limit"><?php echo $publications_array[$j][4]; ?></div>
-                        <div class="publication__type"><?php echo $publications_array[$j][5]; ?></div>
-                        <!-- VALIDAR EXISTENCIA FILE -->
-                        <?php
-                          if($publications_array[$j][6] != ''){
-                            ?>
-                          <a href="<?php print_r($publications_array[$j][6]); ?>" class="publication__file" download="">
-                            <i class="fa-regular fa-file-lines"></i>
-                          </a>
-                          <?php 
-                          }
-                        ?>
+              <div class="activities-course">
+                <?php 
+                  // GET GROUP'S activities
+                  $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$_SESSION['id'];
+                  $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+                  $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
+                  if(sizeof($activities_array) > 0 ){
+                    ?>
+                    <div class="activities-course__label">Actividades para <?php echo $ficha ?></div>
+                    <hr>
+                    <?php
+                    for($j=0; $j < sizeof($activities_array); $j++){
+                    ?>
+                      <!-- activity -->
+                      <div class="activity">
+                        <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
+                        <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
+                        <div class="activity__info">
+                          <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
+                          <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
+                          <div class="activity__type">Actividad</div>
+                          <!-- VALIDAR EXISTENCIA FILE -->
+                          <?php
+                            if($activities_array[$j][5] != ''){
+                              ?>
+                              <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
+                              <?php 
+                            }
+                          ?>
+                        </div>
+                        <div class="activity__btns">
+                          <a href="#?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
+                        </div>
                       </div>
-                      <div class="publication__btns">
-                        <a href="#?publication=<?php echo $publications_array[$j][0]?>" class="publication__btns-link">Editar>></a>
-                      </div>
-                    </div>
                     <?php
                     } 
                   } else{
                     ?>
-                    <div class="publications-course__label">No se han realizado publicaciones para <?php echo $ficha ?></div>
+                    <div class="activities-course__label">No se han realizado actividades para <?php echo $ficha ?></div>
                     <hr>
                     <?php
                   }  
-                ?>
-            </div>
+                  ?>
+              </div>
             <?php 
-          }
+            }
           ?>
-        </div>
-        <!-- CREATE PUBLICATION BUTTON -->
-        <a href="#" class="create-button"><i class="fa-solid fa-plus"></i></a>
+          </div>
+          <!-- CREATE activity BUTTON -->
+          <a href="#" class="create-button"><i class="fa-solid fa-plus"></i></a>
         </div>
       </main>
     </div>
 
-    <!-- CREATE PUBLICATION FORM -->
+    <!-- CREATE activity FORM -->
     <form action="upload-post.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
       <!-- FORM HEADING -->
-      <div class="upload-form__title">Crear Publicación</div>
+      <div class="upload-form__title">Crear Actividad</div>
       <hr>
       <!-- ASUNTO -->
       <div class="upload-form__field">
@@ -161,7 +158,7 @@
           <span>Dirigido a</span>
         </div>
         <select name="group" id="group" class="upload-form__field-input">
-          <option value="0" default="">Seleccione</option>
+          <option value="0" default="">Seleccione la ficha</option>
           <?php 
           for($i = 0; $i < sizeof($get_group_array); $i++){
             ?>
@@ -169,18 +166,6 @@
           <?php
           }
           ?>
-        </select>
-      </div>
-      <hr>
-      <!-- CATEGORIA -->
-      <div class="upload-form__field">
-        <div class="upload-form__field-label">
-          <i class="fa-solid fa-border-all"></i>
-          <span>Categoría</span>
-        </div>
-        <select name="type" id="type" class="upload-form__field-input">
-          <option value="Evidencia" default="">Evidencia</option>
-          <option value="Material">Material</option>
         </select>
       </div>
       <hr>
@@ -207,7 +192,8 @@
       </div>
     </form>
     <div class="overlay hidden"></div>
-    <script src="../../Controllers/publication-control.js"></script>
+
+    <script src="../../Controllers/activity-control.js"></script>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>
   </html>

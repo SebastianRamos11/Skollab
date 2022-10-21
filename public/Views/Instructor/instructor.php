@@ -15,27 +15,9 @@
       include_once "../../Models/connection.php";
       session_start();
       if (isset($_SESSION['id'])) {
-
-      $program_query = "SELECT * FROM programa_formacion";
-      $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
-      $program_array = mysqli_fetch_all($program_result, MYSQLI_NUM);
-
-      $get_info_query = "SELECT 
-            P.nombres,
-            P.apellidos,
-            P.telefono,
-            P.rol,
-            A.ID_Persona,
-            A.ID_Programa,
-            A.ID_Ficha
-        FROM persona P
-        JOIN ambiente_virtual A
-        ON P.ID_Persona = A.ID_Persona";
-      $get_info_result = mysqli_query($dbConnection, $get_info_query) or die(mysqli_error($dbConnection));
-      $get_info_array = mysqli_fetch_all($get_info_result, MYSQLI_NUM);
-      $ficha = $get_info_array[0][5];
-    ?>
-    <?php include './sidebar.php' ?>
+        include './sidebar.php';
+        
+        ?>
         <h1 class="main-content__header">Bienvenido Instructor 👋</h1>
         <!-- BANNER -->
         <div class="banner">

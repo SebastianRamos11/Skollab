@@ -10,18 +10,20 @@ ham.addEventListener("click", () => {
 });
 
 const course = document.querySelectorAll(".course");
-const coursePublications = document.querySelectorAll(".publications-course");
-const publication = document.querySelectorAll("publication");
+const courseActivities = document.querySelectorAll(".activities-course");
+const activity = document.querySelectorAll(".activity");
 const courseTitle = document.querySelectorAll(".course__title");
 const fileName = document.querySelectorAll(".file-name");
 
 // Normalizing texts
 
-fileName.forEach((e, i) => {
-  fileName[i].textContent = fileName[i].textContent
-    .replace("../file-store/", "")
-    .replace("publications/", "");
-});
+if (fileName) {
+  fileName.forEach((e, i) => {
+    fileName[i].textContent = fileName[i].textContent
+      .replace("../file-store/", "")
+      .replace("activities/", "");
+  });
+}
 
 const generateAcronym = function (e) {
   let acronym = "";
@@ -41,12 +43,12 @@ for (let i = 0; i < course.length; i++) {
 
 course.forEach((e, i) => {
   course[i].addEventListener("click", () => {
-    document.querySelector(`.evidences`).classList.remove("hidden");
-    coursePublications[i].classList.remove("hidden");
+    document.querySelector(`.activities`).classList.remove("hidden");
+    courseActivities[i].classList.remove("hidden");
 
-    for (let j = 0; j < coursePublications.length; j++) {
-      if (coursePublications[j] === coursePublications[i]) continue;
-      coursePublications[j].classList.add("hidden");
+    for (let j = 0; j < courseActivities.length; j++) {
+      if (courseActivities[j] === courseActivities[i]) continue;
+      courseActivities[j].classList.add("hidden");
     }
   });
 });

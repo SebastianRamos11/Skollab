@@ -1,5 +1,5 @@
 <?php
-    $read_query = "SELECT rol, nombres FROM persona WHERE ID_Persona =".$_SESSION['id'];
+    $read_query = "SELECT ID_Rol, nombres FROM persona WHERE ID_Persona =".$_SESSION['id'];
     $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
     $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM); 
 ?>
@@ -14,12 +14,12 @@
     <ul class="nav-menu__links hidden">
       <li class="nav-menu__item"><a href="
       <?php
-        if ($result_array[0][0] == 'APRENDIZ') {
-          echo './Aprendiz/aprendiz.php';
-        } elseif ($result_array[0][0] == 'INSTRUCTOR') {
-          echo './Instructor/instructor.php';
-        } elseif ($result_array[0][0] == 'ADMINISTRADOR') {
+        if ($result_array[0][0] == 1) {
           echo './Admin/admin.php';
+        } elseif ($result_array[0][0] == 2) {
+          echo './Instructor/instructor.php';
+        } elseif ($result_array[0][0] == 3) {
+          echo './Aprendiz/aprendiz.php';
         }
       ?>
       " class="nav-menu__link">Ir a Dashboard</a></li>

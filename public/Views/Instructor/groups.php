@@ -2,9 +2,9 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-    $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-    $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
-    $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
+    $course = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
+    $course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
+    $course_array = mysqli_fetch_all($course_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,9 +25,9 @@
 
         <!-- PROGRAMS -->
         <?php 
-          for ($j=0; $j < sizeof($temp_array); $j++) {
-            $program = $temp_array[$j][1];
-            $ficha = $temp_array[$j][2];
+          for ($j=0; $j < sizeof($course_array); $j++) {
+            $program = $course_array[$j][1];
+            $ficha = $course_array[$j][2];
 
             $get_program = "SELECT nombre FROM programa_formacion WHERE ID_Programa = '$program'";
             $get_program_result = mysqli_query($dbConnection, $get_program) or die(mysqli_error($dbConnection));
@@ -38,7 +38,7 @@
             <!-- Course buttons (programa_formacion) -->
             <a class="course" href="#group-<?php echo $j ?>">
               <div class="course__title"><?php print_r($get_program_array[0][0]); ?></div>
-              <div class="course__id"><?php echo $temp_array[$j][2]; ?></div>
+              <div class="course__id"><?php echo $course_array[$j][2]; ?></div>
               <img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
             </a>
             
@@ -51,18 +51,18 @@
           <div class="row">
             <div class="col-md-11">
                 <?php 
-                  for($j=0; $j < sizeof($temp_array); $j++){
-                    $program = $temp_array[$j][1];
-                    $ficha = $temp_array[$j][2];
+                  for($j=0; $j < sizeof($course_array); $j++){
+                    $program = $course_array[$j][1];
+                    $ficha = $course_array[$j][2];
                           
-                    $get_group = "SELECT A.ID_Persona, P.nombres, P.apellidos, P.telefono, P.correo_electronico, P.rol, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.rol = 'APRENDIZ'";
+                    $get_group = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona, A.ID_Programa, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 3";
                     $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
-                    $get_group_result_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
+                    $group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
                 ?>
                     <!-- GROUP (hidden) -->
                     <div class="group hidden">
                     <div class="card mb-50">
-                      <div class="card-header" id="group-<?php echo $j ?>">Ficha <?php echo $temp_array[$j][2]; ?></div>
+                      <div class="card-header" id="group-<?php echo $j ?>">Ficha <?php echo $course_array[$j][2]; ?></div>
                         <div class="p-4">
                           <table class="table align-middle">
                             <thead>
@@ -77,15 +77,15 @@
                             </thead>
                             <tbody>
                               <?php 
-                                for($i=0; $i < sizeof($get_group_result_array); $i++){  
+                                for($i=0; $i < sizeof($group_array); $i++){  
                               ?>
                                   <tr>
-                                    <td scope="row"><?php echo $get_group_result_array[$i][0]; ?></td>
-                                    <td><?php echo $get_group_result_array[$i][1]; ?></td>
-                                    <td><?php echo $get_group_result_array[$i][2]; ?></td>
-                                    <td><?php echo $get_group_result_array[$i][3]; ?></td>
-                                    <td><?php echo $get_group_result_array[$i][4] ?></td>
-                                    <td><a href="see-aprendiz.php?aprendiz=<?php echo $get_group_result_array[$i][0]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
+                                    <td scope="row"><?php echo $group_array[$i][0]; ?></td>
+                                    <td><?php echo $group_array[$i][1]; ?></td>
+                                    <td><?php echo $group_array[$i][2]; ?></td>
+                                    <td><?php echo $group_array[$i][3]; ?></td>
+                                    <td><?php echo $group_array[$i][4] ?></td>
+                                    <td><a href="see-aprendiz.php?aprendiz=<?php echo $group_array[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
                                   </tr>
                               <?php 
                                 }

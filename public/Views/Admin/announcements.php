@@ -81,7 +81,7 @@
               <div class="announcement__title">Fondo Emprender SENA</div>
               <div class="announcement__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita, dignissimos? Id ratione alias magnam ducimus at sit natus? Officia doloribus quisquam molestiae ullam in! Ab animi iure quidem quas? Quae, fuga quo. Ducimus est deserunt minima fugiat maiores nesciunt eius!</div>
             </div>
-            <img class="announcement__img" src="../file-store/publications/wallpaper.png" alt="announcement-image">
+            <img class="announcement__img" src="../file-store/activities/wallpaper.png" alt="announcement-image">
           </div>
           <div class="announcement-management__actions">
             <a href="#" class="announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>

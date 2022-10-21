@@ -2,13 +2,14 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
+
     include_once "../../Models/new-connection.php";
     $read_query = $bd -> query("SELECT * FROM persona");
     $persona = $read_query->fetchAll(PDO::FETCH_OBJ);
 
-    $read_admin = $bd -> query("SELECT * FROM persona WHERE rol = 'ADMINISTRADOR';");
-    $read_aprendiz = $bd -> query("SELECT * FROM persona WHERE rol = 'APRENDIZ';");
-    $read_instructor = $bd -> query("SELECT * FROM persona WHERE rol = 'INSTRUCTOR';");
+    $read_admin = $bd -> query("SELECT num_documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 1;");
+    $read_instructor = $bd -> query("SELECT num_documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 2;");
+    $read_aprendiz = $bd -> query("SELECT num_documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;");
     
     $admin = $read_admin->fetchAll(PDO::FETCH_OBJ);
     $aprendiz = $read_aprendiz->fetchAll(PDO::FETCH_OBJ);
@@ -139,7 +140,7 @@
                 foreach($arr as $dato){
                   echo '
                   <tr>
-                    <td scope="row">'.$dato -> ID_Persona.'</td>
+                    <td scope="row">'.$dato -> num_documento.'</td>
                     <td>'.$dato -> nombres.'</td>
                     <td>'.$dato -> apellidos.'</td>
                     <td>'.$dato -> correo_electronico.'</td>

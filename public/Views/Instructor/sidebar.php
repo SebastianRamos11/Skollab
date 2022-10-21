@@ -30,10 +30,10 @@
             <span>Fichas</span>
           </li>
         </a>
-        <a href="./publications.php" class="nav-y-menu__link">
+        <a href="./activities.php" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-book"></i>
-            <span>Publicaciones</span>
+            <span>Actividades</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">

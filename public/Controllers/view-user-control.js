@@ -17,14 +17,14 @@ for (let i = 0; i < courseTitle.length; i++) {
     courseTitle[i].textContent = generateAcronym(courseTitle[i].textContent);
 }
 
-// TODO: Confirm poput to unlink user
+// TODO: Confirm poput to unlink userity
 
 const unlinkUser = document.querySelectorAll(".course__unlink");
 const deleteEvidence = document.querySelectorAll(
   ".evidence-management__btn-delete"
 );
-
-const deletePublication = document.querySelectorAll(".publication__btn-delete");
+const deleteActivity = document.querySelectorAll(".activity__btn-delete");
+console.log(deleteActivity);
 
 const confirmAction = function (elem, i, subject) {
   Swal.fire({
@@ -65,11 +65,11 @@ deleteEvidence.forEach((e, i) => {
   });
 });
 
-deletePublication.forEach((e, i) => {
-  deletePublication[i].addEventListener("click", (e) => {
+deleteActivity.forEach((e, i) => {
+  deleteActivity[i].addEventListener("click", (e) => {
     e.preventDefault();
     confirmAction(
-      deletePublication,
+      deleteActivity,
       i,
       "¿Seguro que quieres eliminar esta publicación y todos los entregables de la misma?"
     );

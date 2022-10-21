@@ -6,16 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/recover-pass.css" />
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
     <title>Recuperación de Contraseña</title>
   </head>
   <body>
+    <!-- ALERTS -->
+    <!-- Empty data -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'unknow'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: '¡Los datos ingresados no corresponden!'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+    <!-- Create successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'recovered'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: '¡Actualización completada!',
+              text: '¡Su contraseña se actualizó correctamente!',
+              footer: '<a href="../Views/login.php">¿Deseas iniciar sesión?</a>'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+    
     <div class="container">
       <div class="header">
         <h1>Recuperar contraseña</h1>
         <hr />
       </div>
-      <form action="../Models/recover_pass_validation.php" class="form" method="POST">
+      <form action="../Models/recover_validation.php" class="form" method="POST">
         <div class="form__field">
           <label for="email">Correo electrónico</label>
           <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" required />

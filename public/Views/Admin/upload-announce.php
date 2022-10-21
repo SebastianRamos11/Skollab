@@ -24,7 +24,7 @@ if($_POST['submit']){
             // TODO: Announcements upload
             // $sql = $dbConnection->query("INSERT INTO publicacion (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, tipo_publicacion, url) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$type."', '".$url."')");
             
-            // header('Location: publications.php?message=updated');
+            // header('Location: activities.php?message=updated');
             // exit();
         }else{
             header('Location: announcements.php?message=error');

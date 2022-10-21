@@ -2,9 +2,9 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-    $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-    $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
-    $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
+    $course = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
+    $course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
+    $course_array = mysqli_fetch_all($course_result, MYSQLI_NUM);
 
 ?>
 <!DOCTYPE html>
@@ -69,41 +69,41 @@
       ?>
       <h1 class="main-content__header">Centro de revisión</h1>
 
-      <p>Selecciona una ficha para consultar las publicaciones que has realizado.</p>
+      <p>Selecciona una ficha para consultar las actividades que has realizado.</p>
       <!-- GROUPS NAVIGATION -->
       <div class="nav-group">
         <div class="nav-group__title">Ficha</div>
         <select class="nav-group__select">
           <option value="-1" default="">Seleccione ficha</option>
           <?php
-            for($i=0; $i < sizeof($temp_array); $i++){
+            for($i=0; $i < sizeof($course_array); $i++){
           ?>
-            <option value="<?php echo $i; ?>" default="" class="ficha"><?php echo $temp_array[$i][2]; ?></option>
+            <option value="<?php echo $i; ?>" default="" class="ficha"><?php echo $course_array[$i][2]; ?></option>
           <?php
             }
           ?>
 
         </select>
-        <a href="#publications" class="nav-group__btn">Buscar</a>
+        <a href="#activities" class="nav-group__btn">Buscar</a>
       </div>
 
-      <!-- PUBLICATIONS OF GROUP SELECTED -->
-      <div id="publications" class="publications">
+      <!-- activities OF GROUP SELECTED -->
+      <div id="activities" class="activities">
         <?php
-          for($i=0; $i < sizeof($temp_array); $i++){
-            $program = $temp_array[$i][1];
-            $ficha = $temp_array[$i][2];
+          for($i=0; $i < sizeof($course_array); $i++){
+            $program = $course_array[$i][1];
+            $ficha = $course_array[$i][2];
 
-            $publication = "SELECT P.ID_Publicacion, P.asunto, P.descripcion, P.fecha, P.fecha_limite, P.tipo_publicacion, P.url, A.ID_Programa FROM publicacion P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE P.ID_Ficha = $ficha AND A.ID_Programa = $program;";
-            $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-            $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
+            $activity = "SELECT AC.ID_Actividad, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url, A.ID_Programa FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE AC.ID_Ficha = $ficha AND A.ID_Programa = $program;";
+            $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+            $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
           ?>
-            <!-- CONTENEDOR DE PUBLICACIONES PARA FICHA <?php echo $i ?> -->
-            <div class="publications-course publications-course<?php echo $i; ?> hidden">
+            <!-- CONTENEDOR DE actividadES PARA FICHA <?php echo $i ?> -->
+            <div class="activities-course activities-course<?php echo $i; ?> hidden">
               <!-- LABEL  -->
-              <div class="publications-course__label">
+              <div class="activities-course__label">
                 <?php 
-                  if(sizeof($publication_array) > 0){
+                  if(sizeof($activity_array) > 0){
                     echo 'Selecciona la evidencia a consultar';
                   } else{
                     echo 'No has realizado ninguna publicación';
@@ -111,29 +111,29 @@
                 ?>
               </div>
               <hr>
-              <?php for($j=0; $j < sizeof($publication_array); $j++){?>
+              <?php for($j=0; $j < sizeof($activity_array); $j++){?>
 
-                <!-- PUBLICACION <?php echo $j ?> -->
-                <div class="publication">
-                  <div class="publication__title"><?php print_r($publication_array[$j][1]); ?></div>
-                  <div class="publcation__date">Fecha publicación: <?php print_r($publication_array[$j][3]); ?></div>
-                  <div class="publication__info">
-                    <div class="publication__p"><?php print_r($publication_array[$j][2]); ?></div>
-                    <div class="publication__date-limit"><?php print_r($publication_array[$j][4]); ?></div>
-                    <div class="publication__type"><?php print_r($publication_array[$j][5]); ?></div>
+                <!-- actividad <?php echo $j ?> -->
+                <div class="activity">
+                  <div class="activity__title"><?php print_r($activity_array[$j][1]); ?></div>
+                  <div class="publcation__date">Fecha publicación: <?php print_r($activity_array[$j][3]); ?></div>
+                  <div class="activity__info">
+                    <div class="activity__p"><?php print_r($activity_array[$j][2]); ?></div>
+                    <div class="activity__date-limit"><?php print_r($activity_array[$j][4]); ?></div>
+                    <div class="activity__type">Actividad</div>
                     <?php
-                      if($publication_array[$j][6] != ''){
+                      if($activity_array[$j][5] != ''){
                     ?>
-                      <a href="<?php print_r($publication_array[$j][6]); ?>" class="publication__file" download="">
+                      <a href="<?php print_r($activity_array[$j][5]); ?>" class="activity__file" download="">
                         <i class="fa-regular fa-file-lines"></i>
                       </a>
                     <?php 
                       }
                     ?>
                   </div>
-                  <div class="publication__btns">
-                    <a href="FIXME?publication=<?php echo $publication_array[$j][0]?>" class="publication__btns-link">Editar>></a>
-                    <a href="#evidences" id="<?php echo $i; ?>-<?php echo $j; ?>" class="publication__btns-evidences publication-btn">
+                  <div class="activity__btns">
+                    <a href="FIXME?activity=<?php echo $activity_array[$j][0]?>" class="activity__btns-link">Editar>></a>
+                    <a href="#evidences" id="<?php echo $i; ?>-<?php echo $j; ?>" class="activity__btns-evidences activity-btn">
                       Ver entregas
                     </a>
                   </div>
@@ -149,25 +149,25 @@
 
       <div id="evidences" class="evidences">
         <?php
-          for($i=0; $i < sizeof($temp_array); $i++){
-            $ficha = $temp_array[$i][2];
+          for($i=0; $i < sizeof($course_array); $i++){
+            $ficha = $course_array[$i][2];
 
-            // PUBLICATIONS BY GROUP
-            $publications = "SELECT ID_Publicacion FROM `publicacion` WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = $ficha";
-            $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
-            $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
+            // activities BY GROUP
+            $activities = "SELECT ID_Actividad FROM `actividad` WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = $ficha";
+            $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+            $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
             ?> 
 
             <!-- CONTENEDOR PARA FICHA <?php echo $i?> -->
             <div class="evidences-course evidences-course--<?php echo $i?>">
               <?php
-                for($j=0; $j < sizeof($publications_array); $j++){
-                  $ID_Publicacion = $publications_array[$j][0];
+                for($j=0; $j < sizeof($activities_array); $j++){
+                  $ID_Actividad = $activities_array[$j][0];
                   ?>
-                    <!-- CONTENEDOR DE EVIDENCIAS SUBIDAS DE PUBLICACION <?php echo $j ?>-->
-                    <div class="evidences-<?php echo $i; ?>-<?php echo $j; ?> evidences evidences-publication hidden">
+                    <!-- CONTENEDOR DE EVIDENCIAS SUBIDAS DE actividad <?php echo $j ?>-->
+                    <div class="evidences-<?php echo $i; ?>-<?php echo $j; ?> evidences evidences-activity hidden">
                       <?php 
-                        $evidences = "SELECT E.ID_Evidencia, E.ID_Persona, E.ID_Publicacion, E.fecha, P.ID_Ficha FROM evidencia E JOIN publicacion P ON E.ID_Publicacion = P.ID_Publicacion WHERE P.ID_Ficha = $ficha AND P.ID_Publicacion = $ID_Publicacion AND E.nota IS NULL";
+                        $evidences = "SELECT E.ID_Evidencia, E.ID_Persona, E.ID_Actividad, E.fecha, AC.ID_Ficha FROM evidencia E JOIN actividad AC ON E.ID_Actividad = AC.ID_Actividad WHERE AC.ID_Ficha = $ficha AND AC.ID_Actividad = $ID_Actividad AND E.nota IS NULL";
                         $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                         $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
                         ?>
@@ -176,11 +176,11 @@
                         <div class="evidences-course__label">
                           <?php
                             if(sizeof($evidences_array) > 1){
-                              echo sizeof($evidences_array); echo " "; echo "Evidencias por calificar";
+                              echo sizeof($evidences_array); echo " "; echo "Actividades por calificar";
                             } else if (sizeof($evidences_array) == 1) {
                               echo sizeof($evidences_array); echo " "; echo "Evidencia por calificar";
                             } else{
-                              echo "No hay evidencias por calificar";
+                              echo "No hay actividades por calificar";
                             }
                           ?>
                         </div>
@@ -196,7 +196,7 @@
                           $aprendiz_name_array = mysqli_fetch_all($aprendiz_name_result, MYSQLI_NUM);
 
                           ?>
-                          <!-- <?php echo "EVIDENCIAS DE PUBLICACION CON ID "; echo $ID_Publicacion; ?> -->
+                          <!-- <?php echo "EVIDENCIAS DE actividad CON ID "; echo $ID_Actividad; ?> -->
 
                             <!-- EVIDENCIA -->
                             <div class="evidence">

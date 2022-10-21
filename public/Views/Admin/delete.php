@@ -20,7 +20,7 @@
 
     // DELETE ALL USER DATA
     if(isset($_GET['delete_user'])){
-        $sentencia = $bd->prepare("DELETE FROM publicacion where ID_Persona = ?;");
+        $sentencia = $bd->prepare("DELETE FROM actividad where ID_Persona = ?;");
         $resultado = $sentencia->execute([$id]);
     
         $sentencia = $bd->prepare("DELETE FROM ambiente_virtual where ID_Persona = ?;");
@@ -45,16 +45,16 @@
         }  
     }
 
-    // DELETE USER'S PUBLICATIONS
-    if(isset($_GET['delete_publication'])){
-        $sentencia = $bd->prepare("DELETE FROM evidencia where ID_Publicacion = ?;");
-        $resultado = $sentencia->execute([$_GET['delete_publication']]);
+    // DELETE USER'S activities
+    if(isset($_GET['delete_activity'])){
+        $sentencia = $bd->prepare("DELETE FROM evidencia where ID_Actividad = ?;");
+        $resultado = $sentencia->execute([$_GET['delete_activity']]);
 
-        $sentencia = $bd->prepare("DELETE FROM publicacion where ID_Persona = ? and ID_Publicacion = ?;");
-        $resultado = $sentencia->execute([$id, $_GET['delete_publication']]);
+        $sentencia = $bd->prepare("DELETE FROM actividad where ID_Persona = ? and ID_Actividad = ?;");
+        $resultado = $sentencia->execute([$id, $_GET['delete_activity']]);
         
         if($resultado){
-            header('Location: view-user.php?user='.$id.'&message=publication_deleted');
+            header('Location: view-user.php?user='.$id.'&message=activity_deleted');
             exit(); 
         }  
     }

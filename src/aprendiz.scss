@@ -18,20 +18,13 @@
   }
 }
 
-// PUBLICATIONS MODIFICATIONS
-
-.publications-course {
-  grid-template-columns: 500px 500px;
-  & .publication {
-    max-width: 500px;
-  }
-}
+// activities MODIFICATIONS
 
 @media screen and (min-width: 1400px) {
-  .publications-course {
-    grid-template-columns: 550px 550px;
-    & .publication {
-      max-width: 550px;
+  .activities-course {
+    grid-template-columns: 500px 500px;
+    & .activity {
+      max-width: 500px;
     }
   }
 }
@@ -296,7 +289,7 @@
     align-items: center;
     grid-template-columns: 290px 140px 130px 140px;
     padding: 40px;
-    &__publication {
+    &__activity {
       display: flex;
     }
     &__icon {

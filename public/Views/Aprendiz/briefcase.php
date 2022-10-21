@@ -1,16 +1,12 @@
 <?php
-  include_once "../../Models/connection.php";
-  session_start();
-  if (isset($_SESSION['id'])) {
-  $read_query = "SELECT * FROM persona WHERE ID_Persona =".$_SESSION['id'];
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
+include_once "../../Models/connection.php";
+session_start();
 
+if (isset($_SESSION['id'])) {
   // GET AMBIENTE VIRTUAL
-  $temp = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-  $temp_result = mysqli_query($dbConnection, $temp) or die(mysqli_error($dbConnection));
-  $temp_array = mysqli_fetch_all($temp_result, MYSQLI_NUM);
-
+  $course = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
+  $course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
+  $course_array = mysqli_fetch_all($course_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,9 +24,9 @@
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">💼 Portafolio</h1>
         <?php 
-            for($i=0; $i<sizeof($temp_array); $i++){
-                $program = $temp_array[$i][1];
-                $ficha = $temp_array[$i][2];
+            for($i=0; $i<sizeof($course_array); $i++){
+                $program = $course_array[$i][1];
+                $ficha = $course_array[$i][2];
 
                 // GET PROGRAM NAME
                 $program_query = "SELECT nombre FROM programa_formacion WHERE ID_Programa = $program";
@@ -49,35 +45,35 @@
                 <?php
 
                 // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-                $instructor = "SELECT A.ID_Persona, P.nombres, P.apellidos,  A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.rol = 'INSTRUCTOR'";
+                $instructor = "SELECT A.ID_Persona, P.nombres, P.apellidos,  A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
                 $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
                 $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
                 $id_instructor = $instructor_array[0][0];
 
-                // GET INSTRUCTOR'S PUBLICATIONS
-                $publications = "SELECT ID_Publicacion, asunto FROM `publicacion` WHERE ID_Persona = $id_instructor";
-                $publications_result = mysqli_query($dbConnection, $publications) or die(mysqli_error($dbConnection));
-                $publications_array = mysqli_fetch_all($publications_result, MYSQLI_NUM);
+                // GET INSTRUCTOR'S activities
+                $activities = "SELECT ID_Actividad, asunto, fecha FROM `actividad` WHERE ID_Persona = $id_instructor";
+                $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+                $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
 
                 ?>
                 <div class="briefcase hidden" id="briefcase-<?php echo $i ?>">
                     <?php
-                    if(sizeof($publications_array) > 0){
-                        for($j=0; $j < sizeof($publications_array); $j++){
-                            $id_publication = $publications_array[$j][0];
-                            $publication_title = $publications_array[$j][1];
+                    if(sizeof($activities_array) > 0){
+                        for($j=0; $j < sizeof($activities_array); $j++){
+                            $id_activity = $activities_array[$j][0];
+                            $activity_title = $activities_array[$j][1];
                         
-                            // GET EVIDENCES DELIVERED BY PUBLICATION
-                            $evidences = "SELECT fecha, nota, observacion, url, ID_Publicacion FROM `evidencia` WHERE ID_Persona =".$_SESSION['id']." AND ID_Publicacion = $id_publication";
+                            // GET EVIDENCES DELIVERED BY activity
+                            $evidences = "SELECT fecha, nota, observacion, url, ID_Actividad FROM `evidencia` WHERE ID_Persona =".$_SESSION['id']." AND ID_Actividad = $id_activity";
                             $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                             $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 
                             if(sizeof($evidences_array)){
                                 ?>
                                     <div class="briefcase-evidence">
-                                        <div class="briefcase-evidence__publication">
+                                        <div class="briefcase-evidence__activity">
                                             <i class="fa-solid fa-book briefcase-evidence__icon"></i>
-                                            <div class="briefcase-evidence__title"><?php echo $publication_title; ?></div>
+                                            <div class="briefcase-evidence__title"><?php echo $activity_title; ?></div>
                                         </div>
                                         <div class="briefcase-evidence__date"><?php echo $evidences_array[0][0] ;?></div>
                                         <div class="briefcase-evidence__grade">

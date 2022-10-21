@@ -1,19 +1,20 @@
 <?php
-  include_once "../../Models/connection.php";
-  session_start();
-  if (isset($_SESSION['id'])) {
+include_once "../../Models/connection.php";
+session_start();
+
+if (isset($_SESSION['id'])) {
   $id_evidencia = $_GET['evidence'];  
 
-  $evidence = "SELECT E.ID_Publicacion, E.ID_Persona, P.ID_Ficha, E.fecha, E.descripcion, E.url FROM evidencia E JOIN publicacion P ON E.ID_Publicacion = P.ID_Publicacion WHERE ID_Evidencia = $id_evidencia;";
+  $evidence = "SELECT E.ID_Actividad, E.ID_Persona, AC.ID_Ficha, E.fecha, E.descripcion, E.url FROM evidencia E JOIN actividad AC ON E.ID_Actividad = AC.ID_Actividad WHERE ID_Evidencia = $id_evidencia;";
   $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
   $evidence_array = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
 
-  $id_publicacion = $evidence_array[0][0];
+  $id_actividad = $evidence_array[0][0];
   $id_aprendiz = $evidence_array[0][1];
 
-  $publication = "SELECT asunto, fecha, fecha_limite FROM publicacion WHERE ID_Publicacion = $id_publicacion;";
-  $publication_result = mysqli_query($dbConnection, $publication) or die(mysqli_error($dbConnection));
-  $publication_array = mysqli_fetch_all($publication_result, MYSQLI_NUM);
+  $activity = "SELECT asunto, fecha, fecha_limite FROM actividad WHERE ID_Actividad = $id_actividad;";
+  $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+  $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 
   $aprendiz = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_aprendiz";
   $aprendiz_result = mysqli_query($dbConnection, $aprendiz) or die(mysqli_error($dbConnection));
@@ -36,18 +37,18 @@
         <h1 class="main-content__header">Calificar evidencia 📝</h1>
 
 
-        <!-- PUBLICATION SELECTED -->
-        <div class="publication-selected">
-            <i class="fa-solid fa-book publication-selected__icon"></i>
-            <div class="publication-selected__title"><?php echo $publication_array[0][0]; ?></div>
-            <div class="publication-selected__term">
-                <div class="publication-selected__time">
-                    <div class="publication-selected__time-label">Fecha publicación</div>
-                    <div class="publication-selected__time-date"><?php echo $publication_array[0][1]; ?></div>
+        <!-- activity SELECTED -->
+        <div class="activity-selected">
+            <i class="fa-solid fa-book activity-selected__icon"></i>
+            <div class="activity-selected__title"><?php echo $activity_array[0][0]; ?></div>
+            <div class="activity-selected__term">
+                <div class="activity-selected__time">
+                    <div class="activity-selected__time-label">Fecha publicación</div>
+                    <div class="activity-selected__time-date"><?php echo $activity_array[0][1]; ?></div>
                 </div>
-                <div class="publication-selected__time">
-                    <div class="publication-selected__time-label">Fecha límite</div>
-                    <div class="publication-selected__time-date publication-selected__time-date--due"><?php echo $publication_array[0][2]; ?></div>
+                <div class="activity-selected__time">
+                    <div class="activity-selected__time-label">Fecha límite</div>
+                    <div class="activity-selected__time-date activity-selected__time-date--due"><?php echo $activity_array[0][2]; ?></div>
                 </div>
             </div>
         </div>
