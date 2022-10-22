@@ -1470,7 +1470,7 @@ th {
   width: 70%;
   position: absolute;
   background-color: #fff;
-  padding: 50px 100px;
+  padding: 30px 80px;
   border-radius: 0.5rem;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
@@ -1524,7 +1524,8 @@ th {
   grid-column-gap: 20px;
 }
 .form .rol {
-  grid-column: 2 span;
+  grid-column: 3 span;
+  margin-bottom: 30px;
 }
 
 .grid-col-3 {
@@ -1582,6 +1583,16 @@ th {
   height: 60%;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.doc-type {
+  margin-bottom: auto;
+}
+.doc-type select {
+  height: 60px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .edit-user-body {

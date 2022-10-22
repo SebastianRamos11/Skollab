@@ -1,15 +1,24 @@
+<?php 
+  include_once "../../Models/connection.php";
+
+  // GET ROLES
+  $role = "SELECT tipo FROM rol";
+  $role_result = mysqli_query($dbConnection, $role) or die(mysqli_error($dbConnection));
+  $role_array = mysqli_fetch_all($role_result, MYSQLI_NUM);
+
+  // GET DOCUMENT TYPES
+  $type_doc = "SELECT tipo FROM tipo_documento";
+  $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+  $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <title>Editar Usuario</title>
     <link rel="stylesheet" href="../css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="../css/admin.css" />
-      <!-- Header -->
-      <?php include '../components/header.php' ?>  
-      </header>
 
       <?php
-
         if(!isset($_GET['id'])){
             header('Location: crud.php?message=error');
             exit();
@@ -23,19 +32,12 @@
         $persona = $edit_query->fetch(PDO::FETCH_OBJ);
       ?>
 
-      
-
       <div class="modal card">
         <div class="modal__header">
           <h2>Editar usuario</h2>
           <hr />
         </div>
-        <form action="edit.php" class="form" method="POST">
-          <!-- ID -->
-          <div class="form__field hidden">
-            <label for="id">Identificación</label>
-            <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" value="<?php echo $persona -> ID_Persona; ?>"/>
-          </div>
+        <form action="edit.php?id=<?php echo $persona -> ID_Persona; ?>" class="form" method="POST">
 
           <!-- FIRST NAME -->
           <div class="form__field">
@@ -59,18 +61,16 @@
           <div class="rol grid-col-3">
             <div class="rol__title">Rol</div>
             <div class="rol__options">
-              <div class="rol__option">
-                <input type="radio" name="rol" id="administrador" value="ADMINISTRADOR" class="administrador" <?php if(($persona -> rol) == 'ADMINISTRADOR'){ ?> checked <?php } ?> />
-                <label for="administrador">Administrador</label>
-              </div>
-              <div class="rol-option">
-                <input type="radio" name="rol" id="aprendiz" value="APRENDIZ" class="aprendiz" <?php if(($persona -> rol) == 'APRENDIZ'){ ?> checked <?php } ?> />
-                <label for="aprendiz">Aprendiz</label>
-              </div>
-              <div class="rol-option">
-                <input type="radio" name="rol" id="instructor" value="INSTRUCTOR" class="instructor" <?php if(($persona -> rol) == 'INSTRUCTOR'){ ?> checked <?php } ?> />
-                <label for="instructor">Instructor</label>
-              </div> 
+              <?php 
+                for($i = 1; $i <= sizeof($role_array); $i++){
+                ?>
+                  <div class="rol__option">
+                    <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>" <?php if(($persona -> ID_Rol) == $i){ ?> checked <?php } ?> />
+                    <label for="rol-<?php echo $i?>"><?php print_r($role_array[$i - 1][0]) ?></label>
+                  </div>
+                <?php 
+                }
+              ?>
             </div>
           </div>
 
@@ -86,6 +86,20 @@
             <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" value="<?php echo $persona -> correo_electronico; ?>" />
           </div>
 
+          <!-- DOCUMENT TYPE -->
+          <div class="doc-type form__field">
+            <label for="doc-type">Tipo de documento</label>
+            <select name="doc-type" id="doc-type" class="upload-form__field-input">
+            <?php 
+              for($i = 1; $i <= sizeof($type_doc_array); $i++){
+                ?>
+                <option value="<?php echo $i ?>" <?php if(($persona -> ID_Tipo_Documento) == $i){ ?> selected <?php } ?> ><?php echo $type_doc_array[$i - 1][0]; ?></option>
+            <?php
+              }
+            ?>
+            </select>
+          </div>
+          
           <!-- SUBMIT -->
           <div class="form__field submit__field">
             <input type="submit" name="recover-submited" value="Guardar" class="submit-btn" />

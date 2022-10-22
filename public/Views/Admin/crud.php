@@ -7,13 +7,23 @@
     $read_query = $bd -> query("SELECT * FROM persona");
     $persona = $read_query->fetchAll(PDO::FETCH_OBJ);
 
-    $read_admin = $bd -> query("SELECT num_documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 1;");
-    $read_instructor = $bd -> query("SELECT num_documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 2;");
-    $read_aprendiz = $bd -> query("SELECT num_documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;");
+    $read_admin = $bd -> query("SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 1;");
+    $read_instructor = $bd -> query("SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 2;");
+    $read_aprendiz = $bd -> query("SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;");
     
     $admin = $read_admin->fetchAll(PDO::FETCH_OBJ);
     $aprendiz = $read_aprendiz->fetchAll(PDO::FETCH_OBJ);
     $instructor = $read_instructor->fetchAll(PDO::FETCH_OBJ);
+
+    // GET DOCUMENT TYPES
+    $type_doc = "SELECT tipo FROM tipo_documento";
+    $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+    $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
+
+    // GET ROLES
+    $role = "SELECT tipo FROM rol";
+    $role_result = mysqli_query($dbConnection, $role) or die(mysqli_error($dbConnection));
+    $role_array = mysqli_fetch_all($role_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,6 +55,22 @@
     <?php 
       }
     ?>
+
+    <!-- User already registered -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'already-registered'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Un usuario con estos datos ya se encuentra registrado.'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+
     <!-- Create successfully -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'created'){
@@ -121,6 +147,7 @@
       }
       
       function generateCrud($arr, $role, &$num_crud){
+        global $type_doc_array;
         echo '
         <div id="crud-'.$num_crud.'" class="crud card mb-50 hidden">
           <div class="card-header">'.$role.'</div>
@@ -128,7 +155,8 @@
             <table class="table align-middle">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">Documento</th>
+                  <th scope="col">Tipo Documento</th>
                   <th scope="col">Nombres</th>
                   <th scope="col">Apellidos</th>
                   <th scope="col">Correo</th>
@@ -141,6 +169,7 @@
                   echo '
                   <tr>
                     <td scope="row">'.$dato -> num_documento.'</td>
+                    <td scope="row">'.$type_doc_array[$dato -> ID_Tipo_Documento - 1][0].'</td>
                     <td>'.$dato -> nombres.'</td>
                     <td>'.$dato -> apellidos.'</td>
                     <td>'.$dato -> correo_electronico.'</td>
@@ -229,6 +258,21 @@
             <hr />
           </div>
           <form action="create.php" class="form" id="form" method="POST">
+            <!-- DOCUMENT TYPE -->
+            <div class="doc-type form__field">
+              <label for="doc-type">Tipo de documento</label>
+              <select name="doc-type" id="doc-type" class="upload-form__field-input">
+                <option value="">Seleccione el tipo</option>
+                <?php 
+                for($i = 1; $i <= sizeof($type_doc_array); $i++){
+                  ?>
+                  <option value="<?php echo $i ?>"><?php echo $type_doc_array[$i - 1][0]; ?></option>
+                <?php
+                }
+                ?>
+              </select>
+          </div>
+
             <!-- ID -->
             <div class="form__field">
               <label for="id">Identificación</label>
@@ -253,29 +297,29 @@
               <input type="date" id="birthYear" name="birthYear" value="2000-02-02" class="register-input" />
             </div>
 
-            <!-- ROL -->
-            <div class="rol">
-              <div class="rol__title">Rol</div>
-              <div class="rol__options">
-                <div class="rol__option">
-                  <input type="radio" name="rol" id="administrador" value="ADMINISTRADOR" class="administrador" />
-                  <label for="administrador">Administrador</label>
-                </div>
-                <div class="rol-option">
-                  <input type="radio" name="rol" id="aprendiz" value="APRENDIZ" class="aprendiz" />
-                  <label for="aprendiz">Aprendiz</label>
-                </div>
-                <div class="rol-option">
-                  <input type="radio" name="rol" id="instructor" value="INSTRUCTOR" class="instructor" />
-                  <label for="instructor">Instructor</label>
-                </div> 
-              </div>
-            </div>
-  
             <!-- PHONE -->
             <div class="form__field">
               <label for="phone">Celular</label>
               <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" />
+            </div>
+
+
+            <!-- ROL -->
+            <div class="rol">
+              <div class="rol__title">Rol</div>
+              <div class="rol__options">
+
+                <?php 
+                  for($i = 1; $i <= sizeof($role_array); $i++){
+                  ?>
+                    <div class="rol__option">
+                      <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>"/>
+                      <label for="rol-<?php echo $i?>"><?php print_r($role_array[$i - 1][0]) ?></label>
+                    </div>
+                  <?php 
+                  }
+                ?>
+              </div>
             </div>
   
             <!-- MAIL -->
@@ -291,7 +335,7 @@
             </div>
   
             <!-- SUBMIT -->
-            <div class="form__field submit__field">
+            <div class="form__field submit__field" style="grid-column: 1 span;">
               <input type="submit" name="recover-submited" value="Crear Usuario" class="submit-btn" />
             </div>
           </form>

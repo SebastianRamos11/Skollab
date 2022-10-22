@@ -133,7 +133,7 @@
       </main>
     </div>
 
-    <!-- CREATE activity FORM -->
+    <!-- CREATE ACTIVITY FORM -->
     <form action="upload-post.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
       <!-- FORM HEADING -->
       <div class="upload-form__title">Crear Actividad</div>
