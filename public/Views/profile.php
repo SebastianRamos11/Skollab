@@ -3,9 +3,14 @@
   session_start();
 
   if (isset($_SESSION['id'])) {
-    $user_data = "SELECT nombres, apellidos, correo_electronico, fecha_nacimiento, telefono FROM persona WHERE ID_Persona =".$_SESSION['id'];
+    $user_data = "SELECT ID_Tipo_Documento, nombres, apellidos, correo_electronico, fecha_nacimiento, telefono FROM persona WHERE ID_Persona =".$_SESSION['id'];
     $data_result = mysqli_query($dbConnection, $user_data) or die(mysqli_error($dbConnection));
     $user_data = mysqli_fetch_all($data_result, MYSQLI_NUM);
+
+    // GET DOCUMENT TYPES
+    $type_doc = "SELECT tipo FROM tipo_documento";
+    $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+    $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,30 +100,43 @@
 
         <!-- USER INFORMATION (DATA FIELDS) -->
         <form action="update-profile.php?id=<?php echo $_SESSION['id'] ?>" class="form profile__info" method="POST">
-            <div class="profile__field">
-              <div class="profile__field-label">Nombres</div>
-                <input type="text" id="firstName" name="firstName" class="profile__field-input" value="<?php echo $user_data[0][0]?>">
+              <div class="profile__field">
+                <div class="profile__field-label">Tipo de documento</div>
+                <select name="doc-type" id="doc-type" class="profile__field-input" title="Tipo de Documento">
+                <?php 
+                  for($i = 1; $i <= sizeof($type_doc_array); $i++){
+                    ?>
+                    <option value="<?php echo $i ?>" <?php if($user_data[0][0] == $i){ ?> selected <?php } ?> ><?php echo $type_doc_array[$i - 1][0]; ?></option>
+                <?php
+                  }
+                ?>
+                </select>
+              </div>
+
+              <div class="profile__field">
+                <div class="profile__field-label">Nombres</div>
+                <input type="text" id="firstName" name="firstName" class="profile__field-input" value="<?php echo $user_data[0][1]?>">
               </div>
 
               <div class="profile__field">
                 <div class="profile__field-label">Apellidos</div>
-                <input type="text" id="lastName" name="lastName" class="profile__field-input" value="<?php echo $user_data[0][1]?>">
+                <input type="text" id="lastName" name="lastName" class="profile__field-input" value="<?php echo $user_data[0][2]?>">
               </div>
 
               <div class="profile__field">
                 <div class="profile__field-label">Correo electrónico</div>
-                <input type="text" id="email" name="email" class="profile__field-input" value="<?php echo $user_data[0][2]?>">
+                <input type="text" id="email" name="email" class="profile__field-input" value="<?php echo $user_data[0][3]?>">
               </div>
 
               <div class="profile__field">
                 <div class="profile__field-label">Fecha de nacimiento</div>
-                <input type="date" id="birthYear" name="birthYear" class="profile__field-input type-date" value="<?php echo $user_data[0][3]?>">
+                <input type="date" id="birthYear" name="birthYear" class="profile__field-input type-date" value="<?php echo $user_data[0][4]?>">
               </div>
               <div class="profile__field">
                 <div class="profile__field-label">Teléfono</div>
-                <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][4]?>" >
+                <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][5]?>" >
               </div>
-            <input type="submit" class="submit-btn" value="Guardar">
+            <input type="submit" class="submit-btn profile__submit" value="Guardar">
           </div>
 
     </div>

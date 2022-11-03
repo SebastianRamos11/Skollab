@@ -11,14 +11,15 @@
     include_once "../Models/new-connection.php";
 
     $id = $_GET["id"];
+    $doc_type = $_POST["doc-type"];
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $birthYear = $_POST["birthYear"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
 
-    $edit_query = $bd -> prepare("UPDATE persona SET nombres = ?, apellidos = ?, fecha_nacimiento = ?, correo_electronico = ?, telefono = ? WHERE ID_Persona = ?;");
-    $query_result = $edit_query -> execute([$firstName, $lastName, $birthYear, $email, $phone, $id]);
+    $edit_query = $bd -> prepare("UPDATE persona SET ID_Tipo_Documento = ?, nombres = ?, apellidos = ?, fecha_nacimiento = ?, correo_electronico = ?, telefono = ? WHERE ID_Persona = ?;");
+    $query_result = $edit_query -> execute([$doc_type, $firstName, $lastName, $birthYear, $email, $phone, $id]);
 
     if($query_result){
         header('Location: profile.php?message=updated');

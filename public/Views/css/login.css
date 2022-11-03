@@ -864,7 +864,6 @@ input[type=checkbox], input[type=radio] {
   margin: 40px auto;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;
   row-gap: 25px;
 }
 .profile .form .profile__field {
@@ -880,7 +879,7 @@ input[type=checkbox], input[type=radio] {
   border: 2px solid #d8d8d8;
   border-radius: 10px;
   height: 50px;
-  padding: 20px;
+  padding: 10px 20px;
   width: 90%;
 }
 .profile .form .profile__field .type-date {
@@ -896,7 +895,8 @@ input[type=checkbox], input[type=radio] {
   text-decoration: none;
   text-align: center;
   font-weight: 500;
-  margin-top: 35px;
+  margin-top: 20px;
+  grid-column-start: 2;
   height: 50px;
   width: 90%;
 }
