@@ -813,24 +813,26 @@
 // activities
 
 .activities-course {
-  display: grid;
-  grid-template-columns: 450px 450px;
-  justify-content: center;
-  gap: 40px;
   margin: 30px auto;
 
   &__label {
-    padding: 10px 50px;
     font-size: map-get($size-title, "m");
     font-weight: map-get($font-weights, "semibold");
-    margin-bottom: 10px;
+    padding: 20px;
     color: #272727;
-    grid-column: 2 span;
   }
   & hr {
     border-color: #e0e0e0;
     width: 100%;
     grid-column: 2 span !important;
+    margin-bottom: 30px;
+  }
+
+  & .activities {
+    display: grid;
+    grid-template-columns: 450px 450px;
+    justify-content: center;
+    gap: 40px;
   }
 
   & .activity {
@@ -1022,6 +1024,24 @@
   right: 18px;
   text-align: center;
   background: #ffd16d;
+  padding: 20px 15px;
+  border-radius: $radius-m;
+  max-width: 900px;
+  & i {
+    font-size: 20px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.good-message {
+  padding: 40px;
+  margin: 30px auto;
+  position: relative;
+  right: 18px;
+  text-align: center;
+  background: #6dff77;
   padding: 20px 15px;
   border-radius: $radius-m;
   max-width: 900px;

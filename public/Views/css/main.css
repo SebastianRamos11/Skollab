@@ -988,24 +988,25 @@ input[type=checkbox], input[type=radio] {
 }
 
 .activities-course {
-  display: grid;
-  grid-template-columns: 450px 450px;
-  justify-content: center;
-  gap: 40px;
   margin: 30px auto;
 }
 .activities-course__label {
-  padding: 10px 50px;
   font-size: 1.6em;
   font-weight: 700;
-  margin-bottom: 10px;
+  padding: 20px;
   color: #272727;
-  grid-column: 2 span;
 }
 .activities-course hr {
   border-color: #e0e0e0;
   width: 100%;
   grid-column: 2 span !important;
+  margin-bottom: 30px;
+}
+.activities-course .activities {
+  display: grid;
+  grid-template-columns: 450px 450px;
+  justify-content: center;
+  gap: 40px;
 }
 .activities-course .activity {
   background: #fff;
@@ -1213,6 +1214,24 @@ input[type=checkbox], input[type=radio] {
   max-width: 900px;
 }
 .alert-message i {
+  font-size: 20px;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+}
+
+.good-message {
+  padding: 40px;
+  margin: 30px auto;
+  position: relative;
+  right: 18px;
+  text-align: center;
+  background: #6dff77;
+  padding: 20px 15px;
+  border-radius: 10px;
+  max-width: 900px;
+}
+.good-message i {
   font-size: 20px;
   margin-right: 10px;
   position: relative;

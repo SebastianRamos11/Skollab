@@ -74,58 +74,64 @@
         
         <!-- activities CONTAINER -->
         <div class="instructor-activities">
-          <div class="activities">
+          <div class="container">
             <!-- activities BY GROUP -->
             <?php for($i=0; $i < sizeof($get_group_array); $i++){ 
               $ficha = $get_group_array[$i][0];
+              
+              // GET GROUP'S activities
+              $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$_SESSION['id'];
+              $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+              $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
+
               ?>
               <div class="activities-course">
+                <div class="activities-course__label">Ficha <?php echo $ficha ?></div>
+                <hr>
+
                 <?php 
-                  // GET GROUP'S activities
-                  $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$_SESSION['id'];
-                  $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
-                  $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
                   if(sizeof($activities_array) > 0 ){
                     ?>
-                    <div class="activities-course__label">Actividades para <?php echo $ficha ?></div>
-                    <hr>
-                    <?php
-                    for($j=0; $j < sizeof($activities_array); $j++){
+                    <div class="activities">
+                      <?php
+                      for($j=0; $j < sizeof($activities_array); $j++){
+                      ?>
+                        <!-- activity -->
+                        <div class="activity">
+                          <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
+                          <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
+                          <div class="activity__info">
+                            <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
+                            <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
+                            <div class="activity__type">Actividad</div>
+                            <!-- VALIDAR EXISTENCIA FILE -->
+                            <?php
+                              if($activities_array[$j][5] != ''){
+                                ?>
+                                <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
+                                <?php 
+                              }
+                            ?>
+                          </div>
+                          <div class="activity__btns">
+                            <a href="#?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
+                          </div>
+                        </div>
+                      <?php
+                      }
                     ?>
-                      <!-- activity -->
-                      <div class="activity">
-                        <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
-                        <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
-                        <div class="activity__info">
-                          <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
-                          <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
-                          <div class="activity__type">Actividad</div>
-                          <!-- VALIDAR EXISTENCIA FILE -->
-                          <?php
-                            if($activities_array[$j][5] != ''){
-                              ?>
-                              <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
-                              <?php 
-                            }
-                          ?>
-                        </div>
-                        <div class="activity__btns">
-                          <a href="#?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
-                        </div>
-                      </div>
-                    <?php
-                    } 
+                    </div>
+                    <?php 
                   } else{
                     ?>
-                    <div class="activities-course__label">No se han realizado actividades para <?php echo $ficha ?></div>
-                    <hr>
+                    <div class="alert-message"><i class="fa-solid fa-triangle-exclamation"></i>No has realizado publicaciones para esta ficha.</div>
                     <?php
                   }  
                   ?>
               </div>
             <?php 
             }
-          ?>
+            ?>
           </div>
           <!-- CREATE activity BUTTON -->
           <a href="#" class="create-button"><i class="fa-solid fa-plus"></i></a>

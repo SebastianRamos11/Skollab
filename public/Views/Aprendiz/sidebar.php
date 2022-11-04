@@ -3,6 +3,7 @@
   $name_result = mysqli_query($dbConnection, $user_name) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($name_result, MYSQLI_NUM);
   $user_name = $result_array[0][0];
+  $id_user = $_SESSION['id'];
 ?>
 
 <div class="wrapper">
