@@ -146,35 +146,6 @@ th {
   display: none !important;
 }
 
-.course {
-  cursor: pointer;
-  outline: none;
-  margin-left: 20px;
-  border: none;
-  text-align: start;
-  display: inline-block;
-  background: $white;
-  border-radius: $radius-xl;
-  margin-bottom: 30px;
-  padding: 30px;
-  box-shadow: $element-shadow;
-  &__title {
-    font-weight: map-get($font-weights, "semibold");
-    font-size: map-get($size-paragraph, "xl");
-  }
-  &__id {
-    color: $paragraph-color;
-    margin-bottom: 10px;
-  }
-  &__figure {
-    max-width: 100px;
-  }
-}
-
-.course:focus {
-  border: 5px solid $secundary-color;
-}
-
 .max-height-form {
   max-height: 1000px;
   overflow-y: hidden;

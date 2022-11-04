@@ -289,6 +289,20 @@
     align-items: center;
     grid-template-columns: 290px 140px 130px 140px;
     padding: 40px;
+    &--empty {
+      display: flex;
+      justify-content: space-between;
+      background: rgba($color: #ffab7a, $alpha: 0.5);
+      .briefcase-evidence__icon {
+        color: rgba($color: #ff0f0f, $alpha: 0.8);
+      }
+      &__alert {
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: $radius-xl;
+        background: rgba($color: #ff0f0f, $alpha: 0.8);
+      }
+    }
     &__activity {
       display: flex;
     }

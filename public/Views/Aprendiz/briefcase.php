@@ -7,6 +7,8 @@ if (isset($_SESSION['id'])) {
   $course = "SELECT * FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
   $course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
   $course_array = mysqli_fetch_all($course_result, MYSQLI_NUM);
+
+  
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,7 +56,6 @@ if (isset($_SESSION['id'])) {
                 $activities = "SELECT ID_Actividad, asunto, fecha FROM `actividad` WHERE ID_Persona = $id_instructor";
                 $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
                 $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
-
                 ?>
                 <div class="briefcase hidden" id="briefcase-<?php echo $i ?>">
                     <?php
@@ -68,7 +69,7 @@ if (isset($_SESSION['id'])) {
                             $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                             $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 
-                            if(sizeof($evidences_array)){
+                            if(sizeof($evidences_array) > 0){
                                 ?>
                                     <div class="briefcase-evidence">
                                         <div class="briefcase-evidence__activity">
@@ -126,6 +127,17 @@ if (isset($_SESSION['id'])) {
                                             <a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__file"><i class="fa-regular fa-file-lines"></i></a>
                                             <a href="turned-evidence.php?evidence=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
                                         </div>
+                                    </div>
+                                <?php
+                            } else{
+                                ?>
+                                <!-- EVIDENCE NOT DELIVERED -->
+                                    <div class="briefcase-evidence briefcase-evidence--empty">
+                                        <div class="briefcase-evidence__activity">
+                                            <i class="fa-solid fa-triangle-exclamation briefcase-evidence__icon"></i>
+                                            <div class="briefcase-evidence__title"><?php echo $activity_title ;?></div>
+                                        </div>
+                                        <div class="briefcase-evidence--empty__alert">SIN ENTREGA</div>
                                     </div>
                                 <?php
                             }

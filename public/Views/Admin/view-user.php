@@ -148,7 +148,7 @@
                 <?php
               }
 
-              // TODO: If User is Instructor -> Print activity
+              // TODO: If User is Instructor -> Print activities
               if($user_array[0][2] == 2){
                 for($i=0; $i < sizeof($course_user); $i++){
                     $program = $course_user[$i][1];
@@ -165,33 +165,35 @@
                         if(sizeof($activities_array) > 0){
                             ?>
                             <div class="activities-course">
-                                <?php
-                                for($j=0; $j < sizeof($activities_array); $j++){
-                                ?>
-                                  <!-- activity -->
-                                  <div class="activity">
-                                    <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
-                                    <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
-                                    <div class="activity__info">
-                                      <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
-                                      <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
-                                      <div class="activity__type">Actividad</div>
-                                      <!-- VALIDAR EXISTENCIA FILE -->
-                                      <?php
-                                        if($activities_array[$j][5] != ''){
-                                          ?>
-                                        <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download="">
-                                          <i class="fa-regular fa-file-lines"></i>
-                                        </a>
-                                        <?php 
-                                        }
-                                      ?>
+                                <div class="activities">
+                                    <?php
+                                    for($j=0; $j < sizeof($activities_array); $j++){
+                                    ?>
+                                    <!-- activity -->
+                                    <div class="activity">
+                                        <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
+                                        <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
+                                        <div class="activity__info">
+                                        <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
+                                        <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
+                                        <div class="activity__type">Actividad</div>
+                                        <!-- VALIDAR EXISTENCIA FILE -->
+                                        <?php
+                                            if($activities_array[$j][5] != ''){
+                                            ?>
+                                            <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download="">
+                                            <i class="fa-regular fa-file-lines"></i>
+                                            </a>
+                                            <?php 
+                                            }
+                                        ?>
+                                        </div>
+                                        <a href="delete.php?delete_activity=<?php echo $activities_array[$j][0] ?>&id=<?php echo $id_user ?>" class="activity__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
                                     </div>
-                                    <a href="delete.php?delete_activity=<?php echo $activities_array[$j][0] ?>&id=<?php echo $id_user ?>" class="activity__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
-                                  </div>
-                                <?php
-                                }
-                                ?>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         <?php
                         } else {
