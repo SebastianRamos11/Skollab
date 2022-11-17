@@ -482,6 +482,151 @@ input[type=checkbox], input[type=radio] {
     grid-column: 2 span;
   }
 }
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  text-align: center;
+}
+
+.crud {
+  margin-top: 50px;
+}
+
+.card {
+  background: #fff;
+  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+  border-radius: 20px;
+}
+.card-header {
+  background: #0066ff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px 15px;
+  color: #fff;
+  font-size: 1.2em;
+}
+.card .p-4 {
+  padding: 20px !important;
+}
+.card table tbody tr {
+  height: 60px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.card table tbody tr a {
+  font-size: 20px !important;
+  margin-left: 10px;
+}
+.card table tbody tr .edit-button {
+  color: #0066ff;
+}
+.card table tbody tr .see-button {
+  color: #ff5c00;
+}
+.card table tbody tr .delete-button {
+  color: #ff3030 !important;
+}
+.card table tbody tr:hover {
+  font-weight: 500;
+  color: #0066ff;
+  outline: 2px solid #0066ff;
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  vertical-align: top;
+  border-color: #dee2e6;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: #fff;
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px transparent;
+}
+
+.table > tbody {
+  vertical-align: inherit;
+}
+
+.table > thead {
+  vertical-align: bottom;
+}
+
+.table-group-divider {
+  border-top: 2px solid currentcolor;
+}
+
+.caption-top {
+  caption-side: top;
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: 0.25rem 0.25rem;
+}
+
+.table-bordered > :not(caption) > * {
+  border-width: 1px 0;
+}
+
+.table-bordered > :not(caption) > * > * {
+  border-width: 0 1px;
+}
+
+.table-borderless > :not(caption) > * > * {
+  border-bottom-width: 0;
+}
+
+.table-borderless > :not(:first-child) {
+  border-top-width: 0;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  color: #212529;
+}
+
+.table-striped-columns > :not(caption) > tr > :nth-child(even) {
+  color: #212529;
+}
+
+.table-active {
+  color: #212529;
+}
+
+.table-hover > tbody > tr:hover > * {
+  color: #212529;
+}
+
+thead tr {
+  border-bottom: 2px solid #000;
+}
+
+th {
+  padding-bottom: 20px !important;
+}
+
+.p-4 {
+  background: #fff;
+  border-radius: 0 0 20px 20px;
+}
+
 .course {
   cursor: pointer;
   outline: none;
@@ -1253,130 +1398,6 @@ body {
   scroll-behavior: smooth;
 }
 
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th {
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0;
-}
-
-.card {
-  background: #fff;
-  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
-  border-radius: 20px;
-}
-.card-header {
-  background: #0066ff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding: 20px 35px;
-  color: #fff;
-  font-size: 1.3em;
-}
-.card table tbody tr {
-  height: 60px;
-}
-.card table tbody tr a {
-  font-size: 20px !important;
-  margin-left: 10px;
-}
-.card table tbody tr .see-button {
-  color: #ff5c00;
-}
-.card table tbody tr:hover {
-  font-weight: 500;
-  color: #0066ff;
-  outline: 2px solid #0066ff;
-}
-
-.align-middle {
-  vertical-align: middle !important;
-}
-
-table {
-  caption-side: bottom;
-  border-collapse: collapse;
-}
-
-.table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-  vertical-align: top;
-  border-color: #dee2e6;
-}
-
-.table > :not(caption) > * > * {
-  padding: 0.5rem 0.5rem;
-  background-color: #fff;
-  border-bottom-width: 1px;
-  box-shadow: inset 0 0 0 9999px transparent;
-}
-
-.table > tbody {
-  vertical-align: inherit;
-}
-
-.table > thead {
-  vertical-align: bottom;
-}
-
-.table-group-divider {
-  border-top: 2px solid currentcolor;
-}
-
-.caption-top {
-  caption-side: top;
-}
-
-.table-sm > :not(caption) > * > * {
-  padding: 0.25rem 0.25rem;
-}
-
-.table-bordered > :not(caption) > * {
-  border-width: 1px 0;
-}
-
-.table-bordered > :not(caption) > * > * {
-  border-width: 0 1px;
-}
-
-.table-borderless > :not(caption) > * > * {
-  border-bottom-width: 0;
-}
-
-.table-borderless > :not(:first-child) {
-  border-top-width: 0;
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) > * {
-  color: #212529;
-}
-
-.table-striped-columns > :not(caption) > tr > :nth-child(even) {
-  color: #212529;
-}
-
-.table-active {
-  color: #212529;
-}
-
-.table-hover > tbody > tr:hover > * {
-  color: #212529;
-}
-
-thead tr {
-  border-bottom: 2px solid #000;
-}
-
-th {
-  padding-bottom: 20px !important;
-}
-
 .hidden {
   display: none !important;
 }
@@ -1399,15 +1420,34 @@ th {
 }
 
 .upload-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -33%);
-  width: 800px;
+  position: relative;
   z-index: 100;
+  width: 800px;
   background: #fff !important;
   border-radius: 20px !important;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+}
+.upload-form .btn-close {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  border: none;
+  background: none;
+  font-size: 30px;
+}
+.upload-form .cancel-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #ff3030;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
 }
 .upload-form__title {
   padding: 30px;
@@ -1418,6 +1458,23 @@ th {
 .upload-form hr {
   margin: 0;
   border-color: #fafafa;
+}
+.upload-form__file {
+  font-weight: 700;
+  display: block;
+  text-decoration: none;
+  color: #0066ff;
+}
+.upload-form__file span {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.upload-form__file i {
+  font-size: 24px;
+  position: relative;
+  top: 3px;
+  color: #0066ff;
+  margin-right: 10px;
 }
 .upload-form__field {
   padding: 30px;
@@ -1462,16 +1519,9 @@ th {
   color: #0066ff;
   margin-right: 10px;
 }
-.upload-form__field .btn-close {
-  cursor: pointer;
-  display: block;
-  border: none;
-  background: none;
-  color: #ff3030;
-  font-size: 25px;
-}
 .upload-form__field .btn-submit {
   cursor: pointer;
+  margin-left: 20px;
   border: none;
   border-radius: 10px;
   padding: 15px 20px;
@@ -1482,9 +1532,14 @@ th {
   text-align: center;
   font-weight: 500;
 }
-.upload-form__field .file-choise {
-  position: absolute;
-  right: 160px;
+.upload-form__field .group-activity {
+  font-size: 18px;
+  font-style: italic;
+  color: #636363;
+}
+.upload-form__field .file-empty {
+  font-style: italic;
+  color: #909090;
 }
 .upload-form__field .file-choise label {
   cursor: pointer;
@@ -1498,15 +1553,14 @@ th {
   font-weight: 700;
   color: #0066ff;
   position: absolute;
-  width: 600px;
   top: -6px;
-  right: 30px;
+  left: 30px;
   margin-right: 0 20px;
   text-align: right;
   transition: all 0.3s;
 }
 .upload-form__field .file-choise label:hover {
-  color: #2dbb10;
+  color: #0066ff;
 }
 .upload-form__field .file-choise input {
   opacity: 0;
@@ -1533,18 +1587,25 @@ th {
   background: white;
 }
 
+.float-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -33%);
+}
+
 @media screen and (min-width: 1700px) {
-  .upload-form {
+  .float-form {
     transform: translate(-50%, -40%);
   }
 }
 @media screen and (min-width: 1800px) {
-  .upload-form {
+  .float-form {
     transform: translate(-50%, -45%);
   }
 }
 @media screen and (min-width: 2000px) {
-  .upload-form {
+  .float-form {
     transform: translate(-50%, -50%);
   }
 }

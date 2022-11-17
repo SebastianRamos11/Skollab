@@ -86,18 +86,15 @@
                           <div class="activity__p"><?php print_r($activity_array[0][2]); ?></div>
                           <div class="activity__date-limit"><?php print_r($activity_array[0][4]); ?></div>
                           <div class="activity__type">Actividad</div>
-                        </div>
-                        <div class="activity__btns">
                           <?php
                             if($activity_array[0][5] != ''){
                           ?>
-                            <a href="<?php print_r($activity_array[0][5]); ?>" class="activity__btns-file" download="">
-                              <i class="fa-regular fa-file-lines"></i>
-                              <span class="file-name"><?php print_r($activity_array[0][5]); ?></span>
-                            </a>
+                            <a href="<?php print_r($activity_array[0][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
                           <?php 
                             }
                           ?>
+                        </div>
+                        <div class="activity__btns">
                           <a href="evidence.php?evidence=<?php echo $activity_array[0][0]?>" class="activity__btns-link">Entregar>></a>
                         </div>
                       </div>

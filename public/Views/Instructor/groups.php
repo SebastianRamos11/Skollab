@@ -14,7 +14,6 @@
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="../css/instructor.css" />
     <title>Fichas</title>
   </head>

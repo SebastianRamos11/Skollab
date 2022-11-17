@@ -53,6 +53,21 @@
         <?php 
           }
           ?>
+        <!-- Created successfully -->
+        <?php 
+          if(isset($_GET['message']) and $_GET['message'] == 'created'){
+            ?>
+          <script>
+              Swal.fire({
+                  icon: 'success',
+                  title: '¡Actividad publicada!',
+                  text: '¡Tu actividad se ha publicado correctamente!'
+                });
+          </script>
+        <?php 
+          }
+        ?>
+
         <!-- Updated successfully -->
         <?php 
           if(isset($_GET['message']) and $_GET['message'] == 'updated'){
@@ -60,13 +75,14 @@
           <script>
               Swal.fire({
                   icon: 'success',
-                  title: '¡Publicación subida!',
-                  text: '¡Tu evidencia ha sido cargada correctamente!'
+                  title: '¡Actividad modificada!',
+                  text: '¡Tu evidencia ha sido modificada correctamente!'
                 });
           </script>
         <?php 
           }
-          ?>
+        ?>
+
         <h1 class="main-content__header">Centro de actividades 📚</h1>
 
         <!-- activities... -->
@@ -114,7 +130,7 @@
                             ?>
                           </div>
                           <div class="activity__btns">
-                            <a href="#?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
+                            <a href="edit-activity.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
                           </div>
                         </div>
                       <?php
@@ -140,7 +156,7 @@
     </div>
 
     <!-- CREATE ACTIVITY FORM -->
-    <form action="upload-post.php" method="post" enctype="multipart/form-data" class="upload-form hidden">
+    <form action="upload-post.php" method="post" enctype="multipart/form-data" class="upload-form float-form hidden">
       <!-- FORM HEADING -->
       <div class="upload-form__title">Crear Actividad</div>
       <hr>
@@ -184,9 +200,8 @@
         <input type="date" name="due-date" class="upload-form__field-input upload-form__field-input--date">
       </div>
       <hr>
-      <!-- DELETE | FILE | SUBMIT -->
+      <!-- FILE | SUBMIT -->
       <div class="upload-form__field">
-        <div class="btn-close"><i class="fa-solid fa-trash-can"></i></div>
         <div class="file-choise">
           <label for="file">
             <i class="fa-regular fa-file-lines"></i>
@@ -196,6 +211,7 @@
         </div>
         <input type="submit" class="btn-submit" name="submit" value="Publicar" >
       </div>
+      <div class="btn-close"><i class="fa-solid fa-x"></i></div>
     </form>
     <div class="overlay hidden"></div>
 

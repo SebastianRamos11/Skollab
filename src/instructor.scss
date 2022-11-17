@@ -11,137 +11,6 @@ body {
   scroll-behavior: smooth;
 }
 
-// GROUPS
-
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th {
-  border-color: inherit;
-  border-style: solid;
-  border-width: 0;
-}
-
-.card {
-  background: $white;
-  box-shadow: $element-shadow;
-  border-radius: $radius-xl;
-  &-header {
-    background: $secundary-color;
-    border-top-left-radius: $radius-xl;
-    border-top-right-radius: $radius-xl;
-
-    padding: 20px 35px;
-    color: $white;
-    font-size: map-get($size-paragraph, "xl");
-  }
-  & table {
-    tbody {
-      tr {
-        height: 60px;
-        a {
-          font-size: 20px !important;
-          margin-left: 10px;
-        }
-        .see-button {
-          color: $primary-color;
-        }
-      }
-      tr:hover {
-        font-weight: map-get($font-weights, "medium");
-        color: $secundary-color;
-        outline: 2px solid $secundary-color;
-      }
-    }
-  }
-}
-
-.align-middle {
-  vertical-align: middle !important;
-}
-
-table {
-  caption-side: bottom;
-  border-collapse: collapse;
-}
-
-.table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: $table-color;
-  vertical-align: top;
-  border-color: $table-border-color;
-}
-
-.table > :not(caption) > * > * {
-  padding: 0.5rem 0.5rem;
-  background-color: $white;
-  border-bottom-width: 1px;
-  box-shadow: inset 0 0 0 9999px $table-accent-bg;
-}
-.table > tbody {
-  vertical-align: inherit;
-}
-.table > thead {
-  vertical-align: bottom;
-}
-
-.table-group-divider {
-  border-top: 2px solid currentcolor;
-}
-
-.caption-top {
-  caption-side: top;
-}
-
-.table-sm > :not(caption) > * > * {
-  padding: 0.25rem 0.25rem;
-}
-
-.table-bordered > :not(caption) > * {
-  border-width: 1px 0;
-}
-.table-bordered > :not(caption) > * > * {
-  border-width: 0 1px;
-}
-
-.table-borderless > :not(caption) > * > * {
-  border-bottom-width: 0;
-}
-.table-borderless > :not(:first-child) {
-  border-top-width: 0;
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) > * {
-  $table-accent-bg: $table-striped-bg;
-  color: $table-striped-color;
-}
-
-.table-striped-columns > :not(caption) > tr > :nth-child(even) {
-  $table-accent-bg: $table-striped-bg;
-  color: $table-striped-color;
-}
-
-.table-active {
-  $table-accent-bg: $table-active-bg;
-  color: $table-active-color;
-}
-
-.table-hover > tbody > tr:hover > * {
-  $table-accent-bg: $table-hover-bg;
-  color: $table-hover-color;
-}
-
-thead tr {
-  border-bottom: 2px solid $black;
-}
-
-th {
-  padding-bottom: 20px !important;
-}
-
 .hidden {
   display: none !important;
 }
@@ -164,15 +33,29 @@ th {
 
 // activities
 .upload-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -33%);
-  width: 800px;
+  position: relative;
   z-index: 100;
+  width: 800px;
   background: $white !important;
   border-radius: $radius-xl !important;
   box-shadow: $element-shadow;
+
+  & .btn-close {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    border: none;
+    background: none;
+    font-size: 30px;
+  }
+
+  & .cancel-btn {
+    cursor: pointer;
+    @include primary-btn($primary-contrast, false);
+  }
+
   &__title {
     padding: 30px;
     text-align: center;
@@ -182,6 +65,23 @@ th {
   & hr {
     margin: 0;
     border-color: #fafafa;
+  }
+  &__file {
+    font-weight: map-get($font-weights, "semibold");
+    display: block;
+    text-decoration: none;
+    color: $secundary-color;
+    & span {
+      font-size: map-get($size-paragraph, "m");
+      font-weight: map-get($font-weights, "medium");
+    }
+    & i {
+      font-size: 24px;
+      position: relative;
+      top: 3px;
+      color: $secundary-color;
+      margin-right: 10px;
+    }
   }
   &__field {
     padding: 30px;
@@ -231,23 +131,23 @@ th {
       }
     }
 
-    & .btn-close {
-      cursor: pointer;
-      display: block;
-      border: none;
-      background: none;
-      color: $primary-contrast;
-      font-size: 25px;
-    }
-
     & .btn-submit {
       cursor: pointer;
+      margin-left: 20px;
       @include primary-btn($secundary-color, false);
     }
 
+    & .group-activity {
+      font-size: 18px;
+      font-style: italic;
+      color: $paragraph-color;
+    }
+
+    & .file-empty {
+      font-style: italic;
+      color: #909090;
+    }
     & .file-choise {
-      position: absolute;
-      right: 160px;
       & label {
         cursor: pointer;
         display: block;
@@ -260,16 +160,15 @@ th {
           font-weight: map-get($font-weights, "semibold");
           color: $secundary-color;
           position: absolute;
-          width: 600px;
           top: -6px;
-          right: 30px;
+          left: 30px;
           margin-right: 0 20px;
           text-align: right;
           transition: all 0.3s;
         }
       }
       & label:hover {
-        color: #2dbb10;
+        color: $secundary-color;
       }
       & input {
         opacity: 0;
@@ -299,20 +198,27 @@ th {
   }
 }
 
+.float-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -33%);
+}
+
 @media screen and (min-width: 1700px) {
-  .upload-form {
+  .float-form {
     transform: translate(-50%, -40%);
   }
 }
 
 @media screen and (min-width: 1800px) {
-  .upload-form {
+  .float-form {
     transform: translate(-50%, -45%);
   }
 }
 
 @media screen and (min-width: 2000px) {
-  .upload-form {
+  .float-form {
     transform: translate(-50%, -50%);
   }
 }

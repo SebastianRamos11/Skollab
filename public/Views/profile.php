@@ -13,7 +13,7 @@
     $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

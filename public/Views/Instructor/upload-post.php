@@ -19,7 +19,7 @@ if($_POST['submit']){
             $url = '../file-store/activities/'.$_FILES['file']['name'];
             $sql = $dbConnection->query("INSERT INTO actividad (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, url) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$url."')");
             
-            header('Location: activities.php?message=updated');
+            header('Location: activities.php?message=created');
             exit();
         }else{
             header('Location: activities.php?message=error');
@@ -33,7 +33,7 @@ if($_POST['submit']){
         $due_date = $_POST['due-date'];
         $sql = $dbConnection->query("INSERT INTO actividad (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."')");
 
-        header('Location: activities.php?message=updated');
+        header('Location: activities.php?message=created');
         exit();
     }
 }

@@ -53,7 +53,7 @@ if (isset($_SESSION['id'])) {
                 $id_instructor = $instructor_array[0][0];
 
                 // GET INSTRUCTOR'S activities
-                $activities = "SELECT ID_Actividad, asunto, fecha FROM `actividad` WHERE ID_Persona = $id_instructor";
+                $activities = "SELECT ID_Actividad, asunto, fecha FROM `actividad` WHERE ID_Persona = $id_instructor AND ID_Ficha = $ficha";
                 $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
                 $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
                 ?>
@@ -146,7 +146,7 @@ if (isset($_SESSION['id'])) {
                     } else{
                         ?>
                         <div class="briefcase-empty">
-                            Aún no has entregado ninguna evidencia en este programa.
+                            No se han publicado actividades en este programa.
                         </div>
                         <?php
                     }

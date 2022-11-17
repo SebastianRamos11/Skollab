@@ -35,8 +35,6 @@
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/admin.css" />
-    <link rel="stylesheet" href="../css/bootstrap-grid.min.css" />
-    <link rel="stylesheet" href="../css/admin.css" />
     <title>Inicio</title>
   </head>
   <body id="body">
