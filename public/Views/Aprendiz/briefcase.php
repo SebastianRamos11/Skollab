@@ -23,6 +23,35 @@ if (isset($_SESSION['id'])) {
     <title>Portafolio</title>
 </head>
 <body>
+    <!-- Delete successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'La evidencia fue eliminada correctamente'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+
+    <!-- Error -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'error'){
+    ?>
+      <script>
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Esta evidencia ya esta calificada y no puede ser eliminada'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">💼 Portafolio</h1>
         <?php 
@@ -65,7 +94,7 @@ if (isset($_SESSION['id'])) {
                             $activity_title = $activities_array[$j][1];
                         
                             // GET EVIDENCES DELIVERED BY activity
-                            $evidences = "SELECT fecha, nota, observacion, url, ID_Actividad FROM `evidencia` WHERE ID_Persona =".$_SESSION['id']." AND ID_Actividad = $id_activity";
+                            $evidences = "SELECT fecha, nota, observacion, url, ID_Actividad, ID_Evidencia FROM `evidencia` WHERE ID_Persona =".$_SESSION['id']." AND ID_Actividad = $id_activity";
                             $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                             $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 
@@ -124,8 +153,9 @@ if (isset($_SESSION['id'])) {
                                                     ?>
                                                 </div>
                                             </div>
-                                            <a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__file"><i class="fa-regular fa-file-lines"></i></a>
                                             <a href="turned-evidence.php?evidence=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
+                                            <a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__link" download=""><i class="fa-regular fa-file-lines"></i></a>
+                                            <a href="delete.php?evidence=<?php echo $evidences_array[0][5] ;?>" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a>
                                         </div>
                                     </div>
                                 <?php
@@ -158,6 +188,29 @@ if (isset($_SESSION['id'])) {
         ?>
     </main>
 </body>
+<script>
+    const deleteUser = document.querySelectorAll('.delete-button');
+    deleteUser.forEach((e, i) => {
+        deleteUser[i].addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log(deleteUser[i].getAttribute('href'));
+            Swal.fire({
+                title: '¿Seguro que quieres eliminar esta evidencia?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.assign(deleteUser[i].getAttribute('href'));
+            }
+            })
+        })
+    })
+</script>
 <script src="../../Controllers/aprendiz-briefcase.js"></script>
 </html>
 <?php 

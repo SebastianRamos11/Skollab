@@ -1594,6 +1594,7 @@ th {
   margin: 0 auto;
   max-width: 900px;
   margin-top: 30px;
+  position: relative;
   display: grid;
   gap: 20px;
   grid-template-columns: 320px 3fr 1fr;
@@ -1687,7 +1688,7 @@ th {
   display: grid;
   justify-content: space-between;
   align-items: center;
-  grid-template-columns: 290px 140px 130px 140px;
+  grid-template-columns: 290px 140px 130px 150px;
   padding: 40px;
 }
 .briefcase-evidence--empty {
@@ -1759,15 +1760,13 @@ th {
 .briefcase-evidence__observation {
   text-align: center;
 }
-.briefcase-evidence__file {
-  font-size: 25px;
-  text-decoration: none;
-  color: #ff3030;
-}
 .briefcase-evidence__link {
   font-size: 25px;
   text-decoration: none;
   color: #0066ff;
+}
+.briefcase-evidence__link--highlight {
+  color: #ff3030;
 }
 .briefcase-empty {
   max-width: 900px;

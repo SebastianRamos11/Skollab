@@ -117,10 +117,6 @@ if (isset($_SESSION['id'])) {
                 </div>
                 <input type="file" name="file" id="file">
             </div>
-            <!-- DATE (HIDDEN) -->
-            <div class="upload-form__date hidden">
-              <input type="date" id="date" name="date">
-            </div>
             <!-- DESCRIPTION -->
             <div class="upload-form__textarea">
                 <div class="upload-form__textarea-label">Descripción</div>

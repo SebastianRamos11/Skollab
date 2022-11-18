@@ -115,16 +115,14 @@ if (isset($_SESSION['id'])) {
                 echo "--";
               }
             ?>/100
-        </div>
+          </div>
         </div>
 </body>
 <script>
   const fileName = document.querySelectorAll('.file-name');
-
-  fileName.forEach((e, i) => {
-    fileName[i].textContent = fileName[i].textContent.replace('../file-store/', '');
-    fileName[i].textContent = fileName[i].textContent.replace('evidences/', '');
-  });
+  fileName.forEach((_, i) => {
+    fileName[i].textContent = fileName[i].textContent.slice(fileName[i].textContent.lastIndexOf('/') + 1);
+  }); 
 </script>
 </html>
 

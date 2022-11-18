@@ -205,6 +205,7 @@
 
 .turned-evidence {
   @include element;
+  position: relative;
   display: grid;
   gap: 20px;
   grid-template-columns: 320px 3fr 1fr;
@@ -287,7 +288,7 @@
     display: grid;
     justify-content: space-between;
     align-items: center;
-    grid-template-columns: 290px 140px 130px 140px;
+    grid-template-columns: 290px 140px 130px 150px;
     padding: 40px;
     &--empty {
       display: flex;
@@ -360,15 +361,13 @@
     &__observation {
       text-align: center;
     }
-    &__file {
-      font-size: 25px;
-      text-decoration: none;
-      color: $primary-contrast;
-    }
     &__link {
       font-size: 25px;
       text-decoration: none;
       color: $secundary-color;
+      &--highlight {
+        color: $primary-contrast;
+      }
     }
   }
   &-empty {
