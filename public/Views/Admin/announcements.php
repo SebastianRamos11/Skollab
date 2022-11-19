@@ -19,10 +19,6 @@
       <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Centro de Anuncios 📢</h1>
       <div class="main-options">
-        <div class="main-option">
-          <i class="fa-solid fa-pen-to-square"></i>
-          <div class="main-option__btn">Editar Slider</div>
-        </div>
         <!-- TODO: Crear boton de crear anuncio -->
         <a href="#" class="main-option create-ad">
           <i class="fa-solid fa-plus"></i>
@@ -77,6 +73,13 @@
         <hr>
         <div class="announcement-management">
           <div class="announcement">
+            <div class="announcement__owner">
+              <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
+              <div>
+                <div class="announcement__owner-name">Administrador</div>
+                <div class="announcement__date">Fecha de publicación: 22-18-2</div>
+              </div>
+            </div>
             <div class="announcement__info">
               <div class="announcement__title">Fondo Emprender SENA</div>
               <div class="announcement__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita, dignissimos? Id ratione alias magnam ducimus at sit natus? Officia doloribus quisquam molestiae ullam in! Ab animi iure quidem quas? Quae, fuga quo. Ducimus est deserunt minima fugiat maiores nesciunt eius!</div>
@@ -88,6 +91,7 @@
             <a href="#" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
           </div>
         </div>
+        
       </div>
     </main>
     <style>

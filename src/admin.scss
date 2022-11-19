@@ -316,61 +316,70 @@ html {
 
 .announcement {
   @include element;
-  background-image: url("../img/backgrounds/announcement-bg.svg");
-  background-repeat: no-repeat;
-  display: flex;
-  padding: 0;
+  display: grid;
   margin: 0;
-  &__info {
+  padding: 40px;
+  &__owner {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 40px;
+    align-items: center;
+    margin-bottom: 20px;
+    &-photo {
+      max-width: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+    &-name {
+      font-size: 18px;
+      font-weight: map-get($font-weights, "medium");
+      margin-bottom: 8px;
+    }
+  }
+  &__date {
+    font-style: italic;
+    color: $paragraph-color;
   }
   &__title {
     font-size: map-get($size-title, "m");
     font-weight: map-get($font-weights, "semibold");
-    text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   &__p {
     margin: 0 auto;
-    text-align: center;
+    color: $paragraph-color;
   }
   &__img {
-    border-radius: 0 $radius-l $radius-l 0;
-    height: 100%;
+    padding-top: 20px;
+    margin: 0 auto;
     max-width: 500px;
-    grid-row: 2 span;
   }
 }
 
-// Announcement media-query
-@media screen and (max-width: 1200px) {
-  .announcement {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 500px;
+// // Announcement media-query
+// @media screen and (max-width: 1200px) {
+//   .announcement {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     max-width: 500px;
 
-    &__title {
-      padding: 40px 40px 0 40px;
-    }
-    &__p {
-      padding: 0 25px;
-    }
-    &__img {
-      border-radius: 0 0 $radius-l $radius-l;
-    }
-  }
-}
+//     &__title {
+//       padding: 40px 40px 0 40px;
+//     }
+//     &__p {
+//       padding: 0 25px;
+//     }
+//     &__img {
+//       border-radius: 0 0 $radius-l $radius-l;
+//     }
+//   }
+// }
 
-// activities
+// Announcements
 .float-form {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
   width: 800px;
   z-index: 100;
   background: $white;
