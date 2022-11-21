@@ -1,10 +1,4 @@
 <?php 
-
-    if(!isset($_GET['id'])){
-        header('Location: crud.php?message=error');
-        exit();
-    }
-
     include_once "../../Models/new-connection.php";
     $id = $_GET["id"];
     
@@ -59,5 +53,13 @@
         }  
     }
     
-
+    if(isset($_GET['delete_announcement'])){
+        $sentencia = $bd->prepare("DELETE FROM anuncio WHERE ID_Anuncio = ?;");
+        $resultado = $sentencia->execute([$_GET['delete_announcement']]);
+        
+        if($resultado){
+            header('Location: announcements.php?message=deleted');
+            exit(); 
+        }
+    }
 ?>

@@ -262,6 +262,23 @@ input[type=checkbox], input[type=radio] {
   padding: 0;
 }
 
+.file-element {
+  display: block;
+  text-decoration: none;
+}
+.file-element span {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #0066ff;
+}
+.file-element i {
+  font-size: 24px;
+  position: relative;
+  top: 3px;
+  color: #0066ff;
+  margin-right: 10px;
+}
+
 .pass__field {
   position: relative;
 }
@@ -1711,10 +1728,8 @@ html {
   background: #fff;
   text-decoration: none;
   padding: 15px;
-  border-top: 1px solid #a5a5a5;
-  border-right: 1px solid #a5a5a5;
-  border-bottom: 1px solid #a5a5a5;
   font-size: 20px;
+  border-radius: 0 10px 10px 0;
 }
 .announcements .announcement-management__btn--delete {
   color: #ff3030;
@@ -1731,6 +1746,7 @@ html {
   margin: 0 auto;
   max-width: 900px;
   margin-top: 30px;
+  min-width: 900px;
   display: grid;
   margin: 0;
   padding: 40px;
@@ -1762,6 +1778,12 @@ html {
 .announcement__p {
   margin: 0 auto;
   color: #636363;
+}
+.announcement__file {
+  margin: 20px 0;
+}
+.announcement__file-label {
+  margin-bottom: 10px;
 }
 .announcement__img {
   padding-top: 20px;
@@ -1898,6 +1920,6 @@ html {
 
 @media screen and (min-width: 1700px) {
   .float-form {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
   }
 }/*# sourceMappingURL=admin.css.map */

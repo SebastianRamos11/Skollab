@@ -300,10 +300,8 @@ html {
       background: $white;
       text-decoration: none;
       padding: 15px;
-      border-top: 1px solid #a5a5a5;
-      border-right: 1px solid #a5a5a5;
-      border-bottom: 1px solid #a5a5a5;
       font-size: 20px;
+      border-radius: 0 10px 10px 0;
       &--delete {
         color: $primary-contrast;
       }
@@ -316,6 +314,7 @@ html {
 
 .announcement {
   @include element;
+  min-width: 900px;
   display: grid;
   margin: 0;
   padding: 40px;
@@ -346,6 +345,12 @@ html {
   &__p {
     margin: 0 auto;
     color: $paragraph-color;
+  }
+  &__file{
+    margin: 20px 0;
+    &-label{
+      margin-bottom: 10px;
+    }
   }
   &__img {
     padding-top: 20px;
@@ -504,6 +509,6 @@ html {
 
 @media screen and (min-width: 1700px) {
   .float-form {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
   }
 }

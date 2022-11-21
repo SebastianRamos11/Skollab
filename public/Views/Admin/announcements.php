@@ -2,6 +2,11 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
+    
+    // GET ANNOUNCEMENTS ARRAY
+    $announcements = "SELECT asunto, descripcion, fecha, url_portada, url_file, ID_Anuncio, ID_Persona FROM anuncio";
+    $announcements_result= mysqli_query($dbConnection, $announcements) or die(mysqli_error($dbConnection));
+    $announcements = mysqli_fetch_all($announcements_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,6 +21,34 @@
     <title>Centro de Anuncios</title>
   </head>
   <body>
+      <!-- Create successfully -->
+      <?php 
+        if(isset($_GET['message']) and $_GET['message'] == 'uploaded'){
+      ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Anuncio publicado!',
+                text: 'El anuncio ha sido publicado correctamente'
+            });
+        </script>
+      <?php 
+        }
+      ?>
+      <!-- Delete successfully -->
+      <?php 
+        if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
+      ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Anuncio eliminado',
+                text: 'El anuncio ha sido eliminado correctamente'
+            });
+        </script>
+      <?php 
+        }
+      ?>
       <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Centro de Anuncios 📢</h1>
       <div class="main-options">
@@ -86,28 +119,57 @@
 
 
       <div class="announcements">
-        <h2 class="announcements__label">Anuncios publicados</h2>
+        <h2 class="announcements__label">Anuncios y Novedades</h2>
         <hr>
-        <div class="announcement-management">
-          <div class="announcement">
-            <div class="announcement__owner">
-              <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
-              <div>
-                <div class="announcement__owner-name">Administrador</div>
-                <div class="announcement__date">Fecha de publicación: 22-18-2</div>
+        <?php 
+        for($i=0; $i < sizeof($announcements); $i++){
+          $id_owner = $announcements[$i][6];
+
+          // GET ANNOUNCEMENT'S OWNER
+          $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
+          $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
+          $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
+       
+          ?>
+          <div class="announcement-management">
+            <div class="announcement">
+              <div class="announcement__owner">
+                <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
+                <div>
+                  <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
+                  <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
+                </div>
               </div>
+              <div class="announcement__info">
+                <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
+                <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
+                <?php
+                  if($announcements[$i][4] != ''){
+                ?>
+                  <div class="announcement__file">
+                    <div class="announcement__file-label">Archivos adjuntos:</div>
+                    <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+                  </div>
+                <?php 
+                  }
+                ?>
+              </div>
+              <?php
+                  if($announcements[$i][3] != ''){
+                ?>
+                  <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+                <?php 
+                  }
+                ?>
             </div>
-            <div class="announcement__info">
-              <div class="announcement__title">Fondo Emprender SENA</div>
-              <div class="announcement__p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita, dignissimos? Id ratione alias magnam ducimus at sit natus? Officia doloribus quisquam molestiae ullam in! Ab animi iure quidem quas? Quae, fuga quo. Ducimus est deserunt minima fugiat maiores nesciunt eius!</div>
+            <div class="announcement-management__actions">
+              <a href="delete.php?delete_announcement=<?php echo $announcements[$i][5] ?>" class="delete-button announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
+              <a href="edit-announcement.php?announcement=<?php echo $announcements[$i][5] ?>" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
-            <img class="announcement__img" src="../file-store/activities/wallpaper.png" alt="announcement-image">
           </div>
-          <div class="announcement-management__actions">
-            <a href="#" class="announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
-            <a href="#" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-          </div>
-        </div>
+          <?php
+        }
+        ?>
         
       </div>
     </main>
@@ -117,6 +179,32 @@
       }
     </style>
     <script src="../../Controllers/admin-control.js"></script>
+    <script>
+      const deleteAnnouncement = document.querySelectorAll('.delete-button');
+      deleteAnnouncement.forEach((e, i) => {
+          deleteAnnouncement[i].addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log(deleteAnnouncement[i].getAttribute('href'));
+              Swal.fire({
+                  title: '¿Seguro que quieres eliminar este usuario?',
+                  text: "¡No podrás revertir esto!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, eliminar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.assign(deleteAnnouncement[i].getAttribute('href'));
+              }
+              })
+          })
+      });
+      const fileName = document.querySelectorAll('.file-name');
+
+      if(fileName) fileName.forEach((elem) => elem.textContent = elem.textContent.slice(elem.textContent.lastIndexOf('/') + 1));
+    </script>
   </body>
 </html>
   <?php 
