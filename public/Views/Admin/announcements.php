@@ -28,7 +28,7 @@
 
       <!-- CREATE ANNOUNCEMENT FORM -->
 
-      <form action="upload-announce.php" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden" autocomplete="off">
+      <form action="upload.php" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden" autocomplete="off">
         <!-- FORM HEADING -->
         <div class="float-form__title">Crear Anuncio</div>
         <hr>
@@ -45,18 +45,35 @@
           <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600"></textarea>
         </div>
         <hr>
-        <!-- IMAGE -->
+
+        <!-- FILE -->
         <div class="float-form__field">
           <div class="float-form__field-label">
-            <i class="fa-regular fa-image"></i>
-            <span>Portada</span>
+            <i class="fa-solid fa-paperclip"></i>
+            <span>Adjuntar archivo</span>
           </div>
           <div class="file-choise">
             <label for="file">
               <i class="fa-solid fa-paperclip"></i>
               <p class="file-name"></p>
             </label>
-            <input type="file" name="file" id="file">
+            <input type="file" name="file" id="file" class="file">
+          </div>
+        </div>
+        <hr>
+
+        <!-- IMAGE -->
+        <div class="float-form__field">
+          <div class="float-form__field-label">
+            <i class="fa-regular fa-image"></i>
+            <span>Portada (Opcional)</span>
+          </div>
+          <div class="file-choise">
+            <label for="image">
+              <i class="fa-solid fa-paperclip"></i>
+              <p class="file-name"></p>
+            </label>
+            <input type="file" name="image" id="image" class="file">
           </div>
         </div>
         <hr>

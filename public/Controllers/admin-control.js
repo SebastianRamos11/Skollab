@@ -11,17 +11,20 @@ const overlay = document.querySelector(".overlay");
 const body = document.querySelector("body");
 
 // Elements
-const file = document.querySelector("#file");
+const fileInput = document.querySelectorAll(".file");
 const contentBody = document.querySelector(".main-content");
 
-if (file) {
-  file.addEventListener("change", (e) => {
-    // Get the selected file
-    const [file] = e.target.files;
-    // Get the file name and size
-    let { name: fileName } = file;
-    fileName = fileName.replaceAll("\n", "");
-    document.querySelector(".file-name").textContent = `${fileName}`;
+if (fileInput) {
+  fileInput.forEach((file, i) => {
+    file.addEventListener("change", (e) => {
+      console.log("I'm here bitch!");
+      // Get the selected file
+      const [file] = e.target.files;
+      // Get the file name and size
+      let { name: fileName } = file;
+      fileName = fileName.replaceAll("\n", "");
+      document.querySelectorAll(".file-name")[i].textContent = `${fileName}`;
+    });
   });
 }
 
