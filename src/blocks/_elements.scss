@@ -134,39 +134,17 @@
   }
   &-menu {
     display: flex;
-    justify-content: center;
-    padding-right: 20px;
-    &--loged {
-      margin-left: auto;
-    }
-    & .btn-menu {
-      display: block;
-      margin-left: auto;
-      cursor: pointer;
-      transition: all 0.3s;
-
-      &--rotate {
-        transform: rotate(180deg);
-      }
-    }
-
-    &__links {
-      padding: 20px;
-      background: $white;
-      z-index: 10;
-      position: absolute;
-      margin-top: 35px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    }
+    justify-content: space-between;
+    margin-left: auto;
     &__item {
       list-style: none;
-      margin-bottom: 15px;
+      text-align: center;
+      margin: 0 20px;
     }
     &__link {
       text-decoration: none;
-      color: $black;
+      color: #272727;
       transition: all 0.2s;
-
       &:hover {
         color: $secundary-color;
         font-weight: map-get($font-weights, "semibold");
@@ -186,50 +164,6 @@
     }
   }
 }
-
-// @media screen and (min-width: $xl) {
-//   .nav-y {
-//     background: $white;
-//     height: 100vh;
-//     padding: 12px;
-//     position: fixed;
-//     @include setFlex(column, center, between);
-//     & .nav__logo {
-//       width: 130px;
-//       margin-top: 40px;
-//     }
-//     & .nav-menu {
-//       &__item {
-//         list-style: none;
-//         position: relative;
-
-//         margin-bottom: 45px;
-//         right: 12px;
-//         bottom: 140px;
-
-//         & a {
-//           text-decoration: none;
-//           color: $paragraph-color;
-//           & i {
-//             margin-right: 10px;
-//             font-size: 20px;
-//           }
-//         }
-//       }
-//       &__link--active {
-//         color: $primary-contrast !important;
-//       }
-//     }
-//   }
-
-//   .df {
-//     display: flex;
-//   }
-
-//   .ml300 {
-//     margin-left: 300px;
-//   }
-// }
 
 .footer {
   background-color: $primary-color;
@@ -593,7 +527,7 @@ th {
 // Desktop
 .wrapper {
   display: flex;
-  position: relative;
+  // position: relative; // Works commented?
   & .nav-y {
     position: fixed;
     background: $white;

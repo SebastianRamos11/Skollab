@@ -386,7 +386,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 800px;
-  z-index: 100;
+  z-index: 1000;
   background: $white;
   border-radius: $radius-xl;
   box-shadow: $element-shadow;
@@ -504,11 +504,5 @@ html {
       left: 80px;
       background: white;
     }
-  }
-}
-
-@media screen and (min-width: 1700px) {
-  .float-form {
-    transform: translate(-50%, -40%);
   }
 }

@@ -7,12 +7,11 @@ if(empty($_POST["subject"]) || empty($_POST["description"])){
     exit();
 }
 
-// TODO: Multiple file validations
 if($_POST['submit']){
     if(file_exists($_FILES['file']['tmp_name']) && file_exists($_FILES['image']['tmp_name'])){
             
+        move_uploaded_file($_FILES['image']['tmp_name'], '../file-store/announcements/'.$_FILES['image']['name']);
         move_uploaded_file($_FILES['file']['tmp_name'], '../file-store/announcements/'.$_FILES['file']['name']);
-        move_uploaded_file($_FILES['file']['tmp_name'], '../file-store/announcements/'.$_FILES['image']['name']);
 
         $subject = $_POST['subject'];
         $description = $_POST['description'];
