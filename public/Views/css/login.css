@@ -1380,6 +1380,19 @@ th {
   top: 2px;
 }
 
+.cancel-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #ff3030;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+}
+
 .register-input {
   height: 60px;
   width: 100%;

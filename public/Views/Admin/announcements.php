@@ -35,6 +35,20 @@
       <?php 
         }
       ?>
+      <!-- Updated successfully -->
+      <?php 
+        if(isset($_GET['message']) and $_GET['message'] == 'updated'){
+          ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Anuncio modificado!',
+                text: '¡El anuncio ha sido modificado correctamente!'
+              });
+        </script>
+      <?php 
+        }
+      ?>
       <!-- Delete successfully -->
       <?php 
         if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
@@ -58,8 +72,6 @@
           <div class="main-option__btn open-modal">Crear Anuncio</div>
         </a>
       </div>
-
-      <!-- CREATE ANNOUNCEMENT FORM -->
 
       <form action="upload.php" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden" autocomplete="off">
         <!-- FORM HEADING -->
@@ -121,52 +133,58 @@
       <div class="announcements">
         <h2 class="announcements__label">Anuncios y Novedades</h2>
         <hr>
-        <?php 
-        for($i=0; $i < sizeof($announcements); $i++){
-          $id_owner = $announcements[$i][6];
+        <?php
+        if(sizeof($announcements) > 0){ 
+          for($i=0; $i < sizeof($announcements); $i++){
+            $id_owner = $announcements[$i][6];
 
-          // GET ANNOUNCEMENT'S OWNER
-          $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
-          $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
-          $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
-       
-          ?>
-          <div class="announcement-management">
-            <div class="announcement">
-              <div class="announcement__owner">
-                <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
-                <div>
-                  <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
-                  <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
-                </div>
-              </div>
-              <div class="announcement__info">
-                <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
-                <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
-                <?php
-                  if($announcements[$i][4] != ''){
-                ?>
-                  <div class="announcement__file">
-                    <div class="announcement__file-label">Archivos adjuntos:</div>
-                    <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+            // GET ANNOUNCEMENT'S OWNER
+            $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
+            $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
+            $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
+        
+            ?>
+            <div class="announcement-management">
+              <div class="announcement">
+                <div class="announcement__owner">
+                  <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
+                  <div>
+                    <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
+                    <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
                   </div>
-                <?php 
-                  }
-                ?>
+                </div>
+                <div class="announcement__info">
+                  <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
+                  <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
+                  <?php
+                    if($announcements[$i][4] != ''){
+                  ?>
+                    <div class="announcement__file">
+                      <div class="announcement__file-label">Archivos adjuntos:</div>
+                      <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+                    </div>
+                  <?php 
+                    }
+                  ?>
+                </div>
+                <?php
+                    if($announcements[$i][3] != ''){
+                  ?>
+                    <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+                  <?php 
+                    }
+                  ?>
               </div>
-              <?php
-                  if($announcements[$i][3] != ''){
-                ?>
-                  <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
-                <?php 
-                  }
-                ?>
+              <div class="announcement-management__actions">
+                <a href="delete.php?delete_announcement=<?php echo $announcements[$i][5] ?>" class="delete-button announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="edit-announcement.php?announcement=<?php echo $announcements[$i][5] ?>" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
+              </div>
             </div>
-            <div class="announcement-management__actions">
-              <a href="delete.php?delete_announcement=<?php echo $announcements[$i][5] ?>" class="delete-button announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
-              <a href="edit-announcement.php?announcement=<?php echo $announcements[$i][5] ?>" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-            </div>
-          </div>
+            <?php
+          }
+        } else {
+          ?>
+          <div class="alert-message"><i class="fa-solid fa-check"></i> No hay anuncios publicados.</div>
           <?php
         }
         ?>

@@ -17,7 +17,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/instructor.css" />
     <title>Actividades</title>
   </head>
@@ -26,64 +25,64 @@
     <!-- ALERTS -->
     <!-- Empty data -->
     <?php 
-          if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-            ?>
-          <script>
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Tiene que llenar todos los campos!'
+      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
+        ?>
+      <script>
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: '¡Tiene que llenar todos los campos!'
+        });
+      </script>
+    <?php 
+      }
+    ?>
+
+    <!-- Error -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'error'){
+    ?>
+      <script>
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: '¡Ha habido algun problema!'
+        });
+      </script>
+    <?php 
+      }
+      ?>
+    <!-- Created successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'created'){
+        ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: '¡Actividad publicada!',
+              text: '¡Tu actividad se ha publicado correctamente!'
             });
-          </script>
-        <?php 
-          }
-        ?>
+      </script>
+    <?php 
+      }
+    ?>
 
-<!-- Error -->
-<?php 
-          if(isset($_GET['message']) and $_GET['message'] == 'error'){
+    <!-- Updated successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'updated'){
         ?>
-          <script>
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Ha habido algun problema!'
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: '¡Actividad modificada!',
+              text: '¡Tu evidencia ha sido modificada correctamente!'
             });
-          </script>
-        <?php 
-          }
-          ?>
-        <!-- Created successfully -->
-        <?php 
-          if(isset($_GET['message']) and $_GET['message'] == 'created'){
-            ?>
-          <script>
-              Swal.fire({
-                  icon: 'success',
-                  title: '¡Actividad publicada!',
-                  text: '¡Tu actividad se ha publicado correctamente!'
-                });
-          </script>
-        <?php 
-          }
-        ?>
+      </script>
+    <?php 
+      }
+    ?>
 
-        <!-- Updated successfully -->
-        <?php 
-          if(isset($_GET['message']) and $_GET['message'] == 'updated'){
-            ?>
-          <script>
-              Swal.fire({
-                  icon: 'success',
-                  title: '¡Actividad modificada!',
-                  text: '¡Tu evidencia ha sido modificada correctamente!'
-                });
-          </script>
-        <?php 
-          }
-        ?>
-
-        <h1 class="main-content__header">Centro de actividades 📚</h1>
+    <h1 class="main-content__header">Centro de actividades 📚</h1>
 
         <!-- activities... -->
 

@@ -15,7 +15,6 @@
 <html lang="es">
   <head>
     <title>Editar Usuario</title>
-    <link rel="stylesheet" href="../css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
       <?php
@@ -37,7 +36,7 @@
           <h2>Editar usuario</h2>
           <hr />
         </div>
-        <form action="edit.php?id=<?php echo $persona -> ID_Persona; ?>" class="form" method="POST">
+        <form action="edit.php?user=<?php echo $persona -> ID_Persona; ?>" class="form" method="POST">
 
           <!-- FIRST NAME -->
           <div class="form__field">

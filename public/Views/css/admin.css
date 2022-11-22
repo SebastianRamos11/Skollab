@@ -1380,6 +1380,19 @@ th {
   top: 2px;
 }
 
+.cancel-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #ff3030;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+}
+
 .register-input {
   height: 60px;
   width: 100%;
@@ -1792,6 +1805,23 @@ html {
   margin: 0;
   border-color: #fafafa;
 }
+.float-form__file {
+  font-weight: 700;
+  display: block;
+  text-decoration: none;
+  color: #0066ff;
+}
+.float-form__file span {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.float-form__file i {
+  font-size: 24px;
+  position: relative;
+  top: 3px;
+  color: #0066ff;
+  margin-right: 10px;
+}
 .float-form__field {
   padding: 30px;
   position: relative;
@@ -1838,6 +1868,7 @@ html {
 }
 .float-form__field .btn-submit {
   cursor: pointer;
+  margin-left: 30px;
   border: none;
   border-radius: 10px;
   padding: 15px 20px;
@@ -1847,6 +1878,10 @@ html {
   text-decoration: none;
   text-align: center;
   font-weight: 500;
+}
+.float-form__field .file-empty {
+  font-style: italic;
+  color: #909090;
 }
 .float-form__field .file-choise {
   padding-right: 20px;
@@ -1869,6 +1904,12 @@ html {
   margin-right: 0 20px;
   text-align: right;
   transition: all 0.3s;
+}
+.float-form__field .file-choise label .file-name--right {
+  width: 200px;
+  top: -6px;
+  left: 30px;
+  text-align: left;
 }
 .float-form__field .file-choise label:hover {
   color: #0066ff;

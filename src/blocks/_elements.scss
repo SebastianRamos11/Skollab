@@ -1155,3 +1155,8 @@ th {
     top: 2px;
   }
 }
+
+.cancel-btn {
+  cursor: pointer;
+  @include primary-btn($primary-contrast, false);
+}

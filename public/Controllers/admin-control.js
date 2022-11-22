@@ -17,7 +17,6 @@ const contentBody = document.querySelector(".main-content");
 if (fileInput) {
   fileInput.forEach((file, i) => {
     file.addEventListener("change", (e) => {
-      console.log("I'm here bitch!");
       // Get the selected file
       const [file] = e.target.files;
       // Get the file name and size
