@@ -130,6 +130,7 @@
                           </div>
                           <div class="activity__btns">
                             <a href="edit-activity.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
+                            <a href="#?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Ver entregas</a>
                           </div>
                         </div>
                       <?php

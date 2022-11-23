@@ -79,8 +79,8 @@ if (isset($_SESSION['id'])) {
                 <div class="calification-form__grade">
                     <div class="calification-form__grade-label">Calificación</div>
                     <div class="calification-form__grade-input">
-                        <input type="range" min="0" max="100" value="0" name="calification" id="calification" class="calification-form__grade-input-range" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)">
-                        <div class="calification-form__grade-input-value"><span id="rangeValue">0</span>/100</div>
+                        <input type="number" min="0" max="100" placeholder="0" name="calification">
+                        <span>/100</span>
                     </div>
                 </div>
                 <div class="calification-form__observation">
@@ -92,19 +92,6 @@ if (isset($_SESSION['id'])) {
             </form>
         </div>
     </main>
-    <script type="text/javascript">
-        const rangeValue = document.getElementById('rangeValue');
-        function rangeSlide(value) {
-            rangeValue.innerHTML = value;
-            if(value > 80){
-                rangeValue.style.color = "#00D809";
-            } else if(value > 60){
-                rangeValue.style.color = "#FF782D";
-            } else{
-                rangeValue.style.color = "#ff3030";
-            }
-        }
-    </script>
     <script src="../../Controllers/set-date.js"></script>
     <script src="../../Controllers/aprendiz-control.js"></script>
 </body>

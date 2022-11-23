@@ -1155,7 +1155,6 @@ th {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   padding: 40px;
-  max-width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1244,6 +1243,16 @@ th {
   cursor: pointer;
 }
 
+@media screen and (min-width: 1500px) {
+  .activities {
+    grid-template-columns: 550px 550px !important;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .activities {
+    grid-template-columns: 650px 650px !important;
+  }
+}
 .user-evidences {
   margin-bottom: 40px;
 }
@@ -1525,14 +1534,6 @@ th {
   min-width: 180px;
 }
 
-@media screen and (min-width: 1400px) {
-  .activities-course {
-    grid-template-columns: 500px 500px;
-  }
-  .activities-course .activity {
-    max-width: 500px;
-  }
-}
 .evidence {
   background: #fff;
   border-radius: 15px;

@@ -943,7 +943,6 @@ th {
     border-radius: $radius-l;
     box-shadow: $element-shadow;
     padding: 40px;
-    max-width: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1022,6 +1021,19 @@ th {
         cursor: pointer;
       }
     }
+  }
+}
+
+
+@media screen and (min-width: 1500px) {
+  .activities {
+    grid-template-columns: 550px 550px !important;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .activities {
+    grid-template-columns: 650px 650px !important;
   }
 }
 

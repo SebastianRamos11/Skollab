@@ -18,17 +18,6 @@
   }
 }
 
-// activities MODIFICATIONS
-
-@media screen and (min-width: 1400px) {
-  .activities-course {
-    grid-template-columns: 500px 500px;
-    & .activity {
-      max-width: 500px;
-    }
-  }
-}
-
 // EVIDENCE
 .evidence {
   background: $white;

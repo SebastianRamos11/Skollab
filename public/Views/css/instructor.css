@@ -1155,7 +1155,6 @@ th {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   padding: 40px;
-  max-width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1244,6 +1243,16 @@ th {
   cursor: pointer;
 }
 
+@media screen and (min-width: 1500px) {
+  .activities {
+    grid-template-columns: 550px 550px !important;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .activities {
+    grid-template-columns: 650px 650px !important;
+  }
+}
 .user-evidences {
   margin-bottom: 40px;
 }
@@ -1783,20 +1792,6 @@ body {
   max-width: 90%;
 }
 
-@media screen and (max-width: 1400px) {
-  .activities-course {
-    padding: 0 50px 30px 0;
-    gap: 20px;
-  }
-}
-@media screen and (min-width: 1400px) {
-  .activities-course {
-    grid-template-columns: 500px 500px;
-  }
-  .activities-course .activity {
-    max-width: 500px;
-  }
-}
 .evidences-course {
   max-width: 900px;
   margin: 0 auto;
@@ -1977,48 +1972,46 @@ body {
   align-items: center;
   padding: 60px 20px 30px 20px;
 }
+.evidence-element .calification-form__grade {
+  min-width: 200px;
+}
 .evidence-element .calification-form__grade-label {
   font-size: 1.4em;
   font-weight: 700;
   margin-bottom: 20px;
 }
 .evidence-element .calification-form__grade-input {
-  min-width: 300px;
-  margin-right: 10px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.evidence-element .calification-form__grade-input-range {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-  margin-bottom: 8px;
-  width: 100%;
-  height: 12px;
-  border-radius: 10px;
-  background: #0066ff;
-  outline: none;
+.evidence-element .calification-form__grade-input input {
+  border: 3px solid #0066ff;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: right;
+  width: 90px;
+  position: relative;
+  right: 5px;
 }
-.evidence-element .calification-form__grade-input-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
+.evidence-element .calification-form__grade-input input::-webkit-outer-spin-button, .evidence-element .calification-form__grade-input input::-webkit-inner-spin-button {
+  -webkit-appearance: inner-spin-button !important;
+  position: absolute;
   width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #fff;
-  cursor: pointer;
-  border: 8px solid #ff3030;
+  height: 100%;
+  top: 0;
 }
-.evidence-element .calification-form__grade-input-value {
-  font-size: 27px;
-  font-weight: 800;
-  text-align: center;
+.evidence-element .calification-form__grade-input span {
   color: #0066ff;
+  font-weight: 700;
 }
 .evidence-element .calification-form__observation {
   position: relative;
   margin: 0 30px;
 }
 .evidence-element .calification-form__observation-input {
-  width: 310px;
+  width: 410px;
   height: 150px;
   resize: none;
   border: 2px solid #0066ff;
