@@ -25,12 +25,6 @@
             <span>CRUD</span>
           </li>
         </a>
-        <a href="announcements.php" class="nav-y-menu__link">
-          <li class="nav-y-menu__item">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>Anuncios</span>
-          </li>
-        </a>
         <a href="../../Models/logout.php" class="logout-mobile">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>

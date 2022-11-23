@@ -66,7 +66,7 @@ if (isset($_SESSION['id'])) {
             </label>
             <input type="file" name="file" id="file" class="file">
           </div>
-          <a href="announcements.php" title="Cancelar" class="cancel-btn" style="margin-left: auto;">Cancelar</a>
+          <a href="admin.php" title="Cancelar" class="cancel-btn" style="margin-left: auto;">Cancelar</a>
           <input type="submit" class="btn-submit" name="submit" value="Guardar">
       </form>
   </body>

@@ -58,7 +58,7 @@
         $resultado = $sentencia->execute([$_GET['delete_announcement']]);
         
         if($resultado){
-            header('Location: announcements.php?message=deleted');
+            header('Location: admin.php?message=deleted');
             exit(); 
         }
     }

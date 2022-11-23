@@ -3,7 +3,7 @@ include_once "../../Models/connection.php";
 session_start();
 
 if(empty($_POST["subject"]) || empty($_POST["description"])){
-    header('Location: announcements.php?message=empty');
+    header('Location: admin.php?message=empty');
     exit();
 }
 
@@ -20,7 +20,7 @@ if($_POST['submit']){
         $url_image = '../file-store/announcements/'.$_FILES['image']['name'];
 
         $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha, url_portada, url_file) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."', '".$url_image."', '".$url_file."')");
-        header('Location: announcements.php?message=uploaded');
+        header('Location: admin.php?message=uploaded');
         exit();
 
     } else if(file_exists($_FILES['file']['tmp_name']) && !file_exists($_FILES['image']['tmp_name'])){
@@ -32,7 +32,7 @@ if($_POST['submit']){
         $url_file = '../file-store/announcements/'.$_FILES['file']['name'];
 
         $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha, url_file) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."', '".$url_file."')");
-        header('Location: announcements.php?message=uploaded');
+        header('Location: admin.php?message=uploaded');
         exit();
 
     } else if(!file_exists($_FILES['file']['tmp_name']) && file_exists($_FILES['image']['tmp_name'])){
@@ -44,7 +44,7 @@ if($_POST['submit']){
         $url_image = '../file-store/announcements/'.$_FILES['image']['name'];
 
         $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha, url_portada) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."', '".$url_image."')");
-        header('Location: announcements.php?message=uploaded');
+        header('Location: admin.php?message=uploaded');
         exit();
         
     } else{
@@ -53,7 +53,7 @@ if($_POST['submit']){
         $date = date('Y-m-d');
 
         $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."')");
-        header('Location: announcements.php?message=uploaded');
+        header('Location: admin.php?message=uploaded');
         exit();
 
     }

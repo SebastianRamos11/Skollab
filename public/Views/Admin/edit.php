@@ -35,7 +35,7 @@
             $edit_query = $bd -> prepare("UPDATE anuncio SET asunto = ?, descripcion = ?, fecha = ?, url_file = ? WHERE ID_Anuncio = ?;");
             $query_result = $edit_query -> execute([$subject, $description, $date, $url_file, $id_announcement]);
 
-            header('Location: announcements.php?message=updated');
+            header('Location: admin.php?message=updated');
             exit();
             
         } else{
@@ -46,7 +46,7 @@
             $edit_query = $bd -> prepare("UPDATE anuncio SET asunto = ?, descripcion = ?, fecha = ? WHERE ID_Anuncio = ?;");
             $query_result = $edit_query -> execute([$subject, $description, $date, $id_announcement]);
 
-            header('Location: announcements.php?message=updated');
+            header('Location: admin.php?message=updated');
             exit();
         }
     }

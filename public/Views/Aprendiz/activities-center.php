@@ -20,7 +20,7 @@
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/aprendiz.css" />
-    <title>Inicio</title>
+    <title>Actividades</title>
   </head>
   <body>
     <?php include './sidebar.php' ?>

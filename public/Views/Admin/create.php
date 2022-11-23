@@ -17,6 +17,7 @@
     $rol = $_POST["rol"];
     $email = $_POST["email"];
     $pass = $_POST["pass"];
+    $pass = hash('sha512', $pass);
     
     $validation_query = "SELECT * FROM persona WHERE (num_documento = '$doc_num' && ID_Tipo_Documento = $doc_type) || correo_electronico = '$email' || telefono = '$phone'";
     $validation_result = mysqli_query($dbConnection, $validation_query);

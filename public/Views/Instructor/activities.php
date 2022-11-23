@@ -210,7 +210,7 @@
         </div>
         <input type="submit" class="btn-submit" name="submit" value="Publicar" >
       </div>
-      <div class="btn-close"><i class="fa-solid fa-x"></i></div>
+      <div class="btn-close"><i class="fa-solid fa-xmark"></i></div>
     </form>
     <div class="overlay hidden"></div>
 
