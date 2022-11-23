@@ -346,9 +346,9 @@ html {
     margin: 0 auto;
     color: $paragraph-color;
   }
-  &__file{
+  &__file {
     margin: 20px 0;
-    &-label{
+    &-label {
       margin-bottom: 10px;
     }
   }
@@ -379,17 +379,28 @@ html {
 //   }
 // }
 
-// Announcements
+// Announcements form
 .float-form {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   width: 800px;
   z-index: 1000;
   background: $white;
   border-radius: $radius-xl;
   box-shadow: $element-shadow;
+  & .btn-close {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    border: none;
+    background: none;
+    font-size: 30px;
+  }
+
   &__title {
     padding: 30px;
     text-align: center;
@@ -417,7 +428,7 @@ html {
       margin-right: 10px;
     }
   }
-  
+
   &__field {
     padding: 30px;
     position: relative;
@@ -498,7 +509,7 @@ html {
           margin-right: 0 20px;
           text-align: right;
           transition: all 0.3s;
-          &--right{
+          &--right {
             width: 200px;
             top: -6px;
             left: 30px;
@@ -535,5 +546,17 @@ html {
       left: 80px;
       background: white;
     }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .float-form {
+    transform: translate(-50%, -47%);
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .float-form {
+    transform: translate(-50%, -50%);
   }
 }

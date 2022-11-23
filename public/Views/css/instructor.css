@@ -1413,7 +1413,7 @@ body {
 }
 
 .max-height-form {
-  max-height: 100vh;
+  max-height: 125vh;
   overflow-y: hidden;
 }
 
@@ -1422,13 +1422,29 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 125vh;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   z-index: 50;
 }
 
+@media screen and (min-width: 1400px) {
+  .max-height-form {
+    max-height: 110vh;
+  }
+  .overlay {
+    height: 110vh;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .max-height-form {
+    max-height: 100vh;
+  }
+  .overlay {
+    height: 100vh;
+  }
+}
 .upload-form {
   position: relative;
   z-index: 100;
@@ -1602,9 +1618,19 @@ body {
   z-index: 1000;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
 }
 
+@media screen and (min-width: 1500px) {
+  .float-form {
+    transform: translate(-50%, -45%);
+  }
+}
+@media screen and (min-width: 1700px) {
+  .float-form {
+    transform: translate(-50%, -50%);
+  }
+}
 .nav-group {
   padding: 40px;
   background: #fff;

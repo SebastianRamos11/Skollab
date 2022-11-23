@@ -1788,12 +1788,22 @@ html {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   width: 800px;
   z-index: 1000;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+}
+.float-form .btn-close {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  border: none;
+  background: none;
+  font-size: 30px;
 }
 .float-form__title {
   padding: 30px;
@@ -1937,4 +1947,15 @@ html {
   top: 18px;
   left: 80px;
   background: white;
+}
+
+@media screen and (min-width: 1500px) {
+  .float-form {
+    transform: translate(-50%, -47%);
+  }
+}
+@media screen and (min-width: 1700px) {
+  .float-form {
+    transform: translate(-50%, -50%);
+  }
 }/*# sourceMappingURL=admin.css.map */

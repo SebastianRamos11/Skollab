@@ -123,9 +123,9 @@
         </div>
         <hr>
         <div class="float-form__field">
-          <div class="btn-close close-modal"><i class="fa-solid fa-trash-can"></i></div>
-          <input type="submit" class="btn-submit" name="submit" value="Publicar" >
+          <input type="submit" class="btn-submit" name="submit" value="Publicar" style="margin-left: auto;">
         </div>
+        <div class="btn-close close-modal">&times;</div>
       </form>
       <div class="overlay hidden"></div>
 
