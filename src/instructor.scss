@@ -313,12 +313,14 @@ body {
   }
 }
 
-// ESTILOS PARA CALIFICACION DE EVIDENCIA
+// CENTRO DE REVISIÓN
 .activity-selected {
   @include element;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
+
   &__icon {
     font-size: 30px;
     margin-right: 20px;
@@ -351,6 +353,14 @@ body {
       }
     }
   }
+}
+
+.pending-grades {
+  margin-bottom: 30px;
+}
+
+.qualified-evidences {
+  margin-bottom: 30px;
 }
 
 .evidence-element {
@@ -443,6 +453,7 @@ body {
         & input::-webkit-outer-spin-button,
         & input::-webkit-inner-spin-button {
           -webkit-appearance: inner-spin-button !important;
+          appearance: inner-spin-button;
           position: absolute;
           width: 25px;
           height: 100%;

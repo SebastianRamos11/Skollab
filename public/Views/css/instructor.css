@@ -1230,6 +1230,18 @@ th {
 .activities-course .activity__btns-link {
   color: #0066ff;
 }
+.activities-course .activity__btns-link--active {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #0066ff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
 .activities-course .activity__btns-evidences {
   border: none;
   border-radius: 10px;
@@ -1865,6 +1877,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 }
 .activity-selected__icon {
   font-size: 30px;
@@ -1897,6 +1910,14 @@ body {
 }
 .activity-selected__time-date--due {
   background: rgba(255, 224, 114, 0.5);
+}
+
+.pending-grades {
+  margin-bottom: 30px;
+}
+
+.qualified-evidences {
+  margin-bottom: 30px;
 }
 
 .evidence-element {
@@ -1997,6 +2018,7 @@ body {
 }
 .evidence-element .calification-form__grade-input input::-webkit-outer-spin-button, .evidence-element .calification-form__grade-input input::-webkit-inner-spin-button {
   -webkit-appearance: inner-spin-button !important;
+  appearance: inner-spin-button;
   position: absolute;
   width: 25px;
   height: 100%;

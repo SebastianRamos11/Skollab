@@ -129,8 +129,8 @@
                             ?>
                           </div>
                           <div class="activity__btns">
-                            <a href="edit-activity.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Editar>></a>
-                            <a href="#?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link">Ver entregas</a>
+                            <a href="edit-activity.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
+                            <a href="deliveries.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link activity__btns-link--active">Ver entregas</a>
                           </div>
                         </div>
                       <?php

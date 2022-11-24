@@ -1230,6 +1230,18 @@ th {
 .activities-course .activity__btns-link {
   color: #0066ff;
 }
+.activities-course .activity__btns-link--active {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #0066ff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
 .activities-course .activity__btns-evidences {
   border: none;
   border-radius: 10px;
