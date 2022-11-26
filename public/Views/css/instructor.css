@@ -497,6 +497,8 @@ th {
 }
 
 .card {
+  max-width: 1200px;
+  margin: 0 auto;
   background: #fff;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   border-radius: 20px;
@@ -1274,7 +1276,7 @@ th {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 30px;
   display: grid;
   width: 900px;
@@ -1479,9 +1481,9 @@ th {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 30px;
-  min-width: 900px;
+  max-width: 900px;
   display: grid;
   margin: 0;
   padding: 40px;
@@ -1770,7 +1772,7 @@ body {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 30px;
   display: grid;
   grid-template-columns: 70% 30%;
@@ -1825,8 +1827,9 @@ body {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 30px;
+  max-width: 1000px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1866,13 +1869,102 @@ body {
   font-weight: 500;
 }
 
+.qualified-evidence {
+  padding: 40px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+  margin: 0 auto;
+  max-width: 1000px;
+  margin-top: 30px;
+  display: grid;
+  max-width: 1000px;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 360px 140px 130px 170px;
+  padding: 40px;
+}
+.qualified-evidence__activity, .qualified-evidence__owner {
+  display: flex;
+}
+.qualified-evidence__icon {
+  display: block;
+  position: relative;
+  top: -1.5px;
+  margin-right: 15px;
+  font-size: 28px;
+  color: #0066ff;
+}
+.qualified-evidence__title {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.qualified-evidence__date {
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255, 224, 114, 0.5);
+}
+.qualified-evidence__grade {
+  text-align: center;
+}
+.qualified-evidence__grade-value {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.qualified-evidence__grade-range {
+  width: 120px;
+  height: 10px;
+  background: #c5d6ee;
+  border-radius: 10px;
+}
+.qualified-evidence__grade-range span {
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+  width: 100%;
+}
+.qualified-evidence__grade-range .grade-a {
+  background: #00d809;
+}
+.qualified-evidence__grade-range .grade-b {
+  background: #eba352;
+}
+.qualified-evidence__grade-range .grade-d {
+  background: #ff3030;
+}
+.qualified-evidence__icons {
+  display: flex;
+  min-width: 130px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.qualified-evidence__observation {
+  text-align: center;
+}
+.qualified-evidence__link {
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #0066ff;
+}
+.qualified-evidence__link--edit {
+  margin-right: 10px;
+}
+.qualified-evidence__link i {
+  font-size: 25px;
+}
+
 .activity-selected {
   padding: 40px;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
@@ -1913,11 +2005,15 @@ body {
 }
 
 .pending-grades {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .qualified-evidences {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
+}
+
+.pending-users {
+  margin-bottom: 60px;
 }
 
 .evidence-element {
@@ -1926,7 +2022,7 @@ body {
   border-radius: 15px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 30px;
 }
 .evidence-element .user-evidence {
@@ -1967,7 +2063,7 @@ body {
   color: #636363;
 }
 .evidence-element .user-evidence__file {
-  margin-left: 50px;
+  margin-left: 180px;
   text-align: center;
 }
 .evidence-element .user-evidence__file-label {
@@ -1994,7 +2090,7 @@ body {
   padding: 60px 20px 30px 20px;
 }
 .evidence-element .calification-form__grade {
-  min-width: 200px;
+  min-width: 300px;
 }
 .evidence-element .calification-form__grade-label {
   font-size: 1.4em;

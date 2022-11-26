@@ -7,6 +7,8 @@
     }
 
     $evidence = $_GET["evidence"];
+    $activity = $_GET["activity"];
+
     $calification = $_POST["calification"];
     $observation = $_POST["observation"];
 
@@ -14,10 +16,10 @@
     $query_result = $grade_query -> execute([$calification, $observation, $evidence]);
 
     if($query_result){
-        header('Location: review-center.php?message=qualified');
+        header('Location: deliveries.php?activity='.$activity.'&message=qualified');
         exit();
     }else{
-        header('Location: review-center.php?message=error');
+        header('Location: deliveries.php?activity='.$activity.'&message=error');
         exit();
     }
 ?>

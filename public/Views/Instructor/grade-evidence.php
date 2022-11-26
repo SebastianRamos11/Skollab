@@ -75,7 +75,7 @@ if (isset($_SESSION['id'])) {
             </div>
             <hr>
             <!-- CALIFICATION FORM -->
-            <form action="upload-grade.php?evidence=<?php echo $id_evidencia; ?>" class="calification-form" method="POST">
+            <form action="upload-grade.php?evidence=<?php echo $id_evidencia; ?>&activity=<?php echo $id_actividad; ?>" class="calification-form" method="POST">
                 <div class="calification-form__grade">
                     <div class="calification-form__grade-label">Calificación</div>
                     <div class="calification-form__grade-input">
@@ -92,7 +92,6 @@ if (isset($_SESSION['id'])) {
             </form>
         </div>
     </main>
-    <script src="../../Controllers/set-date.js"></script>
     <script src="../../Controllers/aprendiz-control.js"></script>
 </body>
 </html>

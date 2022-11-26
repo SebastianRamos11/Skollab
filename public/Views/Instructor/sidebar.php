@@ -18,22 +18,16 @@
             <span>Inicio</span>
           </li>
         </a>
-        <a href="./review-center.php" class="nav-y-menu__link">
+        <a href="./activities.php" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>Centro de revisión</span>
+            <i class="fa-solid fa-book"></i>
+            <span>Actividades</span>
           </li>
         </a>
         <a href="./groups.php" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-users"></i>
             <span>Fichas</span>
-          </li>
-        </a>
-        <a href="./activities.php" class="nav-y-menu__link">
-          <li class="nav-y-menu__item">
-            <i class="fa-solid fa-book"></i>
-            <span>Actividades</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">
