@@ -1,16 +1,16 @@
 <?php
 include_once "../../Models/connection.php";
 session_start();
-$evidence = $_GET['evidence'];
+$activity = $_GET['activity'];
 
-if(!$evidence){
+if(!$activity){
     header('Location: aprendiz.php');
     exit();
 }
 
 // Empty data
 if(empty($_FILES['file']['name'])){
-    header('Location: evidence.php?evidence='.$evidence.'&message=empty');
+    header('Location: activity.php?activity='.$activity.'&message=empty');
     exit();
 }
 
@@ -21,16 +21,16 @@ if($_POST['submit']){
             $description = $_POST['description'];
             $date = date('Y-m-d');
             $url = '../file-store/evidences/'.$_FILES['file']['name'];
-            $sql = $dbConnection->query("INSERT INTO evidencia (ID_Persona, ID_Actividad, descripcion, fecha, url) VALUES ('".$_SESSION['id']."', '".$evidence."', '".$description."', '".$date."', '".$url."')");
+            $sql = $dbConnection->query("INSERT INTO evidencia (ID_Persona, ID_Actividad, descripcion, fecha, url) VALUES ('".$_SESSION['id']."', '".$activity."', '".$description."', '".$date."', '".$url."')");
             
-            header('Location: turned-evidence.php?evidence='.$evidence.'&message=updated');
+            header('Location: activity.php?activity='.$activity.'&message=updated');
             exit();
         }else{
-            header('Location: evidence.php?evidence='.$evidence.'&message=error');
+            header('Location: activity.php?activity='.$activity.'&message=error');
             exit();
         }
     }else{
-        header('Location: evidence.php?evidence='.$evidence.'&message=error');
+        header('Location: activity.php?activity='.$activity.'&message=error');
         exit();
     }
 }

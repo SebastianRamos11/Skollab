@@ -13,17 +13,6 @@ const course = document.querySelectorAll(".course");
 const courseActivities = document.querySelectorAll(".activities-course");
 const activity = document.querySelectorAll(".activity");
 const courseTitle = document.querySelectorAll(".course__title");
-const fileName = document.querySelectorAll(".file-name");
-
-// Normalizing texts
-
-if (fileName) {
-  fileName.forEach((e, i) => {
-    fileName[i].textContent = fileName[i].textContent
-      .replace("../file-store/", "")
-      .replace("activities/", "");
-  });
-}
 
 const generateAcronym = function (e) {
   let acronym = "";

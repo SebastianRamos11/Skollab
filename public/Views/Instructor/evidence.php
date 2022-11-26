@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['id'])) {
   $id_evidencia = $_GET['evidence'];  
 
-  $evidence = "SELECT E.ID_Actividad, E.ID_Persona, AC.ID_Ficha, E.fecha, E.descripcion, E.url FROM evidencia E JOIN actividad AC ON E.ID_Actividad = AC.ID_Actividad WHERE ID_Evidencia = $id_evidencia;";
+  $evidence = "SELECT E.ID_Actividad, E.ID_Persona, AC.ID_Ficha, E.fecha, E.descripcion, E.url, E.nota, E.observacion FROM evidencia E JOIN actividad AC ON E.ID_Actividad = AC.ID_Actividad WHERE ID_Evidencia = $id_evidencia;";
   $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
   $evidence_array = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
 
@@ -79,15 +79,15 @@ if (isset($_SESSION['id'])) {
                 <div class="calification-form__grade">
                     <div class="calification-form__grade-label">Calificación</div>
                     <div class="calification-form__grade-input">
-                        <input type="number" min="0" max="100" placeholder="0" name="calification">
+                        <input type="number" min="0" max="100" placeholder="0" name="calification" <?php if($evidence_array[0][6]) {?> value ="<?php echo $evidence_array[0][6] ?>" disabled <?php } ?> >
                         <span>/100</span>
                     </div>
                 </div>
                 <div class="calification-form__observation">
                     <div class="calification-form__observation-label">Observación</div>
-                    <textarea name="observation" class="calification-form__observation-input" placeholder="Escribe una observación" maxlength="600"></textarea>
+                    <textarea name="observation" class="calification-form__observation-input" placeholder="Escribe una observación" maxlength="600" <?php if($evidence_array[0][7]) {?> disabled <?php }?> ><?php if($evidence_array[0][7]) echo $evidence_array[0][7] ?></textarea>
                 </div>
-                <label for="submit-btn" class="calification-form__btn-submit"><i class="fa-regular fa-paper-plane"></i></label>
+                <label for="submit-btn" class="calification-form__btn-submit <?php if($evidence_array[0][6]) {?> hidden <?php }?>"><i class="fa-regular fa-paper-plane"></i></label>
                 <input type="submit" id="submit-btn" name="submit" class="hidden">
             </form>
         </div>

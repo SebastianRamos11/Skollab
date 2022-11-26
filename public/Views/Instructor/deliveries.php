@@ -92,7 +92,7 @@
                                 <div class="evidence__name"><?php echo $aprendiz_name ?></div>
                             </div>
                             <div class="evidence__date"><?php echo $evidences[$i][1]; ?></div>
-                            <a href="grade-evidence.php?evidence=<?php echo $evidences[$i][0]; ?>" class="evidence__link">Calificar</a>
+                            <a href="evidence.php?evidence=<?php echo $evidences[$i][0]; ?>" class="evidence__link">Calificar</a>
                         </div>
                         <?php
                     }
@@ -169,14 +169,14 @@
                             </div>
                             <div class="qualified-evidence__icons">
                                 <a href="#?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link qualified-evidence__link--edit" download="">Editar nota<i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="#?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link">Ver detalles<i class="fa-regular fa-eye"></i></a>
+                                <a href="evidence.php?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link">Ver detalles<i class="fa-regular fa-eye"></i></a>
                             </div>
                         </div>
                         <?php
                     }
                 } else {
                     ?>
-                    <div class="neutral-message"><i class="fa-solid fa-triangle-exclamation"></i> No hay evidencias calificadas.</div>
+                    <div class="alert-message"><i class="fa-solid fa-triangle-exclamation"></i> No hay evidencias calificadas.</div>
                     <?php
                 }
             ?>
@@ -184,13 +184,13 @@
     </div>
 
     <div class="pending-users">
-        <h2>🔴 Estudiantes pendientes por entregar</h2>
+        <h2>🔴 (<?php echo sizeof($pending_users); ?>) Estudiantes pendientes por entregar</h2>
         <hr>
         <?php 
         if(sizeof($pending_users) > 0){
         ?>
         <div class="card mb-50">
-            <div class="card-header" style="background-color: #FF4A4A;"></div>
+            <div class="card-header" style="background-color: #ff3030;"></div>
             <div class="p-4">
                 <table class="table align-middle">
                     <thead>

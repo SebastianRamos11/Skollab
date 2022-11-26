@@ -153,7 +153,7 @@ if (isset($_SESSION['id'])) {
                                                     ?>
                                                 </div>
                                             </div>
-                                            <a href="turned-evidence.php?evidence=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
+                                            <a href="activity.php?activity=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
                                             <a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__link" download=""><i class="fa-regular fa-file-lines"></i></a>
                                             <a href="delete.php?evidence=<?php echo $evidences_array[0][5] ;?>" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a>
                                         </div>

@@ -2112,6 +2112,10 @@ body {
   position: relative;
   right: 5px;
 }
+.evidence-element .calification-form__grade-input input:disabled {
+  color: #0066ff;
+  font-weight: 700;
+}
 .evidence-element .calification-form__grade-input input::-webkit-outer-spin-button, .evidence-element .calification-form__grade-input input::-webkit-inner-spin-button {
   -webkit-appearance: inner-spin-button !important;
   appearance: inner-spin-button;

@@ -541,6 +541,10 @@ body {
           position: relative;
           right: 5px;
         }
+        & input:disabled {
+          color: $secundary-color;
+          font-weight: map-get($font-weights, "semibold");
+        }
         & input::-webkit-outer-spin-button,
         & input::-webkit-inner-spin-button {
           -webkit-appearance: inner-spin-button !important;

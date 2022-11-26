@@ -95,7 +95,7 @@
                           ?>
                         </div>
                         <div class="activity__btns">
-                          <a href="evidence.php?evidence=<?php echo $activity_array[0][0]?>" class="activity__btns-link">Entregar>></a>
+                          <a href="activity.php?activity=<?php echo $activity_array[0][0]?>" class="activity__btns-link">Entregar>></a>
                         </div>
                       </div>
                     <?php
