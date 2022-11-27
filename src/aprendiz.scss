@@ -197,7 +197,7 @@
   position: relative;
   display: grid;
   gap: 20px;
-  grid-template-columns: 320px 3fr 1fr;
+  grid-template-columns: 280px 2fr 1fr;
   &__file {
     margin-bottom: 15px;
     & i {
@@ -243,6 +243,25 @@
       font-weight: map-get($font-weights, "bold");
       text-align: right;
       color: $secundary-color;
+    }
+  }
+  &__recovered {
+    padding: 10px 20px;
+    text-align: center;
+    width: max-content;
+    border-radius: $radius-xl;
+    background: rgba($color: #ffe072, $alpha: 0.7);
+  }
+  &__link {
+    cursor: pointer;
+    text-align: right;
+    font-size: 18px;
+    color: $primary-contrast;
+    text-decoration: none;
+    grid-column-start: -2;
+    transition: all 0.3s;
+    &:hover {
+      font-weight: map-get($font-weights, "semibold");
     }
   }
 }

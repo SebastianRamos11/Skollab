@@ -1853,7 +1853,7 @@ body {
   margin-right: 10px;
   padding: 10px 20px;
   border-radius: 20px;
-  background: rgba(255, 224, 114, 0.5);
+  background: rgba(100, 238, 155, 0.5);
 }
 .evidence__link {
   display: block;
@@ -1867,6 +1867,16 @@ body {
   text-decoration: none;
   text-align: center;
   font-weight: 500;
+}
+
+.evidence-recovered {
+  padding: 10px 20px;
+  text-align: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 20px;
+  background: rgba(255, 224, 114, 0.7);
 }
 
 .qualified-evidence {
@@ -1945,17 +1955,12 @@ body {
 .qualified-evidence__link {
   text-decoration: none;
   text-align: center;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: 18px;
   color: #0066ff;
+  transition: all 0.3s;
 }
-.qualified-evidence__link--edit {
-  margin-right: 10px;
-}
-.qualified-evidence__link i {
-  font-size: 25px;
+.qualified-evidence__link:hover {
+  font-weight: 700;
 }
 
 .activity-selected {
@@ -2061,6 +2066,7 @@ body {
 }
 .evidence-element .user-evidence__description {
   color: #636363;
+  margin-bottom: 20px;
 }
 .evidence-element .user-evidence__file {
   margin-left: 180px;
@@ -2078,6 +2084,17 @@ body {
 }
 .evidence-element .user-evidence__file-src:focus {
   outline: none !important;
+}
+.evidence-element .user-evidence__modify-grade {
+  cursor: pointer;
+  text-align: right;
+  font-size: 18px;
+  color: #ff3030;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.evidence-element .user-evidence__modify-grade:hover {
+  font-weight: 700;
 }
 .evidence-element hr {
   margin: 0 -40px;

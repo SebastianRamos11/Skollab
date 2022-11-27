@@ -1734,7 +1734,7 @@ th {
   position: relative;
   display: grid;
   gap: 20px;
-  grid-template-columns: 320px 3fr 1fr;
+  grid-template-columns: 280px 2fr 1fr;
 }
 .turned-evidence__file {
   margin-bottom: 15px;
@@ -1781,6 +1781,27 @@ th {
   font-weight: 800;
   text-align: right;
   color: #0066ff;
+}
+.turned-evidence__recovered {
+  padding: 10px 20px;
+  text-align: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 20px;
+  background: rgba(255, 224, 114, 0.7);
+}
+.turned-evidence__link {
+  cursor: pointer;
+  text-align: right;
+  font-size: 18px;
+  color: #ff3030;
+  text-decoration: none;
+  grid-column-start: -2;
+  transition: all 0.3s;
+}
+.turned-evidence__link:hover {
+  font-weight: 700;
 }
 
 .program {

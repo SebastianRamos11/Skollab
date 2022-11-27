@@ -47,6 +47,36 @@
     <title>Centro de revisión</title>
   </head>
   <body>
+    <!-- Delete successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'qualified'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Evidencia calificada',
+              text: 'La evidencia se ha calificado correctamente'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+    
+    <!-- Error -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'error'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: '¡Ha ocurrido un error inesperado!'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+
     <?php include './sidebar.php' ?>
     <h1 class="main-content__header">Centro de revisión</h1>
     <!-- activity SELECTED -->
@@ -72,7 +102,7 @@
         <hr>
         <div class="evidences">
             <?php 
-                $evidences = "SELECT ID_Evidencia, fecha, ID_Persona FROM evidencia WHERE ID_Actividad = $id_activity AND nota IS NULL";
+                $evidences = "SELECT ID_Evidencia, fecha, ID_Persona, nivelada FROM evidencia WHERE ID_Actividad = $id_activity AND nota IS NULL OR ID_Actividad = $id_activity AND nivelada = 1";
                 $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
                 $evidences = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 
@@ -92,6 +122,7 @@
                                 <div class="evidence__name"><?php echo $aprendiz_name ?></div>
                             </div>
                             <div class="evidence__date"><?php echo $evidences[$i][1]; ?></div>
+                            <?php if($evidences[$i][3]) { ?> <div class="evidence-recovered"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> NIVELADA</div> <?php }?>
                             <a href="evidence.php?evidence=<?php echo $evidences[$i][0]; ?>" class="evidence__link">Calificar</a>
                         </div>
                         <?php
@@ -111,7 +142,7 @@
         <hr>
         <div class="evidences">
             <?php 
-                $qualified_evidences = "SELECT fecha, nota, observacion, ID_Evidencia, ID_Persona  FROM evidencia WHERE ID_Actividad = $id_activity AND nota IS NOT NULL";
+                $qualified_evidences = "SELECT fecha, nota, observacion, ID_Evidencia, ID_Persona  FROM evidencia WHERE ID_Actividad = $id_activity AND nota IS NOT NULL AND nivelada = 0";
                 $qualified_evidences_result = mysqli_query($dbConnection, $qualified_evidences) or die(mysqli_error($dbConnection));
                 $qualified_evidences = mysqli_fetch_all($qualified_evidences_result, MYSQLI_NUM);
               
@@ -168,8 +199,7 @@
                                 <div class="qualified-evidence__grade-edit"></div>
                             </div>
                             <div class="qualified-evidence__icons">
-                                <a href="#?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link qualified-evidence__link--edit" download="">Editar nota<i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="evidence.php?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link">Ver detalles<i class="fa-regular fa-eye"></i></a>
+                                <a href="evidence.php?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link"><i class="fa-regular fa-eye"></i> Gestionar</a>
                             </div>
                         </div>
                         <?php

@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['id'])) {
   $id_evidencia = $_GET['evidence'];  
 
-  $evidence = "SELECT E.ID_Actividad, E.ID_Persona, AC.ID_Ficha, E.fecha, E.descripcion, E.url, E.nota, E.observacion FROM evidencia E JOIN actividad AC ON E.ID_Actividad = AC.ID_Actividad WHERE ID_Evidencia = $id_evidencia;";
+  $evidence = "SELECT E.ID_Actividad, E.ID_Persona, AC.ID_Ficha, E.fecha, E.descripcion, E.url, E.nota, E.observacion, E.nivelada FROM evidencia E JOIN actividad AC ON E.ID_Actividad = AC.ID_Actividad WHERE ID_Evidencia = $id_evidencia;";
   $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
   $evidence_array = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
 
@@ -33,6 +33,20 @@ if (isset($_SESSION['id'])) {
     <title>Calificar evidencia</title>
 </head>
 <body>
+    <!-- Delete successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Debes ingresar una calificación'
+          });
+      </script>
+    <?php 
+      }
+    ?>
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Calificar evidencia 📝</h1>
 
@@ -67,6 +81,8 @@ if (isset($_SESSION['id'])) {
                     <div class="user-evidence__name"><?php echo $aprendiz_array[0][0];?>  <?php echo $aprendiz_array[0][1];?></div>
                     <div class="user-evidence__date">Fecha de entrega: <?php echo $evidence_array[0][3]; ?></div>
                     <div class="user-evidence__description"><?php echo $evidence_array[0][4]; ?></div>
+                    <?php if(intval($evidence_array[0][8]) === 1) {?> <div class="evidence-recovered"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> Evidencia nivelada</div> <?php } ?>
+                    
                 </div>
                 <div class="user-evidence__file">
                     <div class="user-evidence__file-label">Evidencia:</div>
@@ -79,7 +95,7 @@ if (isset($_SESSION['id'])) {
                 <div class="calification-form__grade">
                     <div class="calification-form__grade-label">Calificación</div>
                     <div class="calification-form__grade-input">
-                        <input type="number" min="0" max="100" placeholder="0" name="calification" <?php if($evidence_array[0][6]) {?> value ="<?php echo $evidence_array[0][6] ?>" disabled <?php } ?> >
+                        <input type="number" min="0" max="100" class="calification-form__grade-input--inp" placeholder="0" name="calification" <?php if($evidence_array[0][6]) {?> value ="<?php echo $evidence_array[0][6] ?>" disabled <?php } ?> >
                         <span>/100</span>
                     </div>
                 </div>
@@ -90,8 +106,21 @@ if (isset($_SESSION['id'])) {
                 <label for="submit-btn" class="calification-form__btn-submit <?php if($evidence_array[0][6]) {?> hidden <?php }?>"><i class="fa-regular fa-paper-plane"></i></label>
                 <input type="submit" id="submit-btn" name="submit" class="hidden">
             </form>
+            <div class="user-evidence__modify-grade"><i class="fa-solid fa-pen-to-square"></i> Modificar nota</div>
         </div>
     </main>
+    <script>
+        const modifyGrade = document.querySelector('.user-evidence__modify-grade');
+        const submitBtn = document.querySelector('.calification-form__btn-submit');
+        const observation = document.querySelector('.calification-form__observation-input');
+        const calification = document.querySelector('.calification-form__grade-input--inp');
+
+        modifyGrade.addEventListener('click', () => {
+            submitBtn.classList.remove('hidden');
+            calification.removeAttribute('disabled');
+            observation.removeAttribute('disabled');
+        })
+    </script>
     <script src="../../Controllers/aprendiz-control.js"></script>
 </body>
 </html>

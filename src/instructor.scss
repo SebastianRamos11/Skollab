@@ -305,13 +305,21 @@ body {
     margin-right: 10px;
     padding: 10px 20px;
     border-radius: $radius-xl;
-    background: rgba($color: #ffe072, $alpha: 0.5);
+    background: rgba($color: #64ee9b, $alpha: 0.5);
   }
   &__link {
     display: block;
     text-decoration: none;
     @include primary-btn($secundary-color, false);
   }
+}
+
+.evidence-recovered {
+  padding: 10px 20px;
+  text-align: center;
+  width: max-content;
+  border-radius: $radius-xl;
+  background: rgba($color: #ffe072, $alpha: 0.7);
 }
 
 .qualified-evidence {
@@ -384,19 +392,12 @@ body {
   &__link {
     text-decoration: none;
     text-align: center;
-    font-size: 14px;
-
-    &--edit {
-      margin-right: 10px;
-    }
-
-    & i {
-      font-size: 25px;
-    }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 18px;
     color: $secundary-color;
+    transition: all 0.3s;
+    &:hover {
+      font-weight: map-get($font-weights, "semibold");
+    }
   }
 }
 
@@ -491,6 +492,7 @@ body {
     }
     &__description {
       color: $paragraph-color;
+      margin-bottom: 20px;
     }
     &__file {
       margin-left: 180px;
@@ -507,6 +509,17 @@ body {
       }
       &-src:focus {
         outline: none !important;
+      }
+    }
+    &__modify-grade {
+      cursor: pointer;
+      text-align: right;
+      font-size: 18px;
+      color: $primary-contrast;
+      text-decoration: none;
+      transition: all 0.3s;
+      &:hover {
+        font-weight: map-get($font-weights, "semibold");
       }
     }
   }

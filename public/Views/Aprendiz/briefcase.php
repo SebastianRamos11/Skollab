@@ -23,20 +23,6 @@ if (isset($_SESSION['id'])) {
     <title>Portafolio</title>
 </head>
 <body>
-    <!-- Delete successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'La evidencia fue eliminada correctamente'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
     <!-- Error -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'error'){

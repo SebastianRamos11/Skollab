@@ -15,7 +15,7 @@ if (isset($_SESSION['id'])) {
   $instructor = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
   $instructor = $instructor[0][0]." ".$instructor[0][1];
 
-  $evidence = "SELECT url, descripcion, observacion, nota FROM evidencia WHERE ID_Actividad = $id_activity AND ID_Persona =".$_SESSION['id'];
+  $evidence = "SELECT url, descripcion, observacion, nota, ID_Evidencia, nivelada FROM evidencia WHERE ID_Actividad = $id_activity AND ID_Persona =".$_SESSION['id'];
   $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
   $evidence = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
 
@@ -76,6 +76,21 @@ if (isset($_SESSION['id'])) {
     <?php 
       }
     ?>
+    
+    <!-- Delete successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'La evidencia fue eliminada correctamente'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Entrega de actividad 📘</h1>
 
@@ -165,6 +180,43 @@ if (isset($_SESSION['id'])) {
                 }
               ?>/100
             </div>
+            <?php 
+              if($evidence[0][5]){
+                ?>
+                <div class="turned-evidence__recovered"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> NIVELADA</div>
+                <?php
+              }
+            ?>
+            <?php
+              if($evidence[0][3]){
+                if(intval($evidence[0][3]) < 70) {
+                ?>
+                    <a href="#upload-form" class="turned-evidence__link recover-button"><i class="fa-solid fa-turn-up"></i> <span>Nivelar evidencia</span></a>
+                  </div>
+                  <form action="upload.php?activity=<?php echo $id_activity?>&recover-evidence=<?php echo $evidence[0][4] ?>" method="POST" id="upload-form" enctype="multipart/form-data"  class="upload-form hidden">
+                      <!-- FILE SELECTION -->
+                      <div class="upload-form__file">
+                          <label for="file"><i class="fa-solid fa-plus"></i>Agregar archivo</label>
+                          <div class="upload-form__file-choised">
+                              <i class="fa-regular fa-file-lines hidden file-icon"></i>
+                              <span class="file-selected-name"></span>
+                          </div>
+                          <input type="file" name="file" id="file">
+                      </div>
+                      <!-- DESCRIPTION -->
+                      <div class="upload-form__textarea">
+                          <div class="upload-form__textarea-label">Descripción</div>
+                          <textarea name="description" class="upload-form__textarea-input upload" placeholder="Escribe una descripción" maxlength="600"></textarea>
+                      </div>
+                      <label for="submit-btn" class="upload-form__btn-submit"><i class="fa-regular fa-paper-plane"></i></label>
+                      <input type="submit" id="submit-btn" name="submit" class="hidden">
+                  </form>
+                <?php 
+                }
+              } else{
+                ?><a href="delete.php?evidence=<?php echo $evidence[0][4];?>" class="turned-evidence__link delete-button"><i class="fa-solid fa-rotate-left"></i> <span>Cancelar entrega</span></a><?php
+              }
+            ?>
           </div>
         <?php
         }
@@ -172,9 +224,38 @@ if (isset($_SESSION['id'])) {
     </main>
   <script>
     const fileName = document.querySelectorAll('.file-name');
-    fileName.forEach((_, i) => {
+    const deleteEvidence = document.querySelector('.delete-button');
+    const recoverEvidence = document.querySelector('.recover-button');
+    const recoverEvidenceForm = document.querySelector('.upload-form');
+    console.log(recoverEvidenceForm);
+
+    fileName?.forEach((_, i) => {
       fileName[i].textContent = fileName[i].textContent.slice(fileName[i].textContent.lastIndexOf('/') + 1);
-    }); 
+    });
+
+    deleteEvidence?.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log(deleteEvidence.getAttribute('href'));
+      Swal.fire({
+          title: '¿Seguro que quieres eliminar esta evidencia?',
+          text: "¡No podrás revertir esto!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, eliminar',
+          cancelButtonText: 'Cancelar'
+      }).then((result) => {
+      if (result.isConfirmed) {
+          window.location.assign(deleteEvidence.getAttribute('href'));
+      }
+      })
+    })
+
+    recoverEvidence?.addEventListener('click', () => {
+      recoverEvidenceForm.classList.toggle('hidden');
+    })
+
   </script>
   <script src="../../Controllers/aprendiz-control.js"></script>
 </body>
