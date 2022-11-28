@@ -53,9 +53,7 @@
           <img src="img/main/books-illustration.png" alt="books" />
         </div>
         <div class="home__start">
-          <h1 class="home__title">
-            Donde la formación del SENA es más sencilla e intuitiva.
-          </h1>
+          <h1 class="home__title">Donde la gestión de tu formación educativa es mas sencilla e intuitiva.</h1>
           <p class="home__paragraph">
             Es hora del cambio, la experiencia de los aprendices e instructores
             es muy importante.
@@ -67,11 +65,7 @@
 
     <article class="info">
       <h2 class="info__title">¿Qué ofrecemos?</h2>
-      <p class="info__paragraph">
-        Aplicación para todas las entidades del SENA que mejora su experiencia a
-        lo largo de la formación, corrigiendo múltiples errores que veíamos en
-        Territorium.
-      </p>
+      <p class="info__paragraph">Skollab es LMS que te permitirá gestionar todo tu proceso formativo, ofrenciendo interfaces intuitivas e interactivas que mejorarán tu experiencia educativa.</p>
     </article>
 
     <section class="card-container">

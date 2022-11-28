@@ -70,7 +70,7 @@
     <?php 
       }
     ?>
-        <?php 
+    <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'activity_deleted'){
     ?>
       <script>
@@ -78,6 +78,19 @@
               icon: 'success',
               title: 'Publicación eliminada!',
               text: 'La publicación y todos los entregables de aprendices de la misma han sido correctamente eliminados'
+          });
+      </script>
+    <?php 
+      }
+    ?>
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'announcement_deleted'){
+    ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Anuncio eliminado!',
+              text: 'El anuncio ha sido correctamente eliminado'
           });
       </script>
     <?php 
@@ -106,9 +119,70 @@
 
             <?php
 
-              // TODO: If User is Administrador -> Print Anuncios (No created for now)
               if($user_array[0][2] == 1){
-                echo 'Anuncios';
+                $announcements = "SELECT asunto, descripcion, fecha, url_portada, url_file, ID_Anuncio, ID_Persona FROM anuncio WHERE ID_Persona = $id_user";
+                $announcements_result= mysqli_query($dbConnection, $announcements) or die(mysqli_error($dbConnection));
+                $announcements = mysqli_fetch_all($announcements_result, MYSQLI_NUM);
+                ?>
+                <div class="announcements">
+                    <h2 class="announcements__label">Anuncios publicados</h2>
+                    <?php
+                    if(sizeof($announcements) > 0){ 
+                    for($i=0; $i < sizeof($announcements); $i++){
+                        $id_owner = $announcements[$i][6];
+
+                        // GET ANNOUNCEMENT'S OWNER
+                        $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
+                        $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
+                        $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
+                    
+                        ?>
+                        <div class="announcement-management">
+                        <div class="announcement" style="border: 2px solid rgba(186, 186, 186, 0.7294117647);">
+                            <div class="announcement__owner">
+                            <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
+                            <div>
+                                <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
+                                <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
+                            </div>
+                            </div>
+                            <div class="announcement__info">
+                            <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
+                            <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
+                            <?php
+                                if($announcements[$i][4] != ''){
+                            ?>
+                                <div class="announcement__file">
+                                <div class="announcement__file-label">Archivos adjuntos:</div>
+                                <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+                                </div>
+                            <?php 
+                                }
+                            ?>
+                            </div>
+                            <?php
+                                if($announcements[$i][3] != ''){
+                            ?>
+                                <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+                            <?php 
+                                }
+                            ?>
+                        </div>
+                        <div class="announcement-management__actions">
+                            <a href="delete.php?delete_announcement=<?php echo $announcements[$i][5] ?>&id=<?php echo $id_user ?>" class="delete-button announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                        </div>
+                        <?php
+                    }
+                    } else {
+                    ?>
+                    <div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay anuncios publicados.</div>
+                    <?php
+                    }
+                    ?>
+                    
+                </div>
+                <?php
               }
 
               // TODO: If User is not Administrador -> Print Programs

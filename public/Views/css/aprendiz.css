@@ -357,7 +357,7 @@ input[type=checkbox], input[type=radio] {
 }
 .nav-menu__link {
   text-decoration: none;
-  color: #272727;
+  color: #636363;
   transition: all 0.2s;
 }
 .nav-menu__link:hover {
@@ -1483,7 +1483,7 @@ th {
   margin: 0 auto;
   max-width: 1000px;
   margin-top: 30px;
-  max-width: 900px;
+  width: 900px;
   display: grid;
   margin: 0;
   padding: 40px;

@@ -58,8 +58,14 @@
         $resultado = $sentencia->execute([$_GET['delete_announcement']]);
         
         if($resultado){
-            header('Location: admin.php?message=deleted');
-            exit(); 
+            if(isset($_GET['id'])){
+                header('Location: view-user.php?user='.$id.'&message=announcement_deleted');
+                exit(); 
+            } else{
+                header('Location: admin.php?message=deleted');
+                exit(); 
+            }
+
         }
     }
 ?>
