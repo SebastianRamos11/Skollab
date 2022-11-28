@@ -4,9 +4,15 @@ session_start();
 if (isset($_SESSION['id'])) {
 
   $id_activity = $_GET['activity'];  
+
   $activity = "SELECT AC.ID_Persona, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE ID_Actividad = $id_activity;";
   $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
   $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
+
+  if(empty($activity)){
+    header('Location: aprendiz.php');
+    exit();
+  }
 
   $id_instructor = $activity[0][0];
 

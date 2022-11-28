@@ -51,7 +51,8 @@
       </script>
     <?php 
       }
-      ?>
+    ?>
+
     <!-- Created successfully -->
     <?php 
       if(isset($_GET['message']) and $_GET['message'] == 'created'){
@@ -76,6 +77,21 @@
               icon: 'success',
               title: '¡Actividad modificada!',
               text: '¡Tu evidencia ha sido modificada correctamente!'
+            });
+      </script>
+    <?php 
+      }
+    ?>
+
+    <!-- Deleted successfully -->
+    <?php 
+      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
+        ?>
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: '¡Actividad eliminada!',
+              text: 'La actividad y todas sus evidencias fueron eliminadas correctamente'
             });
       </script>
     <?php 
@@ -132,6 +148,7 @@
                             <a href="edit-activity.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
                             <a href="deliveries.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link activity__btns-link--active">Ver entregas</a>
                           </div>
+                          <a href="delete.php?activity=<?php echo $activities_array[$j][0] ?>" class="activity__btn-delete delete-button"><i class="fa-solid fa-trash-can"></i></a>
                         </div>
                       <?php
                       }
@@ -215,6 +232,29 @@
     </form>
     <div class="overlay hidden"></div>
 
+    <script>
+    const deleteActivity = document.querySelectorAll('.delete-button');
+    deleteActivity.forEach((e, i) => {
+        deleteActivity[i].addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log(deleteActivity[i].getAttribute('href'));
+            Swal.fire({
+                title: '¿Seguro que quieres eliminar esta actividad?',
+                text: "Todas las evidencias también serán eliminadas",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.assign(deleteActivity[i].getAttribute('href'));
+            }
+            })
+        })
+    })
+    </script>
     <script src="../../Controllers/activity-control.js"></script>
     <script src="../../Controllers/instructor-control.js"></script>
   </body>
