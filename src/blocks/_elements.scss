@@ -67,6 +67,17 @@
   }
 }
 
+// Main inputs (register and singup)
+.register-input {
+  height: 60px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: $radius-xl;
+  background-color: #e3e3e3;
+  border: none;
+  padding: 20px;
+}
+
 // See password button
 .pass__field {
   position: relative;

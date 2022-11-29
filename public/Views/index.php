@@ -20,9 +20,7 @@
         session_start();
 
         if (isset($_SESSION['id'])) {
-
           include_once "navbar.php";
-
         } else {
           ?>
           <!-- TODO: Fix navbar -->
@@ -260,7 +258,6 @@
       <div class="footer__copyright">
         <div>2022 @Skollab</div>
         <div>Todos los derechos reservados</div>
-        <!-- <div class="footer__logo"> <span class="iconify" data-icon="ic:twotone-dashboard" style="color: white;"></span> </div> -->
       </div>
     </footer>
   </body>

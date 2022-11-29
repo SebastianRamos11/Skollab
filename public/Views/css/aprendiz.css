@@ -279,6 +279,16 @@ input[type=checkbox], input[type=radio] {
   margin-right: 10px;
 }
 
+.register-input {
+  height: 60px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background-color: #e3e3e3;
+  border: none;
+  padding: 20px;
+}
+
 .pass__field {
   position: relative;
 }
@@ -1526,16 +1536,6 @@ th {
   padding-top: 20px;
   margin: 0 auto;
   max-width: 500px;
-}
-
-.register-input {
-  height: 60px;
-  width: 100%;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  background-color: #e3e3e3;
-  border: none;
-  padding: 20px;
 }
 
 .courses__title {
