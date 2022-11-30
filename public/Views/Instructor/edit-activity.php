@@ -70,7 +70,7 @@ if (isset($_SESSION['id'])) {
         <?php 
         if($activity_array[0][4] != ''){
           ?>
-          <a href="<?php echo $activity_array[0][4]; ?>" class="upload-form__file" name="file-uploaded" download=""><i class="fa-regular fa-file-lines"></i><span class="file-uploaded"><?php echo $activity_array[0][4]?></span></a>
+          <a href="<?php echo $activity_array[0][4]; ?>" class="upload-form__file" name="file-name" download=""><i class="fa-regular fa-file-lines"></i><span class="file-name"><?php echo $activity_array[0][4]?></span></a>
           <?php 
         } else{
           ?>
@@ -85,9 +85,9 @@ if (isset($_SESSION['id'])) {
         <div class="file-choise">
           <label for="file">
             <i class="fa-solid fa-paperclip"></i>
-            <p class="file-name"></p>
+            <p class="file-name uploaded-file"></p>
           </label>
-          <input type="file" name="file" id="file">
+          <input type="file" name="file" class="file" id="file">
         </div>
         <div class="upload-form__buttons">
           <a href="activities.php" title="Cancelar" class="cancel-btn">Cancelar</a>
@@ -100,14 +100,10 @@ if (isset($_SESSION['id'])) {
     body{
       background-image: url('../img/backgrounds/signup-bg.svg');
       background-size: cover;
-
     }
   </style>
-  <script>
-    const fileName = document.querySelector('.file-uploaded');
-    if(fileName) fileName.textContent = fileName.textContent.slice(fileName.textContent.lastIndexOf('/') + 1);
-  </script>
-  <script src="../../Controllers/activity-control.js"></script>
+  <script src="../../Controllers/file-name.js"></script>
+  <script src="../../Controllers/file-upload.js"></script>
 </html>
 <?php
 } else {

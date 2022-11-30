@@ -100,7 +100,7 @@
           <div class="file-choise">
             <label for="file">
               <i class="fa-solid fa-paperclip"></i>
-              <p class="file-name"></p>
+              <p class="uploaded-file"></p>
             </label>
             <input type="file" name="file" id="file" class="file">
           </div>
@@ -116,7 +116,7 @@
           <div class="file-choise">
             <label for="image">
               <i class="fa-solid fa-paperclip"></i>
-              <p class="file-name"></p>
+              <p class="uploaded-file"></p>
             </label>
             <input type="file" name="image" id="image" class="file">
           </div>
@@ -197,6 +197,8 @@
       }
     </style>
     <script src="../../Controllers/admin-control.js"></script>
+    <script src="../../Controllers/file-name.js"></script>
+    <script src="../../Controllers/file-upload.js"></script>
     <script>
       const deleteAnnouncement = document.querySelectorAll('.delete-button');
       deleteAnnouncement.forEach((e, i) => {
@@ -219,8 +221,6 @@
               })
           })
       });
-      const fileName = document.querySelectorAll('.file-name');
-      if(fileName) fileName.forEach((elem) => elem.textContent = elem.textContent.slice(elem.textContent.lastIndexOf('/') + 1));
     </script>
   </body>
 </html>

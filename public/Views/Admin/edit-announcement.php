@@ -48,7 +48,7 @@ if (isset($_SESSION['id'])) {
           <?php 
           if($announcement[0][3] != ''){
             ?>
-            <a href="<?php echo $announcement[0][3]; ?>" class="float-form__file" name="file-uploaded" download=""><i class="fa-regular fa-file-lines"></i><span class="file-uploaded"><?php echo $announcement[0][3]?></span></a>
+            <a href="<?php echo $announcement[0][3]; ?>" class="float-form__file" name="file-name" download=""><i class="fa-regular fa-file-lines"></i><span class="file-name"><?php echo $announcement[0][3]?></span></a>
             <?php 
           } else{
             ?>
@@ -62,7 +62,7 @@ if (isset($_SESSION['id'])) {
           <div class="file-choise">
             <label for="file">
               <i class="fa-solid fa-paperclip"></i>
-              <p class="file-name file-name--right"></p>
+              <p class="uploaded-file uploaded-file--right"></p>
             </label>
             <input type="file" name="file" id="file" class="file">
           </div>
@@ -89,10 +89,8 @@ if (isset($_SESSION['id'])) {
     
   </style>
   <script src="../../Controllers/admin-control.js"></script>
-  <script>
-    const fileName = document.querySelector('.file-uploaded');
-    if(fileName) fileName.textContent = fileName.textContent.slice(fileName.textContent.lastIndexOf('/') + 1);
-  </script>
+  <script src="../../Controllers/file-upload.js"></script>
+  <script src="../../Controllers/file-name.js"></script>
 </html>
 <?php
 } else {

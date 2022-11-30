@@ -5,7 +5,6 @@
   $user_name = $result_array[0][0];
   $id_user = $_SESSION['id'];
 ?>
-
 <div class="wrapper">
   <header class="header">
     <nav-y class="nav-y">

@@ -102,7 +102,7 @@
         </div>
       </main>
     </div>
-    <script src="../../Controllers/instructor-control.js"></script>
+    <script src="../../Controllers/groups-control.js"></script>
   </body>
 </html>
 <?php

@@ -260,7 +260,6 @@
         }
         ?>
     </div>
-
   </body>
   </html>
 <?php

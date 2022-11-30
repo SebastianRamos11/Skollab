@@ -1,30 +1,8 @@
-// TODO: Fix Course Acronym function
-
-// Course Acronym
-const courseTitle = document.querySelectorAll(".course__title");
-
-const generateAcronym = function (e) {
-  let acronym = "";
-  for (const word of e.split(" ")) {
-    if (word.length <= 2) continue;
-    acronym += word[0];
-  }
-  return acronym;
-};
-
-for (let i = 0; i < courseTitle.length; i++) {
-  if (courseTitle[i].textContent.split(" ").length >= 4)
-    courseTitle[i].textContent = generateAcronym(courseTitle[i].textContent);
-}
-
-// TODO: Confirm poput to unlink userity
-
 const unlinkUser = document.querySelectorAll(".course__unlink");
 const deleteEvidence = document.querySelectorAll(
   ".evidence-management__btn-delete"
 );
 const deleteActivity = document.querySelectorAll(".activity__btn-delete");
-console.log(deleteActivity);
 
 const confirmAction = function (elem, i, subject) {
   Swal.fire({

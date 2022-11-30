@@ -1,5 +1,3 @@
-"use strict";
-
 // MODALS (FORMS)
 const modalCreateUser = document.querySelector(".modal-container");
 const modalCreateAd = document.querySelector(".modal-announcement");
@@ -11,21 +9,7 @@ const overlay = document.querySelector(".overlay");
 const body = document.querySelector("body");
 
 // Elements
-const fileInput = document.querySelectorAll(".file");
 const contentBody = document.querySelector(".main-content");
-
-if (fileInput) {
-  fileInput.forEach((file, i) => {
-    file.addEventListener("change", (e) => {
-      // Get the selected file
-      const [file] = e.target.files;
-      // Get the file name and size
-      let { name: fileName } = file;
-      fileName = fileName.replaceAll("\n", "");
-      document.querySelectorAll(".file-name")[i].textContent = `${fileName}`;
-    });
-  });
-}
 
 const openModal = function (modal) {
   modal.classList.remove("hidden");

@@ -86,11 +86,8 @@
       </div>
       
     </main>
+    <script src="../../Controllers/file-name.js"></script>
   </body>
-  <script>
-    const fileName = document.querySelectorAll('.file-name');
-    if(fileName) fileName.forEach((elem) => elem.textContent = elem.textContent.slice(elem.textContent.lastIndexOf('/') + 1));
-  </script>
   </html>
   <?php 
   } else {

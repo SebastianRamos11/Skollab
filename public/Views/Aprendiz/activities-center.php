@@ -114,10 +114,8 @@
             }
           ?>
         </div>
-
       </main> 
     </div>
-    <!-- <script src="../../Controllers/aprendiz-control.js"></script> -->
   </body>
 </html>
 <?php 

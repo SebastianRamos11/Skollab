@@ -1709,13 +1709,16 @@ body {
   font-size: 25px;
   position: relative;
 }
-.upload-form__field .file-choise label .file-name {
+.upload-form__field .file-choise label .uploaded-file {
   font-size: 13px;
   font-weight: 700;
   color: #0066ff;
   position: absolute;
   top: -6px;
   left: 30px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   margin-right: 0 20px;
   text-align: right;
   transition: all 0.3s;

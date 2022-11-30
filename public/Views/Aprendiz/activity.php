@@ -139,12 +139,11 @@ if (isset($_SESSION['id'])) {
           <form action="upload.php?activity=<?php echo $id_activity?>" method="POST" enctype="multipart/form-data"  class="upload-form">
               <!-- FILE SELECTION -->
               <div class="upload-form__file">
-                  <label for="file"><i class="fa-solid fa-plus"></i>Agregar archivo</label>
+                  <label for="file"><i class="fa-solid fa-plus"></i>Agregar evidencia</label>
                   <div class="upload-form__file-choised">
-                      <i class="fa-regular fa-file-lines hidden file-icon"></i>
-                      <span class="file-selected-name"></span>
+                      <span class="file-selected-name uploaded-file"></span>
                   </div>
-                  <input type="file" name="file" id="file">
+                  <input type="file" name="file" id="file" class="file">
               </div>
               <!-- DESCRIPTION -->
               <div class="upload-form__textarea">
@@ -202,12 +201,11 @@ if (isset($_SESSION['id'])) {
                   <form action="upload.php?activity=<?php echo $id_activity?>&recover-evidence=<?php echo $evidence[0][4] ?>" method="POST" id="upload-form" enctype="multipart/form-data"  class="upload-form hidden">
                       <!-- FILE SELECTION -->
                       <div class="upload-form__file">
-                          <label for="file"><i class="fa-solid fa-plus"></i>Agregar archivo</label>
+                          <label for="file"><i class="fa-solid fa-plus"></i>Agregar evidencia</label>
                           <div class="upload-form__file-choised">
-                              <i class="fa-regular fa-file-lines hidden file-icon"></i>
-                              <span class="file-selected-name"></span>
+                              <span class="file-selected-name uploaded-file"></span>
                           </div>
-                          <input type="file" name="file" id="file">
+                          <input type="file" name="file" class="file" id="file">
                       </div>
                       <!-- DESCRIPTION -->
                       <div class="upload-form__textarea">
@@ -229,15 +227,9 @@ if (isset($_SESSION['id'])) {
         ?>
     </main>
   <script>
-    const fileName = document.querySelectorAll('.file-name');
     const deleteEvidence = document.querySelector('.delete-button');
     const recoverEvidence = document.querySelector('.recover-button');
     const recoverEvidenceForm = document.querySelector('.upload-form');
-    console.log(recoverEvidenceForm);
-
-    fileName?.forEach((_, i) => {
-      fileName[i].textContent = fileName[i].textContent.slice(fileName[i].textContent.lastIndexOf('/') + 1);
-    });
 
     deleteEvidence?.addEventListener('click', (e) => {
       e.preventDefault();
@@ -263,7 +255,8 @@ if (isset($_SESSION['id'])) {
     })
 
   </script>
-  <script src="../../Controllers/aprendiz-control.js"></script>
+  <script src="../../Controllers/file-upload.js"></script>
+  <script src="../../Controllers/file-name.js"></script>
 </body>
 </html>
 <?php 

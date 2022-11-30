@@ -1950,7 +1950,7 @@ html {
   font-size: 25px;
   position: relative;
 }
-.float-form__field .file-choise label .file-name {
+.float-form__field .file-choise label .uploaded-file {
   font-size: 13px;
   font-weight: 700;
   color: #0066ff;
@@ -1962,7 +1962,7 @@ html {
   text-align: right;
   transition: all 0.3s;
 }
-.float-form__field .file-choise label .file-name--right {
+.float-form__field .file-choise label .uploaded-file--right {
   width: 200px;
   top: -6px;
   left: 30px;

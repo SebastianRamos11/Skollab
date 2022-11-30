@@ -109,19 +109,7 @@ if (isset($_SESSION['id'])) {
             <div class="user-evidence__modify-grade"><i class="fa-solid fa-pen-to-square"></i> Modificar nota</div>
         </div>
     </main>
-    <script>
-        const modifyGrade = document.querySelector('.user-evidence__modify-grade');
-        const submitBtn = document.querySelector('.calification-form__btn-submit');
-        const observation = document.querySelector('.calification-form__observation-input');
-        const calification = document.querySelector('.calification-form__grade-input--inp');
-
-        modifyGrade.addEventListener('click', () => {
-            submitBtn.classList.remove('hidden');
-            calification.removeAttribute('disabled');
-            observation.removeAttribute('disabled');
-        })
-    </script>
-    <script src="../../Controllers/aprendiz-control.js"></script>
+    <script src="../../Controllers/modify-grade.js"></script>
 </body>
 </html>
 <?php 

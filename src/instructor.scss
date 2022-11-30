@@ -4,7 +4,6 @@
 @import "./config/flex";
 @import "./config/grid";
 @import "./blocks/elements";
-@import "./blocks/inputs";
 
 html,
 body {
@@ -174,13 +173,14 @@ body {
         font-size: 25px;
         position: relative;
 
-        & .file-name {
+        & .uploaded-file {
           font-size: 13px;
           font-weight: map-get($font-weights, "semibold");
           color: $secundary-color;
           position: absolute;
           top: -6px;
           left: 30px;
+          width: max-content;
           margin-right: 0 20px;
           text-align: right;
           transition: all 0.3s;
