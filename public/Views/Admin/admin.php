@@ -21,48 +21,6 @@
     <title>Inicio</title>
   </head>
   <body>
-      <!-- Create successfully -->
-      <?php 
-        if(isset($_GET['message']) and $_GET['message'] == 'uploaded'){
-      ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: '¡Anuncio publicado!',
-                text: 'El anuncio ha sido publicado correctamente'
-            });
-        </script>
-      <?php 
-        }
-      ?>
-      <!-- Updated successfully -->
-      <?php 
-        if(isset($_GET['message']) and $_GET['message'] == 'updated'){
-          ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: '¡Anuncio modificado!',
-                text: '¡El anuncio ha sido modificado correctamente!'
-              });
-        </script>
-      <?php 
-        }
-      ?>
-      <!-- Delete successfully -->
-      <?php 
-        if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
-      ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Anuncio eliminado',
-                text: 'El anuncio ha sido eliminado correctamente'
-            });
-        </script>
-      <?php 
-        }
-      ?>
       <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Bienvenido administrador 👋</h1>
       <div class="main-options">
@@ -222,6 +180,17 @@
           })
       });
     </script>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'uploaded') {
+          ?><script>Swal.fire({icon: 'success',title: '¡Anuncio publicado!',text: 'El anuncio ha sido publicado correctamente'});</script><?php
+        } else if($_GET['message'] === 'updated'){
+          ?><script>Swal.fire({icon: 'success',title: '¡Anuncio modificado!',text: '¡El anuncio ha sido modificado correctamente!'});</script><?php
+        } else if($_GET['message'] === 'deleted'){
+          ?><script>Swal.fire({icon: 'success',title: 'Anuncio eliminado',text: 'El anuncio ha sido eliminado correctamente'});</script><?php
+        }
+      }
+    ?>
   </body>
 </html>
   <?php 

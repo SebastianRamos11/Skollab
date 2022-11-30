@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-    <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="../Views/css/login.css">
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        </head>
-        <body>
 <?php
     require('connection.php');
     
@@ -36,25 +26,9 @@
                 header('Location: ../Views/Aprendiz/aprendiz.php');
             }
 
-            ?>
-            </body>
-            </html>
-            <?php
         } else {
-            ?>
-                <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: '¡Correo o contraseña incorrectos!',
-                        footer: '<a href="../Views/recover-pass.php">¿Olvidaste tu contraseña?</a>'
-                    }).then(function() {
-                        history.back();
-                    });
-                </script>
-            </body>
-            </html>
-            <?php
+            header('Location: ../Views/login.php?message=error');
+            exit();
         }
     }
 ?>

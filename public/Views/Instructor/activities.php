@@ -22,91 +22,11 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
-    <!-- ALERTS -->
-    <!-- Empty data -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-        ?>
-      <script>
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: '¡Tiene que llenar todos los campos!'
-        });
-      </script>
-    <?php 
-      }
-    ?>
-
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-    ?>
-      <script>
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: '¡Ha habido algun problema!'
-        });
-      </script>
-    <?php 
-      }
-    ?>
-
-    <!-- Created successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'created'){
-        ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Actividad publicada!',
-              text: '¡Tu actividad se ha publicado correctamente!'
-            });
-      </script>
-    <?php 
-      }
-    ?>
-
-    <!-- Updated successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'updated'){
-        ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Actividad modificada!',
-              text: '¡Tu evidencia ha sido modificada correctamente!'
-            });
-      </script>
-    <?php 
-      }
-    ?>
-
-    <!-- Deleted successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
-        ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Actividad eliminada!',
-              text: 'La actividad y todas sus evidencias fueron eliminadas correctamente'
-            });
-      </script>
-    <?php 
-      }
-    ?>
 
     <h1 class="main-content__header">Centro de actividades 📚</h1>
 
-        <!-- activities... -->
-
-        
-        <!-- activities CONTAINER -->
         <div class="instructor-activities">
           <div class="container">
-            <!-- activities BY GROUP -->
             <?php for($i=0; $i < sizeof($get_group_array); $i++){ 
               $ficha = $get_group_array[$i][0];
               
@@ -233,28 +153,43 @@
     <div class="overlay hidden"></div>
 
     <script>
-    const deleteActivity = document.querySelectorAll('.delete-button');
-    deleteActivity.forEach((e, i) => {
-        deleteActivity[i].addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log(deleteActivity[i].getAttribute('href'));
-            Swal.fire({
-                title: '¿Seguro que quieres eliminar esta actividad?',
-                text: "Todas las evidencias también serán eliminadas",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, eliminar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.assign(deleteActivity[i].getAttribute('href'));
-            }
-            })
-        })
-    })
+      const deleteActivity = document.querySelectorAll('.delete-button');
+      deleteActivity.forEach((e, i) => {
+          deleteActivity[i].addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log(deleteActivity[i].getAttribute('href'));
+              Swal.fire({
+                  title: '¿Seguro que quieres eliminar esta actividad?',
+                  text: "Todas las evidencias también serán eliminadas",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, eliminar',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.assign(deleteActivity[i].getAttribute('href'));
+              }
+              })
+          })
+      })
     </script>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'empty') {
+          ?><script>Swal.fire({icon: 'error', title: 'Error', text: '¡Tiene que llenar todos los campos!'});</script><?php
+        } else if($_GET['message'] === 'error'){
+          ?><script>Swal.fire({icon: 'error', title: 'Error', text: '¡Ha habido algun problema!'});</script><?php
+        } else if($_GET['message'] === 'created'){
+          ?><script>Swal.fire({ icon: 'success', title: '¡Actividad publicada!', text: '¡Tu actividad se ha publicado correctamente!'});</script><?php
+        } else if($_GET['message'] === 'updated'){
+          ?><script>Swal.fire({icon: 'success', title: '¡Actividad modificada!', text: '¡Tu evidencia ha sido modificada correctamente!'});</script><?php
+        } else if($_GET['message'] === 'deleted'){
+          ?><script>Swal.fire({icon: 'success', title: '¡Actividad eliminada!', text: 'La actividad y todas sus evidencias fueron eliminadas correctamente'});</script><?php
+        }
+      }
+    ?>
     <script src="../../Controllers/activity-control.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
   </body>

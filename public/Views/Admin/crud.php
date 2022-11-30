@@ -38,93 +38,6 @@
     <title>Inicio</title>
   </head>
   <body id="body">
-    <!-- ALERTS -->
-    <!-- Empty data -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡No puedes enviar datos vacíos!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
-    <!-- User already registered -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'already-registered'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Un usuario con estos datos ya se encuentra registrado.'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
-    <!-- Create successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'created'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Usuario creado!',
-              text: '¡Gracias por alimentar la base de datos!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <!-- Modified successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'modified'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'El usuario ha sido modificado',
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <!-- Delete successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'El usuario ha sido eliminado'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'El usuario no fue encontrado'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
     <?php include './sidebar.php' ?>
     
     <h1 class="main-content__header">👪 CRUD</h1>
@@ -370,6 +283,23 @@
           })
       })
     </script>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'empty') {
+          ?><script>Swal.fire({icon: 'error',title: 'Error',text: '¡No puedes enviar datos vacíos!'});</script><?php
+        } else if($_GET['message'] === 'already-registered'){
+          ?><script>Swal.fire({icon: 'error',title: 'Error',text: 'Un usuario con estos datos ya se encuentra registrado.'});</script><?php
+        } else if($_GET['message'] === 'created'){
+          ?><script>Swal.fire({icon: 'success',title: '¡Usuario creado!',text: '¡Gracias por alimentar la base de datos!'});</script><?php
+        } else if($_GET['message'] === 'modified'){
+          ?><script>Swal.fire({icon: 'success',title: 'El usuario ha sido modificado',});</script><?php
+        } else if($_GET['message'] === 'deleted'){
+          ?><script>Swal.fire({icon: 'success',title: 'El usuario ha sido eliminado'});</script><?php
+        } else if($_GET['message'] === 'error'){
+          ?><script>Swal.fire({icon: 'error',title: 'Error',text: 'El usuario no fue encontrado'});</script><?php
+        }
+      }
+    ?>
     <script src="../../Controllers/admin-control.js"></script>
   </body>
   </html>

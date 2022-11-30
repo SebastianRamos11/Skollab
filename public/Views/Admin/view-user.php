@@ -43,59 +43,6 @@
     <title>Gestión Usuario</title>
 </head>
 <body>
-    <!-- ALERTS -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'unlinked'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Usuario desvinculado!',
-              text: '¡El usuario ha sido desvinculado correctamente del programa!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'evidence_deleted'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Evidencia eliminada!',
-              text: '¡La evidencia del aprendiz ha sido correctamente eliminada!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'activity_deleted'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Publicación eliminada!',
-              text: 'La publicación y todos los entregables de aprendices de la misma han sido correctamente eliminados'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'announcement_deleted'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Anuncio eliminado!',
-              text: 'El anuncio ha sido correctamente eliminado'
-          });
-      </script>
-    <?php 
-      }
-    ?>
         <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Gestión Usuario</h1>
         <div class="user">
@@ -428,6 +375,19 @@
           border-right: 1px solid #c2c2c2;
       }
     </style>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'unlinked') {
+          ?><script>Swal.fire({icon: 'success',title: '¡Usuario desvinculado!',text: '¡El usuario ha sido desvinculado correctamente del programa!'});</script><?php
+        } else if($_GET['message'] === 'evidence_deleted'){
+          ?><script>Swal.fire({icon: 'success',title: 'Evidencia eliminada!',text: '¡La evidencia del aprendiz ha sido correctamente eliminada!'});</script><?php
+        } else if($_GET['message'] === 'activity_deleted'){
+          ?><script>Swal.fire({icon: 'success',title: 'Actividad eliminada!',text: 'La actividad y todos los entregables de aprendices de la misma han sido correctamente eliminados'});</script><?php
+        } else if($_GET['message'] === 'announcement_deleted'){
+          ?><script>Swal.fire({icon: 'success',title: 'Anuncio eliminado!',text: 'El anuncio ha sido correctamente eliminado'});</script><?php
+        }
+    	}
+    ?>
     <script src="../../Controllers/file-name.js"></script>
     <script src="../../Controllers/course-acronym.js"></script>
     <script src="../../Controllers/view-user-control.js"></script>

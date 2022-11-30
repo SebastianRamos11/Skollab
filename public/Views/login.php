@@ -36,6 +36,15 @@
         <a href="./recover-pass.php">¿Se te olvidó la contraseña?</a>
       </div>
     </div>
+    <?php 
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'error') {
+          ?><script>Swal.fire({ icon: 'error', title: '¡Credenciales incorretas!', text: 'El correo o contraseña son incorrectos'});</script><?php
+        } else if($_GET['message'] === 'recovered'){
+          ?><script>Swal.fire({icon: 'success', title: 'Contraseña restablecida', text: 'Tu contraseña se ha cambiado correctamente'});</script><?php
+        }
+      }
+    ?>
     <script src="../Controllers/pass-visualization.js"></script>
   </body>
 </html>

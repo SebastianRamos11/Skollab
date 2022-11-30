@@ -11,37 +11,7 @@
     <title>Recuperación de Contraseña</title>
   </head>
   <body class="recover-body">
-    <!-- ALERTS -->
-    <!-- Empty data -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'unknow'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Los datos ingresados no corresponden!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <!-- Create successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'recovered'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Actualización completada!',
-              text: '¡Su contraseña se actualizó correctamente!',
-              footer: '<a href="../Views/login.php">¿Deseas iniciar sesión?</a>'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    
+    <?php if(isset($_GET['message']) and $_GET['message'] == 'unknow'){ ?> <script>Swal.fire({ icon: 'error', title: 'Error', text: '¡Los datos ingresados no corresponden!'});</script> <?php } ?>
     <div class="recover-container">
       <div class="header">
         <h1>Recuperar contraseña</h1>

@@ -23,21 +23,6 @@ if (isset($_SESSION['id'])) {
     <title>Portafolio</title>
 </head>
 <body>
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-    ?>
-      <script>
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Esta evidencia ya esta calificada y no puede ser eliminada'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">💼 Portafolio</h1>
         <?php 
@@ -197,6 +182,11 @@ if (isset($_SESSION['id'])) {
         })
     })
 </script>
+<?php
+    if(isset($_GET['message']) && $_GET['message'] === 'error'){
+      ?><script>Swal.fire({icon: 'error',title: 'Error',text: 'Esta evidencia ya esta calificada y no puede ser eliminada'});</script><?php
+    }
+  ?>
 <script src="../../Controllers/aprendiz-briefcase.js"></script>
 </html>
 <?php 

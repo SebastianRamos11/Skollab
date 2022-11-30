@@ -33,23 +33,8 @@ if (isset($_SESSION['id'])) {
     <title>Calificar evidencia</title>
 </head>
 <body>
-    <!-- Delete successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Debes ingresar una calificación'
-          });
-      </script>
-    <?php 
-      }
-    ?>
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Calificar evidencia 📝</h1>
-
 
         <!-- activity SELECTED -->
         <div class="activity-selected">
@@ -109,6 +94,11 @@ if (isset($_SESSION['id'])) {
             <div class="user-evidence__modify-grade"><i class="fa-solid fa-pen-to-square"></i> Modificar nota</div>
         </div>
     </main>
+    <?php
+      if(isset($_GET['message']) && $_GET['message'] === 'empty'){
+        ?><script>Swal.fire({icon: 'error', title: 'Error', text: 'Debes ingresar una calificación'});</script><?php
+      }
+    ?>
     <script src="../../Controllers/modify-grade.js"></script>
 </body>
 </html>

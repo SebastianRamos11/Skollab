@@ -23,7 +23,7 @@
             header('Location: ../Views/recover-pass.php?message=unknow');
             exit(); 
         } elseif ($confirm_array[0][0] === $email && $confirm_array[0][1] === $birthYear) {
-            header('Location: ../Views/recover-pass.php?message=recovered');
+            header('Location: ../Views/login.php?message=recovered');
             exit;   
         }
     }

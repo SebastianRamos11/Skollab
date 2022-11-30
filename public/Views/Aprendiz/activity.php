@@ -39,64 +39,6 @@ if (isset($_SESSION['id'])) {
     <title>Actividad</title>
 </head>
 <body>
-    <!-- ALERTS -->
-    <!-- Empty data -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Tienes que adjuntar tu evidencia!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Ha habido algun problema!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    <!-- Upload successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'updated'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: '¡Evidencia entregada!',
-              text: '¡Tu evidencia ha sido entregada correctamente!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    
-    <!-- Delete successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'deleted'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'La evidencia fue eliminada correctamente'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
     <?php include './sidebar.php' ?>
         <h1 class="main-content__header">Entrega de actividad 📘</h1>
 
@@ -257,6 +199,19 @@ if (isset($_SESSION['id'])) {
   </script>
   <script src="../../Controllers/file-upload.js"></script>
   <script src="../../Controllers/file-name.js"></script>
+  <?php
+    if(isset($_GET['message'])){
+      if($_GET['message'] === 'empty') {
+        ?><script>Swal.fire({icon: 'error',title: 'Error',text: '¡Tienes que adjuntar tu evidencia!'});</script><?php
+      } else if($_GET['message'] === 'error'){
+        ?><script>Swal.fire({icon: 'error',title: 'Error',text: '¡Ha habido algun problema!'});</script><?php
+      } else if($_GET['message'] === 'uploaded'){
+        ?><script>Swal.fire({icon: 'success',title: '¡Evidencia entregada!',text: 'Tu evidencia ha sido entregada correctamente'});</script><?php
+      } else if($_GET['message'] === 'deleted'){
+        ?><script>Swal.fire({icon: 'success',title: 'La evidencia fue eliminada correctamente'});</script><?php
+      }
+    }
+  ?>
 </body>
 </html>
 <?php 

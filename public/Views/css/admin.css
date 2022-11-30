@@ -367,7 +367,7 @@ input[type=checkbox], input[type=radio] {
 }
 .nav-menu__link {
   text-decoration: none;
-  color: #636363;
+  color: #393939;
   transition: all 0.2s;
 }
 .nav-menu__link:hover {

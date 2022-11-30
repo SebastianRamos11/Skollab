@@ -26,52 +26,6 @@
   </head>
   <body>
     <main class="main-content">
-    <!-- ALERTS -->
-     
-    <!-- Empty data -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'empty'){
-        ?>
-      <script>
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: '¡Tiene que llenar todos los campos!'
-          });
-          </script>
-    <?php 
-      }
-    ?>
-
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-        ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Ha habido algun problema!'
-            });
-            </script>
-    <?php 
-      }
-      ?>
-    <!-- Updated successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'updated'){
-    ?>
-      <script>
-        Swal.fire({
-          icon: 'success',
-          title: '¡Datos actualizados!',
-          text: '¡Tus datos han sido actualizados correctamente!'
-        });
-        </script>
-    <?php 
-      }
-      ?>
-
 <?php include_once "navbar.php"; ?>
 <div class="profile">
     <h1 class="profile__header">Mi Perfil</h1>
@@ -125,7 +79,7 @@
 
               <div class="profile__field">
                 <div class="profile__field-label">Correo electrónico</div>
-                <input type="text" id="email" name="email" class="profile__field-input" value="<?php echo $user_data[0][3]?>">
+                <input type="email" id="email" name="email" class="profile__field-input" value="<?php echo $user_data[0][3]?>">
               </div>
 
               <div class="profile__field">
@@ -134,15 +88,23 @@
               </div>
               <div class="profile__field">
                 <div class="profile__field-label">Teléfono</div>
-                <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][5]?>" >
+                <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][5]?>" maxlength="10">
               </div>
             <input type="submit" class="submit-btn profile__submit" value="Guardar">
           </div>
-
     </div>
-    
+  <?php
+    if(isset($_GET['message'])){
+      if($_GET['message'] === 'empty') {
+        ?><script>Swal.fire({icon: 'error', title: 'Error', text: '¡Tiene que llenar todos los campos!'});</script><?php
+      } else if($_GET['message'] === 'error'){
+        ?><script>Swal.fire({icon: 'error', title: 'Error', text: '¡Ha habido algun problema!' });</script><?php
+      }else if($_GET['message'] === 'updated'){
+        ?><script>Swal.fire({icon: 'success', title: '¡Datos actualizados!', text: '¡Tus datos han sido actualizados correctamente!'});</script><?php
+      }
+    }
+  ?>
   </body>
-
   <style>
     body{
       background: #fff !important;

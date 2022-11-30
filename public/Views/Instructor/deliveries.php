@@ -47,36 +47,6 @@
     <title>Centro de revisión</title>
   </head>
   <body>
-    <!-- Delete successfully -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'qualified'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'success',
-              title: 'Evidencia calificada',
-              text: 'La evidencia se ha calificado correctamente'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-    
-    <!-- Error -->
-    <?php 
-      if(isset($_GET['message']) and $_GET['message'] == 'error'){
-    ?>
-      <script>
-          Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: '¡Ha ocurrido un error inesperado!'
-          });
-      </script>
-    <?php 
-      }
-    ?>
-
     <?php include './sidebar.php' ?>
     <h1 class="main-content__header">Centro de revisión</h1>
     <!-- activity SELECTED -->
@@ -260,6 +230,15 @@
         }
         ?>
     </div>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'qualified') {
+          ?><script>Swal.fire({icon: 'success',title: 'Evidencia calificada',text: 'La evidencia se ha calificado correctamente'});</script><?php
+        } else if($_GET['message'] === 'error'){
+          ?><script>Swal.fire({icon: 'error',title: 'Error',text: '¡Ha ocurrido un error inesperado!'});</script><?php
+        }
+      }
+    ?>
   </body>
   </html>
 <?php
