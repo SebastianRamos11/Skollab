@@ -1,5 +1,5 @@
 <?php
-	include_once "../../Models/new-connection.php";
+	include_once "../../Models/connection.php";
 	session_start();
 
 	$evidence = $_GET["evidence"];
@@ -13,8 +13,8 @@
 	$calification = $_POST["calification"];
 	$observation = $_POST["observation"];
 
-	$grade_query = $bd -> prepare("UPDATE evidencia SET nota = ?, observacion = ?, nivelada = 0 WHERE ID_Evidencia = ?;");
-	$query_result = $grade_query -> execute([$calification, $observation, $evidence]);
+	$edit_query = "UPDATE evidencia SET nota = $calification, observacion = '$observation', nivelada = 0 WHERE ID_Evidencia = $evidence";
+	$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 
 	if($query_result){
 	  header('Location: deliveries.php?activity='.$activity.'&message=qualified');

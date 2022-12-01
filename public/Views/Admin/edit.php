@@ -1,5 +1,6 @@
 <?php 
-  include_once "../../Models/new-connection.php";
+  include_once "../../Models/connection.php";
+  session_start();
 
   if(isset($_GET["user"])){
     $id_user = $_GET["user"];
@@ -11,13 +12,11 @@
     $email = $_POST["email"];
     $doc_type = $_POST["doc-type"];
     
-    $edit_query = $bd -> prepare("UPDATE persona SET nombres = ?, apellidos = ?, fecha_nacimiento = ?, ID_Rol = ?, telefono = ?, correo_electronico = ?, ID_Tipo_Documento = ? WHERE ID_Persona = ?;");
-    $query_result = $edit_query -> execute([$firstName, $lastName, $birthYear, $rol, $phone, $email, $doc_type, $id_user]);
-    
-    if($query_result){
-			header('Location: crud.php?message=modified');
-			exit();
-    }
+		$edit_query = "UPDATE persona SET nombres = '$firstName', apellidos = '$lastName', fecha_nacimiento = $birthYear, ID_Rol = $rol, telefono = $phone, correo_electronico = '$email', ID_Tipo_Documento = $doc_type WHERE ID_Persona = $id_user;";
+    $query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
+		
+		header('Location: crud.php?message=modified');
+		exit();
   }
 
   if(isset($_GET["announcement"])){
@@ -30,8 +29,8 @@
 			$date = date('Y-m-d');
 			$url_file = '../file-store/announcements/'.$_FILES['file']['name'];
 
-			$edit_query = $bd -> prepare("UPDATE anuncio SET asunto = ?, descripcion = ?, fecha = ?, url_file = ? WHERE ID_Anuncio = ?;");
-			$query_result = $edit_query -> execute([$subject, $description, $date, $url_file, $id_announcement]);
+			$edit_query = "UPDATE anuncio SET asunto = '$subject', descripcion = '$description', fecha = $date, url_file = '$url_file' WHERE ID_Anuncio = $id_announcement;";
+			$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 
 			header('Location: admin.php?message=updated');
 			exit();
@@ -40,8 +39,8 @@
 			$description = $_POST['description'];
 			$date = date('Y-m-d');
 	
-			$edit_query = $bd -> prepare("UPDATE anuncio SET asunto = ?, descripcion = ?, fecha = ? WHERE ID_Anuncio = ?;");
-			$query_result = $edit_query -> execute([$subject, $description, $date, $id_announcement]);
+			$edit_query = "UPDATE anuncio SET asunto = '$subject', descripcion = '$description', fecha = $date WHERE ID_Anuncio = $id_announcement;";
+			$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 	
 			header('Location: admin.php?message=updated');
 			exit();

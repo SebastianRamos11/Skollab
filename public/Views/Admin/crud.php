@@ -1,18 +1,19 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
-  if (isset($_SESSION['id'])) {
-    include_once "../../Models/new-connection.php";
-    $read_query = $bd -> query("SELECT * FROM persona");
-    $persona = $read_query->fetchAll(PDO::FETCH_OBJ);
 
-    $read_admin = $bd -> query("SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 1;");
-    $read_instructor = $bd -> query("SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 2;");
-    $read_aprendiz = $bd -> query("SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;");
-    
-    $admin = $read_admin->fetchAll(PDO::FETCH_OBJ);
-    $aprendiz = $read_aprendiz->fetchAll(PDO::FETCH_OBJ);
-    $instructor = $read_instructor->fetchAll(PDO::FETCH_OBJ);
+  if (isset($_SESSION['id'])) {
+    $read_admin = "SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 1;";
+    $read_admin_result = mysqli_query($dbConnection, $read_admin) or die(mysqli_error($dbConnection));
+    $admin = mysqli_fetch_all($read_admin_result, MYSQLI_NUM);
+
+    $read_instructor = "SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 2;";
+    $read_instructor_result = mysqli_query($dbConnection, $read_instructor) or die(mysqli_error($dbConnection));
+    $instructor = mysqli_fetch_all($read_instructor_result, MYSQLI_NUM);
+
+    $read_aprendiz = "SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;";
+    $read_aprendiz_result = mysqli_query($dbConnection, $read_aprendiz) or die(mysqli_error($dbConnection));
+    $aprendiz = mysqli_fetch_all($read_aprendiz_result, MYSQLI_NUM);
 
     // GET DOCUMENT TYPES
     $type_doc = "SELECT tipo FROM tipo_documento";
@@ -75,18 +76,18 @@
                   </tr>
                 </thead>
                 <tbody>';
-                  foreach($arr as $dato){
+                  for($i = 0; $i < sizeof($arr); $i++){
                     echo '
                     <tr>
-                      <td scope="row">'.$dato -> num_documento.'</td>
-                      <td scope="row">'.$type_doc_array[$dato -> ID_Tipo_Documento - 1][0].'</td>
-                      <td>'.$dato -> nombres.'</td>
-                      <td>'.$dato -> apellidos.'</td>
-                      <td>'.$dato -> correo_electronico.'</td>
-                      <td>'.$dato -> telefono.'</td>
-                      <td><a href="form-edit.php?id='.$dato -> ID_Persona.'" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                      <td><a href="delete.php?delete_user&id='.$dato -> ID_Persona.'" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
-                      <td><a href="view-user.php?user='.$dato -> ID_Persona.'" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
+                      <td scope="row">'.$arr[$i][0].'</td>
+                      <td scope="row">'.$type_doc_array[$arr[$i][1] - 1][0].'</td>
+                      <td>'.$arr[$i][2].'</td>
+                      <td>'.$arr[$i][3].'</td>
+                      <td>'.$arr[$i][4].'</td>
+                      <td>'.$arr[$i][5].'</td>
+                      <td><a href="form-edit.php?id='.$arr[$i][6].'" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                      <td><a href="delete.php?delete_user&id='.$arr[$i][6].'" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td><a href="view-user.php?user='.$arr[$i][6].'" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
                     </tr>
                     ';
                   }
@@ -130,16 +131,16 @@
       </div>
 
 
-    <!-- CRUD -->
-    <div class="roles">
-      <div class="row">
-        <div class="col-md-12">
-          <?php generateCrud($admin, 'Administradores', $num_crud) ?>
-          <?php generateCrud($instructor, 'Instructores', $num_crud) ?>
-          <?php generateCrud($aprendiz, 'Aprendices', $num_crud) ?>
+      <!-- CRUD -->
+      <div class="roles">
+        <div class="row">
+          <div class="col-md-12">
+            <?php generateCrud($admin, 'Administradores', $num_crud) ?>
+            <?php generateCrud($instructor, 'Instructores', $num_crud) ?>
+            <?php generateCrud($aprendiz, 'Aprendices', $num_crud) ?>
+          </div>
         </div>
       </div>
-    </div>
       
       <!-- Form modal to CREATE an user -->
       <div class="modal-container hidden">

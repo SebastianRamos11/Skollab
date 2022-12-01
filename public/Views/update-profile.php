@@ -1,4 +1,7 @@
 <?php   
+  include_once "../Models/connection.php";
+  session_start();
+
   if(!isset($_GET['id'])){
     header('Location: profile.php?message=error');
     exit();
@@ -8,8 +11,6 @@
     exit();
   }
 
-  include_once "../Models/new-connection.php";
-
   $id = $_GET["id"];
   $doc_type = $_POST["doc-type"];
   $firstName = $_POST["firstName"];
@@ -18,8 +19,8 @@
   $email = $_POST["email"];
   $phone = $_POST["phone"];
 
-  $edit_query = $bd -> prepare("UPDATE persona SET ID_Tipo_Documento = ?, nombres = ?, apellidos = ?, fecha_nacimiento = ?, correo_electronico = ?, telefono = ? WHERE ID_Persona = ?;");
-  $query_result = $edit_query -> execute([$doc_type, $firstName, $lastName, $birthYear, $email, $phone, $id]);
+  $edit_query = "UPDATE persona SET ID_Tipo_Documento = '$doc_type', nombres = '$firstName', apellidos = '$lastName', fecha_nacimiento = '$birthYear', correo_electronico = '$email', telefono = '$phone' WHERE ID_Persona = '$id';";
+	$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 
   if($query_result){
     header('Location: profile.php?message=updated');
