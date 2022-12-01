@@ -117,7 +117,7 @@
 												</div>
 												<a href="activity.php?activity=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
 												<a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__link" download=""><i class="fa-regular fa-file-lines"></i></a>
-												<?php if(!$evidences_array[0][1]) { ?> <a href="delete.php?evidence=<?php echo $evidences_array[0][5] ;?>" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a> <?php }?>
+												<?php if(!$evidences_array[0][1]) { ?> <a href="delete.php?evidence=<?php echo $evidences_array[0][5];?>&b=1" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a> <?php }?>
 											</div>
 										</div>
 										<?php
@@ -145,7 +145,15 @@
     </main>
 		<script src="../../Controllers/confirm-deletion.js"></script>
 		<script>confirmDeletion('¿Seguro que quieres eliminar esta evidencia?')</script>
-		<?php if(isset($_GET['message']) && $_GET['message'] === 'error'){ ?><script>Swal.fire({icon: 'error',title: 'Error',text: 'Esta evidencia ya esta calificada y no puede ser eliminada'});</script><?php } ?>
+		<?php 
+		  if(isset($_GET['message'])){
+				if($_GET['message'] === 'error') {
+					?><script>Swal.fire({icon: 'error',title: 'Error',text: 'Esta evidencia ya esta calificada y no puede ser eliminada'});</script><?php
+				} else if($_GET['message'] === 'deleted'){
+					?><script>Swal.fire({icon: 'success',title: 'Evidencia eliminada',text: 'La evidencia ha sido eliminada correctamente'});</script><?php
+				}
+			}
+		?>
 		<script src="../../Controllers/aprendiz-briefcase.js"></script>
 	</body>
 

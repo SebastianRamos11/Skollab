@@ -14,8 +14,13 @@
 
   if(empty($validate_evidence[0][0])){
     $sql = $dbConnection->query("DELETE FROM evidencia WHERE ID_Evidencia = $evidence");
-    header('Location: activity.php?activity='.$validate_evidence[0][1].'&message=deleted');
-    exit(); 
+
+    if(isset($_GET['b'])){
+      header('Location: briefcase.php?message=deleted');
+    } else {
+      header('Location: activity.php?activity='.$validate_evidence[0][1].'&message=deleted');
+      exit(); 
+    }
   } else{
     header('Location: briefcase.php?message=error');
     exit(); 
