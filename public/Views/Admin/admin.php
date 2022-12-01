@@ -3,7 +3,6 @@
   session_start();
   if (isset($_SESSION['id'])) {
     
-    // GET ANNOUNCEMENTS ARRAY
     $announcements = "SELECT asunto, descripcion, fecha, url_portada, url_file, ID_Anuncio, ID_Persona FROM anuncio";
     $announcements_result= mysqli_query($dbConnection, $announcements) or die(mysqli_error($dbConnection));
     $announcements = mysqli_fetch_all($announcements_result, MYSQLI_NUM);
@@ -21,7 +20,7 @@
     <title>Inicio</title>
   </head>
   <body>
-      <?php include './sidebar.php' ?>
+    <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Bienvenido administrador 👋</h1>
       <div class="main-options">
         <!-- TODO: Crear boton de crear anuncio -->
@@ -42,40 +41,24 @@
         <hr>
         <!-- DESCRIPCION -->
         <div class="float-form__field float-form__field--description">
-          <div class="float-form__field-label">
-            Descripción
-          </div>
+          <div class="float-form__field-label">Descripción</div>
           <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600"></textarea>
         </div>
         <hr>
-
         <!-- FILE -->
         <div class="float-form__field">
-          <div class="float-form__field-label">
-            <i class="fa-solid fa-paperclip"></i>
-            <span>Adjuntar archivo</span>
-          </div>
+          <div class="float-form__field-label"><i class="fa-solid fa-paperclip"></i><span>Adjuntar archivo</span></div>
           <div class="file-choise">
-            <label for="file">
-              <i class="fa-solid fa-paperclip"></i>
-              <p class="uploaded-file"></p>
-            </label>
+            <label for="file"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
             <input type="file" name="file" id="file" class="file">
           </div>
         </div>
         <hr>
-
         <!-- IMAGE -->
         <div class="float-form__field">
-          <div class="float-form__field-label">
-            <i class="fa-regular fa-image"></i>
-            <span>Portada (Opcional)</span>
-          </div>
+          <div class="float-form__field-label"><i class="fa-regular fa-image"></i><span>Portada (Opcional)</span></div>
           <div class="file-choise">
-            <label for="image">
-              <i class="fa-solid fa-paperclip"></i>
-              <p class="uploaded-file"></p>
-            </label>
+            <label for="image"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
             <input type="file" name="image" id="image" class="file">
           </div>
         </div>
@@ -87,73 +70,67 @@
       </form>
       <div class="overlay hidden"></div>
 
-
       <div class="announcements">
         <h2 class="announcements__label">Anuncios y Novedades</h2>
         <hr>
         <?php
-        if(sizeof($announcements) > 0){ 
-          for($i=0; $i < sizeof($announcements); $i++){
-            $id_owner = $announcements[$i][6];
+          if(sizeof($announcements) > 0){ 
+            for($i=0; $i < sizeof($announcements); $i++){
+              $id_owner = $announcements[$i][6];
 
-            // GET ANNOUNCEMENT'S OWNER
-            $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
-            $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
-            $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
-        
-            ?>
-            <div class="announcement-management">
-              <div class="announcement">
-                <div class="announcement__owner">
-                  <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
-                  <div>
-                    <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
-                    <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
-                  </div>
-                </div>
-                <div class="announcement__info">
-                  <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
-                  <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
-                  <?php
-                    if($announcements[$i][4] != ''){
-                  ?>
-                    <div class="announcement__file">
-                      <div class="announcement__file-label">Archivos adjuntos:</div>
-                      <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+              // GET ANNOUNCEMENT'S OWNER
+              $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
+              $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
+              $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
+          
+              ?>
+              <div class="announcement-management">
+                <div class="announcement">
+                  <div class="announcement__owner">
+                    <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
+                    <div>
+                      <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
+                      <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
                     </div>
-                  <?php 
+                  </div>
+                  <div class="announcement__info">
+                    <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
+                    <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
+                    <?php
+                      if($announcements[$i][4] != ''){
+                      ?>
+                      <div class="announcement__file">
+                        <div class="announcement__file-label">Archivos adjuntos:</div>
+                        <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+                      </div>
+                      <?php 
+                      }
+                    ?>
+                  </div>
+                  <?php
+                    if($announcements[$i][3] != ''){
+                      ?>
+                      <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+                      <?php 
                     }
                   ?>
                 </div>
-                <?php
-                    if($announcements[$i][3] != ''){
-                  ?>
-                    <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
-                  <?php 
-                    }
-                  ?>
+                <div class="announcement-management__actions">
+                  <a href="delete.php?delete_announcement=<?php echo $announcements[$i][5] ?>" class="delete-button announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
+                  <a href="edit-announcement.php?announcement=<?php echo $announcements[$i][5] ?>" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
               </div>
-              <div class="announcement-management__actions">
-                <a href="delete.php?delete_announcement=<?php echo $announcements[$i][5] ?>" class="delete-button announcement-management__btn announcement-management__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
-                <a href="edit-announcement.php?announcement=<?php echo $announcements[$i][5] ?>" class="announcement-management__btn announcement-management__btn--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-              </div>
-            </div>
+              <?php
+            }
+          } else {
+            ?>
+            <div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay anuncios publicados.</div>
             <?php
           }
-        } else {
-          ?>
-          <div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay anuncios publicados.</div>
-          <?php
-        }
         ?>
-        
       </div>
     </main>
-    <style>
-      body,html{
-        scroll-behavior: unset !important;
-      }
-    </style>
+    <style> body,html{ scroll-behavior: unset !important }</style>
     <script src="../../Controllers/admin-control.js"></script>
     <script src="../../Controllers/file-name.js"></script>
     <script src="../../Controllers/file-upload.js"></script>

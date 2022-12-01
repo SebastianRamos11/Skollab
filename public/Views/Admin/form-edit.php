@@ -11,9 +11,15 @@
   $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
   $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 
-  if(isset($_GET['id'])){
+  if (isset($_SESSION['id'])) {
+    if(isset($_GET['id'])){
+      include_once "../../Models/new-connection.php";
+      $id = $_GET['id'];
+  
+      $edit_query = $bd -> prepare("SELECT * FROM persona WHERE ID_Persona = ?;");
+      $edit_query -> execute([$id]);
+      $persona = $edit_query->fetch(PDO::FETCH_OBJ);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,22 +31,12 @@
   <link rel="stylesheet" href="../css/admin.css" />
 </head>
 <body class="edit-user-body">
-  <?php
-    include_once "../../Models/new-connection.php";
-    $id = $_GET['id'];
-
-    $edit_query = $bd -> prepare("SELECT * FROM persona WHERE ID_Persona = ?;");
-    $edit_query -> execute([$id]);
-    $persona = $edit_query->fetch(PDO::FETCH_OBJ);
-  ?>
-
   <div class="modal card">
     <div class="modal__header">
       <h2>Editar usuario</h2>
       <hr />
     </div>
     <form action="edit.php?user=<?php echo $persona -> ID_Persona; ?>" class="form" method="POST">
-
       <!-- FIRST NAME -->
       <div class="form__field">
         <label for="firstName">Nombres</label>
@@ -65,12 +61,12 @@
         <div class="rol__options">
           <?php 
             for($i = 1; $i <= sizeof($role_array); $i++){
-            ?>
+              ?>
               <div class="rol__option">
                 <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>" <?php if(($persona -> ID_Rol) == $i){ ?> checked <?php } ?> />
                 <label for="rol-<?php echo $i?>"><?php print_r($role_array[$i - 1][0]) ?></label>
               </div>
-            <?php 
+              <?php 
             }
           ?>
         </div>
@@ -92,13 +88,13 @@
       <div class="doc-type form__field">
         <label for="doc-type">Tipo de documento</label>
         <select name="doc-type" id="doc-type" class="upload-form__field-input">
-        <?php 
-          for($i = 1; $i <= sizeof($type_doc_array); $i++){
-            ?>
-            <option value="<?php echo $i ?>" <?php if(($persona -> ID_Tipo_Documento) == $i){ ?> selected <?php } ?> ><?php echo $type_doc_array[$i - 1][0]; ?></option>
-        <?php
-          }
-        ?>
+          <?php 
+            for($i = 1; $i <= sizeof($type_doc_array); $i++){
+              ?>
+              <option value="<?php echo $i ?>" <?php if(($persona -> ID_Tipo_Documento) == $i){ ?> selected <?php } ?> ><?php echo $type_doc_array[$i - 1][0]; ?></option>
+              <?php
+            }
+          ?>
         </select>
       </div>
       
@@ -108,13 +104,16 @@
       </div>
     </form>
   </div>
-
   <script src="../../Controllers/edit-control.js"></script>
 </body>
 </html>
 <?php 
-  } else {
-    header('Location: crud.php?message=error');
-    exit();
+    } else {
+      header('Location: crud.php?message=error');
+      exit();
+    }
+  } else{
+    include('../../Models/logout.php');
+    $location = header('Location: ../index.php');
   }
 ?>

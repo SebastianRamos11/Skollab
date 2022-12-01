@@ -2,7 +2,6 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-    // GET ANNOUNCEMENTS ARRAY
     $announcements = "SELECT asunto, descripcion, fecha, url_portada, url_file, ID_Anuncio, ID_Persona FROM anuncio";
     $announcements_result= mysqli_query($dbConnection, $announcements) or die(mysqli_error($dbConnection));
     $announcements = mysqli_fetch_all($announcements_result, MYSQLI_NUM);
@@ -32,63 +31,60 @@
             ?>
             <div class="announcements__container">
               <?php
-              for($i=0; $i < sizeof($announcements); $i++){
-                $id_owner = $announcements[$i][6];
+                for($i=0; $i < sizeof($announcements); $i++){
+                  $id_owner = $announcements[$i][6];
 
-                // GET ANNOUNCEMENT'S OWNER
-                $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
-                $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
-                $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
-              
-                ?>
-                <div class="announcement">
-                  <div class="announcement__owner">
-                    <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
-                    <div>
-                      <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
-                      <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
-                    </div>
-                  </div>
-                  <div class="announcement__info">
-                    <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
-                    <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
-                    <?php
-                      if($announcements[$i][4] != ''){
-                    ?>
-                      <div class="announcement__file">
-                        <div class="announcement__file-label">Archivos adjuntos:</div>
-                        <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+                  // GET ANNOUNCEMENT'S OWNER
+                  $owner = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_owner";
+                  $owner_result= mysqli_query($dbConnection, $owner) or die(mysqli_error($dbConnection));
+                  $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
+                
+                  ?>
+                  <div class="announcement">
+                    <div class="announcement__owner">
+                      <img class="announcement__owner-photo" src="../img/default.jpeg" alt="owner-photo">
+                      <div>
+                        <div class="announcement__owner-name"><?php echo $owner[0][0].' '.$owner[0][1] ?></div>
+                        <div class="announcement__date">Fecha de publicación: <?php echo $announcements[$i][2] ?></div>
                       </div>
-                    <?php 
+                    </div>
+                    <div class="announcement__info">
+                      <div class="announcement__title"><?php echo $announcements[$i][0] ?></div>
+                      <div class="announcement__p"><?php echo $announcements[$i][1] ?></div>
+                      <?php
+                        if($announcements[$i][4] != ''){
+                          ?>
+                          <div class="announcement__file">
+                            <div class="announcement__file-label">Archivos adjuntos:</div>
+                            <a href="<?php echo $announcements[$i][4] ?>" class="file-element" download=""><i class="fa-regular fa-file-lines"></i> <span class="file-name"><?php echo $announcements[$i][4] ?></span></a>
+                          </div>
+                          <?php 
+                        }
+                      ?>
+                    </div>
+                    <?php
+                      if($announcements[$i][3] != ''){
+                        ?>
+                        <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+                        <?php 
                       }
                     ?>
                   </div>
                   <?php
-                    if($announcements[$i][3] != ''){
-                  ?>
-                    <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
-                  <?php 
-                    }
-                  ?>
-                </div>
-                <?php
-              }
+                }
               ?>
             </div>
             <?php
           } else {
-            ?>
-            <div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay anuncios publicados.</div>
-            <?php
+            ?><div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay anuncios publicados.</div><?php
           }
         ?>
       </div>
-      
     </main>
+    <script src="../../Controllers/file-name.js"></script>
   </body>
-  <script src="../../Controllers/file-name.js"></script>
-  </html>
-  <?php 
+</html>
+<?php 
   } else {
     include('../../Models/logout.php');
     $location = header('Location: ../index.php');

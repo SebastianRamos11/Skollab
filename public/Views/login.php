@@ -49,18 +49,19 @@
   </body>
 </html>
 <?php 
-}else{
-  include_once "../Models/connection.php";
-
-  $read_query = "SELECT ID_Rol FROM persona WHERE ID_Persona =".$_SESSION['id'];
-  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
-
-  if ($result_array[0][0] == 1) {
-    header('Location: ./Admin/admin.php');
-  } elseif ($result_array[0][0] == 2) {
-    header('Location: ./Instructor/instructor.php');
-  } elseif ($result_array[0][0] == 3) {
-    header('Location: ./Aprendiz/aprendiz.php');
+} else{
+    include_once "../Models/connection.php";
+  
+    $read_query = "SELECT ID_Rol FROM persona WHERE ID_Persona =".$_SESSION['id'];
+    $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
+    $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM);
+  
+    if ($result_array[0][0] == 1) {
+      header('Location: ./Admin/admin.php');
+    } elseif ($result_array[0][0] == 2) {
+      header('Location: ./Instructor/instructor.php');
+    } elseif ($result_array[0][0] == 3) {
+      header('Location: ./Aprendiz/aprendiz.php');
+    }
   }
-}?>
+?>

@@ -1,7 +1,7 @@
 <?php
-    $read_query = "SELECT ID_Rol, nombres FROM persona WHERE ID_Persona =".$_SESSION['id'];
-    $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
-    $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM); 
+  $read_query = "SELECT ID_Rol, nombres FROM persona WHERE ID_Persona =".$_SESSION['id'];
+  $query_result = mysqli_query($dbConnection, $read_query) or die(mysqli_error($dbConnection));
+  $result_array = mysqli_fetch_all($query_result, MYSQLI_NUM); 
 ?>
 <nav class="nav nav--session">
   <div class="nav__logo">
