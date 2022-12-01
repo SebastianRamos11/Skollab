@@ -39,7 +39,12 @@
   
   if(isset($_GET['delete_announcement'])){
 		$sql = $dbConnection->query("DELETE FROM anuncio WHERE ID_Anuncio =".$_GET['delete_announcement']);
-		header('Location: view-user.php?user='.$id.'&message=announcement_deleted');
-		exit();
+		if(isset($_GET['id'])){
+			header('Location: view-user.php?user='.$id.'&message=announcement_deleted');
+			exit(); 
+		} else{
+			header('Location: admin.php?message=deleted');
+			exit(); 
+		}
   }
 ?>

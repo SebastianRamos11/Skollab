@@ -162,36 +162,17 @@
       ?>
     </main>
     <script>
-      const deleteEvidence = document.querySelector('.delete-button');
       const recoverEvidence = document.querySelector('.recover-button');
       const recoverEvidenceForm = document.querySelector('.upload-form');
-
-      deleteEvidence?.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log(deleteEvidence.getAttribute('href'));
-        Swal.fire({
-            title: '¿Seguro que quieres eliminar esta evidencia?',
-            text: "¡No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.assign(deleteEvidence.getAttribute('href'));
-        }
-        })
-      })
 
       recoverEvidence?.addEventListener('click', () => {
         recoverEvidenceForm.classList.toggle('hidden');
       })
-
     </script>
     <script src="../../Controllers/file-upload.js"></script>
     <script src="../../Controllers/file-name.js"></script>
+    <script src="../../Controllers/confirm-deletion.js"></script>
+    <script>confirmDeletion('¿Seguro que quieres eliminar esta evidencia?')</script>
     <?php
       if(isset($_GET['message'])){
         if($_GET['message'] === 'empty') {

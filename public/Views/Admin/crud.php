@@ -235,29 +235,8 @@
       <div class="overlay hidden"></div>
     </main>
     <style> body,html{ scroll-behavior: unset !important;}</style>
-    <script>
-      const deleteUser = document.querySelectorAll('.delete-button');
-      deleteUser.forEach((e, i) => {
-          deleteUser[i].addEventListener('click', (e) => {
-              e.preventDefault();
-              console.log(deleteUser[i].getAttribute('href'));
-              Swal.fire({
-                  title: '¿Seguro que quieres eliminar este usuario?',
-                  text: "¡No podrás revertir esto!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Si, eliminar',
-                  cancelButtonText: 'Cancelar'
-              }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location.assign(deleteUser[i].getAttribute('href'));
-              }
-              })
-          })
-      })
-    </script>
+    <script src="../../Controllers/confirm-deletion.js"></script>
+    <script>confirmDeletion('¿Seguro que quieres eliminar este usuario?')</script>
     <?php
       if(isset($_GET['message'])){
         if($_GET['message'] === 'empty') {

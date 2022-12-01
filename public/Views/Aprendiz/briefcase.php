@@ -117,7 +117,7 @@
 												</div>
 												<a href="activity.php?activity=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
 												<a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__link" download=""><i class="fa-regular fa-file-lines"></i></a>
-												<a href="delete.php?evidence=<?php echo $evidences_array[0][5] ;?>" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a>
+												<?php if(!$evidences_array[0][1]) { ?> <a href="delete.php?evidence=<?php echo $evidences_array[0][5] ;?>" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a> <?php }?>
 											</div>
 										</div>
 										<?php
@@ -143,36 +143,12 @@
         }
       ?>
     </main>
+		<script src="../../Controllers/confirm-deletion.js"></script>
+		<script>confirmDeletion('¿Seguro que quieres eliminar esta evidencia?')</script>
+		<?php if(isset($_GET['message']) && $_GET['message'] === 'error'){ ?><script>Swal.fire({icon: 'error',title: 'Error',text: 'Esta evidencia ya esta calificada y no puede ser eliminada'});</script><?php } ?>
+		<script src="../../Controllers/aprendiz-briefcase.js"></script>
 	</body>
-	<script>
-			const deleteUser = document.querySelectorAll('.delete-button');
-			deleteUser.forEach((e, i) => {
-					deleteUser[i].addEventListener('click', (e) => {
-							e.preventDefault();
-							console.log(deleteUser[i].getAttribute('href'));
-							Swal.fire({
-									title: '¿Seguro que quieres eliminar esta evidencia?',
-									text: "¡No podrás revertir esto!",
-									icon: 'warning',
-									showCancelButton: true,
-									confirmButtonColor: '#3085d6',
-									cancelButtonColor: '#d33',
-									confirmButtonText: 'Si, eliminar',
-									cancelButtonText: 'Cancelar'
-							}).then((result) => {
-							if (result.isConfirmed) {
-									window.location.assign(deleteUser[i].getAttribute('href'));
-							}
-							})
-					})
-			})
-	</script>
-	<?php
-    if(isset($_GET['message']) && $_GET['message'] === 'error'){
-      ?><script>Swal.fire({icon: 'error',title: 'Error',text: 'Esta evidencia ya esta calificada y no puede ser eliminada'});</script><?php
-    }
-  ?>
-	<script src="../../Controllers/aprendiz-briefcase.js"></script>
+
 </html>
 <?php 
   } else {

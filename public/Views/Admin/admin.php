@@ -134,29 +134,8 @@
     <script src="../../Controllers/admin-control.js"></script>
     <script src="../../Controllers/file-name.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
-    <script>
-      const deleteAnnouncement = document.querySelectorAll('.delete-button');
-      deleteAnnouncement.forEach((e, i) => {
-          deleteAnnouncement[i].addEventListener('click', (e) => {
-              e.preventDefault();
-              console.log(deleteAnnouncement[i].getAttribute('href'));
-              Swal.fire({
-                  title: '¿Seguro que quieres eliminar este usuario?',
-                  text: "¡No podrás revertir esto!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Si, eliminar',
-                  cancelButtonText: 'Cancelar'
-              }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location.assign(deleteAnnouncement[i].getAttribute('href'));
-              }
-              })
-          })
-      });
-    </script>
+    <script src="../../Controllers/confirm-deletion.js"></script>
+    <script>confirmDeletion('¿Seguro que quieres eliminar este anuncio?')</script>
     <?php
       if(isset($_GET['message'])){
         if($_GET['message'] === 'uploaded') {

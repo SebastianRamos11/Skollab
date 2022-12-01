@@ -131,29 +131,9 @@
     </form>
     <div class="overlay hidden"></div>
 
-    <script>
-      const deleteActivity = document.querySelectorAll('.delete-button');
-      deleteActivity.forEach((e, i) => {
-          deleteActivity[i].addEventListener('click', (e) => {
-              e.preventDefault();
-              console.log(deleteActivity[i].getAttribute('href'));
-              Swal.fire({
-                  title: '¿Seguro que quieres eliminar esta actividad?',
-                  text: "Todas las evidencias también serán eliminadas",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Si, eliminar',
-                  cancelButtonText: 'Cancelar'
-              }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location.assign(deleteActivity[i].getAttribute('href'));
-              }
-              })
-          })
-      })
-    </script>
+    <script src="../../Controllers/confirm-deletion.js"></script>
+    <script>confirmDeletion('¿Seguro que quieres eliminar esta actividad?')</script>
+
     <?php
       if(isset($_GET['message'])){
         if($_GET['message'] === 'empty') {
