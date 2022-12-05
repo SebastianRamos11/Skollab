@@ -107,16 +107,12 @@
           <h3>Flexibilidad</h3>
         </div>
         <div class="skills__item">
-          <img src="img/skills/speech-bubble.png" alt="chat" class="skills__img" />
-          <h3>Mensajería</h3>
+          <img src="img/skills/portfolio.png" alt="briefcase" class="skills__img" />
+          <h3>Portafolio</h3>
         </div>
         <div class="skills__item">
           <img src="img/skills/call-center.png" alt="support" class="skills__img" />
           <h3>Soporte</h3>
-        </div>
-        <div class="skills__item">
-          <img src="img/skills/portfolio.png" alt="briefcase" class="skills__img" />
-          <h3>Portafolio</h3>
         </div>
       </div>
     </section>
@@ -153,9 +149,9 @@
             <div>Bogotá D.C</div>
           </div>
           <div class="footer__media">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
+            <a href="https://web.facebook.com/profile.php?id=100068938852709" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram" target="_blank"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin" target="_blank"></i></a>
           </div>
         </div>
         <div class="footer__us">

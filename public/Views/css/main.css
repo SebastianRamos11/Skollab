@@ -1929,6 +1929,10 @@ th {
   justify-content: space-evenly;
   font-size: 30px;
 }
+.footer__media a {
+  text-decoration: none;
+  color: #fff;
+}
 .footer__contact-form {
   margin-top: 20px;
   display: flex;

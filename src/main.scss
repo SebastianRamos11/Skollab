@@ -378,6 +378,10 @@
   }
 
   &__media {
+    & a {
+      text-decoration: none;
+      color: $white;
+    }
     margin-top: 20px;
     @include setFlex(row, center, evenly);
     font-size: 30px;
