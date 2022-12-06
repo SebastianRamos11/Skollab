@@ -2104,7 +2104,7 @@ th {
   }
   .register-input {
     height: 80px;
-    font-size: 1.4em;
+    font-size: 1.1em;
   }
   .login {
     width: 500px;
@@ -2351,6 +2351,7 @@ th {
 }
 .step__input {
   position: relative;
+  font-size: 16px !important;
 }
 .step__input .register-input {
   margin-bottom: 0 !important;
