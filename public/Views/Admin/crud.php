@@ -183,12 +183,6 @@
               <label for="lastName">Apellidos</label>
               <input type="text" id="firstName" name="lastName" placeholder="Apellidos" onkeyup="upper(this);" maxlength="20" class="register-input" />
             </div>
-  
-            <!-- BIRTH YEAR -->
-            <div class="form__field">
-              <label for="birthYear">Fecha de nacimiento</label>
-              <input type="date" id="birthYear" name="birthYear" value="2000-02-02" class="register-input" />
-            </div>
 
             <!-- PHONE -->
             <div class="form__field">

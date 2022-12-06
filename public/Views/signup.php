@@ -1,3 +1,11 @@
+<?php
+  include_once "../Models/connection.php";
+
+  // GET DOCUMENT TYPES
+  $type_doc = "SELECT tipo FROM tipo_documento";
+  $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+  $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -24,13 +32,24 @@
       </div>
       <!-- Steps -->
       <div class="form-container">
-        <form action="../Models/signup_validation.php" method="POST" class="form" id="form">
+        <form action="../Models/signup_validation.php" method="POST" class="form signup-form" id="form">
           <!-- Step 1: Personal information-->
           <div class="step step--active">
             <div class="field-group personal-data">
-              <!-- ID -->
+              <!-- Document Type -->
+              <div class="step__field" id="group_type-id">
+                <label for="doc-type">Tipo de documento</label>
+                <select name="doc-type" id="doc-type" class="register-input register-input--outline">
+                  <?php 
+                    for($i = 1; $i <= sizeof($type_doc_array); $i++){
+                      ?><option value="<?php echo $i ?>"><?php echo $type_doc_array[$i - 1][0]; ?></option><?php
+                    }
+                  ?>
+                </select>
+              </div>
+              <!-- Document Number -->
               <div class="step__field" id="group-id">
-                <label for="id">Documento de identidad</label>
+                <label for="id">Número de documento</label>
                 <div class="step__input">
                   <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" />
                   <i class="step__field-state fas fa-times-circle"></i>
@@ -71,11 +90,6 @@
                 </div>
                 <p class="step__field-error">Los apellidos solo pueden contener letras y acentos.</p>
               </div>
-              <!-- BirthYear -->
-              <div class="step__field">
-                <label for="birthYear">Fecha de nacimiento</label>
-                <input type="date" id="birthYear" name="birthYear" value="2000-02-02" class="register-input" />
-              </div>
               <!-- Buttons -->
               <div class="btn-only">
                 <input type="button" value="Siguiente" class="btn btn-next width-50 ml-auto" />
@@ -88,28 +102,28 @@
             <div class="field-group rol__group">
               <div class="step__field rol__field group-rol">
                 <!-- Instructor option -->
-                <div class="rol__option rol__instructor">
-                  <input type="radio" name="rol" id="instructor" value="INSTRUCTOR" class="instructor" />
-                  <label for="instructor">
-                    <div class="rol__figure">
-                      <img src="./img/figures/rol-instructor.png" alt="instructor" />
+                <label class="rol__label" for="instructor">
+                  <div class="rol__option rol__instructor">
+                    <input type="radio" name="rol" id="instructor" value="2" class="instructor" />
+                      <div class="rol__figure">
+                        <img src="./img/figures/rol-instructor.png" alt="instructor" />
+                      </div>
+                      <span>Instructor</span>
                     </div>
-                    <span>Instructor</span>
-                  </label>
-                </div>
-              </div>
+                  </div>
+                </label>
               <div class="step__field rol__field group-rol">
                 <!-- Aprendiz option -->
-                <div class="rol__option rol__aprendiz">
-                  <input type="radio" name="rol" id="aprendiz" value="APRENDIZ" class="aprendiz" />
-                  <label for="aprendiz">
-                    <div class="rol__figure">
-                      <img src="./img/figures/rol-aprendiz.png" alt="aprendiz" />
+                <label class="rol__label" for="aprendiz">
+                  <div class="rol__option rol__aprendiz">
+                    <input type="radio" name="rol" id="aprendiz" value="3" class="aprendiz" />
+                      <div class="rol__figure">
+                        <img src="./img/figures/rol-aprendiz.png" alt="aprendiz" />
+                      </div>
+                      <span>Aprendiz</span>
                     </div>
-                    <span>Aprendiz</span>
-                  </label>
-                </div>
-              </div>
+                  </div>
+                </label>
               <!-- Error message -->
               <p class="step__field-error">Escoja un rol.</p>
               <!-- Buttons -->

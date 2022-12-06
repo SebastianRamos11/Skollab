@@ -6,7 +6,7 @@
     header('Location: profile.php?message=error');
     exit();
   }
-  if(empty($_GET["id"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["birthYear"]) || empty($_POST["phone"]) || empty($_POST["email"])){
+  if(empty($_GET["id"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["phone"]) || empty($_POST["email"])){
     header('Location: profile.php?message=empty');
     exit();
   }
@@ -15,11 +15,10 @@
   $doc_type = $_POST["doc-type"];
   $firstName = $_POST["firstName"];
   $lastName = $_POST["lastName"];
-  $birthYear = $_POST["birthYear"];
   $email = $_POST["email"];
   $phone = $_POST["phone"];
 
-  $edit_query = "UPDATE persona SET ID_Tipo_Documento = '$doc_type', nombres = '$firstName', apellidos = '$lastName', fecha_nacimiento = '$birthYear', correo_electronico = '$email', telefono = '$phone' WHERE ID_Persona = '$id';";
+  $edit_query = "UPDATE persona SET ID_Tipo_Documento = '$doc_type', nombres = '$firstName', apellidos = '$lastName', correo_electronico = '$email', telefono = '$phone' WHERE ID_Persona = '$id';";
 	$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 
   if($query_result){

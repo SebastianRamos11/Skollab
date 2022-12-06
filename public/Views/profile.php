@@ -3,7 +3,7 @@
   session_start();
 
   if (isset($_SESSION['id'])) {
-    $user_data = "SELECT ID_Tipo_Documento, nombres, apellidos, correo_electronico, fecha_nacimiento, telefono FROM persona WHERE ID_Persona =".$_SESSION['id'];
+    $user_data = "SELECT ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono FROM persona WHERE ID_Persona =".$_SESSION['id'];
     $data_result = mysqli_query($dbConnection, $user_data) or die(mysqli_error($dbConnection));
     $user_data = mysqli_fetch_all($data_result, MYSQLI_NUM);
 
@@ -80,13 +80,8 @@
           </div>
 
           <div class="profile__field">
-            <div class="profile__field-label">Fecha de nacimiento</div>
-            <input type="date" id="birthYear" name="birthYear" class="profile__field-input type-date" value="<?php echo $user_data[0][4]?>">
-          </div>
-
-          <div class="profile__field">
             <div class="profile__field-label">Teléfono</div>
-            <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][5]?>" maxlength="10">
+            <input type="text" id="phone" name="phone" class="profile__field-input" value="<?php echo $user_data[0][4]?>" maxlength="10">
           </div>
           <input type="submit" class="submit-btn profile__submit" value="Guardar">
         </form>

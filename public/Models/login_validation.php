@@ -2,10 +2,8 @@
   require('connection.php');
   
   if (isset($_POST['login'])) {
-    $email = stripslashes($_REQUEST['email']);
-    $email = mysqli_real_escape_string($dbConnection, $email);
-    
-    $pass = $_POST['pass'];
+		$email = $_POST["email"];
+		$pass = $_POST["pass"];
     $pass = hash('sha512', $pass);
 
     $login_query = "SELECT ID_Persona, ID_Rol FROM persona WHERE correo_electronico = '$email' AND contraseña = '$pass'";

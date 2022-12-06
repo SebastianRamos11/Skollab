@@ -288,6 +288,10 @@ input[type=checkbox], input[type=radio] {
   border: none;
   padding: 20px;
 }
+.register-input--outline {
+  background-color: transparent;
+  outline: 2px solid #000;
+}
 
 .pass__field {
   position: relative;
@@ -2106,6 +2110,10 @@ th {
     height: 80px;
     font-size: 1.1em;
   }
+  .step__field-state {
+    right: 14px !important;
+    bottom: 30.5px !important;
+  }
   .login {
     width: 500px;
   }
@@ -2443,6 +2451,7 @@ th {
   max-width: 200px;
   padding-top: 10px;
   cursor: pointer;
+  margin: 0 auto;
 }
 .rol__group {
   display: grid;
@@ -2458,6 +2467,9 @@ th {
 }
 .rol__group .rol__field {
   grid-column: 2 span;
+}
+.rol__group .rol__field .rol__label {
+  display: block;
 }
 
 @media screen and (min-width: 600px) {

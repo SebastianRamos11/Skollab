@@ -42,6 +42,10 @@
           ?><script>Swal.fire({ icon: 'error', title: '¡Credenciales incorretas!', text: 'El correo o contraseña son incorrectos'});</script><?php
         } else if($_GET['message'] === 'recovered'){
           ?><script>Swal.fire({icon: 'success', title: 'Contraseña restablecida', text: 'Tu contraseña se ha cambiado correctamente'});</script><?php
+        } else if($_GET['message'] === 'registered'){
+          ?><script>Swal.fire({icon: 'success', title: 'Registrado', text: 'Ahora puedes iniciar sesión'});</script><?php
+        } else if($_GET['message'] === 'already-registered'){
+          ?><script>Swal.fire({ icon: 'error', title: 'Usuario ya registrado', text: 'Los datos ingresados ya corresponden a un usuario existente. ¡Inicia sesión ahora!'});</script><?php
         }
       }
     ?>

@@ -548,6 +548,12 @@
     height: 80px;
     font-size: map-get($size-paragraph, "m");
   }
+  .step__field {
+    &-state {
+      right: 14px !important;
+      bottom: 30.5px !important;
+    }
+  }
   .login {
     width: 500px;
     &__title {
@@ -895,6 +901,7 @@
     max-width: 200px;
     padding-top: 10px;
     cursor: pointer;
+    margin: 0 auto;
   }
 
   &__group {
@@ -912,6 +919,9 @@
 
     & .rol__field {
       grid-column: 2 span;
+      & .rol__label {
+        display: block;
+      }
     }
   }
 }

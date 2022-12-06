@@ -8,20 +8,27 @@
     <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
-    <title>Recuperación de Contraseña</title>
+    <title>Reasignación de Contraseña</title>
   </head>
   <body class="recover-body">
     <?php if(isset($_GET['message']) and $_GET['message'] == 'unknow'){ ?> <script>Swal.fire({ icon: 'error', title: 'Error', text: '¡Los datos ingresados no corresponden!'});</script> <?php } ?>
     <div class="recover-container">
       <div class="header">
-        <h1>Recuperar contraseña</h1>
+        <h1>Reasignar contraseña</h1>
         <hr />
       </div>
       <form action="../Models/recover_validation.php" class="form" method="POST">
+        <!-- DOCUMENT NUMBER -->
+        <div class="form__field">
+          <label for="id">Documento de Identidad</label>
+          <input type="number" name="id" id="id" placeholder="Número de documento" class="register-input"  />
+        </div>
+        <!-- EMAIL -->
         <div class="form__field">
           <label for="email">Correo electrónico</label>
           <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" required />
         </div>
+        <!-- PASS -->
         <div class="form__field" id="group-pass">
           <label for="pass">Contraseña</label>
           <div class="pass__field">
@@ -31,6 +38,7 @@
           </div>
           <p class="form__field-error">La contraseña tiene que ser de 4 a 20 dígitos.</p>
         </div>
+        <!-- CONFIRM PASS -->
         <div class="form__field" id="group-confirm-pass">
           <label for="confirm-pass">Confirmar contraseña</label>
           <div class="pass__field">
@@ -39,10 +47,6 @@
             <i class="fa-solid fa-eye-slash eye unsee-btn"></i>
           </div>
           <p class="form__field-error">Ambas contraseñas deben ser iguales.</p>
-        </div>
-        <div class="form__field">
-          <label for="birthYear">Fecha de nacimiento</label>
-          <input type="date" name="birthYear" id="birthYear" class="register-input"  />
         </div>
         <!-- Send error message -->
         <div class="form__error-message" id="form__error-message">

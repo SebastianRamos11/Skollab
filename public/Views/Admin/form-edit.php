@@ -16,7 +16,7 @@
     if(isset($_GET['id'])){
       $id = $_GET['id'];
   
-      $user = "SELECT ID_Persona, nombres, apellidos, fecha_nacimiento, ID_Rol, telefono, correo_electronico, ID_Tipo_Documento FROM persona WHERE ID_Persona = $id";
+      $user = "SELECT ID_Persona, nombres, apellidos, ID_Rol, telefono, correo_electronico, ID_Tipo_Documento FROM persona WHERE ID_Persona = $id";
       $user_result = mysqli_query($dbConnection, $user) or die(mysqli_errno($dbConnection));
       $user = mysqli_fetch_all($user_result);
 
@@ -50,12 +50,6 @@
         <input type="text" id="firstName" name="lastName" placeholder="Apellidos" onkeyup="upper(this);" maxlength="20" class="register-input" value="<?php echo $user[0][2] ?>" />
       </div>
 
-      <!-- BIRTH YEAR -->
-      <div class="form__field">
-        <label for="birthYear">Fecha de nacimiento</label>
-        <input type="date" id="birthYear" name="birthYear" value="2000-02-02" class="register-input" value="<?php echo $user[0][3] ?>"/>
-      </div>
-
       <!-- ROL -->
       <div class="rol grid-col-3">
         <div class="rol__title">Rol</div>
@@ -64,7 +58,7 @@
             for($i = 1; $i <= sizeof($role_array); $i++){
               ?>
               <div class="rol__option">
-                <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>" <?php if(($user[0][4]) == $i){ ?> checked <?php } ?> />
+                <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>" <?php if(($user[0][3]) == $i){ ?> checked <?php } ?> />
                 <label for="rol-<?php echo $i?>"><?php print_r($role_array[$i - 1][0]) ?></label>
               </div>
               <?php 
@@ -76,13 +70,13 @@
       <!-- PHONE -->
       <div class="form__field">
         <label for="phone">Celular</label>
-        <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" value="<?php echo $user[0][5] ?>" />
+        <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" value="<?php echo $user[0][4] ?>" />
       </div>
 
       <!-- EMAIL -->
       <div class="email form__field">
         <label for="email">Correo electrónico</label>
-        <input type="text" name="email" id="email"placeholder="Correo electrónico" class="register-input" value="<?php echo $user[0][6] ?>" />
+        <input type="text" name="email" id="email"placeholder="Correo electrónico" class="register-input" value="<?php echo $user[0][5] ?>" />
       </div>
 
       <!-- DOCUMENT TYPE -->
@@ -92,7 +86,7 @@
           <?php 
             for($i = 1; $i <= sizeof($type_doc_array); $i++){
               ?>
-              <option value="<?php echo $i ?>" <?php if(($user[0][7]) == $i){ ?> selected <?php } ?> ><?php echo $type_doc_array[$i - 1][0]; ?></option>
+              <option value="<?php echo $i ?>" <?php if(($user[0][6]) == $i){ ?> selected <?php } ?> ><?php echo $type_doc_array[$i - 1][0]; ?></option>
               <?php
             }
           ?>

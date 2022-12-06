@@ -288,6 +288,10 @@ input[type=checkbox], input[type=radio] {
   border: none;
   padding: 20px;
 }
+.register-input--outline {
+  background-color: transparent;
+  outline: 2px solid #000;
+}
 
 .pass__field {
   position: relative;

@@ -1,89 +1,26 @@
-<!DOCTYPE html>
-    <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="../Views/css/signup.css">
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        </head>
-        <body>
 <?php
-    require('connection.php');
-    if (isset($_REQUEST['signup-submited'])) {
-        $id = stripslashes($_REQUEST['id']);
-        $id = mysqli_real_escape_string($dbConnection, $id);
+  require('connection.php');
+  if (isset($_REQUEST['signup-submited'])) {
+		$doc_num = $_POST["id"];
+		$doc_type = $_POST["doc-type"];
+		$firstName = $_POST["firstName"];
+		$lastName = $_POST["lastName"];
+		$phone = $_POST["phone"];
+		$rol = $_POST["rol"];
+		$email = $_POST["email"];
+		$pass = $_POST["pass"];
+		$pass = hash('sha512', $pass);
 
-        $firstName = stripslashes($_REQUEST['firstName']);
-        $firstName = mysqli_real_escape_string($dbConnection, $firstName);
-     
-        $lastName = stripslashes($_REQUEST['lastName']);
-        $lastName = mysqli_real_escape_string($dbConnection, $lastName);
- 
-        $birthYear = stripslashes($_REQUEST['birthYear']);
-        $birthYear = mysqli_real_escape_string($dbConnection, $birthYear);
+    $validation_query = "SELECT * FROM persona WHERE (num_documento = '$doc_num' && ID_Tipo_Documento = $doc_type) || correo_electronico = '$email' || telefono = '$phone'";
+    $validation_result = mysqli_query($dbConnection, $validation_query);
 
-        $rol = stripslashes($_REQUEST['rol']);
-        $rol = mysqli_real_escape_string($dbConnection, $rol);
-
-        $phone = stripslashes($_REQUEST['phone']);
-        $phone = mysqli_real_escape_string($dbConnection, $phone);
-
-        $email = stripslashes($_REQUEST['email']);
-        $email = mysqli_real_escape_string($dbConnection, $email);
-
-        $pass = mysqli_real_escape_string($dbConnection, $_REQUEST['pass']);
-        $pass = mysqli_real_escape_string($dbConnection, $pass);
-        $pass = hash('sha512', $pass);
-
-        $validation_query = "SELECT * FROM persona WHERE ID_Persona = '$id' || correo_electronico = '$email' || telefono = '$phone'";
-        $validation_result = mysqli_query($dbConnection, $validation_query);
-
-        if ($validation_result -> num_rows > 0) {
-            ?>
-                <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Usuario ya registrado',
-                        footer: '<a href="../Views/login.php">¡Inicia sesión ahora!</a>'
-                    }).then(function() {
-                        history.back();
-                    });
-                </script>
-            </body>
-            </html>
-            <?php
-        } else {
-            session_start();
-            $signup_query = "INSERT INTO persona VALUES ('$id', '$firstName', '$lastName', '$birthYear', '$rol', '$email', '$pass', '$phone')";
-            $query_result = mysqli_query($dbConnection, $signup_query);
-            if ($query_result) {
-                $_SESSION['id'] = $id;
-                ?>
-                    <script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Registro satisfactorio',
-                            text: '¡Ahora puedes disfrutar de Skollab!',
-                        }).then(function() {
-                            <?php
-                            if ($rol == 'APRENDIZ') {
-                                ?>
-                                window.location.assign('../Views/Aprendiz/aprendiz.php')
-                                <?php
-                            } elseif ($rol == 'INSTRUCTOR') {
-                                ?>
-                                window.location.assign('../Views/Instructor/instructor.php')
-                                <?php
-                            }
-                        ?>
-                        });
-                    </script>
-                </body>
-                </html>
-                <?php
-            }            
-        }
+    if ($validation_result -> num_rows > 0) {
+			header('Location: ../Views/login.php?message=already-registered');
+			exit();	
+    } else {
+			$create_query = $dbConnection->query("INSERT INTO persona (ID_Rol, ID_Tipo_Documento, num_documento, nombres, apellidos, correo_electronico, contraseña, telefono ) VALUES ('".$rol."', '".$doc_type."', '".$doc_num."','".$firstName."', '".$lastName."', '".$email."', '".$pass."', '".$phone."')");
+			header('Location: ../Views/login.php?message=registered');
+			exit();		
     }
+  }
 ?>

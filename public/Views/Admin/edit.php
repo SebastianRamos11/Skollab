@@ -6,13 +6,12 @@
     $id_user = $_GET["user"];
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
-    $birthYear = $_POST["birthYear"];
     $rol = $_POST["rol"];
     $phone = $_POST["phone"];
     $email = $_POST["email"];
     $doc_type = $_POST["doc-type"];
     
-		$edit_query = "UPDATE persona SET nombres = '$firstName', apellidos = '$lastName', fecha_nacimiento = $birthYear, ID_Rol = $rol, telefono = $phone, correo_electronico = '$email', ID_Tipo_Documento = $doc_type WHERE ID_Persona = $id_user;";
+		$edit_query = "UPDATE persona SET nombres = '$firstName', apellidos = '$lastName', ID_Rol = $rol, telefono = $phone, correo_electronico = '$email', ID_Tipo_Documento = $doc_type WHERE ID_Persona = $id_user;";
     $query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 		
 		header('Location: crud.php?message=modified');

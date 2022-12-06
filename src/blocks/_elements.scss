@@ -76,6 +76,11 @@
   background-color: #e3e3e3;
   border: none;
   padding: 20px;
+
+  &--outline {
+    background-color: transparent;
+    outline: 2px solid $black;
+  }
 }
 
 // See password button
