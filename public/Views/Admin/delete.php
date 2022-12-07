@@ -6,7 +6,7 @@
 
   // UNLINK USER OF PROGRAM
   if(isset($_GET['program'])){
-		$sql = $dbConnection->query("DELETE FROM ambiente_virtual WHERE ID_Persona = $id AND ID_Programa =".$_GET["program"]);
+		$sql = $dbConnection->query("DELETE FROM ambiente_virtual WHERE ID_Persona = $id AND ID_Materia =".$_GET["program"]);
 		header('Location: view-user.php?user='.$id.'&message=unlinked');
 		exit();
   }

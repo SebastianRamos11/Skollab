@@ -2,7 +2,7 @@
   include_once "../../Models/connection.php";
   session_start();
   if (isset($_SESSION['id'])) {
-    $program_query = "SELECT * FROM programa_formacion";
+    $program_query = "SELECT * FROM materia";
     $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
     $program_array = mysqli_fetch_all($program_result, MYSQLI_NUM);
     
@@ -31,13 +31,13 @@
             $ficha = $course_array[$i][2]; 
 
             // GET PROGRAM NAME
-            $get_program = "SELECT nombre FROM programa_formacion WHERE ID_Programa = '$program'";
+            $get_program = "SELECT nombre FROM materia WHERE ID_Materia = '$program'";
             $get_program_result = mysqli_query($dbConnection, $get_program) or die(mysqli_error($dbConnection));
             $get_program_array = mysqli_fetch_all($get_program_result, MYSQLI_NUM);
 
 
             // GET ACTIVITIES ID'S (TO LOOP)
-            $act = "SELECT AC.ID_Actividad FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE AC.ID_Ficha = $ficha AND A.ID_Programa = $program;";
+            $act = "SELECT AC.ID_Actividad FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE AC.ID_Ficha = $ficha AND A.ID_Materia = $program;";
             $act_result = mysqli_query($dbConnection, $act) or die(mysqli_error($dbConnection));
             $act_array = mysqli_fetch_all($act_result, MYSQLI_NUM);
             $activities = [];
@@ -69,7 +69,7 @@
                     <?php
                       for($j=0; $j < sizeof($pending); $j++){
                         $id_activity = $pending[$j];
-                        $activity = "SELECT AC.ID_Actividad, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url, A.ID_Programa FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE AC.ID_Ficha = $ficha AND AC.ID_Actividad = $id_activity AND A.ID_Programa = $program;";
+                        $activity = "SELECT AC.ID_Actividad, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url, A.ID_Materia FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE AC.ID_Ficha = $ficha AND AC.ID_Actividad = $id_activity AND A.ID_Materia = $program;";
                         $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
                         $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
                         ?>

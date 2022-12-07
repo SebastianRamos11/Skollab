@@ -77,7 +77,7 @@
 							$ficha = $course_aprendiz_array[$i][2];
 
 							// GET PROGRAM NAME
-							$program_query = "SELECT nombre FROM programa_formacion WHERE ID_Programa = $program";
+							$program_query = "SELECT nombre FROM materia WHERE ID_Materia = $program";
 							$program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
 							$program_name = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
 							?>

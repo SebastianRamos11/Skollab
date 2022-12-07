@@ -28,7 +28,7 @@
           $program = $course_array[$i][1];
           $ficha = $course_array[$i][2];
 
-          $program_query = "SELECT nombre FROM programa_formacion WHERE ID_Programa = $program";
+          $program_query = "SELECT nombre FROM materia WHERE ID_Materia = $program";
           $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
           $program_name = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
           ?>
@@ -41,7 +41,7 @@
           </a>
           <?php
           // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-          $instructor = "SELECT A.ID_Persona, P.nombres, P.apellidos,  A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Programa = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
+          $instructor = "SELECT A.ID_Persona, P.nombres, P.apellidos,  A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
           $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
           $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
           $id_instructor = $instructor_array[0][0];
