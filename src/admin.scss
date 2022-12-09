@@ -13,10 +13,8 @@ html {
 
 .crud-choise {
   display: grid;
-  grid-template-columns: repeat(4, 240px);
+  grid-template-columns: repeat(auto-fit, 230px);
   gap: 30px;
-  margin-left: -20px;
-  margin-bottom: 40px;
   justify-content: center;
   & .crud-option {
     padding: 30px;
@@ -41,6 +39,9 @@ html {
     }
     &__btn {
       @include primary-btn($secundary-color, none);
+    }
+    &__btn-create {
+      @include primary-btn(#29d95b, none);
     }
   }
   & .create-button {
@@ -101,7 +102,7 @@ html {
 }
 
 .max-height-form {
-  max-height: 800px;
+  max-height: 100vh;
   overflow-y: hidden;
 }
 
@@ -110,22 +111,11 @@ html {
   top: 0;
   left: 0;
   width: 100vw;
+  height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 5;
-}
-
-@media screen and (min-width: 1300px) {
-  .overlay {
-    height: 800px;
-  }
-}
-
-@media screen and (min-width: 1700px) {
-  .overlay {
-    height: 100vh;
-  }
 }
 
 .close-button {
@@ -138,8 +128,9 @@ html {
   border: none;
   background: none;
 }
-.roles {
-  margin-left: -20px;
+
+.crud-modal {
+  margin: 40px auto;
 }
 .form {
   width: 100%;
@@ -454,5 +445,45 @@ html {
 @media screen and (min-width: 1700px) {
   .float-form {
     transform: translate(-50%, -50%);
+  }
+}
+
+.subject {
+  display: grid;
+  grid-template-columns: 200px 1fr 100px;
+  padding: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  &:last-child {
+    border-bottom: none;
+  }
+  &__image {
+    margin: auto;
+    max-width: 200px;
+  }
+  &__info {
+    margin: 0 40px;
+    &-title {
+      font-size: map-get($size-paragraph, "xl");
+      font-weight: map-get($font-weights, "semibold");
+      margin-bottom: 20px;
+    }
+    &-description {
+      color: $paragraph-color;
+    }
+  }
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__btn {
+    font-size: 40px;
+    text-decoration: none;
+    color: $secundary-color;
+    &--delete {
+      margin-top: 20px;
+      color: $primary-contrast;
+    }
   }
 }

@@ -25,23 +25,23 @@
       <h1 class="main-content__header">💼 Portafolio</h1>
       <?php 
         for($i=0; $i<sizeof($course_array); $i++){
-          $program = $course_array[$i][1];
+          $subject = $course_array[$i][1];
           $ficha = $course_array[$i][2];
 
-          $program_query = "SELECT nombre FROM materia WHERE ID_Materia = $program";
-          $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
-          $program_name = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
+          $subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
+          $subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
+          $subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
           ?>
           <a class="program program-<?php echo $i ?>" href="#briefcase-<?php echo $i ?>">
             <img class="program__figure" src="../img/courses/sena-logo.png" alt="program">
             <div class="program__id">
-              <div class="program__title"><?php echo $program_name; ?></div>
+              <div class="program__title"><?php echo $subject_name; ?></div>
               <div class="program__group"><?php echo $ficha; ?></div>
             </div>
           </a>
           <?php
           // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-          $instructor = "SELECT A.ID_Persona, P.nombres, P.apellidos,  A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
+          $instructor = "SELECT A.ID_Persona, P.nombres, P.apellidos,  A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
           $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
           $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
           $id_instructor = $instructor_array[0][0];
@@ -134,7 +134,7 @@
 									}
 								}
 							} else{
-								?><div class="briefcase-empty">No se han publicado actividades en este programa.</div><?php
+								?><div class="briefcase-empty">No se han publicado actividades en esta materia.</div><?php
 							}
 						?>
 						<hr class="program-divider">

@@ -21,8 +21,14 @@
         </a>
         <a href="crud.php" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
-            <i class="fa-solid fa-book"></i>
+            <i class="fa-solid fa-user-group"></i>
             <span>CRUD</span>
+          </li>
+        </a>
+        <a href="courses.php" class="nav-y-menu__link">
+          <li class="nav-y-menu__item">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Cursos</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">

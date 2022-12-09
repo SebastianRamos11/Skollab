@@ -136,18 +136,18 @@
 									<?php
 										if(sizeof($course_user) > 0){
 											for($i=0; $i < sizeof($course_user); $i++){
-												$program = $course_user[$i][1];
+												$subject = $course_user[$i][1];
 												$ficha = $course_user[$i][2];
 
-												$program_query = "SELECT nombre FROM materia WHERE ID_Materia = $program";
-												$program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
-												$program_name = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
+												$subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
+												$subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
+												$subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
 												?>
 												<div class="course course--management course-<?php echo $i ?>">
-													<div class="course__title"><?php echo $program_name; ?></div>
+													<div class="course__title"><?php echo $subject_name; ?></div>
 													<div class="course__id"><?php echo $ficha; ?></div>
 													<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
-													<a class="course__unlink" href="delete.php?program=<?php echo $program ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
+													<a class="course__unlink" href="delete.php?program=<?php echo $subject ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
 												</div>
 												<?php
 											}
@@ -163,7 +163,7 @@
           // INSTRUCTOR'S ACTIVITIES
           if($user_array[0][2] == 2){
             for($i=0; $i < sizeof($course_user); $i++){
-                  $program = $course_user[$i][1];
+                  $subject = $course_user[$i][1];
                   $ficha = $course_user[$i][2];
 
                   $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$id_user;
@@ -220,20 +220,20 @@
           // STUDENT'S EVIDENCES
           if($user_array[0][2] == 3){
                 for ($i=0; $i < sizeof($course_user); $i++) {
-                  $program = $course_user[$i][1];
+                  $subject = $course_user[$i][1];
                   $ficha = $course_user[$i][2];
 
-                  $program_query = "SELECT nombre FROM materia WHERE ID_Materia = $program";
-                  $program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
-                  $program_name = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
+                  $subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
+                  $subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
+                  $subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
 
                   // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-                  $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
+                  $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
                   $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
                   $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
                   ?>
                   <div class="user-evidences">
-                    <div class="user-label"><?php echo $program_name ?></div>
+                    <div class="user-label"><?php echo $subject_name ?></div>
                     <?php
                     if(sizeof($instructor_array) > 0){
                       $id_instructor = $instructor_array[0][0];

@@ -24,10 +24,10 @@
       <!-- PROGRAMS -->
       <?php 
         for ($j=0; $j < sizeof($course_array); $j++) {
-          $program = $course_array[$j][1];
+          $subject = $course_array[$j][1];
           $ficha = $course_array[$j][2];
 
-          $get_program = "SELECT nombre FROM materia WHERE ID_Materia = '$program'";
+          $get_program = "SELECT nombre FROM materia WHERE ID_Materia = '$subject'";
           $get_program_result = mysqli_query($dbConnection, $get_program) or die(mysqli_error($dbConnection));
           $get_program_array = mysqli_fetch_all($get_program_result, MYSQLI_NUM);
           ?>
@@ -46,10 +46,10 @@
           <div class="col-md-11">
             <?php 
               for($j=0; $j < sizeof($course_array); $j++){
-                $program = $course_array[$j][1];
+                $subject = $course_array[$j][1];
                 $ficha = $course_array[$j][2];
                       
-                $get_group = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona, A.ID_Materia, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 3";
+                $get_group = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona, A.ID_Materia, A.ID_Ficha FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $ficha AND P.ID_Rol = 3";
                 $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
                 $group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
                 ?>

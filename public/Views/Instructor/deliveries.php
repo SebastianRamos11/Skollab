@@ -13,11 +13,11 @@
     $ficha = $activity[0][3];
     
     // SELECT PROGRAM OF CURRENT ACTIVITY
-    $program = "SELECT ID_Materia FROM ambiente_virtual WHERE ID_Persona = $id_user AND ID_Ficha = $ficha;";
-    $program_result = mysqli_query($dbConnection, $program) or die(mysqli_error($dbConnection));
-    $program = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
+    $subject = "SELECT ID_Materia FROM ambiente_virtual WHERE ID_Persona = $id_user AND ID_Ficha = $ficha;";
+    $subject_result = mysqli_query($dbConnection, $subject) or die(mysqli_error($dbConnection));
+    $subject = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
 
-    $group = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, P.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$program' AND A.ID_Ficha = $ficha AND P.ID_Rol = 3";
+    $group = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, P.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $ficha AND P.ID_Rol = 3";
     $group_result = mysqli_query($dbConnection, $group) or die(mysqli_error($dbConnection));
     $group = mysqli_fetch_all($group_result, MYSQLI_NUM);
 

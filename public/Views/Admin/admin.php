@@ -59,7 +59,7 @@
           <div class="float-form__field-label"><i class="fa-regular fa-image"></i><span>Portada (Opcional)</span></div>
           <div class="file-choise">
             <label for="image"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
-            <input type="file" name="image" id="image" class="file">
+            <input type="file" name="image" id="image" class="file" accept="image/png, image/gif, image/jpeg">
           </div>
         </div>
         <hr>
@@ -130,7 +130,7 @@
         ?>
       </div>
     </main>
-    <style> body,html{ scroll-behavior: unset !important }</style>
+    <style>body,html{ scroll-behavior: unset !important } .max-height-form{max-height: 800px;} @media screen and (min-width: 1300px) {.overlay {height: 800px;}}@media screen and (min-width: 1700px) {.overlay {height: 100vh;}}</style>
     <script src="../../Controllers/admin-control.js"></script>
     <script src="../../Controllers/file-name.js"></script>
     <script src="../../Controllers/file-upload.js"></script>

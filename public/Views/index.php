@@ -66,7 +66,7 @@
         <div class="card-content">
           <div class="card__info">
             <h2 class="card__title">Formación fluida</h2>
-            <p class="card__paragraph"> Forma tu programa de la mejor manera, fluye en tu aprendizaje sin interrupciones ni complicaciones.</p>
+            <p class="card__paragraph"> Forma tu curso de la mejor manera, fluye en tu aprendizaje sin interrupciones ni complicaciones.</p>
           </div>
           <div class="card-steps">
             <ul class="card-steps__list">

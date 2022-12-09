@@ -73,16 +73,16 @@
 					<div class="user-programs__label">Programas de formación</div>
 					<?php 
 						for($i=0; $i < sizeof($course_aprendiz_array); $i++){
-							$program = $course_aprendiz_array[$i][1];
+							$subject = $course_aprendiz_array[$i][1];
 							$ficha = $course_aprendiz_array[$i][2];
 
 							// GET PROGRAM NAME
-							$program_query = "SELECT nombre FROM materia WHERE ID_Materia = $program";
-							$program_result= mysqli_query($dbConnection, $program_query) or die(mysqli_error($dbConnection));
-							$program_name = mysqli_fetch_all($program_result, MYSQLI_NUM)[0][0];
+							$subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
+							$subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
+							$subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
 							?>
 							<div class="course">
-								<div class="course__title"><?php echo $program_name; ?></div>
+								<div class="course__title"><?php echo $subject_name; ?></div>
 								<div class="course__id"><?php echo $ficha; ?></div>
 								<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
 							</div>
@@ -198,4 +198,4 @@
     include('../../Models/logout.php');
     $location = header('Location: ../index.php');
   }
-?> 
+?>

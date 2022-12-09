@@ -828,7 +828,7 @@ th {
 }
 .wrapper .main-content {
   width: 100%;
-  margin-left: 280px;
+  margin-left: 260px;
   padding: 20px;
 }
 .wrapper .ham {
@@ -1550,10 +1550,8 @@ html {
 
 .crud-choise {
   display: grid;
-  grid-template-columns: repeat(4, 240px);
+  grid-template-columns: repeat(auto-fit, 230px);
   gap: 30px;
-  margin-left: -20px;
-  margin-bottom: 40px;
   justify-content: center;
 }
 .crud-choise .crud-option {
@@ -1586,6 +1584,17 @@ html {
   padding: 15px 20px;
   color: #fff;
   background: #0066ff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+}
+.crud-choise .crud-option__btn-create {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #29d95b;
   font-size: 1.1em;
   text-decoration: none;
   text-align: center;
@@ -1647,7 +1656,7 @@ html {
 }
 
 .max-height-form {
-  max-height: 800px;
+  max-height: 100vh;
   overflow-y: hidden;
 }
 
@@ -1656,22 +1665,13 @@ html {
   top: 0;
   left: 0;
   width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   z-index: 5;
 }
 
-@media screen and (min-width: 1300px) {
-  .overlay {
-    height: 800px;
-  }
-}
-@media screen and (min-width: 1700px) {
-  .overlay {
-    height: 100vh;
-  }
-}
 .close-button {
   position: absolute;
   top: 15px;
@@ -1683,8 +1683,8 @@ html {
   background: none;
 }
 
-.roles {
-  margin-left: -20px;
+.crud-modal {
+  margin: 40px auto;
 }
 
 .form {
@@ -2009,4 +2009,43 @@ html {
   .float-form {
     transform: translate(-50%, -50%);
   }
+}
+.subject {
+  display: grid;
+  grid-template-columns: 200px 1fr 100px;
+  padding: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.subject:last-child {
+  border-bottom: none;
+}
+.subject__image {
+  margin: auto;
+  max-width: 200px;
+}
+.subject__info {
+  margin: 0 40px;
+}
+.subject__info-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.subject__info-description {
+  color: #636363;
+}
+.subject__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.subject__btn {
+  font-size: 40px;
+  text-decoration: none;
+  color: #0066ff;
+}
+.subject__btn--delete {
+  margin-top: 20px;
+  color: #ff3030;
 }/*# sourceMappingURL=admin.css.map */
