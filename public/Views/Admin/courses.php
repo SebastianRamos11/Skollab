@@ -131,7 +131,63 @@
           </div>
         </div>
       </div>
+
+      <!-- FORMS -->
+
+			<!-- TODO: COURSE FORM -->
+      <form action="#" method="POST" class="crud-form course-form hidden"></form>
+
+			<!-- GROUP FORM -->
+      <form action="#" method="POST" class="crud-form group-form hidden">
+				<div class="crud-form__header">
+					<h2>Crear Ficha</h2>
+					<hr>
+				</div>
+				<div class="crud-form__data">
+					<div class="crud-form__field">
+						<label for="group-num" class="crud-form__field-label">Número de ficha</label>
+						<input type="number" name="group-num" id="group-num" class="crud-form__field-input" placeholder="Ej: 1101">
+					</div>
+					<div class="crud-form__field">
+						<label for="group-code" class="crud-form__field-label">Código de unión</label>
+						<div>
+							<input type="number" name="group-code" id="group-code" class="crud-form__field-input" placeholder="Ej: 300391">
+							<div class="random-number"><i class="fa-solid fa-rotate"></i></div>
+						</div>
+					</div>
+					<input type="submit" value="Crear" class="crud-form__submit">
+				</div>
+      </form>
+
+			<!-- SUBJECT FORM -->
+      <form action="#" method="POST" class="crud-form subject-form">
+				<div class="crud-form__header">
+					<h2>Crear Materia</h2>
+					<hr>
+				</div>
+				<div class="crud-form__data">
+					<div class="crud-form__field">
+						<label for="subject-name" class="crud-form__field-label">Nombre de la materia</label>
+						<input type="text" name="subject-name" id="subject-name" class="crud-form__field-input crud-form__field-input--large" placeholder="Ej: Matemáticas">
+					</div>
+					<div class="crud-form__field">
+						<label class="crud-form__field-label">Miniatura</label>
+						<div class="file-choise">
+							<label for="file"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
+							<input type="file" name="subject-img" id="file" class="file">
+						</div>
+					</div>
+					<div class="crud-form__field crud-form__field--description input-description">
+						<label for="subject-img" class="crud-form__field-label">Descripción</label>
+						<textarea name="description" placeholder="Escribe una descripción" maxlength="600"></textarea>
+					</div>
+					<input type="submit" value="Crear" class="crud-form__submit crud-form__submit--area">
+				</div>
+			</form>
+      <div class="overlay"></div>
+
     </main>
+    <script src="../../Controllers/file-upload.js"></script>
     <script src="../../Controllers/admin-control.js"></script>
   </body>
   </html>

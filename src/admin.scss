@@ -272,11 +272,11 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -40%);
-  width: 800px;
   z-index: 1000;
   background: $white;
   border-radius: $radius-xl;
   box-shadow: $element-shadow;
+  width: 800px;
   & .btn-close {
     cursor: pointer;
     display: block;
@@ -448,6 +448,8 @@ html {
   }
 }
 
+// COURSES
+
 .subject {
   display: grid;
   grid-template-columns: 200px 1fr 100px;
@@ -486,4 +488,138 @@ html {
       color: $primary-contrast;
     }
   }
+}
+
+.crud-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: $white;
+  border-radius: $radius-xl;
+  padding: 20px;
+  &__header {
+    text-align: center;
+    & hr {
+      margin: 20px -20px;
+    }
+  }
+  &.group-form {
+    & .crud-form__data {
+      display: grid;
+      padding: 20px;
+      grid-template-columns: 210px 250px 1fr;
+      gap: 20px;
+    }
+  }
+  &.subject-form {
+    min-width: 600px;
+    & .crud-form__data {
+      display: grid;
+      padding: 20px;
+      grid-template-areas:
+        "name file"
+        "description description"
+        "empty submit";
+      gap: 20px;
+    }
+  }
+  &__field {
+    &-label {
+      font-size: map-get($size-paragraph, "l");
+      font-weight: map-get($font-weights, "medium");
+      display: block;
+      margin-bottom: 15px;
+    }
+    &-input {
+      border: 1px solid $paragraph-color;
+      width: 200px;
+      padding: 20px;
+      border-radius: $radius-m;
+      height: 40px;
+      font-size: 20px;
+      &--large {
+        width: 300px;
+      }
+    }
+    & .file-choise {
+      padding-right: 20px;
+      & label {
+        cursor: pointer;
+        display: block;
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 25px;
+        position: relative;
+
+        & .uploaded-file {
+          font-size: 13px;
+          font-weight: map-get($font-weights, "semibold");
+          color: $secundary-color;
+          position: absolute;
+          width: 100px;
+          word-wrap: break-word;
+          top: -6px;
+          right: 30px;
+          margin-right: 0 20px;
+          text-align: right;
+          transition: all 0.3s;
+          &--right {
+            width: 200px;
+            top: -6px;
+            left: 30px;
+            text-align: left;
+          }
+        }
+      }
+
+      & label:hover {
+        color: $secundary-color;
+      }
+      & input {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+      }
+    }
+    &--description {
+      grid-area: description;
+      position: relative;
+      padding: 30px 0;
+      margin-bottom: -20px;
+      & label {
+        position: absolute;
+        font-size: map-get($size-paragraph, "l");
+        font-weight: map-get($font-weights, "semibold");
+        top: 18px;
+        left: 70px;
+        background: white;
+      }
+      & textarea {
+        width: 100%;
+        height: 200px;
+        resize: none;
+        border: 2px solid $secundary-color;
+        border-radius: $radius-l;
+        padding: 20px;
+      }
+    }
+  }
+  &__submit {
+    @include primary-btn($secundary-color, false);
+    height: 60px;
+    margin-top: auto;
+    &--area {
+      grid-area: submit;
+    }
+  }
+}
+
+.random-number {
+  display: inline-block;
+  cursor: pointer;
+  color: $white;
+  padding: 10px;
+  border-radius: $radius-m;
+  background: $primary-color;
 }

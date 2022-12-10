@@ -1840,11 +1840,11 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -40%);
-  width: 800px;
   z-index: 1000;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+  width: 800px;
 }
 .float-form .btn-close {
   cursor: pointer;
@@ -2048,4 +2048,137 @@ html {
 .subject__btn--delete {
   margin-top: 20px;
   color: #ff3030;
+}
+
+.crud-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+.crud-form__header {
+  text-align: center;
+}
+.crud-form__header hr {
+  margin: 20px -20px;
+}
+.crud-form.group-form .crud-form__data {
+  display: grid;
+  padding: 20px;
+  grid-template-columns: 210px 250px 1fr;
+  gap: 20px;
+}
+.crud-form.subject-form {
+  min-width: 600px;
+}
+.crud-form.subject-form .crud-form__data {
+  display: grid;
+  padding: 20px;
+  grid-template-areas: "name file" "description description" "empty submit";
+  gap: 20px;
+}
+.crud-form__field-label {
+  font-size: 1.2em;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 15px;
+}
+.crud-form__field-input {
+  border: 1px solid #636363;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 20px;
+}
+.crud-form__field-input--large {
+  width: 300px;
+}
+.crud-form__field .file-choise {
+  padding-right: 20px;
+}
+.crud-form__field .file-choise label {
+  cursor: pointer;
+  display: block;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 25px;
+  position: relative;
+}
+.crud-form__field .file-choise label .uploaded-file {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0066ff;
+  position: absolute;
+  width: 100px;
+  word-wrap: break-word;
+  top: -6px;
+  right: 30px;
+  margin-right: 0 20px;
+  text-align: right;
+  transition: all 0.3s;
+}
+.crud-form__field .file-choise label .uploaded-file--right {
+  width: 200px;
+  top: -6px;
+  left: 30px;
+  text-align: left;
+}
+.crud-form__field .file-choise label:hover {
+  color: #0066ff;
+}
+.crud-form__field .file-choise input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+.crud-form__field--description {
+  grid-area: description;
+  position: relative;
+  padding: 30px 0;
+  margin-bottom: -20px;
+}
+.crud-form__field--description label {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: 700;
+  top: 18px;
+  left: 70px;
+  background: white;
+}
+.crud-form__field--description textarea {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  border: 2px solid #0066ff;
+  border-radius: 15px;
+  padding: 20px;
+}
+.crud-form__submit {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #0066ff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  height: 60px;
+  margin-top: auto;
+}
+.crud-form__submit--area {
+  grid-area: submit;
+}
+
+.random-number {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  background: #ff5c00;
 }/*# sourceMappingURL=admin.css.map */
