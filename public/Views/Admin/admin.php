@@ -36,32 +36,33 @@
         <hr>
         <!-- ASUNTO -->
         <div class="float-form__field">
-          <input type="text" name="subject" class="float-form__field-input float-form__field-input--title" placeholder="Ingresa un título" maxlength="60">
+          <input type="text" name="subject" class="float-form__field-input float-form__field-input--title" placeholder="Ingresa un título" maxlength="60" required>
         </div>
         <hr>
         <!-- DESCRIPCION -->
         <div class="float-form__field float-form__field--description">
           <div class="float-form__field-label">Descripción</div>
-          <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600"></textarea>
+          <textarea name="description" class="float-form__field-input float" placeholder="Escribe una descripción" maxlength="600" required></textarea>
         </div>
         <hr>
+        <div class="float-form__field-group">
+          <div class="float-form__field ">
+            <div class="float-form__field-label"><i class="fa-solid fa-paperclip"></i><span>Adjuntar archivo</span></div>
+            <div class="file-choise">
+              <label for="file"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
+              <input type="file" name="file" id="file" class="file">
+            </div>
+          </div>
+          <!-- IMAGE -->
+          <div class="float-form__field">
+            <div class="float-form__field-label"><i class="fa-regular fa-image"></i><span>Portada</span></div>
+            <div class="file-choise">
+              <label for="image"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
+              <input type="file" name="image" id="image" class="file" accept="image/png, image/gif, image/jpeg">
+            </div>
+          </div>
+        </div>
         <!-- FILE -->
-        <div class="float-form__field">
-          <div class="float-form__field-label"><i class="fa-solid fa-paperclip"></i><span>Adjuntar archivo</span></div>
-          <div class="file-choise">
-            <label for="file"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
-            <input type="file" name="file" id="file" class="file">
-          </div>
-        </div>
-        <hr>
-        <!-- IMAGE -->
-        <div class="float-form__field">
-          <div class="float-form__field-label"><i class="fa-regular fa-image"></i><span>Portada (Opcional)</span></div>
-          <div class="file-choise">
-            <label for="image"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
-            <input type="file" name="image" id="image" class="file" accept="image/png, image/gif, image/jpeg">
-          </div>
-        </div>
         <hr>
         <div class="float-form__field">
           <input type="submit" class="btn-submit" name="submit" value="Publicar" style="margin-left: auto;">
@@ -130,7 +131,6 @@
         ?>
       </div>
     </main>
-    <style>.main-content, .max-height-form{max-height: 800px; overflow-y: scroll;} @media screen and (min-width: 1300px) {.overlay {height: 800px;}}@media screen and (min-width: 1700px) {.overlay {height: 100vh;}}</style>
     <script src="../../Controllers/modal-form.js"></script>
     <script src="../../Controllers/file-name.js"></script>
     <script src="../../Controllers/file-upload.js"></script>

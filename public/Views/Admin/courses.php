@@ -77,7 +77,7 @@
               <!-- TODO: COURSES TABLE IN DB -->
             </div>      
             <!-- CRUD FICHAS -->
-            <div id="crud-1" class="crud card mb-50 hidden">
+            <div id="crud-1" class="crud crud-group card mb-50 hidden">
               <div class="card-header">Fichas</div>
               <div class="p-4">
                 <table class="table align-middle">
