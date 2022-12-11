@@ -37,6 +37,7 @@
 		exit(); 
   }
   
+	// DELETE ANNOUNCEMENT
   if(isset($_GET['delete_announcement'])){
 		$sql = $dbConnection->query("DELETE FROM anuncio WHERE ID_Anuncio =".$_GET['delete_announcement']);
 		if(isset($_GET['id'])){
@@ -47,4 +48,18 @@
 			exit(); 
 		}
   }
+
+	// TODO: DELETE GROUP (VALIDATIONS)
+	if(isset($_GET['delete_group'])){
+		$sql = $dbConnection->query("DELETE FROM ficha WHERE ID_Ficha = ".$_GET['delete_group']);
+		header('Location: courses.php?message=deleted');
+		exit(); 
+	}
+
+	// TODO: DELETE SUBJECT (VALIDATIONS)
+	if(isset($_GET['delete_subject'])){
+		$sql = $dbConnection->query("DELETE FROM materia WHERE ID_Materia = ".$_GET['delete_subject']);
+		header('Location: courses.php?message=deleted');
+		exit(); 
+	}
 ?>

@@ -98,7 +98,7 @@
                           <td><?php echo $groups[$i][1] ?></td>
                           <td><?php echo $groups[$i][2] ?></td>
                           <td><a href="#" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                          <td><a href="#" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
+                          <td><a href="delete.php?delete_group=<?php echo $groups[$i][0] ?>" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>
                         <?php
                       }
@@ -121,7 +121,7 @@
                     </div>
                     <div class="subject__actions">
                       <a href="#?subject=<?php echo $subjects[$i][3] ?>" class="subject__btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                      <a href="#?subject=<?php echo $subjects[$i][3] ?>" class="subject__btn subject__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
+                      <a href="delete.php?delete_subject=<?php echo $subjects[$i][3] ?>" class="subject__btn delete-button subject__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
                     </div>
                   </div>
                   <?php
@@ -135,12 +135,12 @@
       <!-- FORMS -->
 
 			<!-- TODO: COURSE FORM -->
-      <form action="#" method="POST" class="course-form modal-form course-form hidden">
+      <form action="#" method="POST" class="course-form modal-form course-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
       </form>
 
 			<!-- GROUP FORM -->
-      <form action="#" method="POST" class="course-form modal-form group-form hidden">
+      <form action="create.php?group" method="POST" class="course-form modal-form group-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
 				<div class="course-form__header">
 					<h2>Crear Ficha</h2>
@@ -163,7 +163,7 @@
       </form>
 
 			<!-- SUBJECT FORM -->
-      <form action="#" method="POST" class="course-form modal-form subject-form hidden">
+      <form action="create.php?subject" method="POST" enctype="multipart/form-data" class="course-form modal-form subject-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
 				<div class="course-form__header">
 					<h2>Crear Materia</h2>
@@ -182,18 +182,20 @@
 						</div>
 					</div>
 					<div class="course-form__field course-form__field--description input-description">
-						<label for="subject-img" class="course-form__field-label">Descripción</label>
-						<textarea name="description" placeholder="Escribe una descripción" maxlength="600"></textarea>
+						<label for="subject-description" class="course-form__field-label">Descripción</label>
+						<textarea name="subject-description" placeholder="Escribe una descripción" maxlength="600"></textarea>
 					</div>
 					<input type="submit" value="Crear" class="course-form__submit course-form__submit--area">
 				</div>
 			</form>
       <div class="overlay hidden"></div>
     </main>
+    <script src="../../Controllers/confirm-deletion.js"></script>
     <script src="../../Controllers/random-number.js"></script>
     <script src="../../Controllers/show-crud.js"></script>
     <script src="../../Controllers/modal-form.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
+    <script>confirmDeletion('¿Seguro que quieres eliminar este elemento?')</script>
   </body>
   </html>
   <?php 

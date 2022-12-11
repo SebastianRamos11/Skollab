@@ -149,7 +149,7 @@
           <h2>Crear usuario</h2>
           <hr />
         </div>
-        <form action="create.php" class="form" id="form" method="POST">
+        <form action="create.php?user" class="form" id="form" method="POST">
           <!-- DOCUMENT TYPE -->
           <div class="doc-type form__field">
             <label for="doc-type">Tipo de documento</label>
