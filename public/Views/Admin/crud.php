@@ -124,7 +124,7 @@
         ?>
         
         <!-- CREATE BUTTON -->
-        <a href="#body" class="crud-option create-button open-modal">
+        <a href="#body" class="crud-option create-button open-modal-btn">
           <div class="crud-option__label">Crear Usuario</div>
           <i class="fa-solid fa-plus"></i>
         </a>
@@ -143,92 +143,89 @@
       </div>
       
       <!-- Form modal to CREATE an user -->
-      <div class="modal-container hidden">
-        <div class="modal card">
-          <button class="close-modal close-button">&times;</button>
-          <div class="modal__header">
-            <h2>Crear usuario</h2>
-            <hr />
-          </div>
-          <form action="create.php" class="form" id="form" method="POST">
-            <!-- DOCUMENT TYPE -->
-            <div class="doc-type form__field">
-              <label for="doc-type">Tipo de documento</label>
-              <select name="doc-type" id="doc-type" class="upload-form__field-input">
-                <option value="">Seleccione el tipo</option>
-                <?php 
-                  for($i = 1; $i <= sizeof($type_doc_array); $i++){
-                  ?>
-                    <option value="<?php echo $i ?>"><?php echo $type_doc_array[$i - 1][0]; ?></option>
-                  <?php
-                  }
-                ?>
-              </select>
-            </div>
-
-            <!-- ID -->
-            <div class="form__field">
-              <label for="id">Identificación</label>
-              <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" />
-            </div>
-  
-            <!-- FIRST NAME -->
-            <div class="form__field">
-              <label for="firstName">Nombres</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Nombres" onkeyup="upper(this);" maxlength="20" class="register-input" />
-            </div>
-  
-            <!-- LAST NAME -->
-            <div class="form__field">
-              <label for="lastName">Apellidos</label>
-              <input type="text" id="firstName" name="lastName" placeholder="Apellidos" onkeyup="upper(this);" maxlength="20" class="register-input" />
-            </div>
-
-            <!-- PHONE -->
-            <div class="form__field">
-              <label for="phone">Celular</label>
-              <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" />
-            </div>
-
-            <!-- ROL -->
-            <div class="rol">
-              <div class="rol__title">Rol</div>
-              <div class="rol__options">
-                <?php 
-                  for($i = 1; $i <= sizeof($role_array); $i++){
-                    ?>
-                    <div class="rol__option">
-                      <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>"/>
-                      <label for="rol-<?php echo $i?>"><?php print_r($role_array[$i - 1][0]) ?></label>
-                    </div>
-                    <?php 
-                  }
-                ?>
-              </div>
-            </div>
-  
-            <!-- MAIL -->
-            <div class="form__field">
-              <label for="email">Correo electrónico</label>
-              <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" />
-            </div>
-  
-            <!-- PASSWORD -->
-            <div class="form__field">
-              <label for="pass">Contraseña</label>
-              <input type="text" name="pass" id="pass" placeholder="Contraseña" class="register-input" />
-            </div>
-  
-            <!-- SUBMIT -->
-            <div class="form__field submit__field" style="grid-column: 1 span;">
-              <input type="submit" name="recover-submited" value="Crear Usuario" class="submit-btn" />
-            </div>
-          </form>
+      <div class="modal-form hidden modal card">
+        <button class="close-modal close-button">&times;</button>
+        <div class="modal__header">
+          <h2>Crear usuario</h2>
+          <hr />
         </div>
+        <form action="create.php" class="form" id="form" method="POST">
+          <!-- DOCUMENT TYPE -->
+          <div class="doc-type form__field">
+            <label for="doc-type">Tipo de documento</label>
+            <select name="doc-type" id="doc-type" class="upload-form__field-input">
+              <option value="">Seleccione el tipo</option>
+              <?php 
+                for($i = 1; $i <= sizeof($type_doc_array); $i++){
+                ?>
+                  <option value="<?php echo $i ?>"><?php echo $type_doc_array[$i - 1][0]; ?></option>
+                <?php
+                }
+              ?>
+            </select>
+          </div>
+
+          <!-- ID -->
+          <div class="form__field">
+            <label for="id">Identificación</label>
+            <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" />
+          </div>
+
+          <!-- FIRST NAME -->
+          <div class="form__field">
+            <label for="firstName">Nombres</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Nombres" onkeyup="upper(this);" maxlength="20" class="register-input" />
+          </div>
+
+          <!-- LAST NAME -->
+          <div class="form__field">
+            <label for="lastName">Apellidos</label>
+            <input type="text" id="firstName" name="lastName" placeholder="Apellidos" onkeyup="upper(this);" maxlength="20" class="register-input" />
+          </div>
+
+          <!-- PHONE -->
+          <div class="form__field">
+            <label for="phone">Celular</label>
+            <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" />
+          </div>
+
+          <!-- ROL -->
+          <div class="rol">
+            <div class="rol__title">Rol</div>
+            <div class="rol__options">
+              <?php 
+                for($i = 1; $i <= sizeof($role_array); $i++){
+                  ?>
+                  <div class="rol__option">
+                    <input type="radio" name="rol" id="rol-<?php echo $i?>" value="<?php echo $i?>"/>
+                    <label for="rol-<?php echo $i?>"><?php print_r($role_array[$i - 1][0]) ?></label>
+                  </div>
+                  <?php 
+                }
+              ?>
+            </div>
+          </div>
+
+          <!-- MAIL -->
+          <div class="form__field">
+            <label for="email">Correo electrónico</label>
+            <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" />
+          </div>
+
+          <!-- PASSWORD -->
+          <div class="form__field">
+            <label for="pass">Contraseña</label>
+            <input type="text" name="pass" id="pass" placeholder="Contraseña" class="register-input" />
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="form__field submit__field" style="grid-column: 1 span;">
+            <input type="submit" name="recover-submited" value="Crear Usuario" class="submit-btn" />
+          </div>
+        </form>
       </div>
       <div class="overlay hidden"></div>
     </main>
-    <style>body, html{scroll-behavior: unset !important;}</style>
     <script src="../../Controllers/confirm-deletion.js"></script>
     <script>confirmDeletion('¿Seguro que quieres eliminar este usuario?')</script>
     <?php
@@ -248,7 +245,8 @@
         }
       }
     ?>
-    <script src="../../Controllers/admin-control.js"></script>
+    <script src="../../Controllers/modal-form.js"></script>
+    <script src="../../Controllers/show-crud.js"></script>
   </body>
   </html>
   <?php 

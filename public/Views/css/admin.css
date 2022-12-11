@@ -1546,6 +1546,7 @@ body,
 html {
   height: 100% !important;
   position: relative !important;
+  scroll-behavior: unset !important;
 }
 
 .crud-choise {
@@ -1634,18 +1635,12 @@ html {
   margin-bottom: 50px;
 }
 
-.modal-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
 .modal {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1000;
   width: 70%;
   position: absolute;
   background-color: #fff;
@@ -2050,7 +2045,7 @@ html {
   color: #ff3030;
 }
 
-.crud-form {
+.course-form {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2060,34 +2055,44 @@ html {
   border-radius: 20px;
   padding: 20px;
 }
-.crud-form__header {
+.course-form .close-modal {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  font-size: 50px;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.course-form__header {
   text-align: center;
 }
-.crud-form__header hr {
+.course-form__header hr {
   margin: 20px -20px;
 }
-.crud-form.group-form .crud-form__data {
+.course-form.group-form .course-form__data {
   display: grid;
   padding: 20px;
   grid-template-columns: 210px 250px 1fr;
   gap: 20px;
 }
-.crud-form.subject-form {
+.course-form.subject-form {
   min-width: 600px;
 }
-.crud-form.subject-form .crud-form__data {
+.course-form.subject-form .course-form__data {
   display: grid;
   padding: 20px;
   grid-template-areas: "name file" "description description" "empty submit";
   gap: 20px;
 }
-.crud-form__field-label {
+.course-form__field-label {
   font-size: 1.2em;
   font-weight: 500;
   display: block;
   margin-bottom: 15px;
 }
-.crud-form__field-input {
+.course-form__field-input {
   border: 1px solid #636363;
   width: 200px;
   padding: 20px;
@@ -2095,20 +2100,20 @@ html {
   height: 40px;
   font-size: 20px;
 }
-.crud-form__field-input--large {
+.course-form__field-input--large {
   width: 300px;
 }
-.crud-form__field .file-choise {
+.course-form__field .file-choise {
   padding-right: 20px;
 }
-.crud-form__field .file-choise label {
+.course-form__field .file-choise label {
   cursor: pointer;
   display: block;
   color: rgba(0, 0, 0, 0.8);
   font-size: 25px;
   position: relative;
 }
-.crud-form__field .file-choise label .uploaded-file {
+.course-form__field .file-choise label .uploaded-file {
   font-size: 13px;
   font-weight: 700;
   color: #0066ff;
@@ -2121,27 +2126,27 @@ html {
   text-align: right;
   transition: all 0.3s;
 }
-.crud-form__field .file-choise label .uploaded-file--right {
+.course-form__field .file-choise label .uploaded-file--right {
   width: 200px;
   top: -6px;
   left: 30px;
   text-align: left;
 }
-.crud-form__field .file-choise label:hover {
+.course-form__field .file-choise label:hover {
   color: #0066ff;
 }
-.crud-form__field .file-choise input {
+.course-form__field .file-choise input {
   opacity: 0;
   position: absolute;
   z-index: -1;
 }
-.crud-form__field--description {
+.course-form__field--description {
   grid-area: description;
   position: relative;
   padding: 30px 0;
   margin-bottom: -20px;
 }
-.crud-form__field--description label {
+.course-form__field--description label {
   position: absolute;
   font-size: 1.2em;
   font-weight: 700;
@@ -2149,7 +2154,7 @@ html {
   left: 70px;
   background: white;
 }
-.crud-form__field--description textarea {
+.course-form__field--description textarea {
   width: 100%;
   height: 200px;
   resize: none;
@@ -2157,7 +2162,7 @@ html {
   border-radius: 15px;
   padding: 20px;
 }
-.crud-form__submit {
+.course-form__submit {
   border: none;
   border-radius: 10px;
   padding: 15px 20px;
@@ -2170,7 +2175,7 @@ html {
   height: 60px;
   margin-top: auto;
 }
-.crud-form__submit--area {
+.course-form__submit--area {
   grid-area: submit;
 }
 

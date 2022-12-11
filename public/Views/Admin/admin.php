@@ -19,18 +19,18 @@
     <link rel="stylesheet" href="../css/admin.css" />
     <title>Inicio</title>
   </head>
-  <body>
+  <body id="body">
     <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Bienvenido administrador 👋</h1>
       <div class="main-options">
         <!-- TODO: Crear boton de crear anuncio -->
-        <a href="#" class="main-option create-ad">
+        <a href="#" class="main-option create-ad open-modal-btn">
           <i class="fa-solid fa-plus"></i>
           <div class="main-option__btn open-modal">Crear Anuncio</div>
         </a>
       </div>
 
-      <form action="upload.php" method="post" enctype="multipart/form-data" class="modal-announcement float-form hidden" autocomplete="off">
+      <form action="upload.php" method="post" enctype="multipart/form-data" class="modal-form modal-announcement float-form hidden" autocomplete="off">
         <!-- FORM HEADING -->
         <div class="float-form__title">Crear Anuncio</div>
         <hr>
@@ -130,8 +130,8 @@
         ?>
       </div>
     </main>
-    <style>body,html{ scroll-behavior: unset !important } .max-height-form{max-height: 800px;} @media screen and (min-width: 1300px) {.overlay {height: 800px;}}@media screen and (min-width: 1700px) {.overlay {height: 100vh;}}</style>
-    <script src="../../Controllers/admin-control.js"></script>
+    <style>.main-content, .max-height-form{max-height: 800px; overflow-y: scroll;} @media screen and (min-width: 1300px) {.overlay {height: 800px;}}@media screen and (min-width: 1700px) {.overlay {height: 100vh;}}</style>
+    <script src="../../Controllers/modal-form.js"></script>
     <script src="../../Controllers/file-name.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
     <script src="../../Controllers/confirm-deletion.js"></script>

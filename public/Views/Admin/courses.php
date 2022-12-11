@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="../css/admin.css" />
     <title>Cursos</title>
   </head>
-  <body>
+  <body id="body">
     <?php include './sidebar.php' ?>
       <h1 class="main-content__header">🎒 Cursos</h1>
       <?php
@@ -36,7 +36,7 @@
             <div class="crud-option__label">'.$role.'</div>
             '.$figure.'
             <div class="crud-option__num">'.$num.' Existentes</div>
-            <div class="crud-'.$aux.' crud-option__btn-create"><i class="fa-solid fa-plus"></i> Crear</div>
+            <a href="#body" class="crud-'.$aux.' crud-option__btn-create open-modal-btn"><i class="fa-solid fa-plus"></i> Crear</a>
             <a href="#crud-'.$aux.'" class="crud-'.$aux.' crud-option__btn">Consultar</a>
           </div>';
           $aux++;
@@ -135,60 +135,65 @@
       <!-- FORMS -->
 
 			<!-- TODO: COURSE FORM -->
-      <form action="#" method="POST" class="crud-form course-form hidden"></form>
+      <form action="#" method="POST" class="course-form modal-form course-form hidden">
+        <button class="close-modal">&times;</button>
+      </form>
 
 			<!-- GROUP FORM -->
-      <form action="#" method="POST" class="crud-form group-form hidden">
-				<div class="crud-form__header">
+      <form action="#" method="POST" class="course-form modal-form group-form hidden">
+        <button class="close-modal">&times;</button>
+				<div class="course-form__header">
 					<h2>Crear Ficha</h2>
 					<hr>
 				</div>
-				<div class="crud-form__data">
-					<div class="crud-form__field">
-						<label for="group-num" class="crud-form__field-label">Número de ficha</label>
-						<input type="number" name="group-num" id="group-num" class="crud-form__field-input" placeholder="Ej: 1101">
+				<div class="course-form__data">
+					<div class="course-form__field">
+						<label for="group-num" class="course-form__field-label">Número de ficha</label>
+						<input type="number" name="group-num" id="group-num" class="course-form__field-input" placeholder="Ej: 1101">
 					</div>
-					<div class="crud-form__field">
-						<label for="group-code" class="crud-form__field-label">Código de unión</label>
+					<div class="course-form__field">
+						<label for="group-code" class="course-form__field-label">Código de unión</label>
 						<div>
-							<input type="number" name="group-code" id="group-code" class="crud-form__field-input" placeholder="Ej: 300391">
+							<input type="number" name="group-code" id="group-code" class="random-number-input course-form__field-input" placeholder="Ej: 300391">
 							<div class="random-number"><i class="fa-solid fa-rotate"></i></div>
 						</div>
 					</div>
-					<input type="submit" value="Crear" class="crud-form__submit">
+					<input type="submit" value="Crear" class="course-form__submit">
 				</div>
       </form>
 
 			<!-- SUBJECT FORM -->
-      <form action="#" method="POST" class="crud-form subject-form">
-				<div class="crud-form__header">
+      <form action="#" method="POST" class="course-form modal-form subject-form hidden">
+        <button class="close-modal">&times;</button>
+				<div class="course-form__header">
 					<h2>Crear Materia</h2>
 					<hr>
 				</div>
-				<div class="crud-form__data">
-					<div class="crud-form__field">
-						<label for="subject-name" class="crud-form__field-label">Nombre de la materia</label>
-						<input type="text" name="subject-name" id="subject-name" class="crud-form__field-input crud-form__field-input--large" placeholder="Ej: Matemáticas">
+				<div class="course-form__data">
+					<div class="course-form__field">
+						<label for="subject-name" class="course-form__field-label">Nombre de la materia</label>
+						<input type="text" name="subject-name" id="subject-name" class="course-form__field-input course-form__field-input--large" placeholder="Ej: Matemáticas">
 					</div>
-					<div class="crud-form__field">
-						<label class="crud-form__field-label">Miniatura</label>
+					<div class="course-form__field">
+						<label class="course-form__field-label">Miniatura</label>
 						<div class="file-choise">
 							<label for="file"><i class="fa-solid fa-paperclip"></i><p class="uploaded-file"></p></label>
-							<input type="file" name="subject-img" id="file" class="file">
+							<input type="file" name="subject-img" id="file" class="file" accept="image/png, image/gif, image/jpeg">
 						</div>
 					</div>
-					<div class="crud-form__field crud-form__field--description input-description">
-						<label for="subject-img" class="crud-form__field-label">Descripción</label>
+					<div class="course-form__field course-form__field--description input-description">
+						<label for="subject-img" class="course-form__field-label">Descripción</label>
 						<textarea name="description" placeholder="Escribe una descripción" maxlength="600"></textarea>
 					</div>
-					<input type="submit" value="Crear" class="crud-form__submit crud-form__submit--area">
+					<input type="submit" value="Crear" class="course-form__submit course-form__submit--area">
 				</div>
 			</form>
-      <div class="overlay"></div>
-
+      <div class="overlay hidden"></div>
     </main>
+    <script src="../../Controllers/random-number.js"></script>
+    <script src="../../Controllers/show-crud.js"></script>
+    <script src="../../Controllers/modal-form.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
-    <script src="../../Controllers/admin-control.js"></script>
   </body>
   </html>
   <?php 
