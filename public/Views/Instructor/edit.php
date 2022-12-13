@@ -1,6 +1,7 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
+  include_once "../validations.php";
 
   $id_activity = $_GET['activity'];
 
@@ -14,10 +15,10 @@
         $url = '../file-store/activities/'.$_FILES['file']['name'];
         $sql = $dbConnection->query("UPDATE actividad SET asunto = '$subject', descripcion = '$description', fecha = '$date', fecha_limite = '$due_date', url='$url' WHERE ID_Actividad = $id_activity");
 
-        header('Location: activities.php?message=updated');
+        header('Location: activities.php?group='.$group.'&message=updated');
         exit();
       }else{
-        header('Location: activities.php?message=error');
+        header('Location: activities.php?group='.$group.'&message=error');
         exit();
       }
     } else{
@@ -27,11 +28,11 @@
       $due_date = $_POST['due-date'];
       $sql = $dbConnection->query("UPDATE actividad SET asunto = '$subject', descripcion = '$description', fecha = '$date', fecha_limite = '$due_date' WHERE ID_Actividad = $id_activity");
 
-      header('Location: activities.php?message=updated');
+      header('Location: activities.php?group='.$group.'&message=updated');
       exit();    
     }
   } else {
-    header('Location: activities.php?message=error');
+    header('Location: activities.php?group='.$group.'&message=error');
     exit();
   }
 ?>

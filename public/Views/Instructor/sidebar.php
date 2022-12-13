@@ -18,16 +18,16 @@
             <span>Inicio</span>
           </li>
         </a>
-        <a href="./activities.php" class="nav-y-menu__link">
+        <a href="./activities.php?group=<?php echo $group ?>" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-book"></i>
             <span>Actividades</span>
           </li>
         </a>
-        <a href="./groups.php" class="nav-y-menu__link">
+        <a href="./groups.php?group=<?php echo $group ?>" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-users"></i>
-            <span>Fichas</span>
+            <span>Ficha</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">

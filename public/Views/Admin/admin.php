@@ -111,7 +111,7 @@
                   <?php
                     if($announcements[$i][3] != ''){
                       ?>
-                      <img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+                      <img class="announcement__img" src=".<?php echo $announcements[$i][3] ?>" alt="announcement-image">
                       <?php 
                     }
                   ?>

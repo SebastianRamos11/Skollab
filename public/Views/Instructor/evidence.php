@@ -1,6 +1,11 @@
 <?php
 	include_once "../../Models/connection.php";
 	session_start();
+  include_once "../validations.php";
+
+	$group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+  $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+  $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 
 	if (isset($_SESSION['id'])) {
 		$id_evidencia = $_GET['evidence'];  
@@ -55,8 +60,8 @@
 					<div class="user-evidence__info">
 						<img src="../img/default.jpeg" class="user-evidence__photo"></img>
 						<div class="user-evidence__group">
-							<div class="user-evidence__group-label">Ficha</div>
-							<div class="user-evidence__group-num"><?php echo $evidence_array[0][2]; ?></div>
+							<div class="user-evidence__group-label">Curso</div>
+							<div class="user-evidence__group-num"><?php echo $group_num; ?></div>
 						</div>
 					</div>
 					<div class="user-evidence__data">
@@ -72,7 +77,7 @@
 				</div>
         <hr>
         <!-- CALIFICATION FORM -->
-        <form action="upload-grade.php?evidence=<?php echo $id_evidencia; ?>&activity=<?php echo $id_actividad; ?>" class="calification-form" method="POST">
+        <form action="upload-grade.php?group=<?php echo $group ?>&evidence=<?php echo $id_evidencia; ?>&activity=<?php echo $id_actividad; ?>" class="calification-form" method="POST">
           <div class="calification-form__grade">
             <div class="calification-form__grade-label">Calificación</div>
             <div class="calification-form__grade-input">

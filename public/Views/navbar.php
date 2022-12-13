@@ -10,7 +10,7 @@
     </a>
   </div>
   <ul class="nav-menu nav-menu--loged">
-    <li class="nav-menu__item"><a href="main.php" class="nav-menu__link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+    <li class="nav-menu__item"><a href="<?php if($user[0][0] == 1) { echo "./Admin/admin.php"; } else { echo "main.php "; }?>" class="nav-menu__link"><i class="fa-solid fa-house"></i> Inicio</a></li>
     <li class="nav-menu__item"><a href="profile.php" class="nav-menu__link"><i class="fa-solid fa-user"></i> Perfil</a></li>
     <li class="nav-menu__item"><a href="../Models/logout.php" class="nav-menu__link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a></li>
   </ul>

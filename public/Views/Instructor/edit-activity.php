@@ -1,17 +1,17 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
-  if (isset($_SESSION['id'])) {
-    $id_activity = $_GET['activity'];
+  include_once "../validations.php";
 
-    $activity = "SELECT asunto, descripcion, ID_Ficha, fecha_limite, url FROM actividad WHERE ID_Actividad = $id_activity";
-    $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
-    $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
+  $id_activity = $_GET['activity'];
 
-    // GET INSTRUCTOR'S GROUPS
-    $get_group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-    $get_group_result = mysqli_query($dbConnection, $get_group) or die(mysqli_error($dbConnection));
-    $get_group_array = mysqli_fetch_all($get_group_result, MYSQLI_NUM);
+  $activity = "SELECT asunto, descripcion, ID_Ficha, fecha_limite, url FROM actividad WHERE ID_Actividad = $id_activity";
+  $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+  $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
+
+  $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+  $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+  $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,7 +26,7 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
-      <form action="edit.php?activity=<?php echo $id_activity ?>" method="post" enctype="multipart/form-data" class="upload-form" style="margin: 0 auto">
+      <form action="edit.php?group=<?php echo $group ?>&activity=<?php echo $id_activity ?>" method="post" enctype="multipart/form-data" class="upload-form" style="margin: 0 auto">
         <!-- FORM HEADING -->
         <div class="upload-form__title">Editar Actividad</div>
         <hr>
@@ -44,7 +44,7 @@
         <!-- FICHA -->
         <div class="upload-form__field">
           <div class="upload-form__field-label"><i class="fa-solid fa-user-group"></i><span>Dirigido a</span></div>
-          <div class="group-activity"><?php echo $activity_array[0][2]?> </div>
+          <div class="group-activity"><?php echo $group_num ?> </div>
         </div>
         <hr>
         <!-- FECHA FIN -->
@@ -74,7 +74,7 @@
             <input type="file" name="file" class="file" id="file">
           </div>
           <div class="upload-form__buttons">
-            <a href="activities.php" title="Cancelar" class="cancel-btn">Cancelar</a>
+            <a href="activities.php?group=<?php echo $group ?>" title="Cancelar" class="cancel-btn">Cancelar</a>
             <input type="submit" class="btn-submit" name="submit" value="Guardar">
           </div>
         </div>
@@ -90,9 +90,3 @@
   <script src="../../Controllers/file-name.js"></script>
   <script src="../../Controllers/file-upload.js"></script>
 </html>
-<?php
-} else {
-  include('../../Models/logout.php');
-  $location = header('Location: ../index.php');
-}
-?>

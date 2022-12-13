@@ -1,35 +1,38 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
+  include_once "../validations.php";
+
   if (isset($_SESSION['id'])) {
-    $id_aprendiz = $_GET['aprendiz'];
+    $id_student = $_GET['student'];
   
     // GET APRENDIZ DATA
-    $aprendiz = "SELECT nombres, apellidos, ID_Rol, ID_Tipo_Documento, num_documento, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_aprendiz";
-    $aprendiz_result = mysqli_query($dbConnection, $aprendiz) or die(mysqli_error($dbConnection));
-    $aprendiz_array = mysqli_fetch_all($aprendiz_result, MYSQLI_NUM);
+    $student = "SELECT nombres, apellidos, ID_Rol, ID_Tipo_Documento, num_documento, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_student";
+    $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
+    $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
 
     // GET ROL
-    $role = $aprendiz_array[0][2];
+    $role = $student[0][2];
     $role = "SELECT tipo FROM rol WHERE ID_Rol = $role";
     $role_result = mysqli_query($dbConnection, $role) or die(mysqli_error($dbConnection));
     $role = mysqli_fetch_all($role_result, MYSQLI_NUM);
 
     // GET DOCUMENT TYPE
-    $type_doc = $aprendiz_array[0][3];
+    $type_doc = $student[0][3];
     $type_doc = "SELECT tipo FROM tipo_documento WHERE ID_Tipo_Documento = $type_doc";
     $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
     $type_doc = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 
     // GET AMBIENTE VIRTUAL OF APRENDIZ 
-    $course_aprendiz = "SELECT * FROM ambiente_virtual WHERE ID_Persona = $id_aprendiz";
-    $course_aprendiz_result = mysqli_query($dbConnection, $course_aprendiz) or die(mysqli_error($dbConnection));
-    $course_aprendiz_array = mysqli_fetch_all($course_aprendiz_result, MYSQLI_NUM);
+		$student_groups = "SELECT A.ID_Ficha, F.numero FROM ambiente_virtual A JOIN ficha F ON A.ID_Ficha = F.ID_Ficha WHERE ID_Persona = $id_student";
+		$student_groups_result = mysqli_query($dbConnection, $student_groups) or die(mysqli_error($dbConnection));
+		$student_groups = mysqli_fetch_all($student_groups_result, MYSQLI_NUM);
 
-    // GET INSTRUCTOR activities (TO LOOP)
+    // GET INSTRUCTOR ACTIVITIES (TO LOOP)
     $activity_array = array();
-    for($i=0; $i < sizeof($course_aprendiz_array); $i++){
-      $ficha = $course_aprendiz_array[$i][2];
+    for($i=0; $i < sizeof($student_groups); $i++){
+      $ficha = $student_groups[$i][0];
+			
       $activity = "SELECT ID_Actividad, asunto FROM actividad WHERE ID_Persona =".$_SESSION['id']." AND ID_Ficha = ".$ficha;
       $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
       array_push($activity_array, mysqli_fetch_all($activity_result, MYSQLI_NUM));
@@ -50,40 +53,32 @@
 	</head>
 	<body>
     <?php include './sidebar.php' ?>
-			<h1 class="main-content__header">👨‍🎓 Gestión Aprendiz</h1>
+			<h1 class="main-content__header">👨‍🎓 Gestión de Estudiante</h1>
 			<div class="user">
 				<div class="user-profile">
 					<img class="user-profile__photo" src="../img/default.jpeg" alt="user-photo">
 					<div class="user-profile__info">
-						<div class="user-profile__name"><?php echo $aprendiz_array[0][0] ;?> <?php echo $aprendiz_array[0][1] ;?></div>
+						<div class="user-profile__name"><?php echo $student[0][0] ;?> <?php echo $student[0][1] ;?></div>
 						<div class="user-profile__label">
 							<div class="user-profile__rol"><?php echo $role[0][0] ;?></div>
 							<div class="dot"></div>
 							<div class="user-profile__type-id"><?php echo $type_doc[0][0] ;?></div>
-							<div class="user-profile__id"><?php echo $aprendiz_array[0][4] ;?></div>
+							<div class="user-profile__id"><?php echo $student[0][4] ;?></div>
 						</div>
 						<div class="user-profile__contact">
-							<div class="user-profile__contact-data"><i class="fa-regular fa-envelope"></i><?php echo $aprendiz_array[0][5] ;?></div>
-							<div class="user-profile__contact-data"><i class="fa-solid fa-phone"></i><?php echo $aprendiz_array[0][6] ;?></div>
+							<div class="user-profile__contact-data"><i class="fa-regular fa-envelope"></i><?php echo $student[0][5] ;?></div>
+							<div class="user-profile__contact-data"><i class="fa-solid fa-phone"></i><?php echo $student[0][6] ;?></div>
 						</div>
 					</div>
 				</div>
 				<hr>
 				<div class="user-programs">
-					<div class="user-programs__label">Programas de formación</div>
+					<div class="user-programs__label">Cursos en formación</div>
 					<?php 
-						for($i=0; $i < sizeof($course_aprendiz_array); $i++){
-							$subject = $course_aprendiz_array[$i][1];
-							$ficha = $course_aprendiz_array[$i][2];
-
-							// GET PROGRAM NAME
-							$subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
-							$subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
-							$subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
+						for($i=0; $i < sizeof($student_groups); $i++){
 							?>
 							<div class="course">
-								<div class="course__title"><?php echo $subject_name; ?></div>
-								<div class="course__id"><?php echo $ficha; ?></div>
+								<div class="course__title"><?php echo $student_groups[$i][1]; ?></div>
 								<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
 							</div>
 							<?php 
@@ -99,7 +94,7 @@
 								$id_activity = $activity_array[$i][0];
 								$title_activity = $activity_array[$i][1];
 
-								$evidences = "SELECT fecha, nota, observacion, url FROM `evidencia` WHERE ID_Persona = $id_aprendiz AND ID_Actividad = $id_activity";
+								$evidences = "SELECT fecha, nota, observacion, url FROM `evidencia` WHERE ID_Persona = $id_student AND ID_Actividad = $id_activity";
 								$evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
 								$evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 								

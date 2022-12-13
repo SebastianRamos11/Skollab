@@ -1,9 +1,11 @@
 <?php
 include_once "../../Models/connection.php";
 session_start();
+include_once "../validations.php";
+
 
 if(empty($_POST["subject"]) || (empty($_POST["group"]) && $_POST["group"] == 0) || empty($_POST["due-date"])){
-    header('Location: activities.php?message=empty');
+    header('Location: activities.php?group='.$group.'&message=empty');
     exit();
 }
 
@@ -19,10 +21,10 @@ if($_POST['submit']){
             $url = '../file-store/activities/'.$_FILES['file']['name'];
             $sql = $dbConnection->query("INSERT INTO actividad (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite, url) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."', '".$url."')");
             
-            header('Location: activities.php?message=created');
+            header('Location: activities.php?group='.$group.'&message=created');
             exit();
         }else{
-            header('Location: activities.php?message=error');
+            header('Location: activities.php?group='.$group.'&message=error');
             exit();
         }
     }else{
@@ -33,7 +35,7 @@ if($_POST['submit']){
         $due_date = $_POST['due-date'];
         $sql = $dbConnection->query("INSERT INTO actividad (ID_Persona, ID_Ficha, asunto, descripcion,fecha, fecha_limite) VALUES ('".$_SESSION['id']."', '".$group."', '".$subject."', '".$description."','".$date."', '".$due_date."')");
 
-        header('Location: activities.php?message=created');
+        header('Location: activities.php?group='.$group.'&message=created');
         exit();
     }
 }

@@ -1,6 +1,8 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
+  include_once "../validations.php";
+
   $id_user = $_SESSION['id'];
 
   if (isset($_SESSION['id'])) {
@@ -12,25 +14,20 @@
     $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
     $ficha = $activity[0][3];
     
-    // SELECT PROGRAM OF CURRENT ACTIVITY
-    $subject = "SELECT ID_Materia FROM ambiente_virtual WHERE ID_Persona = $id_user AND ID_Ficha = $ficha;";
-    $subject_result = mysqli_query($dbConnection, $subject) or die(mysqli_error($dbConnection));
-    $subject = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
-
-    $group = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, P.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $ficha AND P.ID_Rol = 3";
-    $group_result = mysqli_query($dbConnection, $group) or die(mysqli_error($dbConnection));
-    $group = mysqli_fetch_all($group_result, MYSQLI_NUM);
+		$student = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Ficha = $group AND P.ID_Rol = 3";
+    $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
+    $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
 
     $pending_users = array();
     
-    for($i=0; $i < sizeof($group); $i++){
-      $id_aprendiz = $group[$i][5];
+    for($i=0; $i < sizeof($student); $i++){
+      $id_student = $student[$i][5];
       
-      $delivery = "SELECT url FROM `evidencia` WHERE ID_Persona = $id_aprendiz AND ID_Actividad = $id_activity";
+      $delivery = "SELECT url FROM `evidencia` WHERE ID_Persona = $id_student AND ID_Actividad = $id_activity";
       $delivery_result = mysqli_query($dbConnection, $delivery) or die(mysqli_error($dbConnection));
       $delivery_array = mysqli_fetch_all($delivery_result, MYSQLI_NUM);
 
-      if(sizeof($delivery_array) === 0) array_push($pending_users, $group[$i]);
+      if(sizeof($delivery_array) === 0) array_push($pending_users, $student[$i]);
     }
 ?>
 
@@ -76,21 +73,21 @@
 						$evidences = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
 						if(sizeof($evidences) > 0){
 							for($i = 0; $i < sizeof($evidences); $i++){
-								$id_aprendiz = $evidences[$i][2];
+								$id_student = $evidences[$i][2];
 
-								$aprendiz_name = "SELECT nombres, apellidos FROM `persona` WHERE ID_Persona = $id_aprendiz";
-								$aprendiz_name_result = mysqli_query($dbConnection, $aprendiz_name) or die(mysqli_error($dbConnection));
-								$aprendiz_name = mysqli_fetch_all($aprendiz_name_result, MYSQLI_NUM);
-								$aprendiz_name =  $aprendiz_name[0][0]." ".$aprendiz_name[0][1];
+								$student_name = "SELECT nombres, apellidos FROM `persona` WHERE ID_Persona = $id_student";
+								$student_name_result = mysqli_query($dbConnection, $student_name) or die(mysqli_error($dbConnection));
+								$student_name = mysqli_fetch_all($student_name_result, MYSQLI_NUM);
+								$student_name =  $student_name[0][0]." ".$student_name[0][1];
 								?>
 								<div class="evidence">
 									<div class="evidence__user">
 										<i class="fa-solid fa-book evidence__icon"></i>
-										<div class="evidence__name"><?php echo $aprendiz_name ?></div>
+										<div class="evidence__name"><?php echo $student_name ?></div>
 									</div>
 									<div class="evidence__date"><?php echo $evidences[$i][1]; ?></div>
 									<?php if($evidences[$i][3]) { ?> <div class="evidence-recovered"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> NIVELADA</div> <?php }?>
-									<a href="evidence.php?evidence=<?php echo $evidences[$i][0]; ?>" class="evidence__link">Calificar</a>
+									<a href="evidence.php?group=<?php echo $group ?>&evidence=<?php echo $evidences[$i][0]; ?>" class="evidence__link">Calificar</a>
 								</div>
 								<?php
 							}
@@ -112,17 +109,17 @@
 						
 						if(sizeof($qualified_evidences) > 0){
 							for($i = 0; $i < sizeof($qualified_evidences); $i++){
-								$id_aprendiz = $qualified_evidences[$i][4];
+								$id_student = $qualified_evidences[$i][4];
 		
-								$aprendiz_name = "SELECT nombres, apellidos FROM `persona` WHERE ID_Persona = $id_aprendiz";
-								$aprendiz_name_result = mysqli_query($dbConnection, $aprendiz_name) or die(mysqli_error($dbConnection));
-								$aprendiz_name = mysqli_fetch_all($aprendiz_name_result, MYSQLI_NUM);
-								$aprendiz_name =  $aprendiz_name[0][0]." ".$aprendiz_name[0][1];
+								$student_name = "SELECT nombres, apellidos FROM `persona` WHERE ID_Persona = $id_student";
+								$student_name_result = mysqli_query($dbConnection, $student_name) or die(mysqli_error($dbConnection));
+								$student_name = mysqli_fetch_all($student_name_result, MYSQLI_NUM);
+								$student_name =  $student_name[0][0]." ".$student_name[0][1];
 								?>
 								<div class="qualified-evidence">
 									<div class="qualified-evidence__owner">
 										<i class="fa-solid fa-book qualified-evidence__icon"></i>
-										<div class="qualified-evidence__title"><?php echo $aprendiz_name ?></div>
+										<div class="qualified-evidence__title"><?php echo $student_name ?></div>
 									</div>
 									<div class="qualified-evidence__date"><?php echo $qualified_evidences[$i][0] ;?></div>
 									<div class="qualified-evidence__grade">
@@ -158,7 +155,7 @@
 										<div class="qualified-evidence__grade-edit"></div>
 									</div>
 									<div class="qualified-evidence__icons">
-										<a href="evidence.php?evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link"><i class="fa-regular fa-eye"></i> Gestionar</a>
+										<a href="evidence.php?group=<?php echo $group ?>&evidence=<?php echo $qualified_evidences[$i][3] ;?>" class="qualified-evidence__link"><i class="fa-regular fa-eye"></i> Gestionar</a>
 									</div>
 								</div>
 								<?php
@@ -200,7 +197,7 @@
 														<td><?php echo $pending_users[$i][2]; ?></td>
 														<td><?php echo $pending_users[$i][3]; ?></td>
 														<td><?php echo $pending_users[$i][4] ?></td>
-														<td><a href="see-aprendiz.php?aprendiz=<?php echo $pending_users[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
+														<td><a href="see-aprendiz.php?group=<?php echo $group ?>&student=<?php echo $pending_users[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
 													</tr>
 													<?php 
 												}

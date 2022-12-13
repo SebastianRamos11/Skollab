@@ -15,8 +15,8 @@
       $subject = $_POST['subject'];
       $description = $_POST['description'];
       $date = date('Y-m-d');
-      $url_file = '../file-store/announcements/'.$_FILES['file']['name'];
-      $url_image = '../file-store/announcements/'.$_FILES['image']['name'];
+      $url_file = './file-store/announcements/'.$_FILES['file']['name'];
+      $url_image = './file-store/announcements/'.$_FILES['image']['name'];
 
       $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha, url_portada, url_file) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."', '".$url_image."', '".$url_file."')");
       header('Location: admin.php?message=uploaded');
@@ -27,7 +27,7 @@
       $subject = $_POST['subject'];
       $description = $_POST['description'];
       $date = date('Y-m-d');
-      $url_file = '../file-store/announcements/'.$_FILES['file']['name'];
+      $url_file = './file-store/announcements/'.$_FILES['file']['name'];
 
       $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha, url_file) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."', '".$url_file."')");
       header('Location: admin.php?message=uploaded');
@@ -38,7 +38,7 @@
       $subject = $_POST['subject'];
       $description = $_POST['description'];
       $date = date('Y-m-d');
-      $url_image = '../file-store/announcements/'.$_FILES['image']['name'];
+      $url_image = './file-store/announcements/'.$_FILES['image']['name'];
 
       $sql = $dbConnection->query("INSERT INTO anuncio (ID_Persona, asunto, descripcion, fecha, url_portada) VALUES ('".$_SESSION['id']."', '".$subject."', '".$description."','".$date."', '".$url_image."')");
       header('Location: admin.php?message=uploaded');

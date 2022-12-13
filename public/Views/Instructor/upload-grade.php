@@ -1,12 +1,14 @@
 <?php
 	include_once "../../Models/connection.php";
 	session_start();
+  include_once "../validations.php";
+
 
 	$evidence = $_GET["evidence"];
 	$activity = $_GET["activity"];
 
 	if(empty($_POST["calification"])){
-	  header('Location: evidence.php?evidence='.$evidence.'&message=empty');
+	  header('Location: evidence.php?group='.$group.'&evidence='.$evidence.'&message=empty');
 	  exit();
 	}
 
@@ -17,10 +19,10 @@
 	$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 
 	if($query_result){
-	  header('Location: deliveries.php?activity='.$activity.'&message=qualified');
+	  header('Location: deliveries.php?group='.$group.'&activity='.$activity.'&message=qualified');
 	  exit();
 	}else{
-	  header('Location: deliveries.php?activity='.$activity.'&message=error');
+	  header('Location: deliveries.php?group='.$group.'&activity='.$activity.'&message=error');
 	  exit();
 	}
 ?>

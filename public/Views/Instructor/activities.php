@@ -1,10 +1,11 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
-  if (isset($_SESSION['id'])) {
-    $group = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-    $group_result = mysqli_query($dbConnection, $group) or die(mysqli_error($dbConnection));
-    $group_array = mysqli_fetch_all($group_result, MYSQLI_NUM);
+  include_once "../validations.php";
+
+  $groups = "SELECT A.ID_Ficha, F.numero FROM ambiente_virtual A JOIN ficha F ON A.ID_Ficha = F.ID_Ficha WHERE ID_Persona =".$_SESSION['id'];
+  $groups_result = mysqli_query($dbConnection, $groups) or die(mysqli_error($dbConnection));
+  $groups = mysqli_fetch_all($groups_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,72 +21,62 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
-    
       <h1 class="main-content__header">Centro de actividades 📚</h1>
-        <div class="instructor-activities">
-          <div class="container">
+      <div class="instructor-activities">
+        <div class="container">
+          <?php 
+            // GET GROUP'S Activities
+            $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $group AND ID_Persona =".$_SESSION['id'];
+            $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+            $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
+          ?>
+          <div class="activities-course">
             <?php 
-              for($i=0; $i < sizeof($group_array); $i++){ 
-                $ficha = $group_array[$i][0];
-                
-                // GET GROUP'S Activities
-                $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$_SESSION['id'];
-                $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
-                $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
-
+              if(sizeof($activities_array) > 0 ){
                 ?>
-                <div class="activities-course">
-                  <div class="activities-course__label">Ficha <?php echo $ficha ?></div>
-                  <hr>
-                  <?php 
-                    if(sizeof($activities_array) > 0 ){
+                <div class="activities">
+                  <?php
+                    for($i=0; $i < sizeof($activities_array); $i++){
                       ?>
-                      <div class="activities">
+                      <div class="activity">
+                      <div class="activity__title"><?php echo $activities_array[$i][1]; ?></div>
+                      <div class="activity__date">Fecha publicación: <?php echo $activities_array[$i][3]; ?></div>
+                      <div class="activity__info">
+                        <div class="activity__p"><?php echo $activities_array[$i][2]; ?></div>
+                        <div class="activity__date-limit"><?php echo $activities_array[$i][4]; ?></div>
+                        <div class="activity__type">Actividad</div>
+                        <!-- VALIDAR EXISTENCIA FILE -->
                         <?php
-                          for($j=0; $j < sizeof($activities_array); $j++){
+                          if($activities_array[$i][5] != ''){
                             ?>
-                            <div class="activity">
-                            <div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
-                            <div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
-                            <div class="activity__info">
-                              <div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
-                              <div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
-                              <div class="activity__type">Actividad</div>
-                              <!-- VALIDAR EXISTENCIA FILE -->
-                              <?php
-                                if($activities_array[$j][5] != ''){
-                                  ?>
-                                  <a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
-                                  <?php 
-                                }
-                              ?>
-                            </div>
-                            <div class="activity__btns">
-                              <a href="edit-activity.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
-                              <a href="deliveries.php?activity=<?php echo $activities_array[$j][0]?>" class="activity__btns-link activity__btns-link--active">Ver entregas</a>
-                            </div>
-                            <a href="delete.php?activity=<?php echo $activities_array[$j][0] ?>" class="activity__btn-delete delete-button"><i class="fa-solid fa-trash-can"></i></a>
-                            </div>
-                            <?php
+                            <a href="<?php print_r($activities_array[$i][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
+                            <?php 
                           }
                         ?>
                       </div>
-                      <?php 
-                    } else{
-                      ?><div class="alert-message"><i class="fa-solid fa-triangle-exclamation"></i>No has realizado publicaciones para esta ficha.</div><?php
-                    }  
+                      <div class="activity__btns">
+                        <a href="edit-activity.php?group=<?php echo $group ?>&activity=<?php echo $activities_array[$i][0]?>" class="activity__btns-link"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
+                        <a href="deliveries.php?group=<?php echo $group ?>&activity=<?php echo $activities_array[$i][0]?>" class="activity__btns-link activity__btns-link--active">Ver entregas</a>
+                      </div>
+                      <a href="delete.php?group=<?php echo $group ?>&activity=<?php echo $activities_array[$i][0] ?>" class="activity__btn-delete delete-button"><i class="fa-solid fa-trash-can"></i></a>
+                      </div>
+                      <?php
+                    }
                   ?>
                 </div>
                 <?php 
-              }
+              } else{
+                ?><div class="alert-message"><i class="fa-solid fa-triangle-exclamation"></i>No has realizado publicaciones para esta ficha.</div><?php
+              }  
             ?>
           </div>
-          <a href="#" class="create-button"><i class="fa-solid fa-plus"></i></a>
         </div>
-      </main>
+        <a href="#" class="create-button"><i class="fa-solid fa-plus"></i></a>
+      </div>
+    </main>
 
     <!-- CREATE ACTIVITY FORM -->
-    <form action="upload-post.php" method="post" enctype="multipart/form-data" class="upload-form float-form hidden">
+    <form action="upload-post.php?group=<?php echo $group ?>" method="post" enctype="multipart/form-data" class="upload-form float-form hidden">
       <!-- FORM HEADING -->
       <div class="upload-form__title">Crear Actividad</div>
       <hr>
@@ -106,8 +97,8 @@
         <select name="group" id="group" class="upload-form__field-input">
           <option value="0" default="">Seleccione la ficha</option>
           <?php 
-            for($i = 0; $i < sizeof($group_array); $i++){
-              ?><option value="<?php echo $group_array[$i][0]; ?>"><?php echo $group_array[$i][0]; ?></option><?php
+            for($i = 0; $i < sizeof($groups); $i++){
+              ?><option value="<?php echo $groups[$i][0]; ?>"><?php echo $groups[$i][1] ?></option><?php
             }
           ?>
         </select>
@@ -130,10 +121,8 @@
       <div class="btn-close"><i class="fa-solid fa-xmark"></i></div>
     </form>
     <div class="overlay hidden"></div>
-
     <script src="../../Controllers/confirm-deletion.js"></script>
     <script>confirmDeletion('¿Seguro que quieres eliminar esta actividad?')</script>
-
     <?php
       if(isset($_GET['message'])){
         if($_GET['message'] === 'empty') {
@@ -152,10 +141,4 @@
     <script src="../../Controllers/activity-control.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
   </body>
-  </html>
-<?php
-  } else {
-    include('../../Models/logout.php');
-    $location = header('Location: ../index.php');
-  }
-?>
+</html>

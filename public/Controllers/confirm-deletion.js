@@ -3,7 +3,6 @@ const confirmDeletion = (title) => {
   deleteElement.forEach((e, i) => {
     deleteElement[i].addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(deleteElement[i].getAttribute("href"));
       Swal.fire({
         title,
         text: "¡No podrás revertir esto!",

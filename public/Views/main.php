@@ -36,7 +36,7 @@
             <div class="course">
               <div class="course__title"><?php echo $groups[$i][1]; ?></div>
               <img class="course__figure" src="./img/courses/sena-logo.png" alt="course">
-              <a href="<?php if($user[0][0] == 2) { echo "./Instructor/instructor.php"; } else { echo "./Aprendiz/briefcase.php"; } ?>?group=<?php echo $groups[$i][0] ?>" class="course__link">Ambiente virtual >></a>
+              <a href="<?php if($user[0][0] == 2) { echo "./Instructor/activities.php"; } else { echo "./Aprendiz/briefcase.php"; } ?>?group=<?php echo $groups[$i][0] ?>" class="course__link">Ambiente virtual >></a>
             </div>
             <?php
           }
@@ -100,6 +100,7 @@
         ?>
       </div>
     </main>
+    <script src="../Controllers/file-name.js"></script>
   </body>
   <style>body, html{background: #fff !important;}.nav{border-bottom: 1px solid #c2c2c2;}.announcement{border: 1px solid #868686;}.main-content{padding: 40px;}</style>
 </html>
