@@ -33,17 +33,34 @@
   }
 
   // GROUP CREATION
-  else if(isset($_GET['group'])){
+  else if(isset($_GET['course'])){
     if(empty($_POST["group-num"]) || empty($_POST["group-code"])){
       header('Location: courses.php?message=empty');
       exit();
     }
     $group_num = $_POST["group-num"];
     $group_code = $_POST["group-code"];
+    $group_desc = $_POST["course-description"];
 
-    $create_query = $dbConnection->query("INSERT INTO ficha (numero, codigo) VALUES ('$group_num', '$group_code')");
-    header('Location: courses.php?message=created');
-    exit();
+    echo $group_num."<br>".$group_code."<br>".$group_desc."<br>";
+    
+    $create_group = $dbConnection->query("INSERT INTO ficha (numero, descripcion, codigo) VALUES ('$group_num', '$group_desc', '$group_code')");
+
+    // Get last group created
+    $id_group = "SELECT ID_Ficha FROM ficha";
+    $id_group_result= mysqli_query($dbConnection, $id_group) or die(mysqli_error($dbConnection));
+    $id_group = mysqli_fetch_all($id_group_result, MYSQLI_NUM);
+    $id_group = end($id_group)[0];
+
+    print_r($id_group);
+
+    // TODO: COURSE CREATION
+    // foreach($_POST['subjects'] as $subject){
+    //   $create_course = $dbConnection->query("INSERT INTO curso (ID_Ficha, ID_Materia) VALUES ('$id_group', '$subject')");
+    // }
+    
+    // header('Location: courses.php?message=created');
+    // exit();
   }
 
   // SUBJECT CREATION
@@ -70,5 +87,4 @@
     }
 
   }
-
 ?>

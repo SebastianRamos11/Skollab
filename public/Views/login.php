@@ -62,10 +62,8 @@
   
     if ($result_array[0][0] == 1) {
       header('Location: ./Admin/admin.php');
-    } elseif ($result_array[0][0] == 2) {
-      header('Location: ./Instructor/instructor.php');
-    } elseif ($result_array[0][0] == 3) {
-      header('Location: ./Aprendiz/aprendiz.php');
+    } else {
+      header('Location: ./main.php');
     }
   }
 ?>

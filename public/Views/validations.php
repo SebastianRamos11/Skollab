@@ -3,5 +3,5 @@
     include('../../Models/logout.php');
     header('Location: ../index.php');
   }
-  	$group = $_GET['group'];
+  $group = $_GET['group'];
 ?>

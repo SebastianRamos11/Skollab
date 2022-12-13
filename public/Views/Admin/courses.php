@@ -43,17 +43,11 @@
         }
       ?>
 
-      <div class="crud-choise">
+      <div class="crud-choise crud-choise--no-centered">
         <?php
           crudOption(
             'Cursos',
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 65" xml:space="preserve"><path fill="#656D78" d="M39 55.504h24v4a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-4h38z"/><path fill="#E6E9ED" d="M46 23.504v5a2 2 0 0 1-2 2H19.99c-1.11 0-2-.89-2-2v-5H5v32h54v-32H46z"/><path fill="#434A54" d="M5 22.494a2 2 0 0 1 2-2h10.99v3.01H5v-1.01z"/><path fill="#AAB2BD" d="M38 55.504c.55 0 1 .45 1 1v.99c0 .55-.45 1-1 1H26c-.55 0-1-.45-1-1v-.99c0-.55.45-1 1-1h12z"/><path fill="#656D78" d="m8.02 11.504-.03-.01 24.01-8 24 8-10.09 3.36L32 19.494l-13.92-4.64z"/><path fill="#434A54" d="M59 22.494v1.01H46v-3.01h11a2 2 0 0 1 2 2z"/><path fill="#545C66" d="M17.99 23.504V15.134l.09-.279L32 19.494l13.91-4.64.09.28V28.504a2 2 0 0 1-2 2H19.99c-1.11 0-2-.89-2-2v-5z"/><path fill="#AAB2BD" d="M25 55.504h14v1H25z"/><path fill="#545C66" d="M45.998 29.505a1 1 0 0 1-1-1V15.134a1 1 0 1 1 2 0v13.371a1 1 0 0 1-1 1z"/><path fill="#545C66" d="M43.998 31.505a1 1 0 1 1 0-2 1 1 0 0 0 1-1 1 1 0 1 1 2 0c0 1.654-1.346 3-3 3zM17.99 29.505a1 1 0 0 1-1-1V15.132a1 1 0 1 1 2 0v13.373a1 1 0 0 1-1 1z"/><path fill="#545C66" d="M19.99 31.505c-1.654 0-3-1.346-3-3a1 1 0 1 1 2 0 1 1 0 0 0 1 1 1 1 0 1 1 0 2z"/><path fill="#545C66" d="M43.998 31.505H19.99a1 1 0 1 1 0-2h24.008a1 1 0 1 1 0 2z"/><path d="M19.003 38.499H45v-1H19.003v1z"/><path fill="#CCD1D9" d="M46 44.503H18.003a1 1 0 1 1 0-2H46a1 1 0 1 1 0 2zM46 47.501H18.003a1 1 0 1 1 0-2H46a1 1 0 1 1 0 2z"/><g><path fill="#CCD1D9" d="M37 50.497h-9.997a1 1 0 1 1 0-2H37a1 1 0 1 1 0 2z"/></g><path fill="#434A54" d="M5 23.504h1.99v32H5zM57.002 23.504h1.99v32h-1.99z"/><g><path fill="#656D78" d="M31.996 20.497c-.106 0-.214-.018-.316-.052l-24.006-8a.998.998 0 0 1 0-1.896L31.68 2.547c.205-.068.428-.068.633 0l24.006 8.002a1 1 0 0 1 0 1.896l-24.006 8c-.103.034-.21.052-.317.052zm-20.843-9 20.843 6.946 20.843-6.946-20.843-6.948-20.843 6.948z"/></g><g><path fill="#FFCE54" d="M31.996 12.501H7.99a1 1 0 1 1 0-2h24.006a1 1 0 1 1 0 2z"/></g><g><path fill="#FFCE54" d="M7.99 17.501a1 1 0 0 1-1-1v-5a1 1 0 1 1 2 0v5a1 1 0 0 1-1 1z"/></g><g><path fill="#CCD1D9" d="M46.996 38.499c0 .55-.45 1-1 1H18.008c-.55 0-1-.45-1-1v-1c0-.55.45-1 1-1h27.988c.55 0 1 .45 1 1v1z"/><path fill="#5D9CEC" d="M18.008 36.499c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h15.489l-3-3H18.008z"/></g></svg>',
-            sizeof($groups),
-            $aux
-          );
-          crudOption(
-            'Fichas',
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="group"><defs><style>.group .cls-2{fill:none}.group .cls-3{fill:#ffb74d}.group .cls-4{fill:#039be5}</style></defs><g id="client_brief" data-name="client brief"><rect x="5" y="1" width="22" height="26" rx="1" ry="1" style="fill:#ffe082"/><path class="cls-2" d="M26 23c-1.87 0-3.58 2.9-2.82 6h5.64c.78-3.17-.98-6-2.82-6z"/><circle class="cls-2" cx="26" cy="18" r="2"/><path class="cls-3" d="M27.91 21.49a4 4 0 0 0-3.82 0c-2.62 1.42-3.86 5.43-2.59 8.86a1 1 0 0 0 .94.65h7.12a1 1 0 0 0 .94-.65c1.28-3.44.02-7.45-2.59-8.86zM22 7H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2zM22 11H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2zM18 15h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2zM18 19h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2z"/><path class="cls-4" d="M18 23h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2zM26 14a4 4 0 0 0-1.91 7.49 3.83 3.83 0 0 0 3.82 0A4 4 0 0 0 26 14z"/></g></svg>',
             sizeof($groups),
             $aux
           );
@@ -70,15 +64,9 @@
       <div class="crud-modal">
         <div class="row">
           <div class="col-md-12">
-            
             <!-- CRUD CURSOS -->
-            <div id="crud-0" class="crud card mb-50 hidden">
-              <div class="card-header">Cursos</div>
-              <!-- TODO: COURSES TABLE IN DB -->
-            </div>      
-            <!-- CRUD FICHAS -->
             <div id="crud-1" class="crud crud-group card mb-50 hidden">
-              <div class="card-header">Fichas</div>
+              <div class="card-header">Cursos</div>
               <div class="p-4">
                 <table class="table align-middle">
                   <thead>
@@ -134,16 +122,11 @@
 
       <!-- FORMS -->
 
-			<!-- TODO: COURSE FORM -->
-      <form action="#" method="POST" class="course-form modal-form course-form hidden" autocomplete="off">
-        <button class="close-modal">&times;</button>
-      </form>
-
 			<!-- GROUP FORM -->
-      <form action="create.php?group" method="POST" class="course-form modal-form group-form hidden" autocomplete="off">
+      <form action="create.php?course" method="POST" class="course-form modal-form group-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
 				<div class="course-form__header">
-					<h2>Crear Ficha</h2>
+					<h2>Crear Curso</h2>
 					<hr>
 				</div>
 				<div class="course-form__data">
@@ -153,11 +136,28 @@
 					</div>
 					<div class="course-form__field">
 						<label for="group-code" class="course-form__field-label">Código de unión</label>
-						<div>
+						<div  class="course-form__field--flex">
 							<input type="number" name="group-code" id="group-code" class="random-number-input course-form__field-input" placeholder="Ej: 300391">
 							<div class="random-number"><i class="fa-solid fa-rotate"></i></div>
 						</div>
 					</div>
+          <div class="course-form__field course-form__field--description input-description">
+						<label for="course-description" class="course-form__field-label">Descripción</label>
+						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción" maxlength="600"></textarea>
+					</div>
+          <div class="course-form__field course-form__field--subjects">
+						<div class="course-form__field-label">Materias</div>
+            <div class="course-subjects">
+              <input type="text" name="" id="filterInput" placeholder="Busca una materia..." class="course-form__field-input"><i class="fa-solid fa-magnifying-glass"></i>
+              <ul class="course-subjects__list">
+                <?php 
+                  for($i = 0; $i < sizeof($subjects); $i++){
+                    ?><li class="course-subject"><label for="<?php echo $i + 1 ?>"><input type="checkbox" name="subjects[]" id="<?php echo $i + 1 ?>" value="<?php echo $subjects[$i][3] ?>"><span class="checkmark"></span><span class="subject-name"><?php echo $subjects[$i][1] ?></span></label></li><?php
+                  }
+                ?>
+              </ul>
+            </div>
+          </div>
 					<input type="submit" value="Crear" class="course-form__submit">
 				</div>
       </form>
@@ -185,11 +185,12 @@
 						<label for="subject-description" class="course-form__field-label">Descripción</label>
 						<textarea name="subject-description" placeholder="Escribe una descripción" maxlength="600"></textarea>
 					</div>
-					<input type="submit" value="Crear" class="course-form__submit course-form__submit--area">
+          <input type="submit" value="Crear" class="course-form__submit">
 				</div>
 			</form>
       <div class="overlay hidden"></div>
     </main>
+    <script src="../../Controllers/course-search.js"></script>
     <script src="../../Controllers/confirm-deletion.js"></script>
     <script src="../../Controllers/random-number.js"></script>
     <script src="../../Controllers/show-crud.js"></script>

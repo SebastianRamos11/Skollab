@@ -25,9 +25,10 @@
     $type_doc = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
         
     // GET AMBIENTE VIRTUAL OF USER
-    $course_user = "SELECT * FROM ambiente_virtual WHERE ID_Persona = $id_user";
+    $course_user = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona = $id_user";
     $course_user_result = mysqli_query($dbConnection, $course_user) or die(mysqli_error($dbConnection));
     $course_user = mysqli_fetch_all($course_user_result, MYSQLI_NUM);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -107,7 +108,7 @@
 														<?php
 															if($announcements[$i][3] != ''){
 																?>
-																<img class="announcement__img" src="<?php echo $announcements[$i][3] ?>" alt="announcement-image">
+																<img class="announcement__img" src=".<?php echo $announcements[$i][3] ?>" alt="announcement-image">
 																<?php 
 															}
 														?>
@@ -136,18 +137,17 @@
 									<?php
 										if(sizeof($course_user) > 0){
 											for($i=0; $i < sizeof($course_user); $i++){
-												$subject = $course_user[$i][1];
-												$ficha = $course_user[$i][2];
-
-												$subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
-												$subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
-												$subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
+												$group = $course_user[$i][0];
+                        
+                        $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+                        $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+                        $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
+                      
 												?>
 												<div class="course course--management course-<?php echo $i ?>">
-													<div class="course__title"><?php echo $subject_name; ?></div>
-													<div class="course__id"><?php echo $ficha; ?></div>
+													<div class="course__title"><?php echo $group_num; ?></div>
 													<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
-													<a class="course__unlink" href="delete.php?program=<?php echo $subject ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
+													<a class="course__link" href="delete.php?program=<?php echo $subject ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
 												</div>
 												<?php
 											}
@@ -163,15 +163,18 @@
           // INSTRUCTOR'S ACTIVITIES
           if($user_array[0][2] == 2){
             for($i=0; $i < sizeof($course_user); $i++){
-                  $subject = $course_user[$i][1];
-                  $ficha = $course_user[$i][2];
+                  $group = $course_user[$i][0];
 
-                  $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $ficha AND ID_Persona =".$id_user;
+                  $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+                  $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+                  $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
+
+                  $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $group AND ID_Persona =".$id_user;
                   $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
                   $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
                   ?>
                   <div class="user-activities">
-                    <div class="user-label">Actividades para <?php echo $ficha ?></div>
+                    <div class="user-label">Actividades para el curso <?php echo $group_num ?></div>
                       <?php
                         if(sizeof($activities_array) > 0){
                           ?>
@@ -221,14 +224,14 @@
           if($user_array[0][2] == 3){
                 for ($i=0; $i < sizeof($course_user); $i++) {
                   $subject = $course_user[$i][1];
-                  $ficha = $course_user[$i][2];
+                  $group = $course_user[$i][2];
 
                   $subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
                   $subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
                   $subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
 
                   // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-                  $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $ficha AND P.ID_Rol = 2";
+                  $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $group AND P.ID_Rol = 2";
                   $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
                   $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
                   ?>
@@ -239,7 +242,7 @@
                       $id_instructor = $instructor_array[0][0];
 
                       // GET INSTRUCTOR'S activity
-                      $activity = "SELECT ID_Actividad, asunto FROM `actividad` WHERE ID_Persona = $id_instructor AND ID_Ficha = $ficha";
+                      $activity = "SELECT ID_Actividad, asunto FROM `actividad` WHERE ID_Persona = $id_instructor AND ID_Ficha = $group";
                       $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
                       $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 

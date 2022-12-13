@@ -10,8 +10,8 @@
   $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 
   if(empty($activity)){
-    header('Location: aprendiz.php');
-    exit();
+      header('Location: ./briefcase.php');
+      exit();
   }
 
   $id_instructor = $activity[0][0];
