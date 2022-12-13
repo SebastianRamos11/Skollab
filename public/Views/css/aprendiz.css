@@ -225,6 +225,8 @@ button,
 html input[type=button],
 input[type=reset],
 input[type=submit] {
+  -moz-appearance: button;
+       appearance: button;
   -webkit-appearance: button;
   cursor: pointer;
 }
@@ -251,6 +253,8 @@ table {
 }
 
 input[type=search] {
+  -moz-appearance: textfield;
+       appearance: textfield;
   -webkit-appearance: textfield;
   box-sizing: content-box;
 }
@@ -645,7 +649,7 @@ th {
   cursor: pointer;
   outline: none;
   margin-left: 20px;
-  border: none;
+  border: 1px solid #868686;
   min-width: 180px;
   text-align: center;
   display: inline-block;
@@ -662,6 +666,7 @@ th {
 .course__title {
   font-weight: 700;
   font-size: 1.3em;
+  margin-bottom: 20px;
 }
 .course__id {
   color: #636363;
@@ -670,7 +675,7 @@ th {
 .course__figure {
   max-width: 100px;
 }
-.course__unlink {
+.course__link {
   cursor: pointer;
   text-decoration: none;
   display: block;
@@ -681,10 +686,10 @@ th {
   background: #0066ff;
   font-weight: 500;
 }
-.course__unlink i {
+.course__link i {
   margin-right: 10px;
 }
-.course__unlink:hover {
+.course__link:hover {
   background: rgb(0, 90, 255);
 }
 

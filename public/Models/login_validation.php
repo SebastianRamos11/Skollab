@@ -17,10 +17,8 @@
       
       if ($result_array[0][1] == 1) {
         header('Location: ../Views/Admin/admin.php');
-      } elseif ($result_array[0][1] == 2) {
-        header('Location: ../Views/Instructor/instructor.php');
-      } elseif ($result_array[0][1] == 3) {
-        header('Location: ../Views/Aprendiz/aprendiz.php');
+      } else {
+        header('Location: ../Views/main.php');
       }
 
     } else {

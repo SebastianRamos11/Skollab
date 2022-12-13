@@ -12,7 +12,7 @@
         <img src="../img/skollab.png" alt="logo" class="logo short-logo" />
       </a>
       <ul class="nav-y-menu">
-        <a href="./instructor.php" class="nav-y-menu__link nav-y-menu__link--active">
+        <a href="../main.php" class="nav-y-menu__link nav-y-menu__link--active">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-house"></i>
             <span>Inicio</span>

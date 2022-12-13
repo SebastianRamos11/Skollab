@@ -1,28 +1,29 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
-  if (isset($_SESSION['id'])) {
-    $id_activity = $_GET['activity'];  
+  include_once "../validations.php";
 
-    $activity = "SELECT AC.ID_Persona, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE ID_Actividad = $id_activity;";
-    $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
-    $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
+  $id_activity = $_GET['activity'];  
 
-    if(empty($activity)){
-      header('Location: aprendiz.php');
-      exit();
-    }
+  $activity = "SELECT AC.ID_Persona, AC.asunto, AC.descripcion, AC.fecha, AC.fecha_limite, AC.url FROM actividad AC JOIN ambiente_virtual A ON AC.ID_Persona = A.ID_Persona WHERE ID_Actividad = $id_activity;";
+  $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+  $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 
-    $id_instructor = $activity[0][0];
+  if(empty($activity)){
+    header('Location: aprendiz.php');
+    exit();
+  }
 
-    $instructor = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_instructor";
-    $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
-    $instructor = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
-    $instructor = $instructor[0][0]." ".$instructor[0][1];
+  $id_instructor = $activity[0][0];
 
-    $evidence = "SELECT url, descripcion, observacion, nota, ID_Evidencia, nivelada FROM evidencia WHERE ID_Actividad = $id_activity AND ID_Persona =".$_SESSION['id'];
-    $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
-    $evidence = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
+  $instructor = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_instructor";
+  $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
+  $instructor = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
+  $instructor = $instructor[0][0]." ".$instructor[0][1];
+
+  $evidence = "SELECT url, descripcion, observacion, nota, ID_Evidencia, nivelada FROM evidencia WHERE ID_Actividad = $id_activity AND ID_Persona =".$_SESSION['id'];
+  $evidence_result = mysqli_query($dbConnection, $evidence) or die(mysqli_error($dbConnection));
+  $evidence = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -73,7 +74,7 @@
       <?php 
         if(sizeof($evidence) === 0){
           ?>
-          <form action="upload.php?activity=<?php echo $id_activity?>" method="POST" enctype="multipart/form-data"  class="upload-form">
+          <form action="upload.php?group=<?php echo $group?>&activity=<?php echo $id_activity?>" method="POST" enctype="multipart/form-data"  class="upload-form">
             <!-- FILE SELECTION -->
             <div class="upload-form__file">
               <label for="file"><i class="fa-solid fa-plus"></i>Agregar evidencia</label>
@@ -133,7 +134,7 @@
                   ?>
                     <a href="#upload-form" class="turned-evidence__link recover-button"><i class="fa-solid fa-turn-up"></i> <span>Nivelar evidencia</span></a>
                   </div>
-                  <form action="upload.php?activity=<?php echo $id_activity?>&recover-evidence=<?php echo $evidence[0][4] ?>" method="POST" id="upload-form" enctype="multipart/form-data"  class="upload-form hidden">
+                  <form action="upload.php?group=<?php echo $group ?>&activity=<?php echo $id_activity?>&recover-evidence=<?php echo $evidence[0][4] ?>" method="POST" id="upload-form" enctype="multipart/form-data"  class="upload-form hidden">
                     <!-- FILE SELECTION -->
                     <div class="upload-form__file">
                       <label for="file"><i class="fa-solid fa-plus"></i>Agregar evidencia</label>
@@ -153,7 +154,7 @@
                   <?php 
                 }
               } else{
-                ?><a href="delete.php?evidence=<?php echo $evidence[0][4];?>" class="turned-evidence__link delete-button"><i class="fa-solid fa-rotate-left"></i> <span>Cancelar entrega</span></a><?php
+                ?><a href="delete.php?group=<?php echo $group ?>&evidence=<?php echo $evidence[0][4];?>" class="turned-evidence__link delete-button"><i class="fa-solid fa-rotate-left"></i> <span>Cancelar entrega</span></a><?php
               }
             ?>
           </div>
@@ -188,9 +189,3 @@
     ?>
   </body>
 </html>
-<?php 
-  } else {
-    include('../../Models/logout.php');
-    $location = header('Location: ../index.php');
-  }
-?> 

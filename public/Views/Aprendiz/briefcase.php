@@ -1,12 +1,11 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
-  
-  if (isset($_SESSION['id'])) {
-    // GET AMBIENTE VIRTUAL
-    $groups = "SELECT ID_Ficha FROM ambiente_virtual WHERE ID_Persona =".$_SESSION['id'];
-    $groups_result = mysqli_query($dbConnection, $groups) or die(mysqli_error($dbConnection));
-    $groups = mysqli_fetch_all($groups_result, MYSQLI_NUM);
+  include_once "../validations.php";
+	
+	$group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+  $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+  $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,46 +23,41 @@
     <?php include './sidebar.php' ?>
       <h1 class="main-content__header">💼 Portafolio</h1>
       <?php 
-        for($i=0; $i<sizeof($groups); $i++){
-					$ficha = $groups[$i][0];
+				// GET COURSE DATA
+				$course = "SELECT ID_Materia, ID_Instructor FROM curso WHERE ID_Ficha = $group";
+				$course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
+				$course = mysqli_fetch_all($course_result, MYSQLI_NUM);
 
-					// GET COURSE DATA
-					$course = "SELECT C.ID_Materia, C.ID_Instructor, F.numero FROM curso C JOIN ficha F ON C.ID_Ficha = F.ID_Ficha WHERE C.ID_Ficha = $ficha";
-					$course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
-					$course = mysqli_fetch_all($course_result, MYSQLI_NUM);
+				?>
+				<div class="user-course">
+					<h2 class="user-course__name">Curso <?php echo $group_num ?></h2>
+					<hr>
+					<?php
+						for($j = 0; $j < sizeof($course); $j++){
+							$id_subject = $course[$j][0];
+							$id_instructor = $course[$j][1];
 
-					$course_num = $course[$i][2];
+							// GET SUBJECT
+							$subject = "SELECT img, nombre FROM materia WHERE ID_Materia = $id_subject";
+							$subject_result= mysqli_query($dbConnection, $subject) or die(mysqli_error($dbConnection));
+							$subject = mysqli_fetch_all($subject_result, MYSQLI_NUM);
 
-					?>
-					<div class="user-course">
-						<h2 class="user-course__name">Curso <?php echo $course_num ?></h2>
-						<hr>
-						<?php
-							for($j = 0; $j < sizeof($course); $j++){
-								$id_subject = $course[$j][0];
-								$id_instructor = $course[$j][1];
+							// GET INSTRUCTOR'S ACTIVITIES
+							$activities = "SELECT ID_Actividad, asunto, fecha FROM `actividad` WHERE ID_Ficha = $group AND ID_Persona = $id_instructor";
+							$activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+							$activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
 
-								// GET SUBJECT
-								$subject = "SELECT img, nombre FROM materia WHERE ID_Materia = $id_subject";
-								$subject_result= mysqli_query($dbConnection, $subject) or die(mysqli_error($dbConnection));
-								$subject = mysqli_fetch_all($subject_result, MYSQLI_NUM);
-								
-								// GET INSTRUCTOR'S ACTIVITIES
-								$activities = "SELECT ID_Actividad, asunto, fecha FROM `actividad` WHERE ID_Ficha = $ficha AND ID_Persona = $id_instructor";
-								$activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
-								$activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
+							?>
+							<!-- SUBJECT -->
+							<a class="program program-<?php echo $i ?>" href="#briefcase-<?php echo $j ?>">
+								<img class="program__figure" src="<?php echo $subject[0][0]; ?>" alt="program">
+								<div class="program__id">
+									<div class="program__title"><?php echo $subject[0][1]; ?></div>
+								</div>
+							</a>
 
-								?>
-								<!-- SUBJECT -->
-								<a class="program program-<?php echo $i ?>" href="#briefcase-<?php echo $j ?>">
-									<img class="program__figure" src="<?php echo $subject[0][0]; ?>" alt="program">
-									<div class="program__id">
-										<div class="program__title"><?php echo $subject[0][1]; ?></div>
-									</div>
-								</a>
-
-								<!-- SUBJECT'S ACTIVITIES-->
-								<div class="briefcase hidden" id="briefcase-<?php echo $i ?>">
+							<!-- SUBJECT'S ACTIVITIES-->
+							<div class="briefcase hidden" id="briefcase-<?php echo $i ?>">
 									<?php
 										if(sizeof($activities_array) > 0){
 											for($k=0; $k < sizeof($activities_array); $k++){
@@ -127,9 +121,9 @@
 																	?>
 																</div>
 															</div>
-															<a href="activity.php?activity=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
+															<a href="activity.php?group=<?php echo $group ?>&activity=<?php echo $evidences_array[0][4] ;?>" class="briefcase-evidence__link"><i class="fa-regular fa-eye"></i></a>
 															<a href="<?php echo $evidences_array[0][3] ;?>" class="briefcase-evidence__link" download=""><i class="fa-regular fa-file-lines"></i></a>
-															<?php if(!$evidences_array[0][1]) { ?> <a href="delete.php?evidence=<?php echo $evidences_array[0][5];?>&b=1" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a> <?php }?>
+															<?php if(!$evidences_array[0][1]) { ?> <a href="delete.php?group=<?php echo $group ?>&evidence=<?php echo $evidences_array[0][5];?>&b=1" class="briefcase-evidence__link briefcase-evidence__link--highlight delete-button"><i class="fa-regular fa-trash-can"></i></a> <?php }?>
 														</div>
 													</div>
 													<?php
@@ -150,13 +144,12 @@
 										}
 									?>
 									<hr class="program-divider">
-								</div>
-								<?php
-							}
-						?>
-					</div>
-					<?php
-        }
+							</div>
+							<?php
+						}
+					?>
+				</div>
+				<?php
       ?>
     </main>
 		<script src="../../Controllers/confirm-deletion.js"></script>
@@ -172,11 +165,4 @@
 		?>
 		<script src="../../Controllers/aprendiz-briefcase.js"></script>
 	</body>
-
 </html>
-<?php 
-  } else {
-    include('../../Models/logout.php');
-    $location = header('Location: ../index.php');
-  }
-?> 

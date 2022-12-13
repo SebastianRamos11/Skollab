@@ -3,6 +3,7 @@
   $name_result = mysqli_query($dbConnection, $user_name) or die(mysqli_error($dbConnection));
   $result_array = mysqli_fetch_all($name_result, MYSQLI_NUM);
   $user_name = $result_array[0][0];
+
   $id_user = $_SESSION['id'];
 ?>
 <div class="wrapper">
@@ -13,22 +14,22 @@
         <img src="../img/skollab.png" alt="logo" class="logo short-logo" />
       </a>
       <ul class="nav-y-menu">
-        <a href="./aprendiz.php" class="nav-y-menu__link nav-y-menu__link--active">
+        <a href="../main.php" class="nav-y-menu__link nav-y-menu__link--active">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-house"></i>
             <span>Inicio</span>
           </li>
         </a>
-        <a href="activities-center.php" class="nav-y-menu__link">
-          <li class="nav-y-menu__item">
-            <i class="fa-solid fa-book"></i>
-            <span>Actividades</span>
-          </li>
-        </a>
-        <a href="briefcase.php" class="nav-y-menu__link">
+        <a href="briefcase.php?group=<?php echo $group ?>" class="nav-y-menu__link">
           <li class="nav-y-menu__item">
             <i class="fa-solid fa-briefcase"></i>
             <span>Portafolio</span>
+          </li>
+        </a>
+        <a href="activities-center.php?group=<?php echo $group ?>" class="nav-y-menu__link">
+          <li class="nav-y-menu__item">
+            <i class="fa-solid fa-book"></i>
+            <span>Actividades</span>
           </li>
         </a>
         <a href="../../Models/logout.php" class="logout-mobile">

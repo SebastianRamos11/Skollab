@@ -1,10 +1,12 @@
 <?php
   include_once "../../Models/connection.php";
   session_start();
+  include_once "../validations.php";
+
   $evidence = $_GET['evidence'];
    
   if(!$evidence){
-    header('Location: aprendiz.php');
+    header('Location: ../main.php');
     exit();
   }
 
@@ -16,13 +18,13 @@
     $sql = $dbConnection->query("DELETE FROM evidencia WHERE ID_Evidencia = $evidence");
 
     if(isset($_GET['b'])){
-      header('Location: briefcase.php?message=deleted');
+      header('Location: briefcase.php?group='.$group.'&message=deleted');
     } else {
-      header('Location: activity.php?activity='.$validate_evidence[0][1].'&message=deleted');
+      header('Location: activity.php?group='.$group.'&activity='.$validate_evidence[0][1].'&message=deleted');
       exit(); 
     }
   } else{
-    header('Location: briefcase.php?message=error');
+    header('Location: briefcase.php?group='.$group.'&message=error');
     exit(); 
   }
 ?>

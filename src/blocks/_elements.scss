@@ -442,7 +442,7 @@ th {
   cursor: pointer;
   outline: none;
   margin-left: 20px;
-  border: none;
+  border: 1px solid #868686;
   min-width: 180px;
   text-align: center;
   display: inline-block;
@@ -458,6 +458,7 @@ th {
   &__title {
     font-weight: map-get($font-weights, "semibold");
     font-size: map-get($size-paragraph, "xl");
+    margin-bottom: 20px;
   }
   &__id {
     color: $paragraph-color;
@@ -466,7 +467,7 @@ th {
   &__figure {
     max-width: 100px;
   }
-  &__unlink {
+  &__link {
     cursor: pointer;
     text-decoration: none;
     display: block;

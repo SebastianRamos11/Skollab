@@ -100,7 +100,7 @@
     ?>
   </body>
   <style>
-    body{
+    body, html{
       background: #fff !important;
     }
     .nav{
