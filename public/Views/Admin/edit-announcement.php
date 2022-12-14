@@ -62,24 +62,7 @@
         </div>
       </form>
   </body>
-  <style>
-    body{
-      background-image: url('../img/backgrounds/signup-bg.svg');
-      background-size: cover;
-      height: 115vh !important; 
-    }
-
-    .float-form {
-      transform: translate(-50%, -55%) !important;
-    }
-
-    @media screen and (min-width: 1500px) {
-      body{
-        height: 100vh !important;
-      }
-    }
-    
-  </style>
+  <style>body{background-image: url('../img/backgrounds/signup-bg.svg');background-size: cover;height: 115vh !important; }.float-form {transform: translate(-50%, -55%) !important;}@media screen and (min-width: 1500px) {body{height: 100vh !important;}}</style>
   <script src="../../Controllers/admin-control.js"></script>
   <script src="../../Controllers/file-upload.js"></script>
   <script src="../../Controllers/file-name.js"></script>

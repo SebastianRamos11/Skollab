@@ -1,5 +1,3 @@
-"strict mode";
-
 const openModalForm = document.querySelectorAll(".open-modal-btn");
 const closeModalForm = document.querySelectorAll(".close-modal");
 const modalForm = document.querySelectorAll(".modal-form");

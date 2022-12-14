@@ -65,23 +65,22 @@
 
   // SUBJECT CREATION
   else if(isset($_GET['subject'])){
-    if(empty($_POST["subject-name"]) || empty($_POST["subject-description"])){
+    if(empty($_POST["subject-name"])){
       header('Location: courses.php?message=empty');
       exit();
     }
     
     $subject_name = $_POST["subject-name"];
-    $subject_desc = $_POST["subject-description"];
 
     if(file_exists($_FILES['subject-img']['tmp_name'])){
       move_uploaded_file($_FILES['subject-img']['tmp_name'], '../file-store/subjects/'.$_FILES['subject-img']['name']);
       $subject_img = '../file-store/subjects/'.$_FILES['subject-img']['name'];
-      $create_query = $dbConnection->query("INSERT INTO materia (nombre, descripcion, img) VALUES ('$subject_name', '$subject_desc', '$subject_img')");
+      $create_query = $dbConnection->query("INSERT INTO materia (nombre, img) VALUES ('$subject_name', '$subject_img')");
       header('Location: courses.php?message=created');
       exit();
     } else {
       $subject_img = '../file-store/subjects/sena-logo.png';
-      $create_query = $dbConnection->query("INSERT INTO materia (nombre, descripcion, img) VALUES ('$subject_name', '$subject_desc', '$subject_img')");
+      $create_query = $dbConnection->query("INSERT INTO materia (nombre, img) VALUES ('$subject_name', '$subject_img')");
       header('Location: courses.php?message=created');
       exit();
     }

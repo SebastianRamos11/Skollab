@@ -2014,7 +2014,8 @@ html {
 .subject {
   display: grid;
   grid-template-columns: 200px 1fr 100px;
-  padding: 40px;
+  align-items: center;
+  padding: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 .subject:last-child {
@@ -2022,32 +2023,24 @@ html {
 }
 .subject__image {
   margin: auto;
-  max-width: 200px;
+  max-width: 100px;
 }
-.subject__info {
-  margin: 0 40px;
-}
-.subject__info-title {
+.subject__name {
   font-size: 1.3em;
   font-weight: 700;
-  margin-bottom: 20px;
-}
-.subject__info-description {
-  color: #636363;
 }
 .subject__actions {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .subject__btn {
-  font-size: 40px;
+  font-size: 25px;
   text-decoration: none;
   color: #0066ff;
 }
 .subject__btn--delete {
-  margin-top: 20px;
+  margin-left: 20px;
   color: #ff3030;
 }
 
@@ -2077,6 +2070,9 @@ html {
 .course-form__header hr {
   margin: 20px -20px;
 }
+.course-form.group-form .course-form__submit {
+  grid-area: submit;
+}
 .course-form.group-form .course-form__data {
   display: grid;
   padding: 20px;
@@ -2087,9 +2083,9 @@ html {
   min-width: 600px;
 }
 .course-form.subject-form .course-form__data {
-  display: grid;
   padding: 20px;
-  grid-template-areas: "name file file" "description description description" "empty empty submit";
+  display: grid;
+  grid-template-columns: 1fr 220px 1fr;
   gap: 20px;
 }
 .course-form__field--flex {
@@ -2186,7 +2182,6 @@ html {
   font-weight: 500;
   height: 60px;
   margin-top: auto;
-  grid-area: submit;
 }
 
 .course-subjects {

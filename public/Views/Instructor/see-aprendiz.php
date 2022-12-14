@@ -4,7 +4,7 @@
   include_once "../validations.php";
 
   if (isset($_SESSION['id'])) {
-    $id_student = $_GET['student'];
+    $id_student = $_GET['aprendiz'];
   
     // GET APRENDIZ DATA
     $student = "SELECT nombres, apellidos, ID_Rol, ID_Tipo_Documento, num_documento, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_student";
