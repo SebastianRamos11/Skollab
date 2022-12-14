@@ -92,11 +92,7 @@
           ?>
         </select>
       </div>
-      
-      <!-- SUBMIT -->
-      <div class="form__field submit__field">
-        <input type="submit" name="recover-submited" value="Guardar" class="submit-btn" />
-      </div>
+      <div class="form__field submit__field"><input type="submit" name="recover-submited" value="Guardar" class="submit-btn" /></div>
     </form>
   </div>
   <script src="../../Controllers/edit-control.js"></script>

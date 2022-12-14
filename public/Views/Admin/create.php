@@ -2,6 +2,8 @@
 	include_once "../../Models/connection.php";
   session_start();
 
+  // TODO: Unified create.php and upload.php
+
   // USER CREATION
   if(isset($_GET['user'])){
     if(empty($_POST["id"]) || empty($_POST["doc-type"]) || empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["phone"]) || empty($_POST["rol"]) || empty($_POST["email"]) || empty($_POST["pass"])){
@@ -54,7 +56,7 @@
 
     print_r($id_group);
 
-    // TODO: COURSE CREATION
+    // TODO: COURSE CREATION QUERY
     // foreach($_POST['subjects'] as $subject){
     //   $create_course = $dbConnection->query("INSERT INTO curso (ID_Ficha, ID_Materia) VALUES ('$id_group', '$subject')");
     // }

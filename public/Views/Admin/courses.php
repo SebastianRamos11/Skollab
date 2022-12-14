@@ -101,8 +101,6 @@
         </div>
       </div>
 
-      <!-- FORMS -->
-
 			<!-- SUBJECT FORM -->
       <form action="create.php?subject" method="POST" enctype="multipart/form-data" class="course-form modal-form subject-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>

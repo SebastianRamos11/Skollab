@@ -64,6 +64,8 @@
         </div>
         <hr>
         <?php
+          // FIXME: Show subjects of user and subjects of each.
+
 					// ADMIN'S ANNOUNCEMENTS
           if($user_array[0][2] == 1){
                 $announcements = "SELECT asunto, descripcion, fecha, url_portada, url_file, ID_Anuncio, ID_Persona FROM anuncio WHERE ID_Persona = $id_user";

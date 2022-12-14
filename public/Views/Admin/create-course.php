@@ -19,6 +19,7 @@
     <title>Cursos</title>
   </head>
   <body id="body">
+      <!-- TODO: Create course creation form (multistep) -->
       <form action="create.php?course" method="POST" class="course-form group-form" autocomplete="off">
         <button class="close-modal">&times;</button>
 				<div class="course-form__header">
