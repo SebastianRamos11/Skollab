@@ -3,6 +3,8 @@ const deleteEvidence = document.querySelectorAll(
   ".evidence-management__btn-delete"
 );
 const deleteActivity = document.querySelectorAll(".activity__btn-delete");
+const showCourseBtn = document.querySelectorAll(".show-course-content");
+const courseContent = document.querySelectorAll(".course-content");
 
 const confirmAction = function (elem, i, subject) {
   Swal.fire({
@@ -53,3 +55,15 @@ deleteActivity.forEach((e, i) => {
     );
   });
 });
+
+if (courseContent) {
+  showCourseBtn.forEach((showBtn, i) => {
+    showBtn.addEventListener("click", () => {
+      courseContent[i].classList.remove("hidden");
+      for (let j = 0; j < courseContent.length; j++) {
+        if (courseContent[j] === courseContent[i]) continue;
+        courseContent[j].classList.add("hidden");
+      }
+    });
+  });
+}

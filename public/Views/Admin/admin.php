@@ -23,7 +23,6 @@
     <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Bienvenido administrador 👋</h1>
       <div class="main-options">
-        <!-- TODO: Crear boton de crear anuncio -->
         <a href="#" class="main-option create-ad open-modal-btn">
           <i class="fa-solid fa-plus"></i>
           <div class="main-option__btn open-modal">Crear Anuncio</div>

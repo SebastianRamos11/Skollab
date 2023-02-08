@@ -135,7 +135,7 @@
           if($user_array[0][2] == 2 || $user_array[0][2] == 3){
                 ?>
                 <div class="user-programs">
-                	<div class="user-programs__label">Programas de formación</div>
+                	<div class="user-programs__label">Cursos</div>
 									<?php
 										if(sizeof($course_user) > 0){
 											for($i=0; $i < sizeof($course_user); $i++){
@@ -149,7 +149,10 @@
 												<div class="course course--management course-<?php echo $i ?>">
 													<div class="course__title"><?php echo $group_num; ?></div>
 													<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
-													<a class="course__link" href="delete.php?program=<?php echo $subject ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
+                          <div>
+                            <a class="course__btn course__btn--highlight course__unlink" href="delete.php?program=<?php echo $subject ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
+                            <a class="course__btn show-course-content" href="#course-content"><i class="fa-solid fa-angles-down"></i>Ver estado</a>
+                          </div>
 												</div>
 												<?php
 											}
@@ -158,191 +161,209 @@
 										}
 									?>
                 </div>
-                <hr>
                 <?php
           }
 
           // INSTRUCTOR'S ACTIVITIES
           if($user_array[0][2] == 2){
             for($i=0; $i < sizeof($course_user); $i++){
+              $group = $course_user[$i][0];
+
+              $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+              $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+              $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
+
+              $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $group AND ID_Persona =".$id_user;
+              $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
+              $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
+              ?>
+              <div id="course-content" class="course-content hidden user-activities">
+                <hr>
+                <div class="user-label">Actividades para el curso <?php echo $group_num ?></div>
+                <?php
+                  if(sizeof($activities_array) > 0){
+                    ?>
+                    <div class="activities-course">
+                      <div class="activities">
+                        <?php
+													for($j=0; $j < sizeof($activities_array); $j++){
+														?>
+														<div class="activity">
+															<div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
+															<div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
+															<div class="activity__info">
+																<div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
+																<div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
+																<div class="activity__type">Actividad</div>
+																<!-- VALIDAR EXISTENCIA FILE -->
+																<?php
+																				if($activities_array[$j][5] != ''){
+																					?>
+																					<a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
+																					<?php 
+																				}
+																?>
+															</div>
+															<a href="delete.php?delete_activity=<?php echo $activities_array[$j][0] ?>&id=<?php echo $id_user ?>" class="activity__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
+														</div>
+														<?php
+													}
+                        ?>
+                      </div>
+                    </div>
+                  	<?php
+                  } else {
+                    ?>
+                    <div class="activity-management">
+                      <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado actividades para esta ficha.</div>
+                    </div>
+                    <?php
+                  }
+                ?>
+              </div>
+              <?php
+            }
+          }
+
+          // STUDENT'S EVIDENCES (working on this)
+          if($user_array[0][2] == 3){
+            ?>
+            <div id="course-content" class="course-content hidden user-evidences">
+              <hr>
+              <?php
+                for ($i = 0; $i < sizeof($course_user); $i++) {
                   $group = $course_user[$i][0];
 
                   $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
                   $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
                   $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 
-                  $activities = "SELECT ID_Actividad, asunto, descripcion, fecha, fecha_limite, url FROM actividad WHERE ID_Ficha = $group AND ID_Persona =".$id_user;
-                  $activities_result = mysqli_query($dbConnection, $activities) or die(mysqli_error($dbConnection));
-                  $activities_array = mysqli_fetch_all($activities_result, MYSQLI_NUM);
-                  ?>
-                  <div class="user-activities">
-                    <div class="user-label">Actividades para el curso <?php echo $group_num ?></div>
-                      <?php
-                        if(sizeof($activities_array) > 0){
+                  $course = "SELECT ID_Materia, ID_Instructor FROM curso WHERE ID_Ficha = $group";
+                  $course_result = mysqli_query($dbConnection, $course) or die(mysqli_error($dbConnection));
+                  $course = mysqli_fetch_all($course_result, MYSQLI_NUM);
+                  
+                  ?><div class="user-label">Contenido del curso <?php echo $group_num ?></div><?php
+                  
+                  for($j = 0; $j < sizeof($course); $j++){
+                    $subject_query = "SELECT nombre, img FROM materia WHERE ID_Materia =".$course[$j][0];
+                    $subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
+                    $subject = mysqli_fetch_all($subject_result, MYSQLI_NUM);
+                    ?>
+                    <div class="user-evidences__subject">
+                      <div class="user-evidences__subject-header">
+                        <img src="<?php echo $subject[0][1] ?>" alt="subject-img" />
+                        <div><?php echo $subject[0][0] ?></div>
+                      </div>
+                      <div class="user-evidences__subject-evidences">
+                        <?php
+                        if($course[$j][1]){
+                          // GET INSTRUCTOR'S ACTIVITIES
+                          $activity = "SELECT ID_Actividad, asunto FROM `actividad` WHERE ID_Persona = ".$course[$j][1]." AND ID_Ficha = $group";
+                          $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
+                          $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
+      
+                          if(sizeof($activity) > 0){
+                            for ($k=0; $k < sizeof($activity); $k++) { 
+                              $id_activity = $activity[$k][0];
+                              $title_activity = $activity[$k][1];
+      
+                              // GET EVIDENCES DELIVERED BY activity
+                              $evidences = "SELECT ID_Evidencia, fecha, nota, observacion, url, ID_Actividad FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Actividad = $id_activity";
+                              $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
+                              $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
+      
+                              if(sizeof($evidences_array) > 0){
+                                ?>
+                                <div class="evidence-management">
+                                  <div class="user-evidence">
+                                    <div class="user-evidence__activity">
+                                      <i class="fa-solid fa-book user-evidence__icon"></i>
+                                      <div class="user-evidence__title"><?php echo $title_activity ;?></div>
+                                    </div>
+                                    <div class="user-evidence__date"><?php echo $evidences_array[0][1] ;?></div>
+                                    <div class="user-evidence__grade">
+                                      <div class="user-evidence__grade-value">
+                                        <?php
+                                          if($evidences_array[0][2] != ''){
+                                            ?>
+                                            <span class="gradeValue"><?php echo $evidences_array[0][2] ?>/100</span>
+                                            <?php
+                                          } else{
+                                            echo "--/100";
+                                          }
+                                        ?>
+                                      </div>
+                                      <div class="user-evidence__grade-range">
+                                        <?php
+                                          if($evidences_array[0][2] != ''){
+                                            ?>
+                                            <span class="<?php
+                                                if(intval($evidences_array[0][2]) > 80){
+                                                    echo "grade-a";
+                                                }else if(intval($evidences_array[0][2]) > 60){
+                                                    echo "grade-b";
+                                                } else{
+                                                    echo "grade-d";
+                                                }
+                                                ?>" style="width: <?php echo $evidences_array[0][2] ?>%;">
+                                            </span>
+                                            <?php
+                                          } else{
+                                            ?><span style="width: 0;"></span><?php
+                                          }
+                                        ?>
+                                      </div>
+                                    </div>
+                                    <div class="user-evidence__icons">
+                                      <div class="user-evidence__observation">
+                                        <i class="fa-regular fa-comment-dots"></i>
+                                        <div class="user-evidence__observation-p">
+                                          <?php
+                                            if($evidences_array[0][3] != ''){
+                                              echo "1";
+                                            } else{
+                                              echo "0";
+                                            }
+                                          ?>
+                                        </div>
+                                      </div>
+                                      <a href="<?php echo $evidences_array[0][4] ;?>" class="user-evidence__file" download=""><i class="fa-regular fa-file-lines"></i></a>
+                                    </div>
+                                  </div>
+                                  <a href="delete.php?delete_evidence=<?php echo $evidences_array[0][0] ?>&id=<?php echo $id_user ?>" class="evidence-management__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
+                                </div>
+                                <?php
+                              } else{
+                                ?>
+                                <div class="evidence-management">
+                                  <div class="user-evidence user-evidence--empty">
+                                    <div class="user-evidence__activity">
+                                      <i class="fa-solid fa-triangle-exclamation user-evidence__icon"></i>
+                                      <div class="user-evidence__title"><?php echo $title_activity ;?></div>
+                                    </div>
+                                    <div class="user-evidence--empty__alert">SIN ENTREGA</div>
+                                  </div>
+                                </div>
+                                <?php
+                              }
+                            }
+                          } else{
+                            ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado ninguna evidencia.</div><?php
+                          }   
                           ?>
-                          <div class="activities-course">
-                            <div class="activities">
-                              <?php
-																for($j=0; $j < sizeof($activities_array); $j++){
-																	?>
-																	<div class="activity">
-																		<div class="activity__title"><?php echo $activities_array[$j][1]; ?></div>
-																		<div class="activity__date">Fecha publicación: <?php echo $activities_array[$j][3]; ?></div>
-																		<div class="activity__info">
-																			<div class="activity__p"><?php echo $activities_array[$j][2]; ?></div>
-																			<div class="activity__date-limit"><?php echo $activities_array[$j][4]; ?></div>
-																			<div class="activity__type">Actividad</div>
-																			<!-- VALIDAR EXISTENCIA FILE -->
-																			<?php
-																				if($activities_array[$j][5] != ''){
-																					?>
-																					<a href="<?php print_r($activities_array[$j][5]); ?>" class="activity__file" download=""><i class="fa-regular fa-file-lines"></i></a>
-																					<?php 
-																				}
-																			?>
-																		</div>
-																		<a href="delete.php?delete_activity=<?php echo $activities_array[$j][0] ?>&id=<?php echo $id_user ?>" class="activity__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
-																	</div>
-																	<?php
-																}
-                              ?>
-                            </div>
-                          </div>
-                        	<?php
-                        } else {
-                          ?>
-                          <div class="activity-management">
-                            <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado actividades para esta ficha.</div>
                           </div>
                           <?php
+                        } else {
+                          ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i>Este curso aún no tiene contenido.</div><?php
                         }
-                      ?>
-                  </div>
-                  <?php
-            }
-          }
-
-          // STUDENT'S EVIDENCES
-          if($user_array[0][2] == 3){
-                for ($i=0; $i < sizeof($course_user); $i++) {
-                  $subject = $course_user[$i][1];
-                  $group = $course_user[$i][2];
-
-                  $subject_query = "SELECT nombre FROM materia WHERE ID_Materia = $subject";
-                  $subject_result= mysqli_query($dbConnection, $subject_query) or die(mysqli_error($dbConnection));
-                  $subject_name = mysqli_fetch_all($subject_result, MYSQLI_NUM)[0][0];
-
-                  // GET INSTRUCTOR BY AMBIENTE VIRTUAL
-                  $instructor = "SELECT A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Materia = '$subject' AND A.ID_Ficha = $group AND P.ID_Rol = 2";
-                  $instructor_result = mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
-                  $instructor_array = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
-                  ?>
-                  <div class="user-evidences">
-                    <div class="user-label"><?php echo $subject_name ?></div>
+                        ?>
+                    </div>
                     <?php
-                    if(sizeof($instructor_array) > 0){
-                      $id_instructor = $instructor_array[0][0];
-
-                      // GET INSTRUCTOR'S activity
-                      $activity = "SELECT ID_Actividad, asunto FROM `actividad` WHERE ID_Persona = $id_instructor AND ID_Ficha = $group";
-                      $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
-                      $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
-
-                      if(sizeof($activity_array) > 0){
-                        for ($j=0; $j < sizeof($activity_array); $j++) { 
-                          $id_activity = $activity_array[$j][0];
-                          $title_activity = $activity_array[$j][1];
-
-                          // GET EVIDENCES DELIVERED BY activity
-                          $evidences = "SELECT ID_Evidencia, fecha, nota, observacion, url, ID_Actividad FROM `evidencia` WHERE ID_Persona = $id_user AND ID_Actividad = $id_activity";
-                          $evidences_result = mysqli_query($dbConnection, $evidences) or die(mysqli_error($dbConnection));
-                          $evidences_array = mysqli_fetch_all($evidences_result, MYSQLI_NUM);
-
-                          if(sizeof($evidences_array) > 0){
-														?>
-														<div class="evidence-management">
-															<div class="user-evidence">
-																<div class="user-evidence__activity">
-																				<i class="fa-solid fa-book user-evidence__icon"></i>
-																				<div class="user-evidence__title"><?php echo $title_activity ;?></div>
-																</div>
-																<div class="user-evidence__date"><?php echo $evidences_array[0][1] ;?></div>
-																<div class="user-evidence__grade">
-																			<div class="user-evidence__grade-value">
-																				<?php
-																					if($evidences_array[0][2] != ''){
-																						?>
-																						<span class="gradeValue"><?php echo $evidences_array[0][2] ?>/100</span>
-																						<?php
-																					} else{
-																						echo "--/100";
-																					}
-																				?>
-																			</div>
-																			<div class="user-evidence__grade-range">
-																				<?php
-																					if($evidences_array[0][2] != ''){
-																						?>
-																						<span class="<?php
-																								if(intval($evidences_array[0][2]) > 80){
-																										echo "grade-a";
-																								}else if(intval($evidences_array[0][2]) > 60){
-																										echo "grade-b";
-																								} else{
-																										echo "grade-d";
-																								}
-																								?>" style="width: <?php echo $evidences_array[0][2] ?>%;">
-																						</span>
-																						<?php
-																					} else{
-																						?><span style="width: 0;"></span><?php
-																					}
-																				?>
-																			</div>
-																</div>
-																<div class="user-evidence__icons">
-																			<div class="user-evidence__observation">
-																				<i class="fa-regular fa-comment-dots"></i>
-																				<div class="user-evidence__observation-p">
-																					<?php
-																						if($evidences_array[0][3] != ''){
-																							echo "1";
-																						} else{
-																							echo "0";
-																						}
-																					?>
-																				</div>
-																			</div>
-																			<a href="<?php echo $evidences_array[0][4] ;?>" class="user-evidence__file" download=""><i class="fa-regular fa-file-lines"></i></a>
-																</div>
-															</div>
-															<a href="delete.php?delete_evidence=<?php echo $evidences_array[0][0] ?>&id=<?php echo $id_user ?>" class="evidence-management__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
-														</div>
-                            <?php
-                          } else{
-                            ?>
-                            <div class="evidence-management">
-                              <div class="user-evidence user-evidence--empty">
-                                <div class="user-evidence__activity">
-                                  <i class="fa-solid fa-triangle-exclamation user-evidence__icon"></i>
-                                  <div class="user-evidence__title"><?php echo $title_activity ;?></div>
-                                </div>
-                                <div class="user-evidence--empty__alert">SIN ENTREGA</div>
-                              </div>
-                            </div>
-                            <?php
-                          }
-                        }
-                      } else{
-                        ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado ninguna evidencia.</div><?php
-                      }   
-                    	?>
-                    	</div>
-                    	<?php
-                    } else{
-                      ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i>Ningún instructor ha sido asignado para esta ficha.</div><?php
-                    }
+                  }
                 }
+              ?>
+            </div>
+            <?php
           }
         ?>
       </div>
