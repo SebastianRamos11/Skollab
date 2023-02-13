@@ -2073,7 +2073,7 @@ html {
   z-index: 1000;
   background: #fff;
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px;
 }
 .course-form .close-modal {
   position: absolute;
@@ -2089,7 +2089,12 @@ html {
   text-align: center;
 }
 .course-form__header hr {
-  margin: 20px -20px;
+  margin: 10px auto;
+  width: 55px;
+  height: 15px;
+  border: none;
+  background: #ff3030;
+  border-radius: 20px;
 }
 .course-form.group-form .course-form__submit {
   grid-area: submit;

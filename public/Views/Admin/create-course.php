@@ -21,7 +21,6 @@
   <body id="body">
       <!-- TODO: Create course creation form (multistep) -->
       <form action="create.php?course" method="POST" class="course-form group-form" autocomplete="off">
-        <button class="close-modal">&times;</button>
 				<div class="course-form__header">
 					<h2>Crear Curso</h2>
 					<hr>
@@ -40,7 +39,7 @@
 					</div>
           <div class="course-form__field course-form__field--description input-description">
 						<label for="course-description" class="course-form__field-label">Descripción</label>
-						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción" maxlength="600"></textarea>
+						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción de lo que tratará este curso..." maxlength="600"></textarea>
 					</div>
           <div class="course-form__field course-form__field--subjects">
 						<div class="course-form__field-label">Materias</div>
