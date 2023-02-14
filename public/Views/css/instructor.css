@@ -698,15 +698,6 @@ th {
   border: 5px solid #0066ff;
 }
 
-@-webkit-keyframes displayMenu {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes displayMenu {
   from {
     opacity: 0;
@@ -717,8 +708,7 @@ th {
 }
 .nav-menu--active {
   display: flex !important;
-  -webkit-animation: displayMenu 350ms ease-in-out both;
-          animation: displayMenu 350ms ease-in-out both;
+  animation: displayMenu 350ms ease-in-out both;
 }
 
 .br {
@@ -1746,7 +1736,6 @@ body {
   position: absolute;
   top: -6px;
   left: 30px;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   margin-right: 0 20px;
@@ -1905,7 +1894,6 @@ body {
 .evidence-recovered {
   padding: 10px 20px;
   text-align: center;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   border-radius: 20px;
