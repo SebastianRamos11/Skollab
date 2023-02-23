@@ -1558,9 +1558,50 @@ th {
   max-width: 500px;
 }
 
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.form-header hr {
+  margin: 10px auto;
+  width: 55px;
+  height: 15px;
+  border: none;
+  background: #ff3030;
+  border-radius: 20px;
+}
+
+.form-field__label {
+  font-size: 1.2em;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 15px;
+}
+.form-field__input {
+  border: 1px solid #636363;
+  padding: 20px;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.center-form-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-form-2 {
+  margin: 30px 80px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+}
+
 body,
 html {
-  height: 100% !important;
+  min-height: 100vh;
   position: relative !important;
   scroll-behavior: unset !important;
 }
@@ -2298,4 +2339,31 @@ html {
 
 .crud-group tbody {
   font-size: 20px;
+}
+
+.manage-course .form-data {
+  display: grid;
+  grid-template-areas: "group code" "description description" "subjects subjects";
+}
+.manage-course .form-data .form-field--description {
+  grid-area: description;
+  position: relative;
+  padding: 30px 0;
+  margin-bottom: -20px;
+}
+.manage-course .form-data .form-field--description label {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: 700;
+  top: 18px;
+  left: 70px;
+  background: white;
+}
+.manage-course .form-data .form-field--description textarea {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  border: 2px solid #0066ff;
+  border-radius: 15px;
+  padding: 20px;
 }/*# sourceMappingURL=admin.css.map */

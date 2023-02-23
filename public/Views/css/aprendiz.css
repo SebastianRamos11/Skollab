@@ -1558,6 +1558,47 @@ th {
   max-width: 500px;
 }
 
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.form-header hr {
+  margin: 10px auto;
+  width: 55px;
+  height: 15px;
+  border: none;
+  background: #ff3030;
+  border-radius: 20px;
+}
+
+.form-field__label {
+  font-size: 1.2em;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 15px;
+}
+.form-field__input {
+  border: 1px solid #636363;
+  padding: 20px;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.center-form-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-form-2 {
+  margin: 30px 80px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+}
+
 .courses__title {
   margin-bottom: 30px;
 }
