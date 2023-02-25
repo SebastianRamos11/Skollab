@@ -468,7 +468,8 @@ th {
     max-width: 120px;
     margin-bottom: 20px;
   }
-  &__btn {
+  &__btn,
+  &__link {
     cursor: pointer;
     text-decoration: none;
     margin-top: 10px;
@@ -1263,12 +1264,10 @@ th {
   font-weight: map-get($font-weights, "semibold");
 }
 
-// FIXME: FIX MESSAGE STLES WITH UNIQUE CLASS
 .alert-message {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #ffd16d;
   padding: 20px 15px;
@@ -1286,7 +1285,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #6dff77;
   padding: 20px 15px;
@@ -1303,7 +1301,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #96eaff;
   padding: 20px 15px;
@@ -1446,7 +1443,7 @@ th {
 }
 
 .center-form-2 {
-  margin: 30px 80px;
+  margin: 30px auto;
   background: $white;
   padding: 40px;
   border-radius: $radius-xl;

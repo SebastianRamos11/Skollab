@@ -676,7 +676,7 @@ th {
   max-width: 120px;
   margin-bottom: 20px;
 }
-.course__btn {
+.course__btn, .course__link {
   cursor: pointer;
   text-decoration: none;
   margin-top: 10px;
@@ -687,10 +687,10 @@ th {
   background: #0066ff;
   font-weight: 500;
 }
-.course__btn i {
+.course__btn i, .course__link i {
   margin-right: 10px;
 }
-.course__btn--highlight {
+.course__btn--highlight, .course__link--highlight {
   background: #ff3030;
 }
 
@@ -1401,7 +1401,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #ffd16d;
   padding: 20px 15px;
@@ -1419,7 +1418,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #6dff77;
   padding: 20px 15px;
@@ -1437,7 +1435,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #96eaff;
   padding: 20px 15px;
@@ -1593,7 +1590,7 @@ th {
 }
 
 .center-form-2 {
-  margin: 30px 80px;
+  margin: 30px auto;
   background: #fff;
   padding: 40px;
   border-radius: 20px;

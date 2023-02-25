@@ -164,31 +164,26 @@
               ?>
             </select>
           </div>
-
           <!-- ID -->
           <div class="form__field">
             <label for="id">Identificación</label>
             <input type="text" id="id" name="id" maxlength="10" placeholder="Número de identificación" class="register-input" />
           </div>
-
           <!-- FIRST NAME -->
           <div class="form__field">
             <label for="firstName">Nombres</label>
             <input type="text" id="firstName" name="firstName" placeholder="Nombres" onkeyup="upper(this);" maxlength="20" class="register-input" />
           </div>
-
           <!-- LAST NAME -->
           <div class="form__field">
             <label for="lastName">Apellidos</label>
             <input type="text" id="firstName" name="lastName" placeholder="Apellidos" onkeyup="upper(this);" maxlength="20" class="register-input" />
           </div>
-
           <!-- PHONE -->
           <div class="form__field">
             <label for="phone">Celular</label>
             <input type="text" name="phone" id="phone" maxlength="10" placeholder="Celular" class="register-input" />
           </div>
-
           <!-- ROL -->
           <div class="rol">
             <div class="rol__title">Rol</div>
@@ -205,19 +200,16 @@
               ?>
             </div>
           </div>
-
           <!-- MAIL -->
           <div class="form__field">
             <label for="email">Correo electrónico</label>
             <input type="text" name="email" id="email" placeholder="Correo electrónico" class="register-input" />
           </div>
-
           <!-- PASSWORD -->
           <div class="form__field">
             <label for="pass">Contraseña</label>
             <input type="text" name="pass" id="pass" placeholder="Contraseña" class="register-input" />
           </div>
-
           <!-- SUBMIT -->
           <div class="form__field submit__field" style="grid-column: 1 span;">
             <input type="submit" name="recover-submited" value="Crear Usuario" class="submit-btn" />

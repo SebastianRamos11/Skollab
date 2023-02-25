@@ -676,7 +676,7 @@ th {
   max-width: 120px;
   margin-bottom: 20px;
 }
-.course__btn {
+.course__btn, .course__link {
   cursor: pointer;
   text-decoration: none;
   margin-top: 10px;
@@ -687,10 +687,10 @@ th {
   background: #0066ff;
   font-weight: 500;
 }
-.course__btn i {
+.course__btn i, .course__link i {
   margin-right: 10px;
 }
-.course__btn--highlight {
+.course__btn--highlight, .course__link--highlight {
   background: #ff3030;
 }
 
@@ -1401,7 +1401,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #ffd16d;
   padding: 20px 15px;
@@ -1419,7 +1418,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #6dff77;
   padding: 20px 15px;
@@ -1437,7 +1435,6 @@ th {
   padding: 40px;
   margin: 30px auto;
   position: relative;
-  right: 18px;
   text-align: center;
   background: #96eaff;
   padding: 20px 15px;
@@ -1593,7 +1590,7 @@ th {
 }
 
 .center-form-2 {
-  margin: 30px 80px;
+  margin: 30px auto;
   background: #fff;
   padding: 40px;
   border-radius: 20px;
@@ -2341,8 +2338,13 @@ html {
   font-size: 20px;
 }
 
+.manage-course {
+  max-width: 800px;
+}
 .manage-course .form-data {
   display: grid;
+  justify-content: space-between;
+  row-gap: 20px;
   grid-template-areas: "group code" "description description" "subjects subjects";
 }
 .manage-course .form-data .form-field--description {
@@ -2366,4 +2368,59 @@ html {
   border: 2px solid #0066ff;
   border-radius: 15px;
   padding: 20px;
+}
+.manage-course .form-data .form-field--subjects {
+  grid-area: subjects;
+}
+
+.add-subject-form {
+  width: 800px;
+}
+.add-subject-form .course-form__data {
+  display: grid;
+  row-gap: 20px;
+}
+
+.add-course-btn {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  border: 2px solid #272727;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+.add-course-btn i {
+  margin-bottom: 5px;
+  font-size: 25px;
+  position: relative;
+  top: 4px;
+  right: 5px;
+}
+.add-course-btn:hover {
+  background: #50ff81;
+}
+
+.subject-selection {
+  height: 40px;
+  background: blue !important;
+}
+
+.select2-container {
+  width: 100% !important;
+  font-size: 18px !important;
+}
+
+.select2-selection {
+  padding: 20px;
+}
+.select2-selection--single {
+  height: auto !important;
+}
+
+.select2-search__field {
+  place-content: "Hola";
 }/*# sourceMappingURL=admin.css.map */

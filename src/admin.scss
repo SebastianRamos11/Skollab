@@ -729,9 +729,13 @@ html {
 }
 
 // Manage Course
+
 .manage-course {
+  max-width: 800px;
   & .form-data {
     display: grid;
+    justify-content: space-between;
+    row-gap: 20px;
     grid-template-areas:
       "group code"
       "description description"
@@ -759,6 +763,64 @@ html {
           padding: 20px;
         }
       }
+      &--subjects {
+        grid-area: subjects;
+      }
     }
   }
+}
+
+.add-subject-form {
+  width: 800px;
+  & .course-form {
+    &__data {
+      display: grid;
+      row-gap: 20px;
+    }
+  }
+}
+
+.add-course-btn {
+  display: block;
+  text-decoration: none;
+  color: $black;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  border: 2px solid #272727;
+  border-radius: $radius-l;
+  transition: all 0.3s;
+  & i {
+    margin-bottom: 5px;
+    font-size: 25px;
+    position: relative;
+    top: 4px;
+    right: 5px;
+  }
+  &:hover {
+    background: #50ff81;
+  }
+}
+
+.subject-selection {
+  height: 40px;
+  background: blue !important;
+}
+
+// Select2 Styles
+.select2-container {
+  width: 100% !important;
+  font-size: 18px !important;
+}
+
+.select2-selection {
+  padding: 20px;
+  &--single {
+    height: auto !important;
+  }
+}
+
+.select2-search__field {
+  place-content: "Hola";
 }

@@ -69,7 +69,7 @@
                           <td scope="row"><?php echo $groups[$i][0] ?></td>
                           <td><?php echo $groups[$i][1] ?></td>
                           <td><?php echo $groups[$i][2] ?></td>
-                          <td><a href="#" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                          <td><a href="manage-course.php?course=<?php echo $groups[$i][0] ?>" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></a></td>
                           <td><a href="delete.php?delete_group=<?php echo $groups[$i][0] ?>" class="delete-button"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>
                         <?php
