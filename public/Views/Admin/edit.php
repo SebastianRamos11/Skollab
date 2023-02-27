@@ -20,7 +20,6 @@
 
   if(isset($_GET["announcement"])){
 		$id_announcement = $_GET["announcement"];
-
 		if(file_exists($_FILES['file']['tmp_name'])){
 			move_uploaded_file($_FILES['file']['tmp_name'], '../file-store/announcements/'.$_FILES['file']['name']);
 			$subject = $_POST['subject'];
@@ -37,12 +36,25 @@
 			$subject = $_POST['subject'];
 			$description = $_POST['description'];
 			$date = date('Y-m-d');
-	
+		
 			$edit_query = "UPDATE anuncio SET asunto = '$subject', descripcion = '$description', fecha = $date WHERE ID_Anuncio = $id_announcement;";
 			$query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
-	
+		
 			header('Location: admin.php?message=updated');
 			exit();
 		}
+  }
+
+  if(isset($_GET["course"])){
+		$id_course = $_GET["course"];
+		$subject = $_POST['subject'];
+		$instructor = $_POST['instructor'];
+
+		$add_instructor = $dbConnection->query("INSERT INTO ambiente_virtual (ID_Persona, ID_Ficha) VALUES ('$instructor', '$id_course')");
+		$add_subject = $dbConnection->query("INSERT INTO curso (ID_Ficha, ID_Materia, ID_Instructor) VALUES ('$id_course', '$subject', '$instructor')");
+		header('Location: manage-course.php?course='.$id_course.'&message=added');
+		exit();
+
+
   }
 ?>

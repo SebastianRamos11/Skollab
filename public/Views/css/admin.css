@@ -2382,6 +2382,7 @@ html {
 }
 
 .add-course-btn {
+  margin-top: 20px;
   display: block;
   text-decoration: none;
   color: #000;
@@ -2421,6 +2422,25 @@ html {
   height: auto !important;
 }
 
-.select2-search__field {
-  place-content: "Hola";
+.manage-subject {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.manage-subject__figure {
+  max-width: 100px;
+}
+.manage-subject__data {
+  margin-left: 40px;
+}
+.manage-subject__title {
+  font-weight: 700;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+.manage-subject__action {
+  font-size: 25px;
+  margin: auto 10px auto auto;
+  color: #ff3030;
+  cursor: pointer;
 }/*# sourceMappingURL=admin.css.map */

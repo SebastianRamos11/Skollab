@@ -57,13 +57,32 @@
 					</div>
           <div class="form-field form-field--subjects">
             <label class="form-field__label">Materias</label>
+            <hr>
             <?php 
               if(!$course_subjects) {
                 ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i> Este curso no tiene materias agregadas.</div><?php
               } else {
                 // TODO: Print course's subjects
                 for($i = 0; $i < sizeof($course_subjects); $i++){
-                  echo $course_subjects[$i][0]."<br>";
+                  $subject = "SELECT nombre, img FROM `materia` WHERE ID_Materia =".$course_subjects[$i][0];
+                  $subject_result= mysqli_query($dbConnection, $subject) or die(mysqli_error($dbConnection));
+                  $subject = mysqli_fetch_all($subject_result, MYSQLI_NUM);
+
+                  $instructor = "SELECT nombres, apellidos FROM `persona` WHERE ID_Persona =".$course_subjects[$i][1];
+                  $instructor_result= mysqli_query($dbConnection, $instructor) or die(mysqli_error($dbConnection));
+                  $instructor = mysqli_fetch_all($instructor_result, MYSQLI_NUM);
+
+                  ?>
+                  <div class="manage-subject">
+								    <img class="manage-subject__figure" src="<?php echo $subject[0][1]; ?>" alt="subject">
+								    <div class="manage-subject__data">
+									    <div class="manage-subject__title"><?php echo $subject[0][0]; ?></div>
+									    <div class="manage-subject__instructor"><i class="fa-solid fa-chalkboard-user"></i> Instruida por: <?php echo $instructor[0][0]." ".$instructor[0][1]; ?></div>
+								    </div>
+                    <a href="#" class="manage-subject__action delete-button"><i class="fa-solid fa-trash-can"></i></a>
+                  </div>
+
+                  <?php
                 }
               }
             ?>
@@ -77,7 +96,7 @@
       </form>
 
       <!-- ADD SUBJECT FORM -->
-      <form action="#" method="POST" enctype="multipart/form-data" class="course-form modal-form add-subject-form hidden" autocomplete="off">
+      <form action="edit.php?course=<?php echo $id_course ?>" method="POST" enctype="multipart/form-data" class="course-form modal-form add-subject-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
 				<div class="course-form__header">
 					<h2>Añadir materia</h2>
@@ -86,7 +105,7 @@
 				<div class="course-form__data">
 					<div class="course-form__field">
 						<label for="subject-name" class="course-form__field-label">1. Elige una materia</label>
-            <select name="subjects" class="subject-selection">
+            <select name="subject" class="subject-selection">
               <option></option>
               <?php 
                 for($i = 0; $i < sizeof($subjects); $i++){
@@ -97,7 +116,7 @@
 					</div>
 					<div class="course-form__field">
 						<label class="course-form__field-label">2. Elige quién la instruirá</label>
-            <select name="instructors" class="instructor-selection">
+            <select name="instructor" class="instructor-selection">
               <option></option>
               <?php 
                 for($i = 0; $i < sizeof($instructors); $i++){
@@ -114,7 +133,19 @@
     <script src="../../Controllers/select-control.js"></script>
     <script src="../../Controllers/modal-form.js"></script>
     <script src="../../Controllers/random-number.js"></script>
+    <script src="../../Controllers/confirm-deletion.js"></script>
+    <script>confirmDeletion('¿Seguro que quieres eliminar esta materia para este curso?')</script>
+
     <style>body{background-image: url('../img/backgrounds/signup-bg.svg');background-position: center;background-size: cover;background-repeat: no-repeat;}</style>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'created') {
+          ?><script>Swal.fire({icon: 'success',title: '¡Curso creado!',text: 'Ahora es necesario que agregues materias a este curso.'});</script><?php
+        } else if($_GET['message'] === 'added'){
+          ?><script>Swal.fire({icon: 'success',title: '¡Materia agregada!',text: 'La materia ha sido correctamente a este curso'});</script><?php
+        }
+      }
+    ?>
   </body>
 </html>
 <?php 

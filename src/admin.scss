@@ -781,6 +781,7 @@ html {
 }
 
 .add-course-btn {
+  margin-top: 20px;
   display: block;
   text-decoration: none;
   color: $black;
@@ -821,6 +822,26 @@ html {
   }
 }
 
-.select2-search__field {
-  place-content: "Hola";
+.manage-subject {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  &__figure{
+    max-width: 100px;
+  }
+  &__data{
+    margin-left: 40px;
+  }
+  &__title{
+    font-weight: map-get($font-weights, "semibold");
+    font-size: map-get($size-paragraph, "xl");
+    margin-bottom: 10px;
+  }
+  &__action{
+    font-size: 25px;
+    margin: auto 10px auto auto;
+    color: $primary-contrast;
+    cursor: pointer;
+
+  }
 }
