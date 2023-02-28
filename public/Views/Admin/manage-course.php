@@ -79,7 +79,7 @@
 									    <div class="manage-subject__title"><?php echo $subject[0][0]; ?></div>
 									    <div class="manage-subject__instructor"><i class="fa-solid fa-chalkboard-user"></i> Instruida por: <?php echo $instructor[0][0]." ".$instructor[0][1]; ?></div>
 								    </div>
-                    <a href="#" class="manage-subject__action delete-button"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="delete.php?course-subject=<?php echo $id_course ?>&subject=<?php echo $course_subjects[$i][0] ?>" class="manage-subject__action delete-button"><i class="fa-solid fa-trash-can"></i></a>
                   </div>
 
                   <?php
@@ -143,6 +143,8 @@
           ?><script>Swal.fire({icon: 'success',title: '¡Curso creado!',text: 'Ahora es necesario que agregues materias a este curso.'});</script><?php
         } else if($_GET['message'] === 'added'){
           ?><script>Swal.fire({icon: 'success',title: '¡Materia agregada!',text: 'La materia ha sido correctamente a este curso'});</script><?php
+        } else if($_GET['message'] === 'deleted'){
+          ?><script>Swal.fire({icon: 'success',title: '¡Materia eliminada!',text: 'La materia ha sido eliminada de este curso'});</script><?php
         }
       }
     ?>

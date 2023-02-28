@@ -2,7 +2,7 @@
   include_once "../../Models/connection.php";
   session_start();
 
-  $id = $_GET["id"];
+  if(isset($_GET["id"])) $id = $_GET["id"];
 
   // UNLINK USER OF PROGRAM
   if(isset($_GET['program'])){
@@ -60,6 +60,13 @@
 	if(isset($_GET['delete_subject'])){
 		$sql = $dbConnection->query("DELETE FROM materia WHERE ID_Materia = ".$_GET['delete_subject']);
 		header('Location: courses.php?message=deleted');
+		exit(); 
+	}
+
+	// REMOVE SUBJECT FROM COURSE
+	if(isset($_GET['course-subject'])){
+		$sql = $dbConnection->query("DELETE FROM curso WHERE ID_Ficha = ".$_GET['course-subject']." AND ID_Materia =".$_GET['subject']);
+		header('Location: manage-course.php?course='.$_GET['course-subject'].'&message=deleted');
 		exit(); 
 	}
 ?>
