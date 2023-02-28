@@ -11,11 +11,11 @@
     $email = $_POST["email"];
     $doc_type = $_POST["doc-type"];
     
-		$edit_query = "UPDATE persona SET nombres = '$firstName', apellidos = '$lastName', ID_Rol = $rol, telefono = $phone, correo_electronico = '$email', ID_Tipo_Documento = $doc_type WHERE ID_Persona = $id_user;";
+	  $edit_query = "UPDATE persona SET nombres = '$firstName', apellidos = '$lastName', ID_Rol = $rol, telefono = $phone, correo_electronico = '$email', ID_Tipo_Documento = $doc_type WHERE ID_Persona = $id_user;";
     $query_result = mysqli_query($dbConnection, $edit_query) or die(mysqli_error($dbConnection));
 		
-		header('Location: crud.php?message=modified');
-		exit();
+	  header('Location: crud.php?message=modified');
+	  exit();
   }
 
   if(isset($_GET["announcement"])){
@@ -47,14 +47,23 @@
 
   if(isset($_GET["course"])){
 		$id_course = $_GET["course"];
-		$subject = $_POST['subject'];
-		$instructor = $_POST['instructor'];
+    if(isset($_GET["subject"])){
+      $subject = $_POST['subject'];
+      $instructor = $_POST['instructor'];
+  
+      $add_instructor = $dbConnection->query("INSERT INTO ambiente_virtual (ID_Persona, ID_Ficha) VALUES ('$instructor', '$id_course')");
+      $add_subject = $dbConnection->query("INSERT INTO curso (ID_Ficha, ID_Materia, ID_Instructor) VALUES ('$id_course', '$subject', '$instructor')");
+      header('Location: manage-course.php?course='.$id_course.'&message=added');
+      exit();
+    }
+    if(isset($_GET["data"])){
+      $course_num = $_POST["course-num"];
+      $course_desc = $_POST["course-description"];
+      $course_code = $_POST["course-code"];
 
-		$add_instructor = $dbConnection->query("INSERT INTO ambiente_virtual (ID_Persona, ID_Ficha) VALUES ('$instructor', '$id_course')");
-		$add_subject = $dbConnection->query("INSERT INTO curso (ID_Ficha, ID_Materia, ID_Instructor) VALUES ('$id_course', '$subject', '$instructor')");
-		header('Location: manage-course.php?course='.$id_course.'&message=added');
-		exit();
-
-
+      $update_course = $dbConnection->query("UPDATE ficha SET numero = $course_num, descripcion = '$course_desc', codigo = $course_code");
+      header('Location: courses.php?message=course-updated');
+      exit();
+    }
   }
 ?>

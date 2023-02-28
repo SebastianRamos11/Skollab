@@ -704,6 +704,7 @@ html {
     }
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
       border-radius: $radius-xl;
     }
     &::-webkit-scrollbar-thumb {
@@ -766,6 +767,15 @@ html {
       &--subjects {
         grid-area: subjects;
       }
+    }
+  }
+  & .form-submit{
+    margin-top: 20px;
+    width: 100%;
+    & input{
+      @include primary-btn($primary-contrast, false);
+      width: 100%;
+      height: 80px;
     }
   }
 }

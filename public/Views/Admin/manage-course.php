@@ -37,7 +37,7 @@
   </head>
   <body id="body">
     <?php include './sidebar.php' ?>
-      <form action="create.php?course" method="POST" autocomplete="off" class="manage-course center-form-2">
+      <form action="edit.php?course=<?php echo $id_course ?>&data" method="POST" autocomplete="off" class="manage-course center-form-2">
         <div class="form-header">
           <h2>Administrar curso</h2>
           <hr>
@@ -79,7 +79,7 @@
 									    <div class="manage-subject__title"><?php echo $subject[0][0]; ?></div>
 									    <div class="manage-subject__instructor"><i class="fa-solid fa-chalkboard-user"></i> Instruida por: <?php echo $instructor[0][0]." ".$instructor[0][1]; ?></div>
 								    </div>
-                    <a href="delete.php?course-subject=<?php echo $id_course ?>&subject=<?php echo $course_subjects[$i][0] ?>" class="manage-subject__action delete-button"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="delete.php?course-subject=<?php echo $id_course ?>&subject=<?php echo $course_subjects[$i][0]  ?>" class="manage-subject__action delete-button"><i class="fa-solid fa-trash-can"></i></a>
                   </div>
 
                   <?php
@@ -93,10 +93,13 @@
             ?>
           </div>
         </div>
+        <div class="form-submit">
+          <input type="submit" value="Guardar cambios">
+        </div>
       </form>
 
       <!-- ADD SUBJECT FORM -->
-      <form action="edit.php?course=<?php echo $id_course ?>" method="POST" enctype="multipart/form-data" class="course-form modal-form add-subject-form hidden" autocomplete="off">
+      <form action="edit.php?course=<?php echo $id_course ?>&subject" method="POST" enctype="multipart/form-data" class="course-form modal-form add-subject-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
 				<div class="course-form__header">
 					<h2>Añadir materia</h2>
@@ -135,7 +138,6 @@
     <script src="../../Controllers/random-number.js"></script>
     <script src="../../Controllers/confirm-deletion.js"></script>
     <script>confirmDeletion('¿Seguro que quieres eliminar esta materia para este curso?')</script>
-
     <style>body{background-image: url('../img/backgrounds/signup-bg.svg');background-position: center;background-size: cover;background-repeat: no-repeat;}</style>
     <?php
       if(isset($_GET['message'])){

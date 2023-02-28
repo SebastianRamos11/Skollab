@@ -698,6 +698,15 @@ th {
   border: 5px solid #0066ff;
 }
 
+@-webkit-keyframes displayMenu {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes displayMenu {
   from {
     opacity: 0;
@@ -708,7 +717,8 @@ th {
 }
 .nav-menu--active {
   display: flex !important;
-  animation: displayMenu 350ms ease-in-out both;
+  -webkit-animation: displayMenu 350ms ease-in-out both;
+          animation: displayMenu 350ms ease-in-out both;
 }
 
 .br {
@@ -2109,6 +2119,7 @@ th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   font-size: 1.1em;

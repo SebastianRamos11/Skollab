@@ -698,6 +698,15 @@ th {
   border: 5px solid #0066ff;
 }
 
+@-webkit-keyframes displayMenu {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes displayMenu {
   from {
     opacity: 0;
@@ -708,7 +717,8 @@ th {
 }
 .nav-menu--active {
   display: flex !important;
-  animation: displayMenu 350ms ease-in-out both;
+  -webkit-animation: displayMenu 350ms ease-in-out both;
+          animation: displayMenu 350ms ease-in-out both;
 }
 
 .br {
@@ -1630,6 +1640,7 @@ html {
 .crud-choise .crud-option__num {
   background: #e6f8eb;
   color: #00ff47;
+  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   padding: 10px 15px;
@@ -2265,6 +2276,7 @@ html {
   font-size: 17px;
   -webkit-user-select: none;
   -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 .course-subjects ul li label .checkmark {
@@ -2317,7 +2329,7 @@ html {
   width: 10px;
 }
 .course-subjects__list::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
 }
 .course-subjects__list::-webkit-scrollbar-thumb {
@@ -2371,6 +2383,23 @@ html {
 }
 .manage-course .form-data .form-field--subjects {
   grid-area: subjects;
+}
+.manage-course .form-submit {
+  margin-top: 20px;
+  width: 100%;
+}
+.manage-course .form-submit input {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #ff3030;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
+  height: 80px;
 }
 
 .add-subject-form {

@@ -155,6 +155,17 @@
     <script src="../../Controllers/modal-form.js"></script>
     <script src="../../Controllers/file-upload.js"></script>
     <script>confirmDeletion('¿Seguro que quieres eliminar este elemento?')</script>
+    <?php
+      if(isset($_GET['message'])){
+        if($_GET['message'] === 'created') {
+          ?><script>Swal.fire({icon: 'success',title: 'Materia creada',text: 'La materia ha sido creada correctamente'});</script><?php
+        } else if($_GET['message'] === 'course-updated'){
+          ?><script>Swal.fire({icon: 'success',title: 'Curso actualizado',text: 'La información de este curso ha sido actualizada.'});</script><?php
+        } else if($_GET['message'] === 'deleted'){
+          ?><script>Swal.fire({icon: 'success',title: '¡Materia eliminada!',text: 'La materia ha sido eliminada de este curso'});</script><?php
+        }
+      }
+    ?>
   </body>
   </html>
   <?php 
