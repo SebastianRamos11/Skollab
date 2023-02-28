@@ -61,7 +61,7 @@
       $course_desc = $_POST["course-description"];
       $course_code = $_POST["course-code"];
 
-      $update_course = $dbConnection->query("UPDATE ficha SET numero = $course_num, descripcion = '$course_desc', codigo = $course_code");
+      $update_course = $dbConnection->query("UPDATE ficha SET numero = $course_num, descripcion = '$course_desc', codigo = $course_code WHERE ID_Ficha = $id_course");
       header('Location: courses.php?message=course-updated');
       exit();
     }
