@@ -93,20 +93,13 @@
           ?><script>Swal.fire({icon: 'error', title: 'Error', text: '¡Tiene que llenar todos los campos!'});</script><?php
         } else if($_GET['message'] === 'error'){
           ?><script>Swal.fire({icon: 'error', title: 'Error', text: '¡Ha habido algun problema!' });</script><?php
-        }else if($_GET['message'] === 'updated'){
+        } else if($_GET['message'] === 'updated'){
           ?><script>Swal.fire({icon: 'success', title: '¡Datos actualizados!', text: '¡Tus datos han sido actualizados correctamente!'});</script><?php
         }
       }
     ?>
   </body>
-  <style>
-    body, html{
-      background: #fff !important;
-    }
-    .nav{
-      border-bottom: 1px solid #c2c2c2;
-    }
-  </style>
+  <style>body, html{background: #fff !important;}.nav{border-bottom: 1px solid #c2c2c2;}</style>
 </html>
 <?php
   } else {

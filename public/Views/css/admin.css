@@ -698,15 +698,6 @@ th {
   border: 5px solid #0066ff;
 }
 
-@-webkit-keyframes displayMenu {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes displayMenu {
   from {
     opacity: 0;
@@ -717,8 +708,7 @@ th {
 }
 .nav-menu--active {
   display: flex !important;
-  -webkit-animation: displayMenu 350ms ease-in-out both;
-          animation: displayMenu 350ms ease-in-out both;
+  animation: displayMenu 350ms ease-in-out both;
 }
 
 .br {
@@ -1640,7 +1630,6 @@ html {
 .crud-choise .crud-option__num {
   background: #e6f8eb;
   color: #00ff47;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   padding: 10px 15px;
@@ -2276,7 +2265,6 @@ html {
   font-size: 17px;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .course-subjects ul li label .checkmark {
@@ -2351,13 +2339,15 @@ html {
 }
 
 .manage-course {
-  max-width: 800px;
+  max-width: 1000px;
 }
 .manage-course .form-data {
   display: grid;
-  justify-content: space-between;
   row-gap: 20px;
   grid-template-areas: "group code" "description description" "subjects subjects";
+}
+.manage-course .form-data .form-field--large input {
+  width: 90%;
 }
 .manage-course .form-data .form-field--description {
   grid-area: description;
@@ -2472,4 +2462,12 @@ html {
   margin: auto 10px auto auto;
   color: #ff3030;
   cursor: pointer;
+}
+
+.student-list {
+  max-width: 1000px;
+  padding: 40px;
+}
+.student-list .p-4 {
+  padding: 0 !important;
 }/*# sourceMappingURL=admin.css.map */

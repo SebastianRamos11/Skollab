@@ -75,7 +75,7 @@
         <hr>
         <?php
           if(sizeof($announcements) > 0){ 
-            for($i=0; $i < sizeof($announcements); $i++){
+            for($i = sizeof($announcements) - 1; $i >= 0; $i--){
               $id_owner = $announcements[$i][6];
 
               // GET ANNOUNCEMENT'S OWNER

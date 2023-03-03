@@ -89,7 +89,6 @@
                     <img class="subject__image" src="<?php echo $subjects[$i][0] ?>" alt="subject-img">
                     <div class="subject__name"><?php echo $subjects[$i][1] ?></div>
                     <div class="subject__actions">
-                      <a href="#?subject=<?php echo $subjects[$i][2] ?>" class="subject__btn"><i class="fa-solid fa-pen-to-square"></i></a>
                       <a href="delete.php?delete_subject=<?php echo $subjects[$i][2] ?>" class="subject__btn delete-button subject__btn--delete"><i class="fa-solid fa-trash-can"></i></a>
                     </div>
                   </div>

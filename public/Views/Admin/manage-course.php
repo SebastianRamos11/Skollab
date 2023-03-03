@@ -19,6 +19,14 @@
     $instructors = "SELECT ID_Persona, apellidos, nombres, num_documento FROM `persona` WHERE ID_Rol = 2";
     $instructors_result= mysqli_query($dbConnection, $instructors) or die(mysqli_error($dbConnection));
     $instructors = mysqli_fetch_all($instructors_result, MYSQLI_NUM);
+
+    $students = "SELECT P.num_documento, P.ID_Tipo_Documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Ficha = $id_course AND P.ID_Rol = 3";
+    $students_result = mysqli_query($dbConnection, $students) or die(mysqli_error($dbConnection));
+    $students = mysqli_fetch_all($students_result, MYSQLI_NUM);
+
+    $type_doc = "SELECT tipo FROM tipo_documento";
+    $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
+    $type_doc_array = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -43,11 +51,11 @@
           <hr>
         </div>
         <div class="form-data">
-          <div class="form-field">
+          <div class="form-field form-field--large">
             <label for="course-num" class="form-field__label">Número de ficha</label>
 						<input type="text" name="course-num" id="course-num" class="form-field__input" value="<?php echo $course[0][0] ?>">
           </div>
-          <div class="form-field">
+          <div class="form-field form-field--large">
             <label for="course-code" class="form-field__label">Código de unión</label>
 						<input type="text" name="course-code" id="course-code" class="form-field__input" value="<?php echo $course[0][1] ?>">
           </div>
@@ -98,6 +106,55 @@
         </div>
       </form>
 
+      <!-- APRENDICES -->
+      <div class="student-list crud card mb-50">
+        <div class="form-header">
+          <h2>Aprendices en formación</h2>
+          <hr>
+        </div>
+        <?php 
+          if(sizeof($students) > 0){
+            ?>
+            <div class="p-4">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th scope="col">Documento</th>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col" colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    for($i = 0; $i < sizeof($students); $i++){
+                      ?>
+                      <tr>
+                        <td scope="row"><?php echo $students[$i][0] ?></td>
+                        <td scope="row"><?php echo $type_doc_array[$students[$i][1] - 1][0] ?></td>
+                        <td><?php echo $students[$i][2] ?></td>
+                        <td><?php echo $students[$i][3] ?></td>
+                        <td><?php echo $students[$i][4] ?></td>
+                        <td><?php echo $students[$i][5] ?></td>
+                        <td><a href="view-user.php?user=<?php echo $students[$i][6] ?>" class="see-button"><i class="fa-regular fa-eye" title="Ver perfil"></i></a></td>
+                      </tr>
+                      <?php
+                    }
+                  ?>
+                </tbody>
+              </table>
+            </div>
+            <?php
+          }
+          else {
+            ?><div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay aprendices inscritos</div><?php
+          }
+        ?>
+      </div>
+
       <!-- ADD SUBJECT FORM -->
       <form action="edit.php?course=<?php echo $id_course ?>&subject" method="POST" enctype="multipart/form-data" class="course-form modal-form add-subject-form hidden" autocomplete="off">
         <button class="close-modal">&times;</button>
@@ -131,6 +188,7 @@
           <input type="submit" value="Crear" class="course-form__submit">
 				</div>
 			</form>
+
       <div class="overlay hidden"></div>
     </main>
     <script src="../../Controllers/select-control.js"></script>

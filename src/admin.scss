@@ -732,16 +732,20 @@ html {
 // Manage Course
 
 .manage-course {
-  max-width: 800px;
+  max-width: 1000px;
   & .form-data {
     display: grid;
-    justify-content: space-between;
     row-gap: 20px;
     grid-template-areas:
       "group code"
       "description description"
       "subjects subjects";
     & .form-field {
+      &--large{
+        input{
+          width: 90%;
+        }
+      }
       &--description {
         grid-area: description;
         position: relative;
@@ -853,5 +857,13 @@ html {
     color: $primary-contrast;
     cursor: pointer;
 
+  }
+}
+
+.student-list{
+  max-width: 1000px;
+  padding: 40px;
+  & .p-4{
+    padding: 0 !important;
   }
 }

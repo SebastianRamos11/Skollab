@@ -330,7 +330,7 @@
                                       <a href="<?php echo $evidences_array[0][4] ;?>" class="user-evidence__file" download=""><i class="fa-regular fa-file-lines"></i></a>
                                     </div>
                                   </div>
-                                  <a href="delete.php?delete_evidence=<?php echo $evidences_array[0][0] ?>&id=<?php echo $id_user ?>" class="evidence-management__btn-delete"><i class="fa-solid fa-trash-can"></i></a>
+                                  
                                 </div>
                                 <?php
                               } else{
@@ -368,14 +368,7 @@
         ?>
       </div>
     </main>
-    <style>
-      body, html{
-          background: #fff !important;
-      }
-      .nav{
-          border-right: 1px solid #c2c2c2;
-      }
-    </style>
+    <style>body, html{background: #fff !important;}</style>
     <?php
       if(isset($_GET['message'])){
         if($_GET['message'] === 'unlinked') {
