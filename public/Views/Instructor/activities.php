@@ -6,6 +6,7 @@
   $groups = "SELECT A.ID_Ficha, F.numero FROM ambiente_virtual A JOIN ficha F ON A.ID_Ficha = F.ID_Ficha WHERE ID_Persona =".$_SESSION['id'];
   $groups_result = mysqli_query($dbConnection, $groups) or die(mysqli_error($dbConnection));
   $groups = mysqli_fetch_all($groups_result, MYSQLI_NUM);
+  
 ?>
 <!DOCTYPE html>
 <html lang="es">

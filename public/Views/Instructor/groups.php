@@ -22,8 +22,9 @@
     <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Gestión de aprendices</h1>
 
-      <!-- GROUPS -->
-      <div class="container">
+      <!-- GROUP LIST -->
+      <div class="container group-list">
+
         <div class="row">
           <div class="col-md-11">
             <?php 
@@ -34,7 +35,7 @@
               <!-- GROUP (hidden) -->
               <div class="group">
                   <div class="card mb-50">
-                    <div class="card-header" id="group-<?php echo $j ?>">Curso <?php echo $group_num; ?></div>
+                    <div class="card-header">Curso <?php echo $group_num; ?></div>
                       <div class="p-4">
                         <table class="table align-middle">
                           <thead>
@@ -57,7 +58,7 @@
                                   <td><?php echo $students[$i][2]; ?></td>
                                   <td><?php echo $students[$i][3]; ?></td>
                                   <td><?php echo $students[$i][4] ?></td>
-                                  <td><a href="see-aprendiz.php?group=<?php echo $group ?>&aprendiz=<?php echo $students[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
+                                  <td><a href="see-aprendiz.php?group=<?php echo $group ?>&student=<?php echo $students[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
                                 </tr>
                                 <?php 
                               }
@@ -70,7 +71,10 @@
               </div>
               <?php
             ?>
-          </div>
+        </div>
+        
+        <div class="actions actions--group-list">
+          <a target="_blank" href="./reports/group-report.php?group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Lista</a>
         </div>
       </div>
     </main>

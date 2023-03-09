@@ -9,26 +9,29 @@
     $id_activity = $_GET['activity'];
 
     // ACTIVITY DATA
-    $activity = "SELECT asunto, fecha, fecha_limite, ID_Ficha FROM actividad WHERE ID_Actividad = $id_activity;";
+    $activity = "SELECT asunto, fecha, fecha_limite FROM actividad WHERE ID_Actividad = $id_activity;";
     $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
     $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
-    $ficha = $activity[0][3];
     
 		$student = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Ficha = $group AND P.ID_Rol = 3";
     $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
     $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
 
-    $pending_users = array();
-    
-    for($i=0; $i < sizeof($student); $i++){
-      $id_student = $student[$i][5];
-      
-      $delivery = "SELECT url FROM `evidencia` WHERE ID_Persona = $id_student AND ID_Actividad = $id_activity";
-      $delivery_result = mysqli_query($dbConnection, $delivery) or die(mysqli_error($dbConnection));
-      $delivery_array = mysqli_fetch_all($delivery_result, MYSQLI_NUM);
+		$group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+		$group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+		$group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 
-      if(sizeof($delivery_array) === 0) array_push($pending_users, $student[$i]);
-    }
+		$pending_users = array();
+		
+		for($i=0; $i < sizeof($student); $i++){
+			$id_student = $student[$i][5];
+			
+			$delivery = "SELECT url FROM `evidencia` WHERE ID_Persona = $id_student AND ID_Actividad = $id_activity";
+			$delivery_result = mysqli_query($dbConnection, $delivery) or die(mysqli_error($dbConnection));
+			$delivery_array = mysqli_fetch_all($delivery_result, MYSQLI_NUM);
+
+			if(sizeof($delivery_array) === 0) array_push($pending_users, $student[$i]);
+		}
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +65,10 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="actions actions--deliveries">
+        <a target="_blank" href="./reports/activity-grades.php?activity=<?php echo $id_activity ?>&group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte de notas" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Notas</a>
+      </div>
 
 			<div class="pending-grades">
 				<h2>📝 Evidencias por calificar</h2>

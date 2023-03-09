@@ -19,7 +19,6 @@ html {
   justify-content: center;
   &--no-centered {
     justify-content: start;
-    margin-left: 100px;
   }
   & .crud-option {
     padding: 30px;
@@ -86,7 +85,6 @@ html {
 .modal {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 70%;
@@ -106,7 +104,6 @@ html {
 .overlay {
   position: absolute;
   top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
 
@@ -252,7 +249,6 @@ html {
   border-radius: $radius-xl;
   margin-bottom: 40px;
   & i {
-    left: 100px;
     color: $secundary-color;
     font-size: 50px;
     display: block;
@@ -267,7 +263,6 @@ html {
 .float-form {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: $white;
@@ -373,7 +368,6 @@ html {
 
     & .btn-submit {
       cursor: pointer;
-      margin-left: 30px;
       @include primary-btn($secundary-color, false);
     }
 
@@ -407,8 +401,6 @@ html {
           &--right {
             width: 200px;
             top: -6px;
-            left: 30px;
-            text-align: left;
           }
         }
       }
@@ -438,7 +430,6 @@ html {
       font-size: map-get($size-paragraph, "l");
       font-weight: map-get($font-weights, "semibold");
       top: 12px;
-      left: 80px;
       background: white;
     }
   }
@@ -473,7 +464,6 @@ html {
     text-decoration: none;
     color: $secundary-color;
     &--delete {
-      margin-left: 20px;
       color: $primary-contrast;
     }
   }
@@ -482,7 +472,6 @@ html {
 .course-form {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: $white;
@@ -568,13 +557,10 @@ html {
           width: 160px;
           word-wrap: break-word;
           top: -6px;
-          left: 30px;
           transition: all 0.3s;
           &--right {
             width: 200px;
             top: -6px;
-            left: 30px;
-            text-align: left;
           }
         }
       }
@@ -598,7 +584,6 @@ html {
         font-size: map-get($size-paragraph, "l");
         font-weight: map-get($font-weights, "semibold");
         top: 18px;
-        left: 70px;
         background: white;
       }
       & textarea {
@@ -622,25 +607,21 @@ html {
   position: relative;
   & .course-form__field-input {
     border: 2px solid $primary-color;
-    padding-left: 40px;
   }
   & i {
     position: absolute;
     color: $paragraph-color;
     font-size: 20px;
-    left: 14px;
     top: 12px;
   }
   & ul {
     list-style-type: none;
     padding: 10px 30px;
     & li {
-      margin-left: -20px;
       padding: 10px;
       & label {
         display: block;
         position: relative;
-        padding-left: 35px;
         margin-bottom: 12px;
         cursor: pointer;
         font-size: 17px;
@@ -651,7 +632,6 @@ html {
         & .checkmark {
           position: absolute;
           top: 0;
-          left: 0;
           height: 25px;
           width: 25px;
           background-color: #eee;
@@ -663,7 +643,6 @@ html {
             display: none;
           }
           &:after {
-            left: 9px;
             top: 5px;
             width: 5px;
             height: 10px;
@@ -741,8 +720,8 @@ html {
       "description description"
       "subjects subjects";
     & .form-field {
-      &--large{
-        input{
+      &--large {
+        input {
           width: 90%;
         }
       }
@@ -756,7 +735,6 @@ html {
           font-size: map-get($size-paragraph, "l");
           font-weight: map-get($font-weights, "semibold");
           top: 18px;
-          left: 70px;
           background: white;
         }
         & textarea {
@@ -773,10 +751,10 @@ html {
       }
     }
   }
-  & .form-submit{
+  & .form-submit {
     margin-top: 20px;
     width: 100%;
-    & input{
+    & input {
       @include primary-btn($primary-contrast, false);
       width: 100%;
       height: 80px;
@@ -840,30 +818,28 @@ html {
   display: flex;
   padding: 20px;
   border-bottom: 1px solid #ccc;
-  &__figure{
+  &__figure {
     max-width: 100px;
   }
-  &__data{
-    margin-left: 40px;
-  }
-  &__title{
+
+  &__title {
     font-weight: map-get($font-weights, "semibold");
     font-size: map-get($size-paragraph, "xl");
     margin-bottom: 10px;
   }
-  &__action{
+  &__action {
     font-size: 25px;
     margin: auto 10px auto auto;
     color: $primary-contrast;
     cursor: pointer;
-
   }
 }
 
-.student-list{
+.student-list {
   max-width: 1000px;
   padding: 40px;
-  & .p-4{
+  & .p-4 {
     padding: 0 !important;
   }
 }
+

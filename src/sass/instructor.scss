@@ -705,3 +705,17 @@ body {
     outline: none;
   }
 }
+
+.actions {
+  & .btn-report {
+    display: block;
+    width: max-content;
+  }
+  &--group-list .btn-report {
+    margin-right: 15px;
+    margin-left: auto;
+  }
+  &--deliveries .btn-report {
+    margin: auto;
+  }
+}

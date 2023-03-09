@@ -1596,6 +1596,23 @@ th {
   border-radius: 20px;
 }
 
+.btn-report {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #ff5c00;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+}
+
+.actions {
+  margin: 20px 0;
+  width: 100%;
+}
+
 body,
 html {
   min-height: 100vh;
@@ -1611,7 +1628,6 @@ html {
 }
 .crud-choise--no-centered {
   justify-content: start;
-  margin-left: 100px;
 }
 .crud-choise .crud-option {
   padding: 30px;
@@ -1695,7 +1711,6 @@ html {
 .modal {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 70%;
@@ -1715,7 +1730,6 @@ html {
 .overlay {
   position: absolute;
   top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
@@ -1869,7 +1883,6 @@ html {
   margin-bottom: 40px;
 }
 .main-option i {
-  left: 100px;
   color: #0066ff;
   font-size: 50px;
   display: block;
@@ -1890,7 +1903,6 @@ html {
 .float-form {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: #fff;
@@ -1988,7 +2000,6 @@ html {
 }
 .float-form__field .btn-submit {
   cursor: pointer;
-  margin-left: 30px;
   border: none;
   border-radius: 10px;
   padding: 15px 20px;
@@ -2028,8 +2039,6 @@ html {
 .float-form__field .file-choise label .uploaded-file--right {
   width: 200px;
   top: -6px;
-  left: 30px;
-  text-align: left;
 }
 .float-form__field .file-choise label:hover {
   color: #0066ff;
@@ -2055,7 +2064,6 @@ html {
   font-size: 1.2em;
   font-weight: 700;
   top: 12px;
-  left: 80px;
   background: white;
 }
 
@@ -2088,14 +2096,12 @@ html {
   color: #0066ff;
 }
 .subject__btn--delete {
-  margin-left: 20px;
   color: #ff3030;
 }
 
 .course-form {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: #fff;
@@ -2181,14 +2187,11 @@ html {
   width: 160px;
   word-wrap: break-word;
   top: -6px;
-  left: 30px;
   transition: all 0.3s;
 }
 .course-form__field .file-choise label .uploaded-file--right {
   width: 200px;
   top: -6px;
-  left: 30px;
-  text-align: left;
 }
 .course-form__field .file-choise label:hover {
   color: #0066ff;
@@ -2209,7 +2212,6 @@ html {
   font-size: 1.2em;
   font-weight: 700;
   top: 18px;
-  left: 70px;
   background: white;
 }
 .course-form__field--description textarea {
@@ -2239,13 +2241,11 @@ html {
 }
 .course-subjects .course-form__field-input {
   border: 2px solid #ff5c00;
-  padding-left: 40px;
 }
 .course-subjects i {
   position: absolute;
   color: #636363;
   font-size: 20px;
-  left: 14px;
   top: 12px;
 }
 .course-subjects ul {
@@ -2253,13 +2253,11 @@ html {
   padding: 10px 30px;
 }
 .course-subjects ul li {
-  margin-left: -20px;
   padding: 10px;
 }
 .course-subjects ul li label {
   display: block;
   position: relative;
-  padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 17px;
@@ -2270,7 +2268,6 @@ html {
 .course-subjects ul li label .checkmark {
   position: absolute;
   top: 0;
-  left: 0;
   height: 25px;
   width: 25px;
   background-color: #eee;
@@ -2282,7 +2279,6 @@ html {
   display: none;
 }
 .course-subjects ul li label .checkmark:after {
-  left: 9px;
   top: 5px;
   width: 5px;
   height: 10px;
@@ -2360,7 +2356,6 @@ html {
   font-size: 1.2em;
   font-weight: 700;
   top: 18px;
-  left: 70px;
   background: white;
 }
 .manage-course .form-data .form-field--description textarea {
@@ -2448,9 +2443,6 @@ html {
 }
 .manage-subject__figure {
   max-width: 100px;
-}
-.manage-subject__data {
-  margin-left: 40px;
 }
 .manage-subject__title {
   font-weight: 700;

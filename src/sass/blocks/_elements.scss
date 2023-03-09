@@ -1448,3 +1448,12 @@ th {
   padding: 40px;
   border-radius: $radius-xl;
 }
+
+.btn-report {
+  @include primary-btn($primary-color, false);
+}
+
+.actions {
+  margin: 20px 0;
+  width: 100%;
+}
