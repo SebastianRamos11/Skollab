@@ -228,7 +228,7 @@
           // STUDENT'S EVIDENCES (working on this)
           if($user_array[0][2] == 3){
             ?>
-            <div id="course-content" class="course-content hidden user-evidences">
+            <div id="course-content" class="course-content user-evidences">
               <hr>
               <?php
                 for ($i = 0; $i < sizeof($course_user); $i++) {

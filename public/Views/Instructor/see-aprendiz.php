@@ -88,6 +88,9 @@
 				<hr>
 				<div class="user-evidences">
 					<h2 class="user-evidences__label">Estado de actividades</h2>
+					<div class="actions actions--student-grades">
+          	<a download="" href="./reports/student-grades.php?student=<?php echo $id_student ?>&group=<?php echo $group ?>" title="Generar reporte" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Notas</a>
+					</div>
 					<?php 
 						if(sizeof($activity_array) > 0){
 							for($i = 0; $i < sizeof($activity_array); $i++){ 

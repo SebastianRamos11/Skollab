@@ -74,7 +74,7 @@
         </div>
         
         <div class="actions actions--group-list">
-          <a target="_blank" href="./reports/group-report.php?group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Lista</a>
+          <a download="" href="./reports/group-report.php?group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Lista</a>
         </div>
       </div>
     </main>

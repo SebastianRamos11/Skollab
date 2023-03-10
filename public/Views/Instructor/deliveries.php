@@ -67,7 +67,7 @@
 			</div>
 
 			<div class="actions actions--deliveries">
-        <a target="_blank" href="./reports/activity-grades.php?activity=<?php echo $id_activity ?>&group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte de notas" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Notas</a>
+        <a download="" href="./reports/activity-grades.php?activity=<?php echo $id_activity ?>&group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte de notas" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Reporte de Notas</a>
       </div>
 
 			<div class="pending-grades">

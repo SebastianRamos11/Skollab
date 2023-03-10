@@ -715,7 +715,8 @@ body {
     margin-right: 15px;
     margin-left: auto;
   }
-  &--deliveries .btn-report {
+  &--deliveries .btn-report,
+  &--student-grades .btn-report {
     margin: auto;
   }
 }

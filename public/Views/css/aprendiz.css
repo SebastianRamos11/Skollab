@@ -1279,10 +1279,9 @@ th {
   }
 }
 .user-evidences__subject {
-  margin-bottom: 40px;
-  border-radius: 20px;
-  padding: 20px;
-  border: 2px solid rgba(186, 186, 186, 0.7294117647);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(186, 186, 186, 0.7294117647);
 }
 .user-evidences__subject-header {
   display: flex;
@@ -1290,7 +1289,6 @@ th {
   justify-content: center;
   margin: 0 auto;
   width: 900px;
-  padding: 20px;
 }
 .user-evidences__subject-header img {
   max-width: 100px;
@@ -1309,7 +1307,7 @@ th {
   max-width: 1000px;
   margin-top: 30px;
   display: grid;
-  width: 900px;
+  width: 800px;
   justify-content: space-between;
   align-items: center;
   grid-template-columns: 290px 140px 130px 140px;

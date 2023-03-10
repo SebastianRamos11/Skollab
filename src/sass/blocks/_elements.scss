@@ -1065,17 +1065,15 @@ th {
 // EVIDENCES
 .user-evidences {
   &__subject {
-    margin-bottom: 40px;
-    border-radius: 20px;
-    padding: 20px;
-    border: 2px solid #babababa;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #babababa;
     &-header {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto;
       width: 900px;
-      padding: 20px;
       & img {
         max-width: 100px;
         margin-right: 20px;
@@ -1089,7 +1087,7 @@ th {
   & .user-evidence {
     @include element;
     display: grid;
-    width: 900px;
+    width: 800px;
     justify-content: space-between;
     align-items: center;
     grid-template-columns: 290px 140px 130px 140px;
