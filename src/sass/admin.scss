@@ -85,6 +85,8 @@ html {
 .modal {
   position: absolute;
   top: 50%;
+  left: 50%;
+
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 70%;
@@ -104,6 +106,8 @@ html {
 .overlay {
   position: absolute;
   top: 0;
+  left: 0;
+
   width: 100vw;
   height: 100vh;
 
@@ -263,6 +267,8 @@ html {
 .float-form {
   position: absolute;
   top: 50%;
+  left: 50%;
+
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: $white;
@@ -430,6 +436,7 @@ html {
       font-size: map-get($size-paragraph, "l");
       font-weight: map-get($font-weights, "semibold");
       top: 12px;
+      left: 70px;
       background: white;
     }
   }
@@ -472,6 +479,8 @@ html {
 .course-form {
   position: absolute;
   top: 50%;
+  left: 50%;
+
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: $white;
@@ -584,6 +593,7 @@ html {
         font-size: map-get($size-paragraph, "l");
         font-weight: map-get($font-weights, "semibold");
         top: 18px;
+        left: 70px;
         background: white;
       }
       & textarea {
@@ -735,6 +745,7 @@ html {
           font-size: map-get($size-paragraph, "l");
           font-weight: map-get($font-weights, "semibold");
           top: 18px;
+          left: 70px;
           background: white;
         }
         & textarea {
@@ -821,7 +832,9 @@ html {
   &__figure {
     max-width: 100px;
   }
-
+  &__data {
+    margin: auto 0 auto 30px;
+  }
   &__title {
     font-weight: map-get($font-weights, "semibold");
     font-size: map-get($size-paragraph, "xl");
@@ -842,4 +855,3 @@ html {
     padding: 0 !important;
   }
 }
-

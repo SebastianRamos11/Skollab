@@ -1709,6 +1709,7 @@ html {
 .modal {
   position: absolute;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   width: 70%;
@@ -1728,6 +1729,7 @@ html {
 .overlay {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
@@ -1901,6 +1903,7 @@ html {
 .float-form {
   position: absolute;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: #fff;
@@ -2062,6 +2065,7 @@ html {
   font-size: 1.2em;
   font-weight: 700;
   top: 12px;
+  left: 70px;
   background: white;
 }
 
@@ -2100,6 +2104,7 @@ html {
 .course-form {
   position: absolute;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background: #fff;
@@ -2210,6 +2215,7 @@ html {
   font-size: 1.2em;
   font-weight: 700;
   top: 18px;
+  left: 70px;
   background: white;
 }
 .course-form__field--description textarea {
@@ -2354,6 +2360,7 @@ html {
   font-size: 1.2em;
   font-weight: 700;
   top: 18px;
+  left: 70px;
   background: white;
 }
 .manage-course .form-data .form-field--description textarea {
@@ -2441,6 +2448,9 @@ html {
 }
 .manage-subject__figure {
   max-width: 100px;
+}
+.manage-subject__data {
+  margin: auto 0 auto 30px;
 }
 .manage-subject__title {
   font-weight: 700;
