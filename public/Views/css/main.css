@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  scroll-behavior: smooth !important;
-}
-
 a:active,
 a:focus {
   outline: none !important;
@@ -645,6 +640,11 @@ th {
   border-radius: 0 0 20px 20px;
 }
 
+.user-courses__container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
 .course {
   cursor: pointer;
   outline: none;
@@ -659,7 +659,6 @@ th {
   border-radius: 20px;
   text-decoration: none;
   color: #000;
-  margin-bottom: 30px;
   padding: 30px 50px;
   box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
 }
@@ -2582,4 +2581,178 @@ th {
   .signup-container {
     min-width: 600px;
   }
+}
+.add-course-btn {
+  display: flex;
+  height: 100px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #868686;
+  text-align: center;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #000;
+  transition: all 0.3s;
+  margin-left: auto;
+}
+.add-course-btn i {
+  font-size: 30px;
+  margin-right: 10px;
+}
+.add-course-btn:hover {
+  background-color: #58fc69;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.course-form-container {
+  display: grid;
+  place-items: center;
+  padding: 40px;
+}
+
+.course-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  min-width: 700px;
+}
+.course-form--inscription {
+  position: unset;
+  transform: none;
+}
+.course-form--inscription .course-form__field-label {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.course-form .course-info {
+  display: flex;
+}
+.course-form .course-info__img {
+  max-width: 150px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-right: 50px;
+}
+.course-form .course-info__title {
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.course-form .course-info__description {
+  color: #4d4d4d;
+  max-width: 500px;
+}
+.course-form .course-subjects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 180px);
+  gap: 20px;
+}
+.course-form .course-subjects__subject {
+  text-align: center;
+  word-wrap: break-word;
+  padding: 20px;
+  background-color: #3c8afe;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: 500;
+}
+.course-form .course-form__data {
+  padding: 20px;
+  display: grid;
+  row-gap: 30px;
+}
+.course-form .close-modal {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 50px;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.course-form__header {
+  text-align: center;
+}
+.course-form__header hr {
+  margin: 10px auto;
+  width: 55px;
+  height: 15px;
+  border: none;
+  background: #ff3030;
+  border-radius: 20px;
+}
+.course-form__field-label {
+  font-size: 1.2em;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 15px;
+}
+.course-form__field-input {
+  width: 100%;
+  border: 1px solid #636363;
+  padding: 20px;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 20px;
+}
+.course-form__field--btns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #dcdcdc;
+  padding-top: 20px;
+}
+.course-form__field--btns .course-form__btn {
+  text-align: center;
+  border-radius: 15px;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #fff;
+  background-color: #ff3030;
+  text-decoration: none;
+  width: 48%;
+  padding: 20px;
+}
+.course-form__field--btns .course-form__btn--submit {
+  background-color: #1ad32c;
+}
+.course-form__submit {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #0066ff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  height: 60px;
+  margin-top: auto;
+}
+
+.max-height-form {
+  max-height: 100vh;
+  overflow-y: hidden;
 }/*# sourceMappingURL=main.css.map */

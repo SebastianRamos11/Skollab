@@ -1,4 +1,4 @@
-const courseTitle = document.querySelectorAll(".course__title");
+const courseTitle = document.querySelectorAll(".acronym");
 
 const generateAcronym = function (e) {
   let acronym = "";

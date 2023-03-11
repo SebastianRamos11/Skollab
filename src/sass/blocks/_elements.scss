@@ -438,6 +438,12 @@ th {
 }
 
 // COURSE BUTTON ELEMENT
+.user-courses {
+  &__container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+}
 .course {
   cursor: pointer;
   outline: none;
@@ -452,7 +458,6 @@ th {
   border-radius: $radius-xl;
   text-decoration: none;
   color: $black;
-  margin-bottom: 30px;
   padding: 30px 50px;
   box-shadow: $element-shadow;
   &__title {

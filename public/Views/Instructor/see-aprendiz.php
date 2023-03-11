@@ -78,7 +78,7 @@
 						for($i=0; $i < sizeof($student_groups); $i++){
 							?>
 							<div class="course">
-								<div class="course__title"><?php echo $student_groups[$i][1]; ?></div>
+								<div class="course__title acronym"><?php echo $student_groups[$i][1]; ?></div>
 								<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
 							</div>
 							<?php 
