@@ -1610,6 +1610,29 @@ th {
   width: 100%;
 }
 
+.back-button {
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #fff;
+  background: #fff;
+  font-size: 1.1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  color: #000;
+  font-size: 20px;
+  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
+  outline: 1px solid #b1b1b1;
+}
+.back-button--position {
+  margin: 0 1200px 630px 0;
+}
+.back-button--profile-position {
+  position: absolute;
+}
+
 .courses__title {
   margin-bottom: 30px;
 }

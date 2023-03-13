@@ -118,7 +118,7 @@
 					</div>
           <div class="course-form__field course-form__field--description input-description">
 						<label for="course-description" class="course-form__field-label">Descripción</label>
-						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción de lo que tratará este curso..." maxlength="600"></textarea>
+						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción de lo que tratará este curso..." maxlength="1000"></textarea>
 					</div>
           <input type="submit" value="Crear" class="course-form__submit">
 				</div>

@@ -22,6 +22,7 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
+      <a href="admin.php" title="Volver" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
       <form action="edit.php?announcement=<?php echo $id_announcement ?>" method="post" enctype="multipart/form-data" class="float-form" autocomplete="off" style="position: relative; margin-top: 30px;">
         <!-- FORM HEADING -->
         <div class="float-form__title">Editar Anuncio</div>
@@ -58,7 +59,7 @@
               <input type="file" name="file" id="file" class="file">
           </div>
           <a href="admin.php" title="Cancelar" class="cancel-btn" style="margin-left: auto;">Cancelar</a>
-          <input type="submit" class="btn-submit" name="submit" value="Guardar">
+          <input type="submit" class="btn-submit" name="submit" style="margin-left: 20px;" value="Guardar">
         </div>
       </form>
   </body>

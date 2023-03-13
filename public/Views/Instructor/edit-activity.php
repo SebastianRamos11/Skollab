@@ -26,6 +26,8 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
+      <a href="activities.php?group=<?php echo $group ?>" title="Volver" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+
       <form action="edit.php?group=<?php echo $group ?>&activity=<?php echo $id_activity ?>" method="post" enctype="multipart/form-data" class="upload-form" style="margin: 0 auto">
         <!-- FORM HEADING -->
         <div class="upload-form__title">Editar Actividad</div>
@@ -82,10 +84,7 @@
     </main>
   </body>
   <style>
-    body{
-      background-image: url('../img/backgrounds/signup-bg.svg');
-      background-size: cover;
-    }
+    html{background-image: url('../img/backgrounds/signup-bg.svg');background-size: cover;}
   </style>
   <script src="../../Controllers/file-name.js"></script>
   <script src="../../Controllers/file-upload.js"></script>

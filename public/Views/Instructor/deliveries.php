@@ -13,25 +13,25 @@
     $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
     $activity = mysqli_fetch_all($activity_result, MYSQLI_NUM);
     
-		$student = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Ficha = $group AND P.ID_Rol = 3";
+    $student = "SELECT P.num_documento, P.nombres, P.apellidos, P.telefono, P.correo_electronico, A.ID_Persona FROM persona P JOIN ambiente_virtual A ON P.ID_Persona = A.ID_Persona WHERE A.ID_Ficha = $group AND P.ID_Rol = 3";
     $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
     $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
 
-		$group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
-		$group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
-		$group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
+    $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
+    $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
+    $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 
-		$pending_users = array();
-		
-		for($i=0; $i < sizeof($student); $i++){
-			$id_student = $student[$i][5];
-			
-			$delivery = "SELECT url FROM `evidencia` WHERE ID_Persona = $id_student AND ID_Actividad = $id_activity";
-			$delivery_result = mysqli_query($dbConnection, $delivery) or die(mysqli_error($dbConnection));
-			$delivery_array = mysqli_fetch_all($delivery_result, MYSQLI_NUM);
+    $pending_users = array();
+    
+    for($i=0; $i < sizeof($student); $i++){
+      $id_student = $student[$i][5];
+      
+      $delivery = "SELECT url FROM `evidencia` WHERE ID_Persona = $id_student AND ID_Actividad = $id_activity";
+      $delivery_result = mysqli_query($dbConnection, $delivery) or die(mysqli_error($dbConnection));
+      $delivery_array = mysqli_fetch_all($delivery_result, MYSQLI_NUM);
 
-			if(sizeof($delivery_array) === 0) array_push($pending_users, $student[$i]);
-		}
+      if(sizeof($delivery_array) === 0) array_push($pending_users, $student[$i]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +48,10 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
-			<h1 class="main-content__header">Centro de revisión</h1>
-			<h2>Actividad a calificar</h2>
+    
+    <h1 class="main-content__header">Centro de revisión</h1>
+      <a href="activities.php?group=<?php echo $group ?>" title="Volver" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+			<h2 style="margin-top: 40px">Actividad a calificar</h2>
 			<hr>
 			<div class="activity-selected">
 				<i class="fa-solid fa-book activity-selected__icon"></i>

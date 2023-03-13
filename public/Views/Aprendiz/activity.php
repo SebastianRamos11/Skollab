@@ -40,6 +40,7 @@
   <body>
     <?php include './sidebar.php' ?>
       <h1 class="main-content__header">Entrega de actividad 📘</h1>
+      <a href="activities-center.php?group=<?php echo $group ?>" title="Volver" class="back-button back-button--profile-position"><i class="fa-solid fa-arrow-left"></i> Volver</a>
 
       <div class="evidence">
         <div class="evidence__header">

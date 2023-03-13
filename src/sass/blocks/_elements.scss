@@ -1460,3 +1460,18 @@ th {
   margin: 20px 0;
   width: 100%;
 }
+
+.back-button{
+  display: inline-block;
+  @include primary-btn($white, false);
+  color: $black;
+  font-size: 20px;
+  box-shadow: $element-shadow;
+  outline: 1px solid #b1b1b1;
+  &--position{
+    margin: 0 1200px 630px 0;
+  }
+  &--profile-position{
+    position: absolute;
+  }
+}

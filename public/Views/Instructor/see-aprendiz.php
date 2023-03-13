@@ -24,9 +24,9 @@
     $type_doc = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 
     // GET AMBIENTE VIRTUAL OF APRENDIZ 
-		$student_groups = "SELECT A.ID_Ficha, F.numero FROM ambiente_virtual A JOIN ficha F ON A.ID_Ficha = F.ID_Ficha WHERE ID_Persona = $id_student";
-		$student_groups_result = mysqli_query($dbConnection, $student_groups) or die(mysqli_error($dbConnection));
-		$student_groups = mysqli_fetch_all($student_groups_result, MYSQLI_NUM);
+	  $student_groups = "SELECT A.ID_Ficha, F.numero FROM ambiente_virtual A JOIN ficha F ON A.ID_Ficha = F.ID_Ficha WHERE ID_Persona = $id_student";
+	  $student_groups_result = mysqli_query($dbConnection, $student_groups) or die(mysqli_error($dbConnection));
+	  $student_groups = mysqli_fetch_all($student_groups_result, MYSQLI_NUM);
 
     // GET INSTRUCTOR ACTIVITIES (TO LOOP)
     $activity_array = array();
@@ -54,6 +54,8 @@
 	<body>
     <?php include './sidebar.php' ?>
 			<h1 class="main-content__header">👨‍🎓 Gestión de Estudiante</h1>
+      <a href="activities.php?group=<?php echo $group ?>" title="Volver" class="back-button back-button--profile-position"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+
 			<div class="user">
 				<div class="user-profile">
 					<img class="user-profile__photo" src="../img/default.jpeg" alt="user-photo">

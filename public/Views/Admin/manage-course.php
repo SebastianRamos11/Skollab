@@ -45,6 +45,7 @@
   </head>
   <body id="body">
     <?php include './sidebar.php' ?>
+      <a href="admin.php" title="Volver" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver</a>
       <form action="edit.php?course=<?php echo $id_course ?>&data" method="POST" autocomplete="off" class="manage-course center-form-2">
         <div class="form-header">
           <h2>Administrar curso</h2>
@@ -61,7 +62,7 @@
           </div>
           <div class="form-field form-field--description">
 						<label for="course-description" class="form-field__label">Descripción</label>
-						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción de lo que tratará este curso..." maxlength="600"><?php echo $course[0][2] ?></textarea>
+						<textarea id="course-description" name="course-description" placeholder="Escribe una descripción de lo que tratará este curso..." maxlength="1000"><?php echo $course[0][2] ?></textarea>
 					</div>
           <div class="form-field form-field--subjects">
             <label class="form-field__label">Materias</label>
