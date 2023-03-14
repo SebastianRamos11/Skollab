@@ -113,14 +113,14 @@
                   </div>
                 </label>
               <div class="step__field rol__field group-rol">
-                <!-- Aprendiz option -->
-                <label class="rol__label" for="aprendiz">
-                  <div class="rol__option rol__aprendiz">
-                    <input type="radio" name="rol" id="aprendiz" value="3" class="aprendiz" />
+                <!-- Student option -->
+                <label class="rol__label" for="student">
+                  <div class="rol__option rol__student">
+                    <input type="radio" name="rol" id="student" value="3" class="student" />
                       <div class="rol__figure">
-                        <img src="./img/figures/rol-aprendiz.png" alt="aprendiz" />
+                        <img src="./img/figures/rol-student.png" alt="student" />
                       </div>
-                      <span>Aprendiz</span>
+                      <span>Estudiante</span>
                     </div>
                   </div>
                 </label>

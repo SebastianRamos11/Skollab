@@ -15,15 +15,15 @@
 		$evidence_array = mysqli_fetch_all($evidence_result, MYSQLI_NUM);
 
 		$id_actividad = $evidence_array[0][0];
-		$id_aprendiz = $evidence_array[0][1];
+		$id_student = $evidence_array[0][1];
 
 		$activity = "SELECT asunto, fecha, fecha_limite FROM actividad WHERE ID_Actividad = $id_actividad;";
 		$activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
 		$activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
 
-		$aprendiz = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_aprendiz";
-		$aprendiz_result = mysqli_query($dbConnection, $aprendiz) or die(mysqli_error($dbConnection));
-		$aprendiz_array = mysqli_fetch_all($aprendiz_result, MYSQLI_NUM);
+		$student = "SELECT nombres, apellidos FROM persona WHERE ID_Persona = $id_student";
+		$student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
+		$student_array = mysqli_fetch_all($student_result, MYSQLI_NUM);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -65,7 +65,7 @@
 						</div>
 					</div>
 					<div class="user-evidence__data">
-						<div class="user-evidence__name"><?php echo $aprendiz_array[0][0];?>  <?php echo $aprendiz_array[0][1];?></div>
+						<div class="user-evidence__name"><?php echo $student_array[0][0];?>  <?php echo $student_array[0][1];?></div>
 						<div class="user-evidence__date">Fecha de entrega: <?php echo $evidence_array[0][3]; ?></div>
 						<div class="user-evidence__description"><?php echo $evidence_array[0][4]; ?></div>
 						<?php if(intval($evidence_array[0][8]) === 1) {?> <div class="evidence-recovered"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> Evidencia nivelada</div> <?php } ?>

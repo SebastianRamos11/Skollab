@@ -324,7 +324,7 @@ input[type=checkbox], input[type=radio] {
 }
 
 .banner {
-  background-image: url("../img/backgrounds/banner-aprendiz.svg");
+  background-image: url("../img/backgrounds/banner.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 180px;
@@ -2034,4 +2034,4 @@ th {
   margin: 40px auto;
   border: 2px solid #0066ff;
   border-radius: 10px;
-}/*# sourceMappingURL=aprendiz.css.map */
+}/*# sourceMappingURL=student.css.map */

@@ -107,10 +107,10 @@
         </div>
       </form>
 
-      <!-- APRENDICES -->
+      <!-- STUDENTS -->
       <div class="student-list crud card mb-50">
         <div class="form-header">
-          <h2>Aprendices en formación</h2>
+          <h2>Estudiantes en formación</h2>
           <hr>
         </div>
         <?php 
@@ -151,7 +151,7 @@
             <?php
           }
           else {
-            ?><div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay aprendices inscritos</div><?php
+            ?><div class="neutral-message"><i class="fas fa-exclamation-triangle"></i> No hay estudiante inscritos</div><?php
           }
         ?>
       </div>

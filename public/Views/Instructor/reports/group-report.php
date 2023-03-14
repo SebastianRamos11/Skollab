@@ -14,7 +14,7 @@
   $introduction = '
     <h1>Lista de estudiantes</h1>
     <i>Generado el '.$date.'</i> 
-    <p>El siguiente listado contiene la lista de aprendices del curso <strong>'.$group_num.'</strong>:</p>
+    <p>El siguiente listado contiene la lista de estudiantes del curso <strong>'.$group_num.'</strong>:</p>
     <br>
   ';
 
@@ -67,7 +67,7 @@
   // set document information
   $pdf->SetCreator(PDF_CREATOR);
   $pdf->SetAuthor('Skollab');
-  $pdf->SetTitle('Reporte de estudiante');
+  $pdf->SetTitle('Reporte de lista de estudiantes');
   $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
   // set default header data

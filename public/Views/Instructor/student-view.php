@@ -6,7 +6,7 @@
   if (isset($_SESSION['id'])) {
     $id_student = $_GET['student'];
   
-    // GET APRENDIZ DATA
+    // GET STUDENT DATA
     $student = "SELECT nombres, apellidos, ID_Rol, ID_Tipo_Documento, num_documento, correo_electronico, telefono FROM `persona` WHERE ID_Persona = $id_student";
     $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
     $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
@@ -23,7 +23,7 @@
     $type_doc_result = mysqli_query($dbConnection, $type_doc) or die(mysqli_error($dbConnection));
     $type_doc = mysqli_fetch_all($type_doc_result, MYSQLI_NUM);
 
-    // GET AMBIENTE VIRTUAL OF APRENDIZ 
+    // GET AMBIENTE VIRTUAL OF STUDENT 
 	  $student_groups = "SELECT A.ID_Ficha, F.numero FROM ambiente_virtual A JOIN ficha F ON A.ID_Ficha = F.ID_Ficha WHERE ID_Persona = $id_student";
 	  $student_groups_result = mysqli_query($dbConnection, $student_groups) or die(mysqli_error($dbConnection));
 	  $student_groups = mysqli_fetch_all($student_groups_result, MYSQLI_NUM);
@@ -49,7 +49,7 @@
 		<script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<link rel="stylesheet" href="../css/instructor.css" />
-		<title>Gestión Aprendiz</title>
+		<title>Gestión Estudiante</title>
 	</head>
 	<body>
     <?php include './sidebar.php' ?>

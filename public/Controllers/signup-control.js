@@ -13,7 +13,7 @@ const progress = document.getElementById("progress");
 const progressStep = document.querySelectorAll(".progress-step");
 const formStep = document.querySelectorAll(".step");
 const instructor = document.querySelector(".rol__instructor");
-const aprendiz = document.querySelector(".rol__aprendiz");
+const student = document.querySelector(".rol__student");
 
 // Step counter
 let formStepNum = 0;
@@ -131,11 +131,11 @@ const validatePass = function () {
 // Rol switch
 instructor.addEventListener("click", function () {
   instructor.style.background = "#0066FF";
-  aprendiz.style.background = "#FFF";
+  student.style.background = "#FFF";
 });
 
-aprendiz.addEventListener("click", function () {
-  aprendiz.style.background = "#0066FF";
+student.addEventListener("click", function () {
+  student.style.background = "#0066FF";
   instructor.style.background = "#FFF";
 });
 

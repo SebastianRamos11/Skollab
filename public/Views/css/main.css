@@ -324,7 +324,7 @@ input[type=checkbox], input[type=radio] {
 }
 
 .banner {
-  background-image: url("../img/backgrounds/banner-aprendiz.svg");
+  background-image: url("../img/backgrounds/banner.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 180px;
@@ -2509,7 +2509,7 @@ th {
     grid-column: 2 span;
   }
 }
-.rol__instructor, .rol__aprendiz {
+.rol__instructor, .rol__student {
   transition: background 1s;
 }
 .rol label {

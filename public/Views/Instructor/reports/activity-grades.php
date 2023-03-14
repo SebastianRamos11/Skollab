@@ -162,7 +162,7 @@
   // set document information
   $pdf->SetCreator(PDF_CREATOR);
   $pdf->SetAuthor('Skollab');
-  $pdf->SetTitle('Reporte de estudiante');
+  $pdf->SetTitle('Reporte de notas de actividad');
   $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
   // set default header data

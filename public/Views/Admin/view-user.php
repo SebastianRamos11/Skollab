@@ -131,7 +131,7 @@
                 <?php
           }
 
-          // APRENDIZ / INSTRUCTOR'S PROGRAMS
+          // STUDENT / INSTRUCTOR'S PROGRAMS
           if($user_array[0][2] == 2 || $user_array[0][2] == 3){
                 ?>
                 <div class="user-programs">
@@ -374,9 +374,9 @@
         if($_GET['message'] === 'unlinked') {
           ?><script>Swal.fire({icon: 'success',title: '¡Usuario desvinculado!',text: '¡El usuario ha sido desvinculado correctamente del programa!'});</script><?php
         } else if($_GET['message'] === 'evidence_deleted'){
-          ?><script>Swal.fire({icon: 'success',title: 'Evidencia eliminada!',text: '¡La evidencia del aprendiz ha sido correctamente eliminada!'});</script><?php
+          ?><script>Swal.fire({icon: 'success',title: 'Evidencia eliminada!',text: '¡La evidencia del estudiante ha sido correctamente eliminada!'});</script><?php
         } else if($_GET['message'] === 'activity_deleted'){
-          ?><script>Swal.fire({icon: 'success',title: 'Actividad eliminada!',text: 'La actividad y todos los entregables de aprendices de la misma han sido correctamente eliminados'});</script><?php
+          ?><script>Swal.fire({icon: 'success',title: 'Actividad eliminada!',text: 'La actividad y todos los entregables de estudiantes de la misma han sido correctamente eliminados'});</script><?php
         } else if($_GET['message'] === 'announcement_deleted'){
           ?><script>Swal.fire({icon: 'success',title: 'Anuncio eliminado!',text: 'El anuncio ha sido correctamente eliminado'});</script><?php
         }

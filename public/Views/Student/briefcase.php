@@ -16,7 +16,7 @@
 	  <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
 	  <script src="https://kit.fontawesome.com/643b0ccc65.js" crossorigin="anonymous"></script>
 	  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	  <link rel="stylesheet" href="../css/aprendiz.css" />
+	  <link rel="stylesheet" href="../css/student.css" />
 	  <title>Portafolio</title>
 	</head>
 	<body>
@@ -163,6 +163,6 @@
 				}
 			}
 		?>
-		<script src="../../Controllers/aprendiz-briefcase.js"></script>
+		<script src="../../Controllers/student-briefcase.js"></script>
 	</body>
 </html>

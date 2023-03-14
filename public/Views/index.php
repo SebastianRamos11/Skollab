@@ -47,7 +47,7 @@
         </div>
         <div class="home__start">
           <h1 class="home__title">Donde la gestión de tu formación educativa es mas sencilla e intuitiva.</h1>
-          <p class="home__paragraph">Es hora del cambio, la experiencia de los aprendices e instructores es muy importante.</p>
+          <p class="home__paragraph">Es hora del cambio, la experiencia de los estudiantes e instructores es muy importante.</p>
           <input type="button" value="Comenzar" class="home__btn" />
         </div>
       </section>

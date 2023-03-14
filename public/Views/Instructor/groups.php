@@ -20,7 +20,7 @@
   </head>
   <body>
     <?php include './sidebar.php' ?>
-      <h1 class="main-content__header">Gestión de aprendices</h1>
+      <h1 class="main-content__header">Gestión de estudiantes</h1>
 
       <!-- GROUP LIST -->
       <div class="container group-list">
@@ -58,7 +58,7 @@
                                   <td><?php echo $students[$i][2]; ?></td>
                                   <td><?php echo $students[$i][3]; ?></td>
                                   <td><?php echo $students[$i][4] ?></td>
-                                  <td><a href="see-aprendiz.php?group=<?php echo $group ?>&student=<?php echo $students[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
+                                  <td><a href="student-view.php?group=<?php echo $group ?>&student=<?php echo $students[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
                                 </tr>
                                 <?php 
                               }

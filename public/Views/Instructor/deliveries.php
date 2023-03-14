@@ -206,7 +206,7 @@
 														<td><?php echo $pending_users[$i][2]; ?></td>
 														<td><?php echo $pending_users[$i][3]; ?></td>
 														<td><?php echo $pending_users[$i][4] ?></td>
-														<td><a href="see-aprendiz.php?group=<?php echo $group ?>&student=<?php echo $pending_users[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
+														<td><a href="student-view.php?group=<?php echo $group ?>&student=<?php echo $pending_users[$i][5]; ?>" class="see-button"><i class="fa-regular fa-eye"></i></a></td>
 													</tr>
 													<?php 
 												}

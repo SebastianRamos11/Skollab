@@ -11,9 +11,9 @@
     $read_instructor_result = mysqli_query($dbConnection, $read_instructor) or die(mysqli_error($dbConnection));
     $instructor = mysqli_fetch_all($read_instructor_result, MYSQLI_NUM);
 
-    $read_aprendiz = "SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;";
-    $read_aprendiz_result = mysqli_query($dbConnection, $read_aprendiz) or die(mysqli_error($dbConnection));
-    $aprendiz = mysqli_fetch_all($read_aprendiz_result, MYSQLI_NUM);
+    $student = "SELECT num_documento, ID_Tipo_Documento, nombres, apellidos, correo_electronico, telefono, ID_Persona FROM persona WHERE ID_Rol = 3;";
+    $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
+    $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
 
     // GET DOCUMENT TYPES
     $type_doc = "SELECT tipo FROM tipo_documento";
@@ -116,9 +116,9 @@
             $aux
           );
           crudOption(
-            'Aprendices',
+            'Estudiantes',
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g data-name="Wisuda Man"><path d="M41 23h2a2 2 0 0 1 1 .27v-9.06L32 18l-12-3.79v9.06a2 2 0 0 1 1-.27h20z" style="fill:#343544"/><path d="M45 24v2a2.006 2.006 0 0 1-2 2h-3.22a9.356 9.356 0 0 0 .22-2v-4h3a2.006 2.006 0 0 1 2 2zM24.22 28H21a2.006 2.006 0 0 1-2-2v-2a2.006 2.006 0 0 1 2-2h3v4a9.356 9.356 0 0 0 .22 2zM38 31.71V39l-6 5-6-5v-7.3a8.991 8.991 0 0 0 12 .01z" style="fill:#eac2b9"/><path d="M52.1 44.35C40.775 39.247 43.793 40.606 38 38l-6 5-6-5c-5.775 2.6-2.823 1.268-14.1 6.35A9.992 9.992 0 0 0 6 53.47v8.78a.75.75 0 0 0 .75.75h50.5a.75.75 0 0 0 .75-.75v-8.78a9.992 9.992 0 0 0-5.9-9.12z" style="fill:#494a59"/><path d="M51.16 43.93C47.89 49.86 40.53 54 32 54s-15.89-4.14-19.16-10.07C23.13 39.288 20.231 40.6 26 38l6 5 6-5c5.8 2.608 2.884 1.3 13.16 5.93z" style="fill:#ffb64d"/><path d="M47.53 42.29C44.88 46.83 38.93 50 32 50s-12.88-3.17-15.53-7.71c6.07-2.735 3.9-1.757 9.53-4.29l6 5 6-5c5.631 2.533 3.46 1.555 9.53 4.29z" style="fill:#ea972a"/><path d="M25 16.789v1.093a1.808 1.808 0 0 1-1 1.618 1.808 1.808 0 0 0-1 1.618V26a9 9 0 0 0 9 9 9 9 0 0 0 9-9v-4.882a1.808 1.808 0 0 0-1-1.618 1.808 1.808 0 0 1-1-1.618v-1.093z" style="fill:#ffddd4"/><path style="fill:#e6ecff" d="M42.58 40.06 37 46l-5-3 6-5 4.58 2.06zM32 43l-5 3-5.58-5.94L26 38l6 5z"/><path d="M44 8.21v7L32 19l-12-3.79v-7L32 12c11.158-3.523 8.765-2.768 12-3.79zM51 7v10a.75.75 0 0 1-1.5 0V7.47z" style="fill:#494a59"/><path d="M48.75 55v8h-1.5v-8a.75.75 0 0 1 1.5 0zM16.75 55v8h-1.5v-8a.75.75 0 0 1 1.5 0zM13 7l19 6 19-6-19-6-19 6z" style="fill:#343544"/></g></svg>',
-            sizeof($aprendiz),
+            sizeof($student),
             $aux
           );
         ?>
@@ -137,7 +137,7 @@
           <div class="col-md-12">
             <?php generateCrud($admin, 'Administradores', $num_crud) ?>
             <?php generateCrud($instructor, 'Instructores', $num_crud) ?>
-            <?php generateCrud($aprendiz, 'Aprendices', $num_crud) ?>
+            <?php generateCrud($student, 'Estudiantes', $num_crud) ?>
           </div>
         </div>
       </div>
