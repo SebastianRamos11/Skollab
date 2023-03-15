@@ -108,7 +108,7 @@
                       <div class="rol__figure">
                         <img src="./img/figures/rol-instructor.png" alt="instructor" />
                       </div>
-                      <span>Instructor</span>
+                      <span>Profesor</span>
                     </div>
                   </div>
                 </label>

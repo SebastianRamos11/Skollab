@@ -136,7 +136,7 @@
         <div class="row">
           <div class="col-md-12">
             <?php generateCrud($admin, 'Administradores', $num_crud) ?>
-            <?php generateCrud($instructor, 'Instructores', $num_crud) ?>
+            <?php generateCrud($instructor, 'Profesores', $num_crud) ?>
             <?php generateCrud($student, 'Estudiantes', $num_crud) ?>
           </div>
         </div>

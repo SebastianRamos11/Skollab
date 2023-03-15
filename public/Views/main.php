@@ -32,7 +32,7 @@
   <body>
     <?php include_once "navbar.php"; ?>
     <main class="main-content">
-      <h1 class="main-content__title" style="margin: 0;">Bienvenido, <?php if($user[0][0] == 2){ echo "Instructor";} else { echo "Estudiante";}?> 👋</h1>
+      <h1 class="main-content__title" style="margin: 0;">Bienvenido, <?php if($user[0][0] == 2){ echo "Profesor";} else { echo "Estudiante";}?> 👋</h1>
       <div class="banner"><p class="banner__p">¡Skollab es la mejor app para gestionar tu aprendizaje!</p></div>
       <div class="user-courses">
         <div class="main-content__title"><h2>Cursos en formación</h2><hr></div>
@@ -127,7 +127,7 @@
         </div>
         <div class="course-form__field">
           <label for="course-code" class="course-form__field-label">Código de unión</label>
-          <input type="text" name="course-code" id="course-code" class="course-form__field-input" placeholder="Escribe el código enviado por el instructor.">
+          <input type="text" name="course-code" id="course-code" class="course-form__field-input" placeholder="Escribe el código enviado por el profesor.">
         </div>
         <input type="submit" value="Siguiente" class="course-form__submit">
       </div>

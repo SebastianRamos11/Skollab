@@ -215,7 +215,7 @@
                   } else {
                     ?>
                     <div class="activity-management">
-                      <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado actividades para esta ficha.</div>
+                      <div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El profesor no ha publicado actividades para esta ficha.</div>
                     </div>
                     <?php
                   }
@@ -348,7 +348,7 @@
                               }
                             }
                           } else{
-                            ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El instructor no ha publicado ninguna evidencia.</div><?php
+                            ?><div class="alert-message"><i class="fas fa-exclamation-triangle"></i>El profesor no ha publicado ninguna evidencia.</div><?php
                           }   
                           ?>
                           </div>
