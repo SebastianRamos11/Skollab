@@ -1,6 +1,6 @@
 <?php
   include_once "../../../Models/connection.php"; session_start();
-  require_once('../../../../src/tcpdf/tcpdf.php');
+  require_once('../../tcpdf/tcpdf.php');
 
   // create new PDF document
   $pdf = new TCPDF();

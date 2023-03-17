@@ -76,7 +76,7 @@
       header('Location: courses.php?message=created');
       exit();
     } else {
-      $subject_img = '../file-store/subjects/sena-logo.png';
+      $subject_img = '../file-store/subjects/school_logo.png';
       $create_query = $dbConnection->query("INSERT INTO materia (nombre, img) VALUES ('$subject_name', '$subject_img')");
       header('Location: courses.php?message=created');
       exit();

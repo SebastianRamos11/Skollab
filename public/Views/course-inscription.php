@@ -40,7 +40,7 @@
         <div class="course-form__data">
           <div class="course-form__field">
             <div class="course-info">
-              <img class="course-info__img" src="./img/courses/sena-logo.png" alt="course-img">
+              <img class="course-info__img" src="./img/courses/school_logo.png" alt="course-img">
               <div>
                 <div class="course-info__title">Curso <?php echo $course_num; ?></div>
                 <div class="course-info__description">

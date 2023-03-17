@@ -148,7 +148,7 @@
 												?>
 												<div class="course course--management course-<?php echo $i ?>">
 													<div class="course__title acronym"><?php echo $group_num; ?></div>
-													<img class="course__figure" src="../img/courses/sena-logo.png" alt="course">
+													<img class="course__figure" src="../img/courses/school_logo.png" alt="course">
                           <div>
                             <a class="course__btn course__btn--highlight course__unlink" href="delete.php?program=<?php echo $subject ?>&id=<?php echo $id_user ?>"><i class="fa-solid fa-trash-can"></i>Desvincular</a>
                             <a class="course__btn show-course-content" href="#course-content"><i class="fa-solid fa-angles-down"></i>Ver estado</a>

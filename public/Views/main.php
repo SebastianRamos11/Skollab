@@ -42,7 +42,7 @@
               ?>
               <div class="course">
                 <div class="course__title"><?php echo $groups[$i][1]; ?></div>
-                <img class="course__figure" src="./img/courses/sena-logo.png" alt="course">
+                <img class="course__figure" src="./img/courses/school_logo.png" alt="course">
                 <a href="<?php if($user[0][0] == 2) { echo "./instructor/activities.php"; } else { echo "./student/activities-center.php"; } ?>?group=<?php echo $groups[$i][0] ?>" class="course__link">Ambiente virtual >></a>
               </div>
               <?php

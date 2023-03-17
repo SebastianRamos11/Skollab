@@ -1,6 +1,6 @@
 <?php
   include_once "../../../Models/connection.php"; session_start();
-  require_once('../../../../src/tcpdf/tcpdf.php');
+  require_once('../../tcpdf/tcpdf.php');
 
   // Primary data
   $id_user = $_SESSION['id'];
