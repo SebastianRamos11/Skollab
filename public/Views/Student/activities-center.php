@@ -72,7 +72,7 @@
                           ?>
                           <div class="activity">
                             <div class="activity__title"><?php print_r($activity_array[0][1]); ?></div>
-                            <div class="activity__date">Fecha actividad: <?php print_r($activity_array[0][3]); ?></div>
+                            <div class="activity__date">Fecha de publicación: <?php print_r($activity_array[0][3]); ?></div>
                             <div class="activity__info">
                               <div class="activity__p"><?php print_r($activity_array[0][2]); ?></div>
                               <div class="activity__date-limit"><?php print_r($activity_array[0][4]); ?></div>
@@ -106,3 +106,4 @@
     </main> 
   </body>
 </html>
+
