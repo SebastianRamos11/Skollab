@@ -24,7 +24,7 @@
 	    <h1 class="main-content__header">💼 Portafolio</h1>
       <p>Este módulo te permite administrar tu portafolio, que contiene todas las evidencias que has entregado en las diferentes materias de tu curso. Da clic sobre alguna materia para ver las evidencias.</p>
 			<div class="actions actions--briefcase">
-	      <a target="_blank" href="./reports/grades-report.php?group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Boletín</a>
+	      <a download="" href="./reports/grades-report.php?group=<?php echo $group ?>&num=<?php echo $group_num ?>" title="Generar reporte" class="btn btn-report"><i class="fa-regular fa-file-pdf"></i> Generar Boletín</a>
 			</div>
 			<div class="subjects">
 				<?php

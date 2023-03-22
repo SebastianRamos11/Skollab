@@ -156,5 +156,5 @@
   // ---------------------------------------------------------
 
   // close and output PDF document
-  $pdf->Output('Boletin.pdf', 'I');
+  $pdf->Output('BOLETIN_'.$student[0][0].'_'.$student[0][1].'.pdf', 'I');
 ?>
