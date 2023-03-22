@@ -1682,6 +1682,11 @@ th {
   min-width: 180px;
 }
 
+.actions--briefcase .btn-report {
+  width: 100%;
+  display: block;
+}
+
 .evidence {
   background: #fff;
   border-radius: 15px;

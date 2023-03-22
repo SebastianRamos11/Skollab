@@ -17,6 +17,15 @@
   }
 }
 
+.actions{
+  &--briefcase{
+    & .btn-report{
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
 // EVIDENCE
 .evidence {
   background: $white;
