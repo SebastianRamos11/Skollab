@@ -8,10 +8,6 @@
   $activity = "SELECT asunto, descripcion, ID_Ficha, fecha_limite, url FROM actividad WHERE ID_Actividad = $id_activity";
   $activity_result = mysqli_query($dbConnection, $activity) or die(mysqli_error($dbConnection));
   $activity_array = mysqli_fetch_all($activity_result, MYSQLI_NUM);
-
-  $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
-  $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
-  $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
 ?>
 <!DOCTYPE html>
 <html lang="es">

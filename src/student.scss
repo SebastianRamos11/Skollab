@@ -266,22 +266,38 @@
 }
 
 // BRIEFCASE
-.program {
+.subjects {
   display: flex;
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.subject {
+  display: flex;
+  background: $white;
+  border-radius: $radius-xl;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: $black;
-  @include element;
+  padding: 20px;
   cursor: pointer;
-  &__figure {
-    max-width: 100px;
+  transition: all 0.3s;
+  &.hidden {
+    background: $white;
   }
-  &__id {
-    margin-left: 40px;
+  &.active {
+    border: 5px solid #00d809;
+  }
+  &__figure {
+    max-width: 80px;
+    margin-right: 20px;
   }
   &__title {
     font-size: map-get($size-title, "m");
     font-weight: map-get($font-weights, "semibold");
-    margin-bottom: 8px;
   }
   &__group {
     color: $paragraph-color;
@@ -386,7 +402,7 @@
   }
 }
 
-.program-divider {
+.subject-divider {
   max-width: 900px;
   opacity: 0.7;
   margin: 40px auto;

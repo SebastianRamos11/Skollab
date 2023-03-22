@@ -1,8 +1,14 @@
-const program = document.querySelectorAll(".program");
+const subject = document.querySelectorAll(".subject");
 const briefcase = document.querySelectorAll(".briefcase");
 
-program.forEach((e, i) => {
-  program[i].addEventListener("click", () => {
-    briefcase[i].classList.remove("hidden");
+subject.forEach((e, i) => {
+  subject[i].addEventListener("click", () => {
+    briefcase[i].classList.toggle("hidden");
+    subject[i].classList.toggle("active");
+    for (let j = 0; j <= briefcase.length; j++) {
+      if (briefcase[j] === briefcase[i]) continue;
+      briefcase[j].classList.add("hidden");
+      subject[j].classList.remove("active");
+    }
   });
 });

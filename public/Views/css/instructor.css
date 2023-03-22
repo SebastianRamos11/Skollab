@@ -763,6 +763,44 @@ th {
   justify-items: center;
   border-right: 1px solid #d0d0d0;
 }
+.wrapper .nav-y__logo {
+  margin-bottom: 30px;
+}
+.wrapper .nav-y__role {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.wrapper .nav-y__role svg {
+  width: 100px;
+  margin-bottom: 10px;
+}
+.wrapper .nav-y__role div {
+  background: #0066ff;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 15px;
+  color: #fff;
+}
+.wrapper .nav-y__course {
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+}
+.wrapper .nav-y__course img {
+  max-width: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-right: 10px;
+}
+.wrapper .nav-y__course div {
+  font-size: 1.4em;
+  font-weight: 500;
+}
 .wrapper .nav-y .full-logo {
   width: 130px;
   display: block;
@@ -797,6 +835,7 @@ th {
   padding: 0;
   margin: 0;
   width: 100%;
+  margin-bottom: 20px;
 }
 .wrapper .nav-y ul a {
   display: block;

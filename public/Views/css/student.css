@@ -763,6 +763,44 @@ th {
   justify-items: center;
   border-right: 1px solid #d0d0d0;
 }
+.wrapper .nav-y__logo {
+  margin-bottom: 30px;
+}
+.wrapper .nav-y__role {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.wrapper .nav-y__role svg {
+  width: 100px;
+  margin-bottom: 10px;
+}
+.wrapper .nav-y__role div {
+  background: #0066ff;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 15px;
+  color: #fff;
+}
+.wrapper .nav-y__course {
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+}
+.wrapper .nav-y__course img {
+  max-width: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-right: 10px;
+}
+.wrapper .nav-y__course div {
+  font-size: 1.4em;
+  font-weight: 500;
+}
 .wrapper .nav-y .full-logo {
   width: 130px;
   display: block;
@@ -797,6 +835,7 @@ th {
   padding: 0;
   margin: 0;
   width: 100%;
+  margin-bottom: 20px;
 }
 .wrapper .nav-y ul a {
   display: block;
@@ -1898,31 +1937,41 @@ th {
   font-weight: 700;
 }
 
-.program {
+.subjects {
   display: flex;
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.subject {
+  display: flex;
+  background: #fff;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: #000;
-  padding: 40px;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0px 8px 20px rgba(157, 186, 234, 0.25);
-  margin: 0 auto;
-  max-width: 1000px;
-  margin-top: 30px;
+  padding: 20px;
   cursor: pointer;
+  transition: all 0.3s;
 }
-.program__figure {
-  max-width: 100px;
+.subject.hidden {
+  background: #fff;
 }
-.program__id {
-  margin-left: 40px;
+.subject.active {
+  border: 5px solid #00d809;
 }
-.program__title {
+.subject__figure {
+  max-width: 80px;
+  margin-right: 20px;
+}
+.subject__title {
   font-size: 1.6em;
   font-weight: 700;
-  margin-bottom: 8px;
 }
-.program__group {
+.subject__group {
   color: #636363;
 }
 
@@ -2028,7 +2077,7 @@ th {
   font-weight: 500;
 }
 
-.program-divider {
+.subject-divider {
   max-width: 900px;
   opacity: 0.7;
   margin: 40px auto;

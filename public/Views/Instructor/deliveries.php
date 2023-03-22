@@ -17,10 +17,6 @@
     $student_result = mysqli_query($dbConnection, $student) or die(mysqli_error($dbConnection));
     $student = mysqli_fetch_all($student_result, MYSQLI_NUM);
 
-    $group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
-    $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
-    $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
-
     $pending_users = array();
     
     for($i=0; $i < sizeof($student); $i++){

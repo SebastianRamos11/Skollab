@@ -3,10 +3,6 @@
 	session_start();
   include_once "../validations.php";
 
-	$group_num = "SELECT numero FROM ficha WHERE ID_Ficha = $group";
-  $group_num_result = mysqli_query($dbConnection, $group_num) or die(mysqli_error($dbConnection));
-  $group_num = mysqli_fetch_all($group_num_result, MYSQLI_NUM)[0][0];
-
 	if (isset($_SESSION['id'])) {
 		$id_evidencia = $_GET['evidence'];  
 
