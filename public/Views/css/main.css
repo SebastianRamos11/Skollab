@@ -1682,8 +1682,7 @@ th {
 
 .slider {
   width: 90%;
-  overflow: hidden;
-  grid-template-columns: 50px 1fr 50px;
+  grid-template-columns: 100px 1fr 100px;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
@@ -1700,9 +1699,16 @@ th {
 }
 .slider__arrow {
   text-align: center;
+  padding: 25px;
+  border-radius: 60%;
+  border: 1px solid rgb(182, 182, 182);
   cursor: pointer;
-  font-size: 50px;
+  font-size: 40px;
   color: #393939;
+  transition: all 0.3s;
+}
+.slider__arrow:hover {
+  font-size: 50px;
 }
 
 @media screen and (min-width: 600px) {

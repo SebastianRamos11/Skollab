@@ -65,7 +65,7 @@
           if(sizeof($announcements) > 0){
             ?>
             <div class="announcements__container slider slider-container">
-              <i class="fa-solid fa-arrow-left slider__arrow" id="before" title="Anuncio anterior"></i>
+              <i class="fa-solid fa-arrow-left slider__arrow" id="before"></i>
               <?php
                 for($i = 0; $i < sizeof($announcements); $i++){
                   $id_owner = $announcements[$i][6];
@@ -109,7 +109,7 @@
                   <?php
                 }
               ?>
-              <i class="fa-solid fa-arrow-right slider__arrow" id="next" title="Siguiente anuncio"></i>
+              <i class="fa-solid fa-arrow-right slider__arrow" id="next"></i>
             </div>
             <?php
           } else {
