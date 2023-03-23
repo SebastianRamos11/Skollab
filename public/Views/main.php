@@ -64,9 +64,10 @@
         <?php
           if(sizeof($announcements) > 0){
             ?>
-            <div class="announcements__container">
+            <div class="announcements__container slider slider-container">
+              <i class="fa-solid fa-arrow-left slider__arrow" id="before" title="Anuncio anterior"></i>
               <?php
-                for($i = sizeof($announcements) - 1; $i >= 0; $i--){
+                for($i = 0; $i < sizeof($announcements); $i++){
                   $id_owner = $announcements[$i][6];
 
                   // GET ANNOUNCEMENT'S OWNER
@@ -75,7 +76,7 @@
                   $owner = mysqli_fetch_all($owner_result, MYSQLI_NUM);
                 
                   ?>
-                  <div class="announcement">
+                  <div data-id="<?php echo $i + 1?>" class="announcement slider__body <?php if($i == 0) {echo "slider__body--show";} ?>">
                     <div class="announcement__owner">
                       <img class="announcement__owner-photo" src="img/default.jpeg" alt="owner-photo">
                       <div>
@@ -108,6 +109,7 @@
                   <?php
                 }
               ?>
+              <i class="fa-solid fa-arrow-right slider__arrow" id="next" title="Siguiente anuncio"></i>
             </div>
             <?php
           } else {
@@ -144,6 +146,7 @@
         }
       }
     ?>
+    <script src="../Controllers/slider.js"></script>
     <script src="../Controllers/modal-form.js"></script>
   </body>
   <style>body, html{background: #fff !important;}.nav{border-bottom: 1px solid #c2c2c2;}.announcement{border: 1px solid #868686;}.main-content{padding: 40px;}</style>

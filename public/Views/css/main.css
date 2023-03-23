@@ -1593,7 +1593,10 @@ th {
 .announcement__img {
   padding-top: 20px;
   margin: 0 auto;
-  max-width: 500px;
+  width: 500px;
+  height: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .form-header {
@@ -1675,6 +1678,31 @@ th {
 }
 .back-button--profile-position {
   position: absolute;
+}
+
+.slider {
+  width: 90%;
+  overflow: hidden;
+  grid-template-columns: 50px 1fr 50px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.slider__body {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  opacity: 0;
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+.slider__body--show {
+  opacity: 1;
+}
+.slider__arrow {
+  text-align: center;
+  cursor: pointer;
+  font-size: 50px;
+  color: #393939;
 }
 
 @media screen and (min-width: 600px) {
