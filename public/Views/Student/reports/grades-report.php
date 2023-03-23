@@ -26,7 +26,7 @@
 
   // Introduction data
   $introduction = '
-    <h1>Boletín de notas</h1>
+    <h1>Boletín académico</h1>
     <i>Generado el '.$date.'</i> 
     <p>En el presente documento se presenta el reporte de notas del estudiante <strong>'.$student[0][0].' '.$student[0][1].'</strong> con <strong>'.$type_doc.'</strong> <strong>'.$student[0][3].'</strong>, correo electrónico <strong>'.$student[0][4].'</strong> y número de teléfono <strong>'.$student[0][5].'</strong>  el cual se encuentra en formación en el curso <strong>'.$group_num.'</strong>.</p>
   ';

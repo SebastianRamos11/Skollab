@@ -907,6 +907,14 @@ th {
   }
 }
 
+@media screen and (max-width: 1400px) {
+  .nav-profile {
+    &--y {
+      bottom: 65px;
+    }
+  }
+}
+
 .user {
   &-profile {
     max-width: 1000px;

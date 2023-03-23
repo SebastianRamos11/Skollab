@@ -46,9 +46,9 @@
           <img src="img/main/books-illustration.png" alt="books" />
         </div>
         <div class="home__start">
-          <h1 class="home__title">Donde la gestión de tu formación educativa es mas sencilla e intuitiva.</h1>
-          <p class="home__paragraph">Es hora del cambio, la experiencia de los estudiantes y profesores es muy importante.</p>
-          <input type="button" value="Comenzar" class="home__btn" />
+          <h1 class="home__title">Donde la gestión del aprendizaje dígital es más intuitiva y eficaz.</h1>
+          <p class="home__paragraph">Digitaliza tu gestión académica, ¡Skollab LMS te permitirá esto y mucho más!</p>
+          <a href="signup.php" class="home__btn">Comenzar</a>
         </div>
       </section>
     </main>
@@ -72,8 +72,8 @@
             <ul class="card-steps__list">
               <li class="card-steps__li"><span>1</span> Regístrate</li>
               <li class="card-steps__li"><span>2</span> Elige tu rol</li>
-              <li class="card-steps__li"><span>3</span> Únete a un programa</li>
-              <li class="card-steps__li"><span>4</span> ¡Comienza a estudiar!</li>
+              <li class="card-steps__li"><span>3</span> Únete a tu curso</li>
+              <li class="card-steps__li"><span>4</span> ¡Gestiona tu aprendizaje!</li>
             </ul>
           </div>
         </div>
@@ -99,11 +99,11 @@
           <h3>Productividad</h3>
         </div>
         <div class="skills__item">
-          <img src="img/skills/calendar.png" alt="calendar" class="skills__img" />
-          <h3>Programación</h3>
+          <img src="img/skills/organized.png" alt="calendar" class="skills__img" />
+          <h3>Organización</h3>
         </div>
         <div class="skills__item">
-          <img src="img/skills/open-book.png" alt="open-book" class="skills__img" />
+          <img src="img/skills/flexibility.png" alt="open-book" class="skills__img" />
           <h3>Flexibilidad</h3>
         </div>
         <div class="skills__item">
@@ -111,23 +111,23 @@
           <h3>Portafolio</h3>
         </div>
         <div class="skills__item">
-          <img src="img/skills/call-center.png" alt="support" class="skills__img" />
-          <h3>Soporte</h3>
+          <img src="img/skills/reports.png" alt="support" class="skills__img" />
+          <h3>Reportes</h3>
         </div>
       </div>
     </section>
 
-    <section class="support">
-      <div class="support__content">
-        <div class="support__title">
-          <h2>Soporte escalable</h2>
+    <section class="start">
+      <div class="start__content">
+        <div class="start__title">
+          <h2>La mejor opción para gestionar tu aprendizaje</h2>
           <hr />
         </div>
-        <p class="support__paragraph">Contamos con un centro de ayuda que se va actualizando con los problemas más frecuentes de los usuarios.</p>
-        <input type="button" value="Ir a soporte" class="support__btn" />
+        <p class="start__paragraph">Comienza ahora a gestionar tu formación académica de forma dígital, accede a tus actividades y recursos en cualquier lugar con acceso a internet.</p>
+        <a href="signup.php" value="Comenzar" class="start__btn">Comenzar</a>
       </div>
-      <div class="support__figure">
-        <img src="img/main/support.png" alt="support" />
+      <div class="start__figure">
+        <img src="img/main/start.png" alt="start" />
       </div>
     </section>
 

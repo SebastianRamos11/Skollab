@@ -33,6 +33,8 @@
   }
 
   &__btn {
+    display: block;
+    width: max-content;
     @include primary-btn($primary-contrast, true);
   }
 }
@@ -275,7 +277,7 @@
 
 // Support
 
-.support {
+.start {
   @include setFlex(column, center, between);
   background: $white;
   margin-bottom: $element-spacing;
@@ -292,35 +294,37 @@
     color: $paragraph-color;
   }
   &__btn {
+    display: block;
+    margin: 40px auto 40px auto !important;
+
     @include primary-btn($primary-contrast, false);
     transition: 0.4s;
-
     &:hover {
       box-shadow: $font-shadow;
     }
   }
   &__figure {
-    max-width: 400px;
-    margin: 80px auto 0 auto;
-    position: relative;
+    max-width: 550px;
+    padding: 20px;
     bottom: 0;
   }
 }
 
 // Media
 @media screen and (min-width: $lg) {
-  .support {
+  .start {
     flex-direction: row;
-    padding: 0;
+    padding: 40px;
     &__content {
       margin: 0 100px;
     }
     &__btn {
-      margin-top: 30px;
+      display: block;
+      margin: 40px auto 40px auto !important;
+      width: max-content;
     }
     &__figure {
-      margin: 80px 100px 0 auto;
-      max-width: 500px;
+      margin-top: 100px !important;
     }
   }
 }

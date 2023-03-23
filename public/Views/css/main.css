@@ -1114,6 +1114,11 @@ th {
   bottom: 40px;
 }
 
+@media screen and (max-width: 1400px) {
+  .nav-profile--y {
+    bottom: 65px;
+  }
+}
 .user-profile {
   max-width: 1000px;
   margin: 40px auto;
@@ -1699,6 +1704,9 @@ th {
   color: #636363;
 }
 .home__btn {
+  display: block;
+  width: -moz-max-content;
+  width: max-content;
   border: none;
   border-radius: 10px;
   padding: 15px 20px;
@@ -1944,7 +1952,7 @@ th {
   margin-top: 10px;
 }
 
-.support {
+.start {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1955,21 +1963,23 @@ th {
   text-align: center;
   padding: 70px 40px 0 40px;
 }
-.support__title {
+.start__title {
   font-size: 1.4em;
 }
-.support__title hr {
+.start__title hr {
   width: 55px;
   height: 15px;
   border: none;
   background: #ff3030;
   border-radius: 20px;
 }
-.support__paragraph {
+.start__paragraph {
   font-size: 1.1em;
   color: #636363;
 }
-.support__btn {
+.start__btn {
+  display: block;
+  margin: 40px auto 40px auto !important;
   border: none;
   border-radius: 10px;
   padding: 15px 20px;
@@ -1981,30 +1991,31 @@ th {
   font-weight: 500;
   transition: 0.4s;
 }
-.support__btn:hover {
+.start__btn:hover {
   box-shadow: 3px 7px 12px rgba(0, 0, 0, 0.3);
 }
-.support__figure {
-  max-width: 400px;
-  margin: 80px auto 0 auto;
-  position: relative;
+.start__figure {
+  max-width: 550px;
+  padding: 20px;
   bottom: 0;
 }
 
 @media screen and (min-width: 800px) {
-  .support {
+  .start {
     flex-direction: row;
-    padding: 0;
+    padding: 40px;
   }
-  .support__content {
+  .start__content {
     margin: 0 100px;
   }
-  .support__btn {
-    margin-top: 30px;
+  .start__btn {
+    display: block;
+    margin: 40px auto 40px auto !important;
+    width: -moz-max-content;
+    width: max-content;
   }
-  .support__figure {
-    margin: 80px 100px 0 auto;
-    max-width: 500px;
+  .start__figure {
+    margin-top: 100px !important;
   }
 }
 .footer {
